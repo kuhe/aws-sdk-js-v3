@@ -13,4 +13,5 @@ export interface PaginationConfiguration {
   client: Client<any, any, any>;
   pageSize?: number;
   startingToken?: any;
+  stopOnSameToken?: boolean;
 }
