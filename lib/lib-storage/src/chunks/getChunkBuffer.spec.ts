@@ -18,9 +18,9 @@ describe.only(getChunkBuffer.name, () => {
         expect(byteLength(chunk.data)).toEqual(chunklength);
         expect(chunk.partNumber).toEqual(chunkNum);
         if (chunkNum < expectedNumberOfChunks) {
-          expect(chunk.lastPart).toBe(undefined);
+          expect(chunk.isLastPart).toBe(undefined);
         } else {
-          expect(chunk.lastPart).toBe(true);
+          expect(chunk.isLastPart).toBe(true);
         }
       }
 
@@ -40,11 +40,11 @@ describe.only(getChunkBuffer.name, () => {
 
       expect(chunks.length).toEqual(3);
       expect(byteLength(chunks[0].data)).toBe(chunklength);
-      expect(chunks[0].lastPart).toBe(undefined);
+      expect(chunks[0].isLastPart).toBe(undefined);
       expect(byteLength(chunks[1].data)).toBe(chunklength);
-      expect(chunks[1].lastPart).toBe(undefined);
+      expect(chunks[1].isLastPart).toBe(undefined);
       expect(byteLength(chunks[2].data)).toBe(totalLength % chunklength);
-      expect(chunks[2].lastPart).toBe(true);
+      expect(chunks[2].isLastPart).toBe(true);
     });
 
     it("should come back with one chunk if it is a small buffer", async () => {
@@ -60,7 +60,7 @@ describe.only(getChunkBuffer.name, () => {
 
       expect(chunks.length).toEqual(1);
       expect(byteLength(chunks[0].data)).toBe(totalLength % chunklength);
-      expect(chunks[0].lastPart).toBe(true);
+      expect(chunks[0].isLastPart).toBe(true);
     });
   });
 });

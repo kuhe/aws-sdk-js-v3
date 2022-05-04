@@ -18,6 +18,6 @@ export async function* getChunkBuffer(data: Buffer, partSize: number): AsyncGene
   yield {
     partNumber,
     data: data.slice(startByte),
-    lastPart: true,
+    isLastPart: true,
   };
 }

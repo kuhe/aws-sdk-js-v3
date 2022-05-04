@@ -1,8 +1,20 @@
 import { ClientDefaultValues } from "./runtimeConfig";
 
-export const byteLength = (input: any) => {
+export type InputType = {
+  byteLength?: number;
+  length?: number;
+  size?: number;
+  path?: string;
+};
+
+export function byteLength(input: null | undefined): 0;
+export function byteLength(input: string): number;
+export function byteLength<T>(input: T | InputType): number | undefined;
+export function byteLength(input: any): number | undefined {
   if (input === null || input === undefined) return 0;
+
   if (typeof input === "string") input = Buffer.from(input);
+
   if (typeof input.byteLength === "number") {
     return input.byteLength;
   } else if (typeof input.length === "number") {
@@ -16,5 +28,6 @@ export const byteLength = (input: any) => {
       return undefined;
     }
   }
+
   return undefined;
-};
+}

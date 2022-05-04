@@ -6,8 +6,9 @@ import { getChunkStream } from "./chunks/getChunkStream";
 import { getDataReadable } from "./chunks/getDataReadable";
 import { getDataReadableStream } from "./chunks/getDataReadableStream";
 import { BodyDataTypes } from "./types";
+import { RawDataPart } from "./Upload";
 
-export const getChunk = (data: BodyDataTypes, partSize: number) => {
+export const getChunk = (data: BodyDataTypes, partSize: number): AsyncGenerator<RawDataPart, void, undefined> => {
   if (data instanceof Buffer) {
     return getChunkBuffer(data, partSize);
   } else if (data instanceof Readable) {
@@ -16,9 +17,11 @@ export const getChunk = (data: BodyDataTypes, partSize: number) => {
     // chunk Strings, Uint8Array.
     return getChunkBuffer(Buffer.from(data), partSize);
   }
-  if (typeof (data as any).stream === "function") {
+
+  const _data = data as { stream?(): ReadableStream };
+  if (typeof _data.stream === "function") {
     // approximate support for Blobs.
-    return getChunkStream<ReadableStream>((data as any).stream(), partSize, getDataReadableStream);
+    return getChunkStream<ReadableStream>(_data.stream(), partSize, getDataReadableStream);
   } else if (data instanceof ReadableStream) {
     return getChunkStream<ReadableStream>(data, partSize, getDataReadableStream);
   } else {

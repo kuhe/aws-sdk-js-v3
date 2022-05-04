@@ -19,18 +19,23 @@ import { getChunk } from "./chunker";
 import { BodyDataTypes, Options, Progress, ServiceClients } from "./types";
 
 export interface RawDataPart {
+  /**
+   * sequential number indicating the upload chunk. Starts with 1.
+   */
   partNumber: number;
   data: BodyDataTypes;
-  lastPart?: boolean;
+  isLastPart?: boolean;
 }
 
 const MIN_PART_SIZE = 1024 * 1024 * 5;
 
+/**
+ * S3 multipart upload does not allow more than 10000 parts.
+ */
+const MAX_PARTS = 10000;
+
 export class Upload extends EventEmitter {
-  /**
-   * S3 multipart upload does not allow more than 10000 parts.
-   */
-  private MAX_PARTS = 10000;
+  public uploadEvent?: string;
 
   // Defaults.
   private queueSize = 4;
@@ -52,7 +57,6 @@ export class Upload extends EventEmitter {
 
   private uploadedParts: CompletedPart[] = [];
   private uploadId?: string;
-  uploadEvent?: string;
 
   private isMultiPart = true;
   private putResponse?: PutObjectCommandOutput;
@@ -120,10 +124,8 @@ export class Upload extends EventEmitter {
 
   async __doConcurrentUpload(dataFeeder: AsyncGenerator<RawDataPart, void, undefined>): Promise<void> {
     for await (const dataPart of dataFeeder) {
-      if (this.uploadedParts.length > this.MAX_PARTS) {
-        throw new Error(
-          `Exceeded ${this.MAX_PARTS} as part of the upload to ${this.params.Key} and ${this.params.Bucket}.`
-        );
+      if (this.uploadedParts.length > MAX_PARTS) {
+        throw new Error(`Exceeded ${MAX_PARTS} as part of the upload to ${this.params.Key} and ${this.params.Bucket}.`);
       }
 
       try {
@@ -132,7 +134,7 @@ export class Upload extends EventEmitter {
         }
 
         // Use put instead of multi-part for one chunk uploads.
-        if (dataPart.partNumber === 1 && dataPart.lastPart) {
+        if (dataPart.partNumber === 1 && dataPart.isLastPart) {
           return await this.__uploadUsingPut(dataPart);
         }
 
@@ -262,7 +264,7 @@ export class Upload extends EventEmitter {
 
     if (this.partSize < MIN_PART_SIZE) {
       throw new Error(
-        `EntityTooSmall: Your proposed upload partsize [${this.partSize}] is smaller than the minimum allowed size [${MIN_PART_SIZE}] (5MB)`
+        `EntityTooSmall: Your proposed upload partSize [${this.partSize}] is smaller than the minimum allowed size [${MIN_PART_SIZE}] (5MB)`
       );
     }
 

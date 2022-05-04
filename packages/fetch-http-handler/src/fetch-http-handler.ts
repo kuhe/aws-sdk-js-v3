@@ -24,6 +24,7 @@ export class FetchHttpHandler implements HttpHandler {
   private readonly configProvider?: Provider<FetchHttpHandlerConfig>;
 
   constructor(options?: FetchHttpHandlerOptions | Provider<FetchHttpHandlerOptions | undefined>) {
+    console.log("ayyy", this);
     if (typeof options === "function") {
       this.configProvider = async () => (await options()) || {};
     } else {
@@ -73,13 +74,17 @@ export class FetchHttpHandler implements HttpHandler {
     }
 
     const fetchRequest = new Request(url, requestOptions);
+
+    console.log("Hey Fry, Pizza goin' out, COME ON!!!!", request.body);
+
     const raceOfPromises = [
       fetch(fetchRequest).then((response) => {
-        const fetchHeaders: any = response.headers;
+        console.log("fetch resolved");
+        const fetchHeaders = response.headers as Headers & { entries(): [string, string][] };
         const transformedHeaders: HeaderBag = {};
 
-        for (const pair of <Array<string[]>>fetchHeaders.entries()) {
-          transformedHeaders[pair[0]] = pair[1];
+        for (const [key, value] of fetchHeaders.entries()) {
+          transformedHeaders[key] = value;
         }
 
         const hasReadableStream = response.body !== undefined;
@@ -99,12 +104,13 @@ export class FetchHttpHandler implements HttpHandler {
           response: new HttpResponse({
             headers: transformedHeaders,
             statusCode: response.status,
-            body: response.body,
+            body: null,
           }),
         };
       }),
       requestTimeout(requestTimeoutInMs),
     ];
+
     if (abortSignal) {
       raceOfPromises.push(
         new Promise<never>((resolve, reject) => {
@@ -116,6 +122,7 @@ export class FetchHttpHandler implements HttpHandler {
         })
       );
     }
+
     return Promise.race(raceOfPromises);
   }
 }
