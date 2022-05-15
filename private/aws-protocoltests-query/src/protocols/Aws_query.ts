@@ -21,6 +21,7 @@ import {
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
   strictParseShort as __strictParseShort,
+  timestampInputParam as __timestampInputParam,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -597,16 +598,13 @@ const deserializeAws_queryEmptyInputAndEmptyOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryEndpointOperationCommand = async (
@@ -634,16 +632,13 @@ const deserializeAws_queryEndpointOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryEndpointWithHostLabelOperationCommand = async (
@@ -671,16 +666,13 @@ const deserializeAws_queryEndpointWithHostLabelOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryFlattenedXmlMapCommand = async (
@@ -711,16 +703,13 @@ const deserializeAws_queryFlattenedXmlMapCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryFlattenedXmlMapWithXmlNameCommand = async (
@@ -751,16 +740,13 @@ const deserializeAws_queryFlattenedXmlMapWithXmlNameCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryFlattenedXmlMapWithXmlNamespaceCommand = async (
@@ -794,16 +780,13 @@ const deserializeAws_queryFlattenedXmlMapWithXmlNamespaceCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryGreetingWithErrorsCommand = async (
@@ -880,16 +863,13 @@ const deserializeAws_queryHostWithPathOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryIgnoresWrappingXmlNameCommand = async (
@@ -920,16 +900,13 @@ const deserializeAws_queryIgnoresWrappingXmlNameCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryNestedStructuresCommand = async (
@@ -957,16 +934,13 @@ const deserializeAws_queryNestedStructuresCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryNoInputAndNoOutputCommand = async (
@@ -994,16 +968,13 @@ const deserializeAws_queryNoInputAndNoOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryNoInputAndOutputCommand = async (
@@ -1034,16 +1005,13 @@ const deserializeAws_queryNoInputAndOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryQueryIdempotencyTokenAutoFillCommand = async (
@@ -1071,16 +1039,13 @@ const deserializeAws_queryQueryIdempotencyTokenAutoFillCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryQueryListsCommand = async (
@@ -1108,16 +1073,13 @@ const deserializeAws_queryQueryListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryQueryMapsCommand = async (
@@ -1145,16 +1107,13 @@ const deserializeAws_queryQueryMapsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryQueryTimestampsCommand = async (
@@ -1182,16 +1141,13 @@ const deserializeAws_queryQueryTimestampsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryRecursiveXmlShapesCommand = async (
@@ -1222,16 +1178,13 @@ const deserializeAws_queryRecursiveXmlShapesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_querySimpleInputParamsCommand = async (
@@ -1259,16 +1212,13 @@ const deserializeAws_querySimpleInputParamsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_querySimpleScalarXmlPropertiesCommand = async (
@@ -1299,16 +1249,13 @@ const deserializeAws_querySimpleScalarXmlPropertiesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlBlobsCommand = async (
@@ -1339,16 +1286,13 @@ const deserializeAws_queryXmlBlobsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlEmptyBlobsCommand = async (
@@ -1379,16 +1323,13 @@ const deserializeAws_queryXmlEmptyBlobsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlEmptyListsCommand = async (
@@ -1419,16 +1360,13 @@ const deserializeAws_queryXmlEmptyListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlEmptyMapsCommand = async (
@@ -1459,16 +1397,13 @@ const deserializeAws_queryXmlEmptyMapsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlEnumsCommand = async (
@@ -1499,16 +1434,13 @@ const deserializeAws_queryXmlEnumsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlListsCommand = async (
@@ -1539,16 +1471,13 @@ const deserializeAws_queryXmlListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlMapsCommand = async (
@@ -1579,16 +1508,13 @@ const deserializeAws_queryXmlMapsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlMapsXmlNameCommand = async (
@@ -1619,16 +1545,13 @@ const deserializeAws_queryXmlMapsXmlNameCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlNamespacesCommand = async (
@@ -1659,16 +1582,13 @@ const deserializeAws_queryXmlNamespacesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 export const deserializeAws_queryXmlTimestampsCommand = async (
@@ -1699,16 +1619,13 @@ const deserializeAws_queryXmlTimestampsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Error);
 };
 
 const deserializeAws_queryComplexErrorResponse = async (
@@ -1990,13 +1907,13 @@ const serializeAws_queryQueryMapsInput = (input: QueryMapsInput, context: __Serd
 const serializeAws_queryQueryTimestampsInput = (input: QueryTimestampsInput, context: __SerdeContext): any => {
   const entries: any = {};
   if (input.normalFormat !== undefined && input.normalFormat !== null) {
-    entries["normalFormat"] = input.normalFormat.toISOString().split(".")[0] + "Z";
+    entries["normalFormat"] = __timestampInputParam(input.normalFormat, "D");
   }
   if (input.epochMember !== undefined && input.epochMember !== null) {
-    entries["epochMember"] = Math.round(input.epochMember.getTime() / 1000);
+    entries["epochMember"] = __timestampInputParam(input.epochMember, "E");
   }
   if (input.epochTarget !== undefined && input.epochTarget !== null) {
-    entries["epochTarget"] = Math.round(input.epochTarget.getTime() / 1000);
+    entries["epochTarget"] = __timestampInputParam(input.epochTarget, "E");
   }
   return entries;
 };

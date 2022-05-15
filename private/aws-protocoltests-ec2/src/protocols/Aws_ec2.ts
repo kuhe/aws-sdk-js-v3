@@ -21,6 +21,7 @@ import {
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
   strictParseShort as __strictParseShort,
+  timestampInputParam as __timestampInputParam,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -458,16 +459,13 @@ const deserializeAws_ec2EmptyInputAndEmptyOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2EndpointOperationCommand = async (
@@ -495,16 +493,13 @@ const deserializeAws_ec2EndpointOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2EndpointWithHostLabelOperationCommand = async (
@@ -532,16 +527,13 @@ const deserializeAws_ec2EndpointWithHostLabelOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2GreetingWithErrorsCommand = async (
@@ -615,16 +607,13 @@ const deserializeAws_ec2HostWithPathOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2IgnoresWrappingXmlNameCommand = async (
@@ -655,16 +644,13 @@ const deserializeAws_ec2IgnoresWrappingXmlNameCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2NestedStructuresCommand = async (
@@ -692,16 +678,13 @@ const deserializeAws_ec2NestedStructuresCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2NoInputAndOutputCommand = async (
@@ -732,16 +715,13 @@ const deserializeAws_ec2NoInputAndOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2QueryIdempotencyTokenAutoFillCommand = async (
@@ -769,16 +749,13 @@ const deserializeAws_ec2QueryIdempotencyTokenAutoFillCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2QueryListsCommand = async (
@@ -806,16 +783,13 @@ const deserializeAws_ec2QueryListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2QueryTimestampsCommand = async (
@@ -843,16 +817,13 @@ const deserializeAws_ec2QueryTimestampsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2RecursiveXmlShapesCommand = async (
@@ -883,16 +854,13 @@ const deserializeAws_ec2RecursiveXmlShapesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2SimpleInputParamsCommand = async (
@@ -920,16 +888,13 @@ const deserializeAws_ec2SimpleInputParamsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2SimpleScalarXmlPropertiesCommand = async (
@@ -960,16 +925,13 @@ const deserializeAws_ec2SimpleScalarXmlPropertiesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlBlobsCommand = async (
@@ -1000,16 +962,13 @@ const deserializeAws_ec2XmlBlobsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlEmptyBlobsCommand = async (
@@ -1040,16 +999,13 @@ const deserializeAws_ec2XmlEmptyBlobsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlEmptyListsCommand = async (
@@ -1080,16 +1036,13 @@ const deserializeAws_ec2XmlEmptyListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlEnumsCommand = async (
@@ -1120,16 +1073,13 @@ const deserializeAws_ec2XmlEnumsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlListsCommand = async (
@@ -1160,16 +1110,13 @@ const deserializeAws_ec2XmlListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlNamespacesCommand = async (
@@ -1200,16 +1147,13 @@ const deserializeAws_ec2XmlNamespacesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 export const deserializeAws_ec2XmlTimestampsCommand = async (
@@ -1240,16 +1184,13 @@ const deserializeAws_ec2XmlTimestampsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadEc2ErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody.Errors.Error);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.Errors.Error.code || parsedBody.Errors.Error.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody.Errors.Error);
 };
 
 const deserializeAws_ec2ComplexErrorResponse = async (
@@ -1388,13 +1329,13 @@ const serializeAws_ec2QueryListsInput = (input: QueryListsInput, context: __Serd
 const serializeAws_ec2QueryTimestampsInput = (input: QueryTimestampsInput, context: __SerdeContext): any => {
   const entries: any = {};
   if (input.normalFormat !== undefined && input.normalFormat !== null) {
-    entries["NormalFormat"] = input.normalFormat.toISOString().split(".")[0] + "Z";
+    entries["NormalFormat"] = __timestampInputParam(input.normalFormat, "D");
   }
   if (input.epochMember !== undefined && input.epochMember !== null) {
-    entries["EpochMember"] = Math.round(input.epochMember.getTime() / 1000);
+    entries["EpochMember"] = __timestampInputParam(input.epochMember, "E");
   }
   if (input.epochTarget !== undefined && input.epochTarget !== null) {
-    entries["EpochTarget"] = Math.round(input.epochTarget.getTime() / 1000);
+    entries["EpochTarget"] = __timestampInputParam(input.epochTarget, "E");
   }
   return entries;
 };

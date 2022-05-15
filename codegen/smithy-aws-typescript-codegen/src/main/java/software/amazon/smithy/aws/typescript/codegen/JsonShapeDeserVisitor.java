@@ -172,7 +172,7 @@ final class JsonShapeDeserVisitor extends DocumentShapeDeserVisitor {
                             memberName,
                             target.accept(getMemberVisitor(memberShape, "output." + locationName)));
                 } else {
-                    writer.write("$1L: (output.$2L !== undefined && output.$2L !== null)"
+                    writer.write("$1L: (output.$2L != null)"
                                     + " ? $3L: undefined,", memberName, locationName,
                             // Dispatch to the output value provider for any additional handling.
                             target.accept(getMemberVisitor(memberShape, "output." + locationName)));

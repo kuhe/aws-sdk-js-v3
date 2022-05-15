@@ -6,19 +6,25 @@ import {
 } from "@aws-sdk/protocol-http";
 import {
   dateToUtcString as __dateToUtcString,
+  decimalString as __decimalString,
   decorateServiceException as __decorateServiceException,
   expectNonNull as __expectNonNull,
   expectObject as __expectObject,
   expectString as __expectString,
   expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  filterHeaders as __filterHeaders,
+  filterUndefined as __filterUndefined,
   getArrayIfSingleItem as __getArrayIfSingleItem,
   getValueFromTextNode as __getValueFromTextNode,
   parseBoolean as __parseBoolean,
   parseRfc3339DateTime as __parseRfc3339DateTime,
   parseRfc7231DateTime as __parseRfc7231DateTime,
+  resolvedPath as __resolvedPath,
+  str as __str,
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
+  timestampInputParam as __timestampInputParam,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -434,40 +440,18 @@ export const serializeAws_restXmlAbortMultipartUploadCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "AbortMultipartUpload",
-    ...(input.UploadId !== undefined && { uploadId: input.UploadId }),
+    uploadId: input.UploadId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -487,54 +471,26 @@ export const serializeAws_restXmlCompleteMultipartUploadCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-checksum-sha1": input.ChecksumSHA1!,
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-checksum-crc32": input.ChecksumCRC32!,
+    "x-amz-checksum-sha256": input.ChecksumSHA256!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ChecksumCRC32) && { "x-amz-checksum-crc32": input.ChecksumCRC32! }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32C) && { "x-amz-checksum-crc32c": input.ChecksumCRC32C! }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA1) && { "x-amz-checksum-sha1": input.ChecksumSHA1! }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA256) && { "x-amz-checksum-sha256": input.ChecksumSHA256! }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
+    "x-amz-checksum-crc32c": input.ChecksumCRC32C!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "CompleteMultipartUpload",
-    ...(input.UploadId !== undefined && { uploadId: input.UploadId }),
+    uploadId: input.UploadId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.MultipartUpload !== undefined) {
     body = serializeAws_restXmlCompletedMultipartUpload(input.MultipartUpload, context);
@@ -565,121 +521,69 @@ export const serializeAws_restXmlCopyObjectCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ACL) && { "x-amz-acl": input.ACL! }),
-    ...(isSerializableHeaderValue(input.CacheControl) && { "cache-control": input.CacheControl! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && { "x-amz-checksum-algorithm": input.ChecksumAlgorithm! }),
-    ...(isSerializableHeaderValue(input.ContentDisposition) && { "content-disposition": input.ContentDisposition! }),
-    ...(isSerializableHeaderValue(input.ContentEncoding) && { "content-encoding": input.ContentEncoding! }),
-    ...(isSerializableHeaderValue(input.ContentLanguage) && { "content-language": input.ContentLanguage! }),
-    ...(isSerializableHeaderValue(input.ContentType) && { "content-type": input.ContentType! }),
-    ...(isSerializableHeaderValue(input.CopySource) && { "x-amz-copy-source": input.CopySource! }),
-    ...(isSerializableHeaderValue(input.CopySourceIfMatch) && {
-      "x-amz-copy-source-if-match": input.CopySourceIfMatch!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceIfModifiedSince) && {
-      "x-amz-copy-source-if-modified-since": __dateToUtcString(input.CopySourceIfModifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceIfNoneMatch) && {
-      "x-amz-copy-source-if-none-match": input.CopySourceIfNoneMatch!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceIfUnmodifiedSince) && {
-      "x-amz-copy-source-if-unmodified-since": __dateToUtcString(input.CopySourceIfUnmodifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.Expires) && { expires: __dateToUtcString(input.Expires!).toString() }),
-    ...(isSerializableHeaderValue(input.GrantFullControl) && { "x-amz-grant-full-control": input.GrantFullControl! }),
-    ...(isSerializableHeaderValue(input.GrantRead) && { "x-amz-grant-read": input.GrantRead! }),
-    ...(isSerializableHeaderValue(input.GrantReadACP) && { "x-amz-grant-read-acp": input.GrantReadACP! }),
-    ...(isSerializableHeaderValue(input.GrantWriteACP) && { "x-amz-grant-write-acp": input.GrantWriteACP! }),
-    ...(isSerializableHeaderValue(input.MetadataDirective) && { "x-amz-metadata-directive": input.MetadataDirective! }),
-    ...(isSerializableHeaderValue(input.TaggingDirective) && { "x-amz-tagging-directive": input.TaggingDirective! }),
-    ...(isSerializableHeaderValue(input.ServerSideEncryption) && {
-      "x-amz-server-side-encryption": input.ServerSideEncryption!,
-    }),
-    ...(isSerializableHeaderValue(input.StorageClass) && { "x-amz-storage-class": input.StorageClass! }),
-    ...(isSerializableHeaderValue(input.WebsiteRedirectLocation) && {
-      "x-amz-website-redirect-location": input.WebsiteRedirectLocation!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSKeyId) && {
-      "x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSEncryptionContext) && {
-      "x-amz-server-side-encryption-context": input.SSEKMSEncryptionContext!,
-    }),
-    ...(isSerializableHeaderValue(input.BucketKeyEnabled) && {
-      "x-amz-server-side-encryption-bucket-key-enabled": input.BucketKeyEnabled!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceSSECustomerAlgorithm) && {
-      "x-amz-copy-source-server-side-encryption-customer-algorithm": input.CopySourceSSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceSSECustomerKey) && {
-      "x-amz-copy-source-server-side-encryption-customer-key": input.CopySourceSSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceSSECustomerKeyMD5) && {
-      "x-amz-copy-source-server-side-encryption-customer-key-md5": input.CopySourceSSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.Tagging) && { "x-amz-tagging": input.Tagging! }),
-    ...(isSerializableHeaderValue(input.ObjectLockMode) && { "x-amz-object-lock-mode": input.ObjectLockMode! }),
-    ...(isSerializableHeaderValue(input.ObjectLockRetainUntilDate) && {
-      "x-amz-object-lock-retain-until-date": (
-        input.ObjectLockRetainUntilDate!.toISOString().split(".")[0] + "Z"
-      ).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ObjectLockLegalHoldStatus) && {
-      "x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedSourceBucketOwner) && {
-      "x-amz-source-expected-bucket-owner": input.ExpectedSourceBucketOwner!,
-    }),
-    ...(input.Metadata !== undefined &&
-      Object.keys(input.Metadata).reduce(
-        (acc: any, suffix: string) => ({
-          ...acc,
-          [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
-        }),
-        {}
-      )),
+    "x-amz-website-redirect-location": input.WebsiteRedirectLocation!,
+    expires: [input.Expires, __str(__dateToUtcString(input.Expires!))],
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-acl": input.ACL!,
+    "content-encoding": input.ContentEncoding!,
+    "x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
+    "x-amz-grant-read-acp": input.GrantReadACP!,
+    "x-amz-server-side-encryption": input.ServerSideEncryption!,
+    "x-amz-server-side-encryption-bucket-key-enabled": [input.BucketKeyEnabled, __str(input.BucketKeyEnabled!)],
+    "x-amz-grant-write-acp": input.GrantWriteACP!,
+    "x-amz-object-lock-retain-until-date": [
+      input.ObjectLockRetainUntilDate,
+      __str(__timestampInputParam(input.ObjectLockRetainUntilDate!, "D")),
+    ],
+    "content-disposition": input.ContentDisposition!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-context": input.SSEKMSEncryptionContext!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-tagging": input.Tagging!,
+    "content-type": input.ContentType!,
+    "x-amz-source-expected-bucket-owner": input.ExpectedSourceBucketOwner!,
+    "cache-control": input.CacheControl!,
+    "content-language": input.ContentLanguage!,
+    "x-amz-storage-class": input.StorageClass!,
+    "x-amz-copy-source-server-side-encryption-customer-key": input.CopySourceSSECustomerKey!,
+    "x-amz-copy-source-if-match": input.CopySourceIfMatch!,
+    "x-amz-metadata-directive": input.MetadataDirective!,
+    "x-amz-copy-source-if-none-match": input.CopySourceIfNoneMatch!,
+    "x-amz-checksum-algorithm": input.ChecksumAlgorithm!,
+    "x-amz-copy-source-if-modified-since": [
+      input.CopySourceIfModifiedSince,
+      __str(__dateToUtcString(input.CopySourceIfModifiedSince!)),
+    ],
+    "x-amz-object-lock-mode": input.ObjectLockMode!,
+    "x-amz-copy-source": input.CopySource!,
+    "x-amz-copy-source-server-side-encryption-customer-algorithm": input.CopySourceSSECustomerAlgorithm!,
+    "x-amz-copy-source-server-side-encryption-customer-key-md5": input.CopySourceSSECustomerKeyMD5!,
+    "x-amz-grant-read": input.GrantRead!,
+    "x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
+    "x-amz-tagging-directive": input.TaggingDirective!,
+    "x-amz-grant-full-control": input.GrantFullControl!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-copy-source-if-unmodified-since": [
+      input.CopySourceIfUnmodifiedSince,
+      __str(__dateToUtcString(input.CopySourceIfUnmodifiedSince!)),
+    ],
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
+    ...Object.keys(input.Metadata || {}).reduce(
+      (acc: any, suffix: string) => ({
+        ...acc,
+        [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
+      }),
+      {}
+    ),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "CopyObject",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -699,28 +603,19 @@ export const serializeAws_restXmlCreateBucketCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-acl": input.ACL!,
+    "x-amz-grant-read-acp": input.GrantReadACP!,
+    "x-amz-grant-write-acp": input.GrantWriteACP!,
+    "x-amz-grant-write": input.GrantWrite!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ACL) && { "x-amz-acl": input.ACL! }),
-    ...(isSerializableHeaderValue(input.GrantFullControl) && { "x-amz-grant-full-control": input.GrantFullControl! }),
-    ...(isSerializableHeaderValue(input.GrantRead) && { "x-amz-grant-read": input.GrantRead! }),
-    ...(isSerializableHeaderValue(input.GrantReadACP) && { "x-amz-grant-read-acp": input.GrantReadACP! }),
-    ...(isSerializableHeaderValue(input.GrantWrite) && { "x-amz-grant-write": input.GrantWrite! }),
-    ...(isSerializableHeaderValue(input.GrantWriteACP) && { "x-amz-grant-write-acp": input.GrantWriteACP! }),
-    ...(isSerializableHeaderValue(input.ObjectLockEnabledForBucket) && {
-      "x-amz-bucket-object-lock-enabled": input.ObjectLockEnabledForBucket!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ObjectOwnership) && { "x-amz-object-ownership": input.ObjectOwnership! }),
+    "x-amz-object-ownership": input.ObjectOwnership!,
+    "x-amz-bucket-object-lock-enabled": [input.ObjectLockEnabledForBucket, __str(input.ObjectLockEnabledForBucket!)],
+    "x-amz-grant-read": input.GrantRead!,
+    "x-amz-grant-full-control": input.GrantFullControl!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   let body: any;
   if (input.CreateBucketConfiguration !== undefined) {
     body = serializeAws_restXmlCreateBucketConfiguration(input.CreateBucketConfiguration, context);
@@ -749,95 +644,53 @@ export const serializeAws_restXmlCreateMultipartUploadCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ACL) && { "x-amz-acl": input.ACL! }),
-    ...(isSerializableHeaderValue(input.CacheControl) && { "cache-control": input.CacheControl! }),
-    ...(isSerializableHeaderValue(input.ContentDisposition) && { "content-disposition": input.ContentDisposition! }),
-    ...(isSerializableHeaderValue(input.ContentEncoding) && { "content-encoding": input.ContentEncoding! }),
-    ...(isSerializableHeaderValue(input.ContentLanguage) && { "content-language": input.ContentLanguage! }),
-    ...(isSerializableHeaderValue(input.ContentType) && { "content-type": input.ContentType! }),
-    ...(isSerializableHeaderValue(input.Expires) && { expires: __dateToUtcString(input.Expires!).toString() }),
-    ...(isSerializableHeaderValue(input.GrantFullControl) && { "x-amz-grant-full-control": input.GrantFullControl! }),
-    ...(isSerializableHeaderValue(input.GrantRead) && { "x-amz-grant-read": input.GrantRead! }),
-    ...(isSerializableHeaderValue(input.GrantReadACP) && { "x-amz-grant-read-acp": input.GrantReadACP! }),
-    ...(isSerializableHeaderValue(input.GrantWriteACP) && { "x-amz-grant-write-acp": input.GrantWriteACP! }),
-    ...(isSerializableHeaderValue(input.ServerSideEncryption) && {
-      "x-amz-server-side-encryption": input.ServerSideEncryption!,
-    }),
-    ...(isSerializableHeaderValue(input.StorageClass) && { "x-amz-storage-class": input.StorageClass! }),
-    ...(isSerializableHeaderValue(input.WebsiteRedirectLocation) && {
-      "x-amz-website-redirect-location": input.WebsiteRedirectLocation!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSKeyId) && {
-      "x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSEncryptionContext) && {
-      "x-amz-server-side-encryption-context": input.SSEKMSEncryptionContext!,
-    }),
-    ...(isSerializableHeaderValue(input.BucketKeyEnabled) && {
-      "x-amz-server-side-encryption-bucket-key-enabled": input.BucketKeyEnabled!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.Tagging) && { "x-amz-tagging": input.Tagging! }),
-    ...(isSerializableHeaderValue(input.ObjectLockMode) && { "x-amz-object-lock-mode": input.ObjectLockMode! }),
-    ...(isSerializableHeaderValue(input.ObjectLockRetainUntilDate) && {
-      "x-amz-object-lock-retain-until-date": (
-        input.ObjectLockRetainUntilDate!.toISOString().split(".")[0] + "Z"
-      ).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ObjectLockLegalHoldStatus) && {
-      "x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && { "x-amz-checksum-algorithm": input.ChecksumAlgorithm! }),
-    ...(input.Metadata !== undefined &&
-      Object.keys(input.Metadata).reduce(
-        (acc: any, suffix: string) => ({
-          ...acc,
-          [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
-        }),
-        {}
-      )),
+    "x-amz-website-redirect-location": input.WebsiteRedirectLocation!,
+    expires: [input.Expires, __str(__dateToUtcString(input.Expires!))],
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-acl": input.ACL!,
+    "content-encoding": input.ContentEncoding!,
+    "x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
+    "x-amz-grant-read-acp": input.GrantReadACP!,
+    "x-amz-server-side-encryption": input.ServerSideEncryption!,
+    "x-amz-server-side-encryption-bucket-key-enabled": [input.BucketKeyEnabled, __str(input.BucketKeyEnabled!)],
+    "x-amz-grant-write-acp": input.GrantWriteACP!,
+    "x-amz-object-lock-retain-until-date": [
+      input.ObjectLockRetainUntilDate,
+      __str(__timestampInputParam(input.ObjectLockRetainUntilDate!, "D")),
+    ],
+    "content-disposition": input.ContentDisposition!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-context": input.SSEKMSEncryptionContext!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-tagging": input.Tagging!,
+    "content-type": input.ContentType!,
+    "cache-control": input.CacheControl!,
+    "content-language": input.ContentLanguage!,
+    "x-amz-storage-class": input.StorageClass!,
+    "x-amz-checksum-algorithm": input.ChecksumAlgorithm!,
+    "x-amz-object-lock-mode": input.ObjectLockMode!,
+    "x-amz-grant-read": input.GrantRead!,
+    "x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
+    "x-amz-grant-full-control": input.GrantFullControl!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
+    ...Object.keys(input.Metadata || {}).reduce(
+      (acc: any, suffix: string) => ({
+        ...acc,
+        [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
+      }),
+      {}
+    ),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     uploads: "",
     "x-id": "CreateMultipartUpload",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -857,20 +710,11 @@ export const serializeAws_restXmlDeleteBucketCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -889,24 +733,16 @@ export const serializeAws_restXmlDeleteBucketAnalyticsConfigurationCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     analytics: "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -926,23 +762,15 @@ export const serializeAws_restXmlDeleteBucketCorsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     cors: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -962,23 +790,15 @@ export const serializeAws_restXmlDeleteBucketEncryptionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     encryption: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -998,20 +818,14 @@ export const serializeAws_restXmlDeleteBucketIntelligentTieringConfigurationComm
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "intelligent-tiering": "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1031,24 +845,16 @@ export const serializeAws_restXmlDeleteBucketInventoryConfigurationCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     inventory: "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1068,23 +874,15 @@ export const serializeAws_restXmlDeleteBucketLifecycleCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     lifecycle: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1104,24 +902,16 @@ export const serializeAws_restXmlDeleteBucketMetricsConfigurationCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     metrics: "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1141,23 +931,15 @@ export const serializeAws_restXmlDeleteBucketOwnershipControlsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     ownershipControls: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1177,23 +959,15 @@ export const serializeAws_restXmlDeleteBucketPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     policy: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1213,23 +987,15 @@ export const serializeAws_restXmlDeleteBucketReplicationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     replication: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1249,23 +1015,15 @@ export const serializeAws_restXmlDeleteBucketTaggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     tagging: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1285,23 +1043,15 @@ export const serializeAws_restXmlDeleteBucketWebsiteCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     website: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1321,44 +1071,20 @@ export const serializeAws_restXmlDeleteObjectCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.MFA) && { "x-amz-mfa": input.MFA! }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.BypassGovernanceRetention) && {
-      "x-amz-bypass-governance-retention": input.BypassGovernanceRetention!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-bypass-governance-retention": [input.BypassGovernanceRetention, __str(input.BypassGovernanceRetention!)],
+    "x-amz-mfa": input.MFA!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "DeleteObject",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1378,33 +1104,21 @@ export const serializeAws_restXmlDeleteObjectsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.MFA) && { "x-amz-mfa": input.MFA! }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.BypassGovernanceRetention) && {
-      "x-amz-bypass-governance-retention": input.BypassGovernanceRetention!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
+    "x-amz-bypass-governance-retention": [input.BypassGovernanceRetention, __str(input.BypassGovernanceRetention!)],
+    "x-amz-mfa": input.MFA!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     delete: "",
     "x-id": "DeleteObjects",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Delete !== undefined) {
     body = serializeAws_restXmlDelete(input.Delete, context);
@@ -1434,39 +1148,17 @@ export const serializeAws_restXmlDeleteObjectTaggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     tagging: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1486,23 +1178,15 @@ export const serializeAws_restXmlDeletePublicAccessBlockCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     publicAccessBlock: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1522,23 +1206,15 @@ export const serializeAws_restXmlGetBucketAccelerateConfigurationCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     accelerate: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1558,23 +1234,15 @@ export const serializeAws_restXmlGetBucketAclCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     acl: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1594,25 +1262,17 @@ export const serializeAws_restXmlGetBucketAnalyticsConfigurationCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     analytics: "",
     "x-id": "GetBucketAnalyticsConfiguration",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1632,23 +1292,15 @@ export const serializeAws_restXmlGetBucketCorsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     cors: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1668,23 +1320,15 @@ export const serializeAws_restXmlGetBucketEncryptionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     encryption: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1704,21 +1348,15 @@ export const serializeAws_restXmlGetBucketIntelligentTieringConfigurationCommand
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "intelligent-tiering": "",
     "x-id": "GetBucketIntelligentTieringConfiguration",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1738,25 +1376,17 @@ export const serializeAws_restXmlGetBucketInventoryConfigurationCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     inventory: "",
     "x-id": "GetBucketInventoryConfiguration",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1776,23 +1406,15 @@ export const serializeAws_restXmlGetBucketLifecycleConfigurationCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     lifecycle: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1812,23 +1434,15 @@ export const serializeAws_restXmlGetBucketLocationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     location: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1848,23 +1462,15 @@ export const serializeAws_restXmlGetBucketLoggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     logging: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1884,25 +1490,17 @@ export const serializeAws_restXmlGetBucketMetricsConfigurationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     metrics: "",
     "x-id": "GetBucketMetricsConfiguration",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1922,23 +1520,15 @@ export const serializeAws_restXmlGetBucketNotificationConfigurationCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     notification: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1958,23 +1548,15 @@ export const serializeAws_restXmlGetBucketOwnershipControlsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     ownershipControls: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1994,23 +1576,15 @@ export const serializeAws_restXmlGetBucketPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     policy: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2030,23 +1604,15 @@ export const serializeAws_restXmlGetBucketPolicyStatusCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     policyStatus: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2066,23 +1632,15 @@ export const serializeAws_restXmlGetBucketReplicationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     replication: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2102,23 +1660,15 @@ export const serializeAws_restXmlGetBucketRequestPaymentCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     requestPayment: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2138,23 +1688,15 @@ export const serializeAws_restXmlGetBucketTaggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     tagging: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2174,23 +1716,15 @@ export const serializeAws_restXmlGetBucketVersioningCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     versioning: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2210,23 +1744,15 @@ export const serializeAws_restXmlGetBucketWebsiteCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     website: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2246,70 +1772,34 @@ export const serializeAws_restXmlGetObjectCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
-    ...(isSerializableHeaderValue(input.IfModifiedSince) && {
-      "if-modified-since": __dateToUtcString(input.IfModifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.IfNoneMatch) && { "if-none-match": input.IfNoneMatch! }),
-    ...(isSerializableHeaderValue(input.IfUnmodifiedSince) && {
-      "if-unmodified-since": __dateToUtcString(input.IfUnmodifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.Range) && { range: input.Range! }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumMode) && { "x-amz-checksum-mode": input.ChecksumMode! }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    range: input.Range!,
+    "if-modified-since": [input.IfModifiedSince, __str(__dateToUtcString(input.IfModifiedSince!))],
+    "if-unmodified-since": [input.IfUnmodifiedSince, __str(__dateToUtcString(input.IfUnmodifiedSince!))],
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "if-match": input.IfMatch!,
+    "if-none-match": input.IfNoneMatch!,
+    "x-amz-checksum-mode": input.ChecksumMode!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "GetObject",
-    ...(input.ResponseCacheControl !== undefined && { "response-cache-control": input.ResponseCacheControl }),
-    ...(input.ResponseContentDisposition !== undefined && {
-      "response-content-disposition": input.ResponseContentDisposition,
-    }),
-    ...(input.ResponseContentEncoding !== undefined && { "response-content-encoding": input.ResponseContentEncoding }),
-    ...(input.ResponseContentLanguage !== undefined && { "response-content-language": input.ResponseContentLanguage }),
-    ...(input.ResponseContentType !== undefined && { "response-content-type": input.ResponseContentType }),
-    ...(input.ResponseExpires !== undefined && {
-      "response-expires": __dateToUtcString(input.ResponseExpires).toString(),
-    }),
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
-    ...(input.PartNumber !== undefined && { partNumber: input.PartNumber.toString() }),
+    "response-cache-control": input.ResponseCacheControl,
+    "response-content-disposition": input.ResponseContentDisposition,
+    "response-content-encoding": input.ResponseContentEncoding,
+    "response-content-language": input.ResponseContentLanguage,
+    "response-content-type": input.ResponseContentType,
+    "response-expires": [input.ResponseExpires, __str(__dateToUtcString(input.ResponseExpires))],
+    versionId: input.VersionId,
+    partNumber: [input.PartNumber, __str(input.PartNumber)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2329,40 +1819,18 @@ export const serializeAws_restXmlGetObjectAclCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     acl: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2382,54 +1850,27 @@ export const serializeAws_restXmlGetObjectAttributesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.MaxParts) && { "x-amz-max-parts": input.MaxParts!.toString() }),
-    ...(isSerializableHeaderValue(input.PartNumberMarker) && { "x-amz-part-number-marker": input.PartNumberMarker! }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ObjectAttributes) && {
-      "x-amz-object-attributes": (input.ObjectAttributes! || []).map((_entry) => _entry as any).join(", "),
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-object-attributes": [
+      input.ObjectAttributes,
+      (input.ObjectAttributes! || []).map((_entry) => _entry as any).join(", "),
+    ],
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-part-number-marker": input.PartNumberMarker!,
+    "x-amz-max-parts": [input.MaxParts, __str(input.MaxParts!)],
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     attributes: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2449,40 +1890,18 @@ export const serializeAws_restXmlGetObjectLegalHoldCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "legal-hold": "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2502,23 +1921,15 @@ export const serializeAws_restXmlGetObjectLockConfigurationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "object-lock": "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2538,40 +1949,18 @@ export const serializeAws_restXmlGetObjectRetentionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     retention: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2591,40 +1980,18 @@ export const serializeAws_restXmlGetObjectTaggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     tagging: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2644,39 +2011,17 @@ export const serializeAws_restXmlGetObjectTorrentCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     torrent: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2696,23 +2041,15 @@ export const serializeAws_restXmlGetPublicAccessBlockCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     publicAccessBlock: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2732,20 +2069,11 @@ export const serializeAws_restXmlHeadBucketCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2764,59 +2092,27 @@ export const serializeAws_restXmlHeadObjectCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
-    ...(isSerializableHeaderValue(input.IfModifiedSince) && {
-      "if-modified-since": __dateToUtcString(input.IfModifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.IfNoneMatch) && { "if-none-match": input.IfNoneMatch! }),
-    ...(isSerializableHeaderValue(input.IfUnmodifiedSince) && {
-      "if-unmodified-since": __dateToUtcString(input.IfUnmodifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.Range) && { range: input.Range! }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumMode) && { "x-amz-checksum-mode": input.ChecksumMode! }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    range: input.Range!,
+    "if-modified-since": [input.IfModifiedSince, __str(__dateToUtcString(input.IfModifiedSince!))],
+    "if-unmodified-since": [input.IfUnmodifiedSince, __str(__dateToUtcString(input.IfUnmodifiedSince!))],
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "if-match": input.IfMatch!,
+    "if-none-match": input.IfNoneMatch!,
+    "x-amz-checksum-mode": input.ChecksumMode!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
-    ...(input.PartNumber !== undefined && { partNumber: input.PartNumber.toString() }),
+    versionId: input.VersionId,
+    partNumber: [input.PartNumber, __str(input.PartNumber)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2836,25 +2132,17 @@ export const serializeAws_restXmlListBucketAnalyticsConfigurationsCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     analytics: "",
     "x-id": "ListBucketAnalyticsConfigurations",
-    ...(input.ContinuationToken !== undefined && { "continuation-token": input.ContinuationToken }),
+    "continuation-token": input.ContinuationToken,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2874,21 +2162,15 @@ export const serializeAws_restXmlListBucketIntelligentTieringConfigurationsComma
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "intelligent-tiering": "",
     "x-id": "ListBucketIntelligentTieringConfigurations",
-    ...(input.ContinuationToken !== undefined && { "continuation-token": input.ContinuationToken }),
+    "continuation-token": input.ContinuationToken,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2908,25 +2190,17 @@ export const serializeAws_restXmlListBucketInventoryConfigurationsCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     inventory: "",
     "x-id": "ListBucketInventoryConfigurations",
-    ...(input.ContinuationToken !== undefined && { "continuation-token": input.ContinuationToken }),
+    "continuation-token": input.ContinuationToken,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2946,25 +2220,17 @@ export const serializeAws_restXmlListBucketMetricsConfigurationsCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     metrics: "",
     "x-id": "ListBucketMetricsConfigurations",
-    ...(input.ContinuationToken !== undefined && { "continuation-token": input.ContinuationToken }),
+    "continuation-token": input.ContinuationToken,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2983,9 +2249,8 @@ export const serializeAws_restXmlListBucketsCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/xml",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/";
   let body: any;
   body = "";
@@ -3006,29 +2271,22 @@ export const serializeAws_restXmlListMultipartUploadsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     uploads: "",
-    ...(input.Delimiter !== undefined && { delimiter: input.Delimiter }),
-    ...(input.EncodingType !== undefined && { "encoding-type": input.EncodingType }),
-    ...(input.KeyMarker !== undefined && { "key-marker": input.KeyMarker }),
-    ...(input.MaxUploads !== undefined && { "max-uploads": input.MaxUploads.toString() }),
-    ...(input.Prefix !== undefined && { prefix: input.Prefix }),
-    ...(input.UploadIdMarker !== undefined && { "upload-id-marker": input.UploadIdMarker }),
+    delimiter: input.Delimiter,
+    "encoding-type": input.EncodingType,
+    "key-marker": input.KeyMarker,
+    "max-uploads": [input.MaxUploads, __str(input.MaxUploads)],
+    prefix: input.Prefix,
+    "upload-id-marker": input.UploadIdMarker,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -3048,28 +2306,20 @@ export const serializeAws_restXmlListObjectsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
-    ...(input.Delimiter !== undefined && { delimiter: input.Delimiter }),
-    ...(input.EncodingType !== undefined && { "encoding-type": input.EncodingType }),
-    ...(input.Marker !== undefined && { marker: input.Marker }),
-    ...(input.MaxKeys !== undefined && { "max-keys": input.MaxKeys.toString() }),
-    ...(input.Prefix !== undefined && { prefix: input.Prefix }),
+    delimiter: input.Delimiter,
+    "encoding-type": input.EncodingType,
+    marker: input.Marker,
+    "max-keys": [input.MaxKeys, __str(input.MaxKeys)],
+    prefix: input.Prefix,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -3089,31 +2339,23 @@ export const serializeAws_restXmlListObjectsV2Command = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "list-type": "2",
-    ...(input.Delimiter !== undefined && { delimiter: input.Delimiter }),
-    ...(input.EncodingType !== undefined && { "encoding-type": input.EncodingType }),
-    ...(input.MaxKeys !== undefined && { "max-keys": input.MaxKeys.toString() }),
-    ...(input.Prefix !== undefined && { prefix: input.Prefix }),
-    ...(input.ContinuationToken !== undefined && { "continuation-token": input.ContinuationToken }),
-    ...(input.FetchOwner !== undefined && { "fetch-owner": input.FetchOwner.toString() }),
-    ...(input.StartAfter !== undefined && { "start-after": input.StartAfter }),
+    delimiter: input.Delimiter,
+    "encoding-type": input.EncodingType,
+    "max-keys": [input.MaxKeys, __str(input.MaxKeys)],
+    prefix: input.Prefix,
+    "continuation-token": input.ContinuationToken,
+    "fetch-owner": [input.FetchOwner, __str(input.FetchOwner)],
+    "start-after": input.StartAfter,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -3133,29 +2375,21 @@ export const serializeAws_restXmlListObjectVersionsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     versions: "",
-    ...(input.Delimiter !== undefined && { delimiter: input.Delimiter }),
-    ...(input.EncodingType !== undefined && { "encoding-type": input.EncodingType }),
-    ...(input.KeyMarker !== undefined && { "key-marker": input.KeyMarker }),
-    ...(input.MaxKeys !== undefined && { "max-keys": input.MaxKeys.toString() }),
-    ...(input.Prefix !== undefined && { prefix: input.Prefix }),
-    ...(input.VersionIdMarker !== undefined && { "version-id-marker": input.VersionIdMarker }),
+    delimiter: input.Delimiter,
+    "encoding-type": input.EncodingType,
+    "key-marker": input.KeyMarker,
+    "max-keys": [input.MaxKeys, __str(input.MaxKeys)],
+    prefix: input.Prefix,
+    "version-id-marker": input.VersionIdMarker,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -3175,51 +2409,23 @@ export const serializeAws_restXmlListPartsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "ListParts",
-    ...(input.MaxParts !== undefined && { "max-parts": input.MaxParts.toString() }),
-    ...(input.PartNumberMarker !== undefined && { "part-number-marker": input.PartNumberMarker }),
-    ...(input.UploadId !== undefined && { uploadId: input.UploadId }),
+    "max-parts": [input.MaxParts, __str(input.MaxParts)],
+    "part-number-marker": input.PartNumberMarker,
+    uploadId: input.UploadId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -3239,27 +2445,17 @@ export const serializeAws_restXmlPutBucketAccelerateConfigurationCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     accelerate: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.AccelerateConfiguration !== undefined) {
     body = serializeAws_restXmlAccelerateConfiguration(input.AccelerateConfiguration, context);
@@ -3289,34 +2485,24 @@ export const serializeAws_restXmlPutBucketAclCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-acl": input.ACL!,
+    "x-amz-grant-read-acp": input.GrantReadACP!,
+    "x-amz-grant-write-acp": input.GrantWriteACP!,
+    "x-amz-grant-write": input.GrantWrite!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ACL) && { "x-amz-acl": input.ACL! }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.GrantFullControl) && { "x-amz-grant-full-control": input.GrantFullControl! }),
-    ...(isSerializableHeaderValue(input.GrantRead) && { "x-amz-grant-read": input.GrantRead! }),
-    ...(isSerializableHeaderValue(input.GrantReadACP) && { "x-amz-grant-read-acp": input.GrantReadACP! }),
-    ...(isSerializableHeaderValue(input.GrantWrite) && { "x-amz-grant-write": input.GrantWrite! }),
-    ...(isSerializableHeaderValue(input.GrantWriteACP) && { "x-amz-grant-write-acp": input.GrantWriteACP! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-grant-read": input.GrantRead!,
+    "x-amz-grant-full-control": input.GrantFullControl!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     acl: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.AccessControlPolicy !== undefined) {
     body = serializeAws_restXmlAccessControlPolicy(input.AccessControlPolicy, context);
@@ -3346,25 +2532,17 @@ export const serializeAws_restXmlPutBucketAnalyticsConfigurationCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     analytics: "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.AnalyticsConfiguration !== undefined) {
     body = serializeAws_restXmlAnalyticsConfiguration(input.AnalyticsConfiguration, context);
@@ -3394,28 +2572,18 @@ export const serializeAws_restXmlPutBucketCorsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     cors: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.CORSConfiguration !== undefined) {
     body = serializeAws_restXmlCORSConfiguration(input.CORSConfiguration, context);
@@ -3445,28 +2613,18 @@ export const serializeAws_restXmlPutBucketEncryptionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     encryption: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.ServerSideEncryptionConfiguration !== undefined) {
     body = serializeAws_restXmlServerSideEncryptionConfiguration(input.ServerSideEncryptionConfiguration, context);
@@ -3498,20 +2656,14 @@ export const serializeAws_restXmlPutBucketIntelligentTieringConfigurationCommand
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "intelligent-tiering": "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.IntelligentTieringConfiguration !== undefined) {
     body = serializeAws_restXmlIntelligentTieringConfiguration(input.IntelligentTieringConfiguration, context);
@@ -3541,25 +2693,17 @@ export const serializeAws_restXmlPutBucketInventoryConfigurationCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     inventory: "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.InventoryConfiguration !== undefined) {
     body = serializeAws_restXmlInventoryConfiguration(input.InventoryConfiguration, context);
@@ -3589,27 +2733,17 @@ export const serializeAws_restXmlPutBucketLifecycleConfigurationCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     lifecycle: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.LifecycleConfiguration !== undefined) {
     body = serializeAws_restXmlBucketLifecycleConfiguration(input.LifecycleConfiguration, context);
@@ -3640,28 +2774,18 @@ export const serializeAws_restXmlPutBucketLoggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     logging: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.BucketLoggingStatus !== undefined) {
     body = serializeAws_restXmlBucketLoggingStatus(input.BucketLoggingStatus, context);
@@ -3691,25 +2815,17 @@ export const serializeAws_restXmlPutBucketMetricsConfigurationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     metrics: "",
-    ...(input.Id !== undefined && { id: input.Id }),
+    id: input.Id,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.MetricsConfiguration !== undefined) {
     body = serializeAws_restXmlMetricsConfiguration(input.MetricsConfiguration, context);
@@ -3739,27 +2855,17 @@ export const serializeAws_restXmlPutBucketNotificationConfigurationCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-skip-destination-validation": [input.SkipDestinationValidation, __str(input.SkipDestinationValidation!)],
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.SkipDestinationValidation) && {
-      "x-amz-skip-destination-validation": input.SkipDestinationValidation!.toString(),
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     notification: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.NotificationConfiguration !== undefined) {
     body = serializeAws_restXmlNotificationConfiguration(input.NotificationConfiguration, context);
@@ -3789,25 +2895,17 @@ export const serializeAws_restXmlPutBucketOwnershipControlsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     ownershipControls: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.OwnershipControls !== undefined) {
     body = serializeAws_restXmlOwnershipControls(input.OwnershipControls, context);
@@ -3837,31 +2935,22 @@ export const serializeAws_restXmlPutBucketPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "text/plain",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ConfirmRemoveSelfBucketAccess) && {
-      "x-amz-confirm-remove-self-bucket-access": input.ConfirmRemoveSelfBucketAccess!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-confirm-remove-self-bucket-access": [
+      input.ConfirmRemoveSelfBucketAccess,
+      __str(input.ConfirmRemoveSelfBucketAccess!),
+    ],
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     policy: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Policy !== undefined) {
     body = input.Policy;
@@ -3889,29 +2978,19 @@ export const serializeAws_restXmlPutBucketReplicationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.Token) && { "x-amz-bucket-object-lock-token": input.Token! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-bucket-object-lock-token": input.Token!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     replication: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.ReplicationConfiguration !== undefined) {
     body = serializeAws_restXmlReplicationConfiguration(input.ReplicationConfiguration, context);
@@ -3941,28 +3020,18 @@ export const serializeAws_restXmlPutBucketRequestPaymentCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     requestPayment: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.RequestPaymentConfiguration !== undefined) {
     body = serializeAws_restXmlRequestPaymentConfiguration(input.RequestPaymentConfiguration, context);
@@ -3992,28 +3061,18 @@ export const serializeAws_restXmlPutBucketTaggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     tagging: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Tagging !== undefined) {
     body = serializeAws_restXmlTagging(input.Tagging, context);
@@ -4043,29 +3102,19 @@ export const serializeAws_restXmlPutBucketVersioningCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.MFA) && { "x-amz-mfa": input.MFA! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-mfa": input.MFA!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     versioning: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.VersioningConfiguration !== undefined) {
     body = serializeAws_restXmlVersioningConfiguration(input.VersioningConfiguration, context);
@@ -4095,28 +3144,18 @@ export const serializeAws_restXmlPutBucketWebsiteCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     website: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.WebsiteConfiguration !== undefined) {
     body = serializeAws_restXmlWebsiteConfiguration(input.WebsiteConfiguration, context);
@@ -4146,103 +3185,58 @@ export const serializeAws_restXmlPutObjectCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/octet-stream",
-    ...(isSerializableHeaderValue(input.ACL) && { "x-amz-acl": input.ACL! }),
-    ...(isSerializableHeaderValue(input.CacheControl) && { "cache-control": input.CacheControl! }),
-    ...(isSerializableHeaderValue(input.ContentDisposition) && { "content-disposition": input.ContentDisposition! }),
-    ...(isSerializableHeaderValue(input.ContentEncoding) && { "content-encoding": input.ContentEncoding! }),
-    ...(isSerializableHeaderValue(input.ContentLanguage) && { "content-language": input.ContentLanguage! }),
-    ...(isSerializableHeaderValue(input.ContentLength) && { "content-length": input.ContentLength!.toString() }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ContentType) && { "content-type": input.ContentType! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32) && { "x-amz-checksum-crc32": input.ChecksumCRC32! }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32C) && { "x-amz-checksum-crc32c": input.ChecksumCRC32C! }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA1) && { "x-amz-checksum-sha1": input.ChecksumSHA1! }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA256) && { "x-amz-checksum-sha256": input.ChecksumSHA256! }),
-    ...(isSerializableHeaderValue(input.Expires) && { expires: __dateToUtcString(input.Expires!).toString() }),
-    ...(isSerializableHeaderValue(input.GrantFullControl) && { "x-amz-grant-full-control": input.GrantFullControl! }),
-    ...(isSerializableHeaderValue(input.GrantRead) && { "x-amz-grant-read": input.GrantRead! }),
-    ...(isSerializableHeaderValue(input.GrantReadACP) && { "x-amz-grant-read-acp": input.GrantReadACP! }),
-    ...(isSerializableHeaderValue(input.GrantWriteACP) && { "x-amz-grant-write-acp": input.GrantWriteACP! }),
-    ...(isSerializableHeaderValue(input.ServerSideEncryption) && {
-      "x-amz-server-side-encryption": input.ServerSideEncryption!,
-    }),
-    ...(isSerializableHeaderValue(input.StorageClass) && { "x-amz-storage-class": input.StorageClass! }),
-    ...(isSerializableHeaderValue(input.WebsiteRedirectLocation) && {
-      "x-amz-website-redirect-location": input.WebsiteRedirectLocation!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSKeyId) && {
-      "x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSEncryptionContext) && {
-      "x-amz-server-side-encryption-context": input.SSEKMSEncryptionContext!,
-    }),
-    ...(isSerializableHeaderValue(input.BucketKeyEnabled) && {
-      "x-amz-server-side-encryption-bucket-key-enabled": input.BucketKeyEnabled!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.Tagging) && { "x-amz-tagging": input.Tagging! }),
-    ...(isSerializableHeaderValue(input.ObjectLockMode) && { "x-amz-object-lock-mode": input.ObjectLockMode! }),
-    ...(isSerializableHeaderValue(input.ObjectLockRetainUntilDate) && {
-      "x-amz-object-lock-retain-until-date": (
-        input.ObjectLockRetainUntilDate!.toISOString().split(".")[0] + "Z"
-      ).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ObjectLockLegalHoldStatus) && {
-      "x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(input.Metadata !== undefined &&
-      Object.keys(input.Metadata).reduce(
-        (acc: any, suffix: string) => ({
-          ...acc,
-          [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
-        }),
-        {}
-      )),
+    "x-amz-website-redirect-location": input.WebsiteRedirectLocation!,
+    "content-length": [input.ContentLength, __str(input.ContentLength!)],
+    expires: [input.Expires, __str(__dateToUtcString(input.Expires!))],
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-acl": input.ACL!,
+    "x-amz-checksum-sha256": input.ChecksumSHA256!,
+    "content-encoding": input.ContentEncoding!,
+    "x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
+    "x-amz-grant-read-acp": input.GrantReadACP!,
+    "x-amz-server-side-encryption": input.ServerSideEncryption!,
+    "x-amz-server-side-encryption-bucket-key-enabled": [input.BucketKeyEnabled, __str(input.BucketKeyEnabled!)],
+    "x-amz-grant-write-acp": input.GrantWriteACP!,
+    "x-amz-object-lock-retain-until-date": [
+      input.ObjectLockRetainUntilDate,
+      __str(__timestampInputParam(input.ObjectLockRetainUntilDate!, "D")),
+    ],
+    "x-amz-checksum-sha1": input.ChecksumSHA1!,
+    "content-disposition": input.ContentDisposition!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-context": input.SSEKMSEncryptionContext!,
+    "content-md5": input.ContentMD5!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-tagging": input.Tagging!,
+    "content-type": input.ContentType! || "application/octet-stream",
+    "cache-control": input.CacheControl!,
+    "x-amz-checksum-crc32c": input.ChecksumCRC32C!,
+    "content-language": input.ContentLanguage!,
+    "x-amz-storage-class": input.StorageClass!,
+    "x-amz-checksum-crc32": input.ChecksumCRC32!,
+    "x-amz-object-lock-mode": input.ObjectLockMode!,
+    "x-amz-grant-read": input.GrantRead!,
+    "x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
+    "x-amz-grant-full-control": input.GrantFullControl!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
+    ...Object.keys(input.Metadata || {}).reduce(
+      (acc: any, suffix: string) => ({
+        ...acc,
+        [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
+      }),
+      {}
+    ),
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "PutObject",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Body !== undefined) {
     body = input.Body;
@@ -4270,51 +3264,27 @@ export const serializeAws_restXmlPutObjectAclCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-acl": input.ACL!,
+    "x-amz-grant-read-acp": input.GrantReadACP!,
+    "x-amz-grant-write-acp": input.GrantWriteACP!,
+    "x-amz-grant-write": input.GrantWrite!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ACL) && { "x-amz-acl": input.ACL! }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.GrantFullControl) && { "x-amz-grant-full-control": input.GrantFullControl! }),
-    ...(isSerializableHeaderValue(input.GrantRead) && { "x-amz-grant-read": input.GrantRead! }),
-    ...(isSerializableHeaderValue(input.GrantReadACP) && { "x-amz-grant-read-acp": input.GrantReadACP! }),
-    ...(isSerializableHeaderValue(input.GrantWrite) && { "x-amz-grant-write": input.GrantWrite! }),
-    ...(isSerializableHeaderValue(input.GrantWriteACP) && { "x-amz-grant-write-acp": input.GrantWriteACP! }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-grant-read": input.GrantRead!,
+    "x-amz-grant-full-control": input.GrantFullControl!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     acl: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.AccessControlPolicy !== undefined) {
     body = serializeAws_restXmlAccessControlPolicy(input.AccessControlPolicy, context);
@@ -4344,45 +3314,21 @@ export const serializeAws_restXmlPutObjectLegalHoldCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "legal-hold": "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.LegalHold !== undefined) {
     body = serializeAws_restXmlObjectLockLegalHold(input.LegalHold, context);
@@ -4413,30 +3359,20 @@ export const serializeAws_restXmlPutObjectLockConfigurationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.Token) && { "x-amz-bucket-object-lock-token": input.Token! }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-bucket-object-lock-token": input.Token!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     "object-lock": "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.ObjectLockConfiguration !== undefined) {
     body = serializeAws_restXmlObjectLockConfiguration(input.ObjectLockConfiguration, context);
@@ -4466,48 +3402,22 @@ export const serializeAws_restXmlPutObjectRetentionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.BypassGovernanceRetention) && {
-      "x-amz-bypass-governance-retention": input.BypassGovernanceRetention!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-bypass-governance-retention": [input.BypassGovernanceRetention, __str(input.BypassGovernanceRetention!)],
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     retention: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Retention !== undefined) {
     body = serializeAws_restXmlObjectLockRetention(input.Retention, context);
@@ -4538,45 +3448,21 @@ export const serializeAws_restXmlPutObjectTaggingCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     tagging: "",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Tagging !== undefined) {
     body = serializeAws_restXmlTagging(input.Tagging, context);
@@ -4606,28 +3492,18 @@ export const serializeAws_restXmlPutPublicAccessBlockCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "content-md5": input.ContentMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
   const query: any = {
     publicAccessBlock: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.PublicAccessBlockConfiguration !== undefined) {
     body = serializeAws_restXmlPublicAccessBlockConfiguration(input.PublicAccessBlockConfiguration, context);
@@ -4657,45 +3533,21 @@ export const serializeAws_restXmlRestoreObjectCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     restore: "",
     "x-id": "RestoreObject",
-    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+    versionId: input.VersionId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.RestoreRequest !== undefined) {
     body = serializeAws_restXmlRestoreRequest(input.RestoreRequest, context);
@@ -4725,50 +3577,22 @@ export const serializeAws_restXmlSelectObjectContentCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     select: "",
     "select-type": "2",
     "x-id": "SelectObjectContent",
   };
+  __filterUndefined(query);
   let body: any;
   body = '<?xml version="1.0" encoding="UTF-8"?>';
   const bodyNode = new __XmlNode("SelectObjectContentRequest");
@@ -4822,60 +3646,30 @@ export const serializeAws_restXmlUploadPartCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "content-length": [input.ContentLength, __str(input.ContentLength!)],
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-checksum-sha256": input.ChecksumSHA256!,
+    "x-amz-checksum-sha1": input.ChecksumSHA1!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "content-md5": input.ContentMD5!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
     "content-type": "application/octet-stream",
-    ...(isSerializableHeaderValue(input.ContentLength) && { "content-length": input.ContentLength!.toString() }),
-    ...(isSerializableHeaderValue(input.ContentMD5) && { "content-md5": input.ContentMD5! }),
-    ...(isSerializableHeaderValue(input.ChecksumAlgorithm) && {
-      "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32) && { "x-amz-checksum-crc32": input.ChecksumCRC32! }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32C) && { "x-amz-checksum-crc32c": input.ChecksumCRC32C! }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA1) && { "x-amz-checksum-sha1": input.ChecksumSHA1! }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA256) && { "x-amz-checksum-sha256": input.ChecksumSHA256! }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
+    "x-amz-checksum-crc32c": input.ChecksumCRC32C!,
+    "x-amz-checksum-crc32": input.ChecksumCRC32!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
+    "x-amz-sdk-checksum-algorithm": input.ChecksumAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "UploadPart",
-    ...(input.PartNumber !== undefined && { partNumber: input.PartNumber.toString() }),
-    ...(input.UploadId !== undefined && { uploadId: input.UploadId }),
+    partNumber: [input.PartNumber, __str(input.PartNumber)],
+    uploadId: input.UploadId,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Body !== undefined) {
     body = input.Body;
@@ -4903,76 +3697,38 @@ export const serializeAws_restXmlUploadPartCopyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.CopySource) && { "x-amz-copy-source": input.CopySource! }),
-    ...(isSerializableHeaderValue(input.CopySourceIfMatch) && {
-      "x-amz-copy-source-if-match": input.CopySourceIfMatch!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceIfModifiedSince) && {
-      "x-amz-copy-source-if-modified-since": __dateToUtcString(input.CopySourceIfModifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceIfNoneMatch) && {
-      "x-amz-copy-source-if-none-match": input.CopySourceIfNoneMatch!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceIfUnmodifiedSince) && {
-      "x-amz-copy-source-if-unmodified-since": __dateToUtcString(input.CopySourceIfUnmodifiedSince!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceRange) && { "x-amz-copy-source-range": input.CopySourceRange! }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKey) && {
-      "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceSSECustomerAlgorithm) && {
-      "x-amz-copy-source-server-side-encryption-customer-algorithm": input.CopySourceSSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceSSECustomerKey) && {
-      "x-amz-copy-source-server-side-encryption-customer-key": input.CopySourceSSECustomerKey!,
-    }),
-    ...(isSerializableHeaderValue(input.CopySourceSSECustomerKeyMD5) && {
-      "x-amz-copy-source-server-side-encryption-customer-key-md5": input.CopySourceSSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestPayer) && { "x-amz-request-payer": input.RequestPayer! }),
-    ...(isSerializableHeaderValue(input.ExpectedBucketOwner) && {
-      "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
-    }),
-    ...(isSerializableHeaderValue(input.ExpectedSourceBucketOwner) && {
-      "x-amz-source-expected-bucket-owner": input.ExpectedSourceBucketOwner!,
-    }),
+    "x-amz-expected-bucket-owner": input.ExpectedBucketOwner!,
+    "x-amz-request-payer": input.RequestPayer!,
+    "x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-source-expected-bucket-owner": input.ExpectedSourceBucketOwner!,
+    "x-amz-copy-source-server-side-encryption-customer-key": input.CopySourceSSECustomerKey!,
+    "x-amz-copy-source-if-match": input.CopySourceIfMatch!,
+    "x-amz-copy-source-if-none-match": input.CopySourceIfNoneMatch!,
+    "x-amz-copy-source-range": input.CopySourceRange!,
+    "x-amz-copy-source-if-modified-since": [
+      input.CopySourceIfModifiedSince,
+      __str(__dateToUtcString(input.CopySourceIfModifiedSince!)),
+    ],
+    "x-amz-copy-source": input.CopySource!,
+    "x-amz-copy-source-server-side-encryption-customer-algorithm": input.CopySourceSSECustomerAlgorithm!,
+    "x-amz-copy-source-server-side-encryption-customer-key-md5": input.CopySourceSSECustomerKeyMD5!,
+    "x-amz-server-side-encryption-customer-key": input.SSECustomerKey!,
+    "x-amz-copy-source-if-unmodified-since": [
+      input.CopySourceIfUnmodifiedSince,
+      __str(__dateToUtcString(input.CopySourceIfUnmodifiedSince!)),
+    ],
+    "x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{Bucket}/{Key+}";
-  if (input.Bucket !== undefined) {
-    const labelValue: string = input.Bucket;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Bucket.");
-    }
-    resolvedPath = resolvedPath.replace("{Bucket}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Bucket.");
-  }
-  if (input.Key !== undefined) {
-    const labelValue: string = input.Key;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Key.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{Key+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: Key.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Bucket", input.Bucket, "{Bucket}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Key", input.Key, "{Key+}", true);
   const query: any = {
     "x-id": "UploadPartCopy",
-    ...(input.PartNumber !== undefined && { partNumber: input.PartNumber.toString() }),
-    ...(input.UploadId !== undefined && { uploadId: input.UploadId }),
+    partNumber: [input.PartNumber, __str(input.PartNumber)],
+    uploadId: input.UploadId,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -4992,110 +3748,67 @@ export const serializeAws_restXmlWriteGetObjectResponseCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/octet-stream",
     "x-amz-content-sha256": "UNSIGNED-PAYLOAD",
-    ...(isSerializableHeaderValue(input.RequestRoute) && { "x-amz-request-route": input.RequestRoute! }),
-    ...(isSerializableHeaderValue(input.RequestToken) && { "x-amz-request-token": input.RequestToken! }),
-    ...(isSerializableHeaderValue(input.StatusCode) && { "x-amz-fwd-status": input.StatusCode!.toString() }),
-    ...(isSerializableHeaderValue(input.ErrorCode) && { "x-amz-fwd-error-code": input.ErrorCode! }),
-    ...(isSerializableHeaderValue(input.ErrorMessage) && { "x-amz-fwd-error-message": input.ErrorMessage! }),
-    ...(isSerializableHeaderValue(input.AcceptRanges) && { "x-amz-fwd-header-accept-ranges": input.AcceptRanges! }),
-    ...(isSerializableHeaderValue(input.CacheControl) && { "x-amz-fwd-header-cache-control": input.CacheControl! }),
-    ...(isSerializableHeaderValue(input.ContentDisposition) && {
-      "x-amz-fwd-header-content-disposition": input.ContentDisposition!,
-    }),
-    ...(isSerializableHeaderValue(input.ContentEncoding) && {
-      "x-amz-fwd-header-content-encoding": input.ContentEncoding!,
-    }),
-    ...(isSerializableHeaderValue(input.ContentLanguage) && {
-      "x-amz-fwd-header-content-language": input.ContentLanguage!,
-    }),
-    ...(isSerializableHeaderValue(input.ContentLength) && { "content-length": input.ContentLength!.toString() }),
-    ...(isSerializableHeaderValue(input.ContentRange) && { "x-amz-fwd-header-content-range": input.ContentRange! }),
-    ...(isSerializableHeaderValue(input.ContentType) && { "x-amz-fwd-header-content-type": input.ContentType! }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32) && {
-      "x-amz-fwd-header-x-amz-checksum-crc32": input.ChecksumCRC32!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumCRC32C) && {
-      "x-amz-fwd-header-x-amz-checksum-crc32c": input.ChecksumCRC32C!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA1) && {
-      "x-amz-fwd-header-x-amz-checksum-sha1": input.ChecksumSHA1!,
-    }),
-    ...(isSerializableHeaderValue(input.ChecksumSHA256) && {
-      "x-amz-fwd-header-x-amz-checksum-sha256": input.ChecksumSHA256!,
-    }),
-    ...(isSerializableHeaderValue(input.DeleteMarker) && {
-      "x-amz-fwd-header-x-amz-delete-marker": input.DeleteMarker!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ETag) && { "x-amz-fwd-header-etag": input.ETag! }),
-    ...(isSerializableHeaderValue(input.Expires) && {
-      "x-amz-fwd-header-expires": __dateToUtcString(input.Expires!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.Expiration) && { "x-amz-fwd-header-x-amz-expiration": input.Expiration! }),
-    ...(isSerializableHeaderValue(input.LastModified) && {
-      "x-amz-fwd-header-last-modified": __dateToUtcString(input.LastModified!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.MissingMeta) && {
-      "x-amz-fwd-header-x-amz-missing-meta": input.MissingMeta!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ObjectLockMode) && {
-      "x-amz-fwd-header-x-amz-object-lock-mode": input.ObjectLockMode!,
-    }),
-    ...(isSerializableHeaderValue(input.ObjectLockLegalHoldStatus) && {
-      "x-amz-fwd-header-x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
-    }),
-    ...(isSerializableHeaderValue(input.ObjectLockRetainUntilDate) && {
-      "x-amz-fwd-header-x-amz-object-lock-retain-until-date": (
-        input.ObjectLockRetainUntilDate!.toISOString().split(".")[0] + "Z"
-      ).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.PartsCount) && {
-      "x-amz-fwd-header-x-amz-mp-parts-count": input.PartsCount!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.ReplicationStatus) && {
-      "x-amz-fwd-header-x-amz-replication-status": input.ReplicationStatus!,
-    }),
-    ...(isSerializableHeaderValue(input.RequestCharged) && {
-      "x-amz-fwd-header-x-amz-request-charged": input.RequestCharged!,
-    }),
-    ...(isSerializableHeaderValue(input.Restore) && { "x-amz-fwd-header-x-amz-restore": input.Restore! }),
-    ...(isSerializableHeaderValue(input.ServerSideEncryption) && {
-      "x-amz-fwd-header-x-amz-server-side-encryption": input.ServerSideEncryption!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerAlgorithm) && {
-      "x-amz-fwd-header-x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
-    }),
-    ...(isSerializableHeaderValue(input.SSEKMSKeyId) && {
-      "x-amz-fwd-header-x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
-    }),
-    ...(isSerializableHeaderValue(input.SSECustomerKeyMD5) && {
-      "x-amz-fwd-header-x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
-    }),
-    ...(isSerializableHeaderValue(input.StorageClass) && {
-      "x-amz-fwd-header-x-amz-storage-class": input.StorageClass!,
-    }),
-    ...(isSerializableHeaderValue(input.TagCount) && {
-      "x-amz-fwd-header-x-amz-tagging-count": input.TagCount!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.VersionId) && { "x-amz-fwd-header-x-amz-version-id": input.VersionId! }),
-    ...(isSerializableHeaderValue(input.BucketKeyEnabled) && {
-      "x-amz-fwd-header-x-amz-server-side-encryption-bucket-key-enabled": input.BucketKeyEnabled!.toString(),
-    }),
-    ...(input.Metadata !== undefined &&
-      Object.keys(input.Metadata).reduce(
-        (acc: any, suffix: string) => ({
-          ...acc,
-          [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
-        }),
-        {}
-      )),
+    "content-length": [input.ContentLength, __str(input.ContentLength!)],
+    "x-amz-fwd-header-etag": input.ETag!,
+    "x-amz-fwd-header-x-amz-checksum-sha1": input.ChecksumSHA1!,
+    "x-amz-fwd-header-x-amz-request-charged": input.RequestCharged!,
+    "x-amz-fwd-header-expires": [input.Expires, __str(__dateToUtcString(input.Expires!))],
+    "x-amz-fwd-header-accept-ranges": input.AcceptRanges!,
+    "x-amz-fwd-header-x-amz-server-side-encryption": input.ServerSideEncryption!,
+    "x-amz-fwd-header-content-type": input.ContentType!,
+    "x-amz-request-route": input.RequestRoute!,
+    "x-amz-fwd-error-message": input.ErrorMessage!,
+    "x-amz-fwd-header-content-language": input.ContentLanguage!,
+    "x-amz-fwd-status": [input.StatusCode, __str(input.StatusCode!)],
+    "x-amz-fwd-header-x-amz-storage-class": input.StorageClass!,
+    "x-amz-fwd-header-x-amz-checksum-crc32c": input.ChecksumCRC32C!,
+    "x-amz-fwd-header-x-amz-delete-marker": [input.DeleteMarker, __str(input.DeleteMarker!)],
+    "x-amz-fwd-header-last-modified": [input.LastModified, __str(__dateToUtcString(input.LastModified!))],
+    "x-amz-fwd-header-x-amz-object-lock-legal-hold": input.ObjectLockLegalHoldStatus!,
+    "content-type": "application/octet-stream",
+    "x-amz-fwd-error-code": input.ErrorCode!,
+    "x-amz-fwd-header-x-amz-mp-parts-count": [input.PartsCount, __str(input.PartsCount!)],
+    "x-amz-fwd-header-content-range": input.ContentRange!,
+    "x-amz-fwd-header-x-amz-missing-meta": [input.MissingMeta, __str(input.MissingMeta!)],
+    "x-amz-fwd-header-content-encoding": input.ContentEncoding!,
+    "x-amz-fwd-header-x-amz-expiration": input.Expiration!,
+    "x-amz-fwd-header-x-amz-server-side-encryption-bucket-key-enabled": [
+      input.BucketKeyEnabled,
+      __str(input.BucketKeyEnabled!),
+    ],
+    "x-amz-fwd-header-content-disposition": input.ContentDisposition!,
+    "x-amz-fwd-header-x-amz-checksum-sha256": input.ChecksumSHA256!,
+    "x-amz-fwd-header-x-amz-object-lock-retain-until-date": [
+      input.ObjectLockRetainUntilDate,
+      __str(__timestampInputParam(input.ObjectLockRetainUntilDate!, "D")),
+    ],
+    "x-amz-fwd-header-x-amz-checksum-crc32": input.ChecksumCRC32!,
+    "x-amz-fwd-header-x-amz-server-side-encryption-customer-key-md5": input.SSECustomerKeyMD5!,
+    "x-amz-fwd-header-x-amz-version-id": input.VersionId!,
+    "x-amz-request-token": input.RequestToken!,
+    "x-amz-fwd-header-x-amz-server-side-encryption-customer-algorithm": input.SSECustomerAlgorithm!,
+    "x-amz-fwd-header-cache-control": input.CacheControl!,
+    "x-amz-fwd-header-x-amz-replication-status": input.ReplicationStatus!,
+    "x-amz-fwd-header-x-amz-object-lock-mode": input.ObjectLockMode!,
+    "x-amz-fwd-header-x-amz-server-side-encryption-aws-kms-key-id": input.SSEKMSKeyId!,
+    "x-amz-fwd-header-x-amz-restore": input.Restore!,
+    "x-amz-fwd-header-x-amz-tagging-count": [input.TagCount, __str(input.TagCount!)],
+    ...Object.keys(input.Metadata || {}).reduce(
+      (acc: any, suffix: string) => ({
+        ...acc,
+        [`x-amz-meta-${suffix.toLowerCase()}`]: input.Metadata![suffix],
+      }),
+      {}
+    ),
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/WriteGetObjectResponse";
   const query: any = {
     "x-id": "WriteGetObjectResponse",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Body !== undefined) {
     body = input.Body;
@@ -5198,6 +3911,7 @@ export const deserializeAws_restXmlCompleteMultipartUploadCommand = async (
   };
   if (output.headers["x-amz-expiration"] !== undefined) {
     contents.Expiration = output.headers["x-amz-expiration"];
+    ma;
   }
   if (output.headers["x-amz-server-side-encryption"] !== undefined) {
     contents.ServerSideEncryption = output.headers["x-amz-server-side-encryption"];
@@ -5253,16 +3967,13 @@ const deserializeAws_restXmlCompleteMultipartUploadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlCopyObjectCommand = async (
@@ -5471,16 +4182,13 @@ const deserializeAws_restXmlCreateMultipartUploadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketCommand = async (
@@ -5508,16 +4216,13 @@ const deserializeAws_restXmlDeleteBucketCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketAnalyticsConfigurationCommand = async (
@@ -5545,16 +4250,13 @@ const deserializeAws_restXmlDeleteBucketAnalyticsConfigurationCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketCorsCommand = async (
@@ -5582,16 +4284,13 @@ const deserializeAws_restXmlDeleteBucketCorsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketEncryptionCommand = async (
@@ -5619,16 +4318,13 @@ const deserializeAws_restXmlDeleteBucketEncryptionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketIntelligentTieringConfigurationCommand = async (
@@ -5656,16 +4352,13 @@ const deserializeAws_restXmlDeleteBucketIntelligentTieringConfigurationCommandEr
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketInventoryConfigurationCommand = async (
@@ -5693,16 +4386,13 @@ const deserializeAws_restXmlDeleteBucketInventoryConfigurationCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketLifecycleCommand = async (
@@ -5730,16 +4420,13 @@ const deserializeAws_restXmlDeleteBucketLifecycleCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketMetricsConfigurationCommand = async (
@@ -5767,16 +4454,13 @@ const deserializeAws_restXmlDeleteBucketMetricsConfigurationCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketOwnershipControlsCommand = async (
@@ -5804,16 +4488,13 @@ const deserializeAws_restXmlDeleteBucketOwnershipControlsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketPolicyCommand = async (
@@ -5841,16 +4522,13 @@ const deserializeAws_restXmlDeleteBucketPolicyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketReplicationCommand = async (
@@ -5878,16 +4556,13 @@ const deserializeAws_restXmlDeleteBucketReplicationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketTaggingCommand = async (
@@ -5915,16 +4590,13 @@ const deserializeAws_restXmlDeleteBucketTaggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteBucketWebsiteCommand = async (
@@ -5952,16 +4624,13 @@ const deserializeAws_restXmlDeleteBucketWebsiteCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteObjectCommand = async (
@@ -6001,16 +4670,13 @@ const deserializeAws_restXmlDeleteObjectCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteObjectsCommand = async (
@@ -6056,16 +4722,13 @@ const deserializeAws_restXmlDeleteObjectsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeleteObjectTaggingCommand = async (
@@ -6097,16 +4760,13 @@ const deserializeAws_restXmlDeleteObjectTaggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlDeletePublicAccessBlockCommand = async (
@@ -6134,16 +4794,13 @@ const deserializeAws_restXmlDeletePublicAccessBlockCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketAccelerateConfigurationCommand = async (
@@ -6175,16 +4832,13 @@ const deserializeAws_restXmlGetBucketAccelerateConfigurationCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketAclCommand = async (
@@ -6223,16 +4877,13 @@ const deserializeAws_restXmlGetBucketAclCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketAnalyticsConfigurationCommand = async (
@@ -6262,16 +4913,13 @@ const deserializeAws_restXmlGetBucketAnalyticsConfigurationCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketCorsCommand = async (
@@ -6306,16 +4954,13 @@ const deserializeAws_restXmlGetBucketCorsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketEncryptionCommand = async (
@@ -6345,16 +4990,13 @@ const deserializeAws_restXmlGetBucketEncryptionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketIntelligentTieringConfigurationCommand = async (
@@ -6384,16 +5026,13 @@ const deserializeAws_restXmlGetBucketIntelligentTieringConfigurationCommandError
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketInventoryConfigurationCommand = async (
@@ -6423,16 +5062,13 @@ const deserializeAws_restXmlGetBucketInventoryConfigurationCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketLifecycleConfigurationCommand = async (
@@ -6467,16 +5103,13 @@ const deserializeAws_restXmlGetBucketLifecycleConfigurationCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketLocationCommand = async (
@@ -6508,16 +5141,13 @@ const deserializeAws_restXmlGetBucketLocationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketLoggingCommand = async (
@@ -6549,16 +5179,13 @@ const deserializeAws_restXmlGetBucketLoggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketMetricsConfigurationCommand = async (
@@ -6588,16 +5215,13 @@ const deserializeAws_restXmlGetBucketMetricsConfigurationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketNotificationConfigurationCommand = async (
@@ -6662,16 +5286,13 @@ const deserializeAws_restXmlGetBucketNotificationConfigurationCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketOwnershipControlsCommand = async (
@@ -6701,16 +5322,13 @@ const deserializeAws_restXmlGetBucketOwnershipControlsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketPolicyCommand = async (
@@ -6740,16 +5358,13 @@ const deserializeAws_restXmlGetBucketPolicyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketPolicyStatusCommand = async (
@@ -6779,16 +5394,13 @@ const deserializeAws_restXmlGetBucketPolicyStatusCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketReplicationCommand = async (
@@ -6818,16 +5430,13 @@ const deserializeAws_restXmlGetBucketReplicationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketRequestPaymentCommand = async (
@@ -6859,16 +5468,13 @@ const deserializeAws_restXmlGetBucketRequestPaymentCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketTaggingCommand = async (
@@ -6903,16 +5509,13 @@ const deserializeAws_restXmlGetBucketTaggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketVersioningCommand = async (
@@ -6948,16 +5551,13 @@ const deserializeAws_restXmlGetBucketVersioningCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetBucketWebsiteCommand = async (
@@ -7010,16 +5610,13 @@ const deserializeAws_restXmlGetBucketWebsiteCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetObjectCommand = async (
@@ -7372,16 +5969,13 @@ const deserializeAws_restXmlGetObjectLegalHoldCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetObjectLockConfigurationCommand = async (
@@ -7411,16 +6005,13 @@ const deserializeAws_restXmlGetObjectLockConfigurationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetObjectRetentionCommand = async (
@@ -7450,16 +6041,13 @@ const deserializeAws_restXmlGetObjectRetentionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetObjectTaggingCommand = async (
@@ -7498,16 +6086,13 @@ const deserializeAws_restXmlGetObjectTaggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetObjectTorrentCommand = async (
@@ -7541,16 +6126,13 @@ const deserializeAws_restXmlGetObjectTorrentCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlGetPublicAccessBlockCommand = async (
@@ -7580,16 +6162,13 @@ const deserializeAws_restXmlGetPublicAccessBlockCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlHeadBucketCommand = async (
@@ -7862,16 +6441,13 @@ const deserializeAws_restXmlListBucketAnalyticsConfigurationsCommandError = asyn
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListBucketIntelligentTieringConfigurationsCommand = async (
@@ -7921,16 +6497,13 @@ const deserializeAws_restXmlListBucketIntelligentTieringConfigurationsCommandErr
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListBucketInventoryConfigurationsCommand = async (
@@ -7980,16 +6553,13 @@ const deserializeAws_restXmlListBucketInventoryConfigurationsCommandError = asyn
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListBucketMetricsConfigurationsCommand = async (
@@ -8039,16 +6609,13 @@ const deserializeAws_restXmlListBucketMetricsConfigurationsCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListBucketsCommand = async (
@@ -8087,16 +6654,13 @@ const deserializeAws_restXmlListBucketsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListMultipartUploadsCommand = async (
@@ -8181,16 +6745,13 @@ const deserializeAws_restXmlListMultipartUploadsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListObjectsCommand = async (
@@ -8468,16 +7029,13 @@ const deserializeAws_restXmlListObjectVersionsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlListPartsCommand = async (
@@ -8568,16 +7126,13 @@ const deserializeAws_restXmlListPartsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketAccelerateConfigurationCommand = async (
@@ -8605,16 +7160,13 @@ const deserializeAws_restXmlPutBucketAccelerateConfigurationCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketAclCommand = async (
@@ -8642,16 +7194,13 @@ const deserializeAws_restXmlPutBucketAclCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketAnalyticsConfigurationCommand = async (
@@ -8679,16 +7228,13 @@ const deserializeAws_restXmlPutBucketAnalyticsConfigurationCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketCorsCommand = async (
@@ -8716,16 +7262,13 @@ const deserializeAws_restXmlPutBucketCorsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketEncryptionCommand = async (
@@ -8753,16 +7296,13 @@ const deserializeAws_restXmlPutBucketEncryptionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketIntelligentTieringConfigurationCommand = async (
@@ -8790,16 +7330,13 @@ const deserializeAws_restXmlPutBucketIntelligentTieringConfigurationCommandError
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketInventoryConfigurationCommand = async (
@@ -8827,16 +7364,13 @@ const deserializeAws_restXmlPutBucketInventoryConfigurationCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketLifecycleConfigurationCommand = async (
@@ -8864,16 +7398,13 @@ const deserializeAws_restXmlPutBucketLifecycleConfigurationCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketLoggingCommand = async (
@@ -8901,16 +7432,13 @@ const deserializeAws_restXmlPutBucketLoggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketMetricsConfigurationCommand = async (
@@ -8938,16 +7466,13 @@ const deserializeAws_restXmlPutBucketMetricsConfigurationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketNotificationConfigurationCommand = async (
@@ -8975,16 +7500,13 @@ const deserializeAws_restXmlPutBucketNotificationConfigurationCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketOwnershipControlsCommand = async (
@@ -9012,16 +7534,13 @@ const deserializeAws_restXmlPutBucketOwnershipControlsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketPolicyCommand = async (
@@ -9049,16 +7568,13 @@ const deserializeAws_restXmlPutBucketPolicyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketReplicationCommand = async (
@@ -9086,16 +7602,13 @@ const deserializeAws_restXmlPutBucketReplicationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketRequestPaymentCommand = async (
@@ -9123,16 +7636,13 @@ const deserializeAws_restXmlPutBucketRequestPaymentCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketTaggingCommand = async (
@@ -9160,16 +7670,13 @@ const deserializeAws_restXmlPutBucketTaggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketVersioningCommand = async (
@@ -9197,16 +7704,13 @@ const deserializeAws_restXmlPutBucketVersioningCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutBucketWebsiteCommand = async (
@@ -9234,16 +7738,13 @@ const deserializeAws_restXmlPutBucketWebsiteCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutObjectCommand = async (
@@ -9327,16 +7828,13 @@ const deserializeAws_restXmlPutObjectCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutObjectAclCommand = async (
@@ -9412,16 +7910,13 @@ const deserializeAws_restXmlPutObjectLegalHoldCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutObjectLockConfigurationCommand = async (
@@ -9453,16 +7948,13 @@ const deserializeAws_restXmlPutObjectLockConfigurationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutObjectRetentionCommand = async (
@@ -9494,16 +7986,13 @@ const deserializeAws_restXmlPutObjectRetentionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutObjectTaggingCommand = async (
@@ -9535,16 +8024,13 @@ const deserializeAws_restXmlPutObjectTaggingCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlPutPublicAccessBlockCommand = async (
@@ -9572,16 +8058,13 @@ const deserializeAws_restXmlPutPublicAccessBlockCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlRestoreObjectCommand = async (
@@ -9673,16 +8156,13 @@ const deserializeAws_restXmlSelectObjectContentCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlUploadPartCommand = async (
@@ -9754,16 +8234,13 @@ const deserializeAws_restXmlUploadPartCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlUploadPartCopyCommand = async (
@@ -9821,16 +8298,13 @@ const deserializeAws_restXmlUploadPartCopyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restXmlWriteGetObjectResponseCommand = async (
@@ -9858,16 +8332,13 @@ const deserializeAws_restXmlWriteGetObjectResponseCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 const deserializeAws_restXmlSelectObjectContentEventStream_event = async (
@@ -11050,7 +9521,7 @@ const serializeAws_restXmlLifecycleExpiration = (input: LifecycleExpiration, con
   const bodyNode = new __XmlNode("LifecycleExpiration");
   if (input.Date !== undefined && input.Date !== null) {
     const node = new __XmlNode("Date")
-      .addChildNode(new __XmlText(input.Date.toISOString().split(".")[0] + "Z"))
+      .addChildNode(new __XmlText(__timestampInputParam(input.Date, "D")))
       .withName("Date");
     bodyNode.addChildNode(node);
   }
@@ -11477,7 +9948,7 @@ const serializeAws_restXmlObjectLockRetention = (input: ObjectLockRetention, con
   }
   if (input.RetainUntilDate !== undefined && input.RetainUntilDate !== null) {
     const node = new __XmlNode("Date")
-      .addChildNode(new __XmlText(input.RetainUntilDate.toISOString().split(".")[0] + "Z"))
+      .addChildNode(new __XmlText(__timestampInputParam(input.RetainUntilDate, "D")))
       .withName("RetainUntilDate");
     bodyNode.addChildNode(node);
   }
@@ -12290,7 +10761,7 @@ const serializeAws_restXmlTransition = (input: Transition, context: __SerdeConte
   const bodyNode = new __XmlNode("Transition");
   if (input.Date !== undefined && input.Date !== null) {
     const node = new __XmlNode("Date")
-      .addChildNode(new __XmlText(input.Date.toISOString().split(".")[0] + "Z"))
+      .addChildNode(new __XmlText(__timestampInputParam(input.Date, "D")))
       .withName("Date");
     bodyNode.addChildNode(node);
   }

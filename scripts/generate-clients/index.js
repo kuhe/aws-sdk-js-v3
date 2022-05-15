@@ -24,6 +24,7 @@ const {
   noPrivateClients,
   s: serverOnly,
   batchSize,
+  test,
 } = yargs
   .alias("m", "models")
   .string("m")
@@ -39,6 +40,9 @@ const {
   .alias("n", "noPrivateClients")
   .boolean("n")
   .describe("n", "Disable generating private clients")
+  .alias("t", "test")
+  .boolean("t")
+  .describe("t", "Protocol Tests Only")
   .alias("s", "server-artifacts")
   .boolean("s")
   .describe("s", "Generate server artifacts instead of client ones")
@@ -51,6 +55,17 @@ const {
 
 (async () => {
   try {
+    if (test === true) {
+      await generateProtocolTests();
+      await eslintFixCode();
+      await prettifyCode(CODE_GEN_PROTOCOL_TESTS_OUTPUT_DIR);
+      await copyToClients(CODE_GEN_PROTOCOL_TESTS_OUTPUT_DIR, PRIVATE_CLIENTS_DIR);
+      emptyDirSync(CODE_GEN_PROTOCOL_TESTS_OUTPUT_DIR);
+      emptyDirSync(TEMP_CODE_GEN_INPUT_DIR);
+      rmdirSync(TEMP_CODE_GEN_INPUT_DIR);
+      return;
+    }
+
     if (serverOnly === true) {
       await generateProtocolTests();
       await eslintFixCode();

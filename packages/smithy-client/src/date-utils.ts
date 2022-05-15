@@ -18,7 +18,11 @@ const MONTHS: Array<String> = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", 
  * > value was an RFC-1123 formatted date stamp, which is a
  * > slightly updated version of RFC-822 date stamps.
  */
-export function dateToUtcString(date: Date): string {
+export function dateToUtcString(date: Date): string;
+export function dateToUtcString(date: undefined): undefined;
+export function dateToUtcString(date: Date | undefined): string | undefined;
+export function dateToUtcString(date: Date | undefined): string | undefined {
+  if (date === void 0) return void 0;
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth();
   const dayOfWeek = date.getUTCDay();
@@ -319,3 +323,28 @@ const stripLeadingZeroes = (value: string): string => {
   }
   return value.slice(idx);
 };
+
+/**
+ * Assists with AwsRestXml::getTimestamInputParam.
+ *
+ * @param date - input JS Date.
+ * @param format - D for DATE_TIME, E for EPOCH_SECONDS.
+ * @returns DATE_TIME, EPOCH_SECONDS format of the JS Date input.
+ */
+export function timestampInputParam(date: Date, format: "D"): string;
+export function timestampInputParam(date: undefined, format: "D"): undefined;
+export function timestampInputParam(date: Date, format: "E"): number;
+export function timestampInputParam(date: undefined, format: "E"): undefined;
+export function timestampInputParam(date: Date | undefined, format: "D" | "E"): string | number | undefined;
+export function timestampInputParam(date: Date | undefined, format: "D" | "E"): string | number | undefined {
+  if (date === undefined) {
+    return date as undefined;
+  }
+  switch (format) {
+    case "D":
+      return date.toISOString().split(".")[0] + "Z";
+    case "E":
+      return Math.round(date.getTime() / 1000);
+  }
+  return undefined;
+}

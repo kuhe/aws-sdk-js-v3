@@ -1,15 +1,20 @@
 // smithy-typescript generated code
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
+  decimalString as __decimalString,
   decorateServiceException as __decorateServiceException,
   expectNonNull as __expectNonNull,
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  filterHeaders as __filterHeaders,
+  filterUndefined as __filterUndefined,
   getArrayIfSingleItem as __getArrayIfSingleItem,
   getValueFromTextNode as __getValueFromTextNode,
   parseBoolean as __parseBoolean,
   parseRfc3339DateTime as __parseRfc3339DateTime,
+  resolvedPath as __resolvedPath,
+  str as __str,
   strictParseFloat as __strictParseFloat,
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
@@ -566,21 +571,22 @@ export const serializeAws_restXmlAssociateAliasCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distribution/{TargetDistributionId}/associate-alias";
-  if (input.TargetDistributionId !== undefined) {
-    const labelValue: string = input.TargetDistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: TargetDistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{TargetDistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: TargetDistributionId.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "TargetDistributionId",
+    input.TargetDistributionId,
+    "{TargetDistributionId}",
+    false
+  );
   const query: any = {
-    ...(input.Alias !== undefined && { Alias: input.Alias }),
+    Alias: input.Alias,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -602,6 +608,7 @@ export const serializeAws_restXmlCreateCachePolicyCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/cache-policy";
   let body: any;
@@ -634,6 +641,7 @@ export const serializeAws_restXmlCreateCloudFrontOriginAccessIdentityCommand = a
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-access-identity/cloudfront";
@@ -673,6 +681,7 @@ export const serializeAws_restXmlCreateDistributionCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution";
   let body: any;
@@ -705,11 +714,13 @@ export const serializeAws_restXmlCreateDistributionWithTagsCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution";
   const query: any = {
     WithTags: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.DistributionConfigWithTags !== undefined) {
     body = serializeAws_restXmlDistributionConfigWithTags(input.DistributionConfigWithTags, context);
@@ -741,6 +752,7 @@ export const serializeAws_restXmlCreateFieldLevelEncryptionConfigCommand = async
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/field-level-encryption";
   let body: any;
@@ -773,6 +785,7 @@ export const serializeAws_restXmlCreateFieldLevelEncryptionProfileCommand = asyn
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption-profile";
@@ -806,6 +819,7 @@ export const serializeAws_restXmlCreateFunctionCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function";
   let body: any;
   body = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -845,18 +859,11 @@ export const serializeAws_restXmlCreateInvalidationCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distribution/{DistributionId}/invalidation";
-  if (input.DistributionId !== undefined) {
-    const labelValue: string = input.DistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: DistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{DistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: DistributionId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "DistributionId", input.DistributionId, "{DistributionId}", false);
   let body: any;
   if (input.InvalidationBatch !== undefined) {
     body = serializeAws_restXmlInvalidationBatch(input.InvalidationBatch, context);
@@ -887,6 +894,7 @@ export const serializeAws_restXmlCreateKeyGroupCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/key-group";
   let body: any;
   if (input.KeyGroupConfig !== undefined) {
@@ -918,18 +926,11 @@ export const serializeAws_restXmlCreateMonitoringSubscriptionCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributions/{DistributionId}/monitoring-subscription";
-  if (input.DistributionId !== undefined) {
-    const labelValue: string = input.DistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: DistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{DistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: DistributionId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "DistributionId", input.DistributionId, "{DistributionId}", false);
   let body: any;
   if (input.MonitoringSubscription !== undefined) {
     body = serializeAws_restXmlMonitoringSubscription(input.MonitoringSubscription, context);
@@ -960,6 +961,7 @@ export const serializeAws_restXmlCreateOriginRequestPolicyCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/origin-request-policy";
   let body: any;
@@ -992,6 +994,7 @@ export const serializeAws_restXmlCreatePublicKeyCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/public-key";
   let body: any;
   if (input.PublicKeyConfig !== undefined) {
@@ -1023,6 +1026,7 @@ export const serializeAws_restXmlCreateRealtimeLogConfigCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/realtime-log-config";
   let body: any;
@@ -1073,6 +1077,7 @@ export const serializeAws_restXmlCreateResponseHeadersPolicyCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/response-headers-policy";
   let body: any;
@@ -1105,6 +1110,7 @@ export const serializeAws_restXmlCreateStreamingDistributionCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/streaming-distribution";
   let body: any;
@@ -1137,11 +1143,13 @@ export const serializeAws_restXmlCreateStreamingDistributionWithTagsCommand = as
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/streaming-distribution";
   const query: any = {
     WithTags: "",
   };
+  __filterUndefined(query);
   let body: any;
   if (input.StreamingDistributionConfigWithTags !== undefined) {
     body = serializeAws_restXmlStreamingDistributionConfigWithTags(input.StreamingDistributionConfigWithTags, context);
@@ -1174,19 +1182,12 @@ export const serializeAws_restXmlDeleteCachePolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/cache-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1205,20 +1206,13 @@ export const serializeAws_restXmlDeleteCloudFrontOriginAccessIdentityCommand = a
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-access-identity/cloudfront/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1237,19 +1231,12 @@ export const serializeAws_restXmlDeleteDistributionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1268,19 +1255,12 @@ export const serializeAws_restXmlDeleteFieldLevelEncryptionConfigCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/field-level-encryption/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1299,20 +1279,13 @@ export const serializeAws_restXmlDeleteFieldLevelEncryptionProfileCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption-profile/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1331,19 +1304,12 @@ export const serializeAws_restXmlDeleteFunctionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function/{Name}";
-  if (input.Name !== undefined) {
-    const labelValue: string = input.Name;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Name.");
-    }
-    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Name.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Name", input.Name, "{Name}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1362,19 +1328,12 @@ export const serializeAws_restXmlDeleteKeyGroupCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/key-group/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1393,18 +1352,11 @@ export const serializeAws_restXmlDeleteMonitoringSubscriptionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributions/{DistributionId}/monitoring-subscription";
-  if (input.DistributionId !== undefined) {
-    const labelValue: string = input.DistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: DistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{DistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: DistributionId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "DistributionId", input.DistributionId, "{DistributionId}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1423,19 +1375,12 @@ export const serializeAws_restXmlDeleteOriginRequestPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/origin-request-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1454,19 +1399,12 @@ export const serializeAws_restXmlDeletePublicKeyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/public-key/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1487,6 +1425,7 @@ export const serializeAws_restXmlDeleteRealtimeLogConfigCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/delete-realtime-log-config";
   let body: any;
@@ -1519,19 +1458,12 @@ export const serializeAws_restXmlDeleteResponseHeadersPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/response-headers-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1550,19 +1482,12 @@ export const serializeAws_restXmlDeleteStreamingDistributionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/streaming-distribution/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1581,20 +1506,14 @@ export const serializeAws_restXmlDescribeFunctionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function/{Name}/describe";
-  if (input.Name !== undefined) {
-    const labelValue: string = input.Name;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Name.");
-    }
-    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Name.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Name", input.Name, "{Name}", false);
   const query: any = {
-    ...(input.Stage !== undefined && { Stage: input.Stage }),
+    Stage: input.Stage,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1614,17 +1533,10 @@ export const serializeAws_restXmlGetCachePolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/cache-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1643,17 +1555,10 @@ export const serializeAws_restXmlGetCachePolicyConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/cache-policy/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1672,18 +1577,11 @@ export const serializeAws_restXmlGetCloudFrontOriginAccessIdentityCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-access-identity/cloudfront/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1702,18 +1600,11 @@ export const serializeAws_restXmlGetCloudFrontOriginAccessIdentityConfigCommand 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-access-identity/cloudfront/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1732,17 +1623,10 @@ export const serializeAws_restXmlGetDistributionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1761,17 +1645,10 @@ export const serializeAws_restXmlGetDistributionConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1790,17 +1667,10 @@ export const serializeAws_restXmlGetFieldLevelEncryptionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/field-level-encryption/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1819,18 +1689,11 @@ export const serializeAws_restXmlGetFieldLevelEncryptionConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1849,18 +1712,11 @@ export const serializeAws_restXmlGetFieldLevelEncryptionProfileCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption-profile/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1879,18 +1735,11 @@ export const serializeAws_restXmlGetFieldLevelEncryptionProfileConfigCommand = a
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption-profile/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1909,20 +1758,14 @@ export const serializeAws_restXmlGetFunctionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function/{Name}";
-  if (input.Name !== undefined) {
-    const labelValue: string = input.Name;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Name.");
-    }
-    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Name.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Name", input.Name, "{Name}", false);
   const query: any = {
-    ...(input.Stage !== undefined && { Stage: input.Stage }),
+    Stage: input.Stage,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1942,27 +1785,12 @@ export const serializeAws_restXmlGetInvalidationCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distribution/{DistributionId}/invalidation/{Id}";
-  if (input.DistributionId !== undefined) {
-    const labelValue: string = input.DistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: DistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{DistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: DistributionId.");
-  }
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "DistributionId", input.DistributionId, "{DistributionId}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1981,17 +1809,10 @@ export const serializeAws_restXmlGetKeyGroupCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/key-group/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2010,17 +1831,10 @@ export const serializeAws_restXmlGetKeyGroupConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/key-group/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2039,18 +1853,11 @@ export const serializeAws_restXmlGetMonitoringSubscriptionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributions/{DistributionId}/monitoring-subscription";
-  if (input.DistributionId !== undefined) {
-    const labelValue: string = input.DistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: DistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{DistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: DistributionId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "DistributionId", input.DistributionId, "{DistributionId}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2069,17 +1876,10 @@ export const serializeAws_restXmlGetOriginRequestPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/origin-request-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2098,18 +1898,11 @@ export const serializeAws_restXmlGetOriginRequestPolicyConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-request-policy/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2128,17 +1921,10 @@ export const serializeAws_restXmlGetPublicKeyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/public-key/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2157,17 +1943,10 @@ export const serializeAws_restXmlGetPublicKeyConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/public-key/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2188,6 +1967,7 @@ export const serializeAws_restXmlGetRealtimeLogConfigCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/get-realtime-log-config";
   let body: any;
@@ -2220,17 +2000,10 @@ export const serializeAws_restXmlGetResponseHeadersPolicyCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/response-headers-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2249,18 +2022,11 @@ export const serializeAws_restXmlGetResponseHeadersPolicyConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/response-headers-policy/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2279,17 +2045,10 @@ export const serializeAws_restXmlGetStreamingDistributionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/streaming-distribution/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2308,18 +2067,11 @@ export const serializeAws_restXmlGetStreamingDistributionConfigCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/streaming-distribution/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2338,13 +2090,15 @@ export const serializeAws_restXmlListCachePoliciesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/cache-policy";
   const query: any = {
-    ...(input.Type !== undefined && { Type: input.Type }),
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Type: input.Type,
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2364,13 +2118,15 @@ export const serializeAws_restXmlListCloudFrontOriginAccessIdentitiesCommand = a
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-access-identity/cloudfront";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2390,14 +2146,16 @@ export const serializeAws_restXmlListConflictingAliasesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/conflicting-alias";
   const query: any = {
-    ...(input.DistributionId !== undefined && { DistributionId: input.DistributionId }),
-    ...(input.Alias !== undefined && { Alias: input.Alias }),
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    DistributionId: input.DistributionId,
+    Alias: input.Alias,
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2417,12 +2175,14 @@ export const serializeAws_restXmlListDistributionsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2442,22 +2202,16 @@ export const serializeAws_restXmlListDistributionsByCachePolicyIdCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributionsByCachePolicyId/{CachePolicyId}";
-  if (input.CachePolicyId !== undefined) {
-    const labelValue: string = input.CachePolicyId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: CachePolicyId.");
-    }
-    resolvedPath = resolvedPath.replace("{CachePolicyId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: CachePolicyId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "CachePolicyId", input.CachePolicyId, "{CachePolicyId}", false);
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2477,22 +2231,16 @@ export const serializeAws_restXmlListDistributionsByKeyGroupCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributionsByKeyGroupId/{KeyGroupId}";
-  if (input.KeyGroupId !== undefined) {
-    const labelValue: string = input.KeyGroupId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: KeyGroupId.");
-    }
-    resolvedPath = resolvedPath.replace("{KeyGroupId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: KeyGroupId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "KeyGroupId", input.KeyGroupId, "{KeyGroupId}", false);
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2512,22 +2260,23 @@ export const serializeAws_restXmlListDistributionsByOriginRequestPolicyIdCommand
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributionsByOriginRequestPolicyId/{OriginRequestPolicyId}";
-  if (input.OriginRequestPolicyId !== undefined) {
-    const labelValue: string = input.OriginRequestPolicyId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: OriginRequestPolicyId.");
-    }
-    resolvedPath = resolvedPath.replace("{OriginRequestPolicyId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: OriginRequestPolicyId.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "OriginRequestPolicyId",
+    input.OriginRequestPolicyId,
+    "{OriginRequestPolicyId}",
+    false
+  );
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2549,6 +2298,7 @@ export const serializeAws_restXmlListDistributionsByRealtimeLogConfigCommand = a
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributionsByRealtimeLogConfig";
@@ -2594,22 +2344,23 @@ export const serializeAws_restXmlListDistributionsByResponseHeadersPolicyIdComma
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributionsByResponseHeadersPolicyId/{ResponseHeadersPolicyId}";
-  if (input.ResponseHeadersPolicyId !== undefined) {
-    const labelValue: string = input.ResponseHeadersPolicyId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: ResponseHeadersPolicyId.");
-    }
-    resolvedPath = resolvedPath.replace("{ResponseHeadersPolicyId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: ResponseHeadersPolicyId.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "ResponseHeadersPolicyId",
+    input.ResponseHeadersPolicyId,
+    "{ResponseHeadersPolicyId}",
+    false
+  );
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2629,22 +2380,16 @@ export const serializeAws_restXmlListDistributionsByWebACLIdCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distributionsByWebACLId/{WebACLId}";
-  if (input.WebACLId !== undefined) {
-    const labelValue: string = input.WebACLId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: WebACLId.");
-    }
-    resolvedPath = resolvedPath.replace("{WebACLId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: WebACLId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "WebACLId", input.WebACLId, "{WebACLId}", false);
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2664,12 +2409,14 @@ export const serializeAws_restXmlListFieldLevelEncryptionConfigsCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/field-level-encryption";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2689,13 +2436,15 @@ export const serializeAws_restXmlListFieldLevelEncryptionProfilesCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption-profile";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2715,12 +2464,14 @@ export const serializeAws_restXmlListFunctionsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
-    ...(input.Stage !== undefined && { Stage: input.Stage }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
+    Stage: input.Stage,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2740,22 +2491,16 @@ export const serializeAws_restXmlListInvalidationsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/distribution/{DistributionId}/invalidation";
-  if (input.DistributionId !== undefined) {
-    const labelValue: string = input.DistributionId;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: DistributionId.");
-    }
-    resolvedPath = resolvedPath.replace("{DistributionId}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: DistributionId.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "DistributionId", input.DistributionId, "{DistributionId}", false);
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2775,11 +2520,13 @@ export const serializeAws_restXmlListKeyGroupsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/key-group";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2799,13 +2546,15 @@ export const serializeAws_restXmlListOriginRequestPoliciesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/origin-request-policy";
   const query: any = {
-    ...(input.Type !== undefined && { Type: input.Type }),
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Type: input.Type,
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2825,11 +2574,13 @@ export const serializeAws_restXmlListPublicKeysCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/public-key";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2849,12 +2600,14 @@ export const serializeAws_restXmlListRealtimeLogConfigsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/realtime-log-config";
   const query: any = {
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
+    Marker: input.Marker,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2874,13 +2627,15 @@ export const serializeAws_restXmlListResponseHeadersPoliciesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/response-headers-policy";
   const query: any = {
-    ...(input.Type !== undefined && { Type: input.Type }),
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Type: input.Type,
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2900,12 +2655,14 @@ export const serializeAws_restXmlListStreamingDistributionsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/streaming-distribution";
   const query: any = {
-    ...(input.Marker !== undefined && { Marker: input.Marker }),
-    ...(input.MaxItems !== undefined && { MaxItems: input.MaxItems.toString() }),
+    Marker: input.Marker,
+    MaxItems: [input.MaxItems, __str(input.MaxItems)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2925,10 +2682,12 @@ export const serializeAws_restXmlListTagsForResourceCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/tagging";
   const query: any = {
-    ...(input.Resource !== undefined && { Resource: input.Resource }),
+    Resource: input.Resource,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2948,19 +2707,12 @@ export const serializeAws_restXmlPublishFunctionCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function/{Name}/publish";
-  if (input.Name !== undefined) {
-    const labelValue: string = input.Name;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Name.");
-    }
-    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Name.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Name", input.Name, "{Name}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2981,11 +2733,13 @@ export const serializeAws_restXmlTagResourceCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/tagging";
   const query: any = {
     Operation: "Tag",
-    ...(input.Resource !== undefined && { Resource: input.Resource }),
+    Resource: input.Resource,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.Tags !== undefined) {
     body = serializeAws_restXmlTags(input.Tags, context);
@@ -3016,19 +2770,12 @@ export const serializeAws_restXmlTestFunctionCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function/{Name}/test";
-  if (input.Name !== undefined) {
-    const labelValue: string = input.Name;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Name.");
-    }
-    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Name.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Name", input.Name, "{Name}", false);
   let body: any;
   body = '<?xml version="1.0" encoding="UTF-8"?>';
   const bodyNode = new __XmlNode("TestFunctionRequest");
@@ -3063,11 +2810,13 @@ export const serializeAws_restXmlUntagResourceCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/tagging";
   const query: any = {
     Operation: "Untag",
-    ...(input.Resource !== undefined && { Resource: input.Resource }),
+    Resource: input.Resource,
   };
+  __filterUndefined(query);
   let body: any;
   if (input.TagKeys !== undefined) {
     body = serializeAws_restXmlTagKeys(input.TagKeys, context);
@@ -3098,19 +2847,12 @@ export const serializeAws_restXmlUpdateCachePolicyCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/cache-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.CachePolicyConfig !== undefined) {
     body = serializeAws_restXmlCachePolicyConfig(input.CachePolicyConfig, context);
@@ -3140,20 +2882,13 @@ export const serializeAws_restXmlUpdateCloudFrontOriginAccessIdentityCommand = a
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/origin-access-identity/cloudfront/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.CloudFrontOriginAccessIdentityConfig !== undefined) {
     body = serializeAws_restXmlCloudFrontOriginAccessIdentityConfig(
@@ -3189,19 +2924,12 @@ export const serializeAws_restXmlUpdateDistributionCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/distribution/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.DistributionConfig !== undefined) {
     body = serializeAws_restXmlDistributionConfig(input.DistributionConfig, context);
@@ -3231,20 +2959,13 @@ export const serializeAws_restXmlUpdateFieldLevelEncryptionConfigCommand = async
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.FieldLevelEncryptionConfig !== undefined) {
     body = serializeAws_restXmlFieldLevelEncryptionConfig(input.FieldLevelEncryptionConfig, context);
@@ -3274,20 +2995,13 @@ export const serializeAws_restXmlUpdateFieldLevelEncryptionProfileCommand = asyn
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/field-level-encryption-profile/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.FieldLevelEncryptionProfileConfig !== undefined) {
     body = serializeAws_restXmlFieldLevelEncryptionProfileConfig(input.FieldLevelEncryptionProfileConfig, context);
@@ -3317,19 +3031,12 @@ export const serializeAws_restXmlUpdateFunctionCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/function/{Name}";
-  if (input.Name !== undefined) {
-    const labelValue: string = input.Name;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Name.");
-    }
-    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Name.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Name", input.Name, "{Name}", false);
   let body: any;
   body = '<?xml version="1.0" encoding="UTF-8"?>';
   const bodyNode = new __XmlNode("UpdateFunctionRequest");
@@ -3363,19 +3070,12 @@ export const serializeAws_restXmlUpdateKeyGroupCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/key-group/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.KeyGroupConfig !== undefined) {
     body = serializeAws_restXmlKeyGroupConfig(input.KeyGroupConfig, context);
@@ -3405,19 +3105,12 @@ export const serializeAws_restXmlUpdateOriginRequestPolicyCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/origin-request-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.OriginRequestPolicyConfig !== undefined) {
     body = serializeAws_restXmlOriginRequestPolicyConfig(input.OriginRequestPolicyConfig, context);
@@ -3447,19 +3140,12 @@ export const serializeAws_restXmlUpdatePublicKeyCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/public-key/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.PublicKeyConfig !== undefined) {
     body = serializeAws_restXmlPublicKeyConfig(input.PublicKeyConfig, context);
@@ -3490,6 +3176,7 @@ export const serializeAws_restXmlUpdateRealtimeLogConfigCommand = async (
   const headers: any = {
     "content-type": "application/xml",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/realtime-log-config";
   let body: any;
@@ -3543,19 +3230,12 @@ export const serializeAws_restXmlUpdateResponseHeadersPolicyCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/2020-05-31/response-headers-policy/{Id}";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.ResponseHeadersPolicyConfig !== undefined) {
     body = serializeAws_restXmlResponseHeadersPolicyConfig(input.ResponseHeadersPolicyConfig, context);
@@ -3585,20 +3265,13 @@ export const serializeAws_restXmlUpdateStreamingDistributionCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/xml",
-    ...(isSerializableHeaderValue(input.IfMatch) && { "if-match": input.IfMatch! }),
+    "if-match": input.IfMatch!,
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/2020-05-31/streaming-distribution/{Id}/config";
-  if (input.Id !== undefined) {
-    const labelValue: string = input.Id;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: Id.");
-    }
-    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: Id.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "Id", input.Id, "{Id}", false);
   let body: any;
   if (input.StreamingDistributionConfig !== undefined) {
     body = serializeAws_restXmlStreamingDistributionConfig(input.StreamingDistributionConfig, context);

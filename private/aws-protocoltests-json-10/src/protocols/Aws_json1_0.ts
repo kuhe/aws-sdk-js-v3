@@ -16,6 +16,7 @@ import {
   limitedParseFloat32 as __limitedParseFloat32,
   parseEpochTimestamp as __parseEpochTimestamp,
   serializeFloat as __serializeFloat,
+  timestampInputParam as __timestampInputParam,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -225,16 +226,13 @@ const deserializeAws_json1_0EmptyInputAndEmptyOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0EndpointOperationCommand = async (
@@ -262,16 +260,13 @@ const deserializeAws_json1_0EndpointOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0EndpointWithHostLabelOperationCommand = async (
@@ -299,16 +294,13 @@ const deserializeAws_json1_0EndpointWithHostLabelOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0GreetingWithErrorsCommand = async (
@@ -385,16 +377,13 @@ const deserializeAws_json1_0HostWithPathOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0JsonUnionsCommand = async (
@@ -425,16 +414,13 @@ const deserializeAws_json1_0JsonUnionsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0NoInputAndNoOutputCommand = async (
@@ -462,16 +448,13 @@ const deserializeAws_json1_0NoInputAndNoOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0NoInputAndOutputCommand = async (
@@ -502,16 +485,13 @@ const deserializeAws_json1_0NoInputAndOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_json1_0SimpleScalarPropertiesCommand = async (
@@ -542,16 +522,13 @@ const deserializeAws_json1_0SimpleScalarPropertiesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 const deserializeAws_json1_0ComplexErrorResponse = async (
@@ -605,20 +582,19 @@ const serializeAws_json1_0EndpointWithHostLabelOperationInput = (
   context: __SerdeContext
 ): any => {
   return {
-    ...(input.label !== undefined && input.label !== null && { label: input.label }),
+    ...(input.label != null && { label: input.label }),
   };
 };
 
 const serializeAws_json1_0GreetingWithErrorsInput = (input: GreetingWithErrorsInput, context: __SerdeContext): any => {
   return {
-    ...(input.greeting !== undefined && input.greeting !== null && { greeting: input.greeting }),
+    ...(input.greeting != null && { greeting: input.greeting }),
   };
 };
 
 const serializeAws_json1_0JsonUnionsInput = (input: JsonUnionsInput, context: __SerdeContext): any => {
   return {
-    ...(input.contents !== undefined &&
-      input.contents !== null && { contents: serializeAws_json1_0MyUnion(input.contents, context) }),
+    ...(input.contents != null && { contents: serializeAws_json1_0MyUnion(input.contents, context) }),
   };
 };
 
@@ -632,7 +608,7 @@ const serializeAws_json1_0MyUnion = (input: MyUnion, context: __SerdeContext): a
     numberValue: (value) => ({ numberValue: value }),
     stringValue: (value) => ({ stringValue: value }),
     structureValue: (value) => ({ structureValue: serializeAws_json1_0GreetingStruct(value, context) }),
-    timestampValue: (value) => ({ timestampValue: Math.round(value.getTime() / 1000) }),
+    timestampValue: (value) => ({ timestampValue: __timestampInputParam(value, "E") }),
     _: (name, value) => ({ name: value } as any),
   });
 };
@@ -642,16 +618,14 @@ const serializeAws_json1_0SimpleScalarPropertiesInput = (
   context: __SerdeContext
 ): any => {
   return {
-    ...(input.doubleValue !== undefined &&
-      input.doubleValue !== null && { doubleValue: __serializeFloat(input.doubleValue) }),
-    ...(input.floatValue !== undefined &&
-      input.floatValue !== null && { floatValue: __serializeFloat(input.floatValue) }),
+    ...(input.doubleValue != null && { doubleValue: __serializeFloat(input.doubleValue) }),
+    ...(input.floatValue != null && { floatValue: __serializeFloat(input.floatValue) }),
   };
 };
 
 const serializeAws_json1_0GreetingStruct = (input: GreetingStruct, context: __SerdeContext): any => {
   return {
-    ...(input.hi !== undefined && input.hi !== null && { hi: input.hi }),
+    ...(input.hi != null && { hi: input.hi }),
   };
 };
 
@@ -680,10 +654,7 @@ const serializeAws_json1_0StringMap = (input: { [key: string]: string }, context
 
 const deserializeAws_json1_0ComplexError = (output: any, context: __SerdeContext): ComplexError => {
   return {
-    Nested:
-      output.Nested !== undefined && output.Nested !== null
-        ? deserializeAws_json1_0ComplexNestedErrorData(output.Nested, context)
-        : undefined,
+    Nested: output.Nested != null ? deserializeAws_json1_0ComplexNestedErrorData(output.Nested, context) : undefined,
     TopLevel: __expectString(output.TopLevel),
   } as any;
 };
@@ -723,9 +694,7 @@ const deserializeAws_json1_0InvalidGreeting = (output: any, context: __SerdeCont
 const deserializeAws_json1_0JsonUnionsOutput = (output: any, context: __SerdeContext): JsonUnionsOutput => {
   return {
     contents:
-      output.contents !== undefined && output.contents !== null
-        ? deserializeAws_json1_0MyUnion(__expectUnion(output.contents), context)
-        : undefined,
+      output.contents != null ? deserializeAws_json1_0MyUnion(__expectUnion(output.contents), context) : undefined,
   } as any;
 };
 

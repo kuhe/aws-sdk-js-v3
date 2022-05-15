@@ -6,6 +6,7 @@ import {
 } from "@aws-sdk/protocol-http";
 import {
   dateToUtcString as __dateToUtcString,
+  decimalString as __decimalString,
   decorateServiceException as __decorateServiceException,
   expectBoolean as __expectBoolean,
   expectByte as __expectByte,
@@ -18,6 +19,8 @@ import {
   expectString as __expectString,
   expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  filterHeaders as __filterHeaders,
+  filterUndefined as __filterUndefined,
   LazyJsonString as __LazyJsonString,
   limitedParseDouble as __limitedParseDouble,
   limitedParseFloat32 as __limitedParseFloat32,
@@ -25,14 +28,17 @@ import {
   parseEpochTimestamp as __parseEpochTimestamp,
   parseRfc3339DateTime as __parseRfc3339DateTime,
   parseRfc7231DateTime as __parseRfc7231DateTime,
+  resolvedPath as __resolvedPath,
   serializeFloat as __serializeFloat,
   splitEvery as __splitEvery,
+  str as __str,
   strictParseByte as __strictParseByte,
   strictParseDouble as __strictParseDouble,
   strictParseFloat as __strictParseFloat,
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
   strictParseShort as __strictParseShort,
+  timestampInputParam as __timestampInputParam,
 } from "@aws-sdk/smithy-client";
 import {
   DocumentType as __DocumentType,
@@ -299,53 +305,37 @@ export const serializeAws_restJson1AllQueryStringTypesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/AllQueryStringTypesInput";
   const query: any = {
-    ...(input.queryParamsMapOfStringList !== undefined && input.queryParamsMapOfStringList),
-    ...(input.queryString !== undefined && { String: input.queryString }),
-    ...(input.queryStringList !== undefined && {
-      StringList: (input.queryStringList || []).map((_entry) => _entry as any),
-    }),
-    ...(input.queryStringSet !== undefined && {
-      StringSet: (Array.from(input.queryStringSet.values()) || []).map((_entry) => _entry as any),
-    }),
-    ...(input.queryByte !== undefined && { Byte: input.queryByte.toString() }),
-    ...(input.queryShort !== undefined && { Short: input.queryShort.toString() }),
-    ...(input.queryInteger !== undefined && { Integer: input.queryInteger.toString() }),
-    ...(input.queryIntegerList !== undefined && {
-      IntegerList: (input.queryIntegerList || []).map((_entry) => _entry.toString() as any),
-    }),
-    ...(input.queryIntegerSet !== undefined && {
-      IntegerSet: (Array.from(input.queryIntegerSet.values()) || []).map((_entry) => _entry.toString() as any),
-    }),
-    ...(input.queryLong !== undefined && { Long: input.queryLong.toString() }),
-    ...(input.queryFloat !== undefined && {
-      Float: input.queryFloat % 1 == 0 ? input.queryFloat + ".0" : input.queryFloat.toString(),
-    }),
-    ...(input.queryDouble !== undefined && {
-      Double: input.queryDouble % 1 == 0 ? input.queryDouble + ".0" : input.queryDouble.toString(),
-    }),
-    ...(input.queryDoubleList !== undefined && {
-      DoubleList: (input.queryDoubleList || []).map(
-        (_entry) => (_entry % 1 == 0 ? _entry + ".0" : _entry.toString()) as any
-      ),
-    }),
-    ...(input.queryBoolean !== undefined && { Boolean: input.queryBoolean.toString() }),
-    ...(input.queryBooleanList !== undefined && {
-      BooleanList: (input.queryBooleanList || []).map((_entry) => _entry.toString() as any),
-    }),
-    ...(input.queryTimestamp !== undefined && {
-      Timestamp: (input.queryTimestamp.toISOString().split(".")[0] + "Z").toString(),
-    }),
-    ...(input.queryTimestampList !== undefined && {
-      TimestampList: (input.queryTimestampList || []).map(
-        (_entry) => (_entry.toISOString().split(".")[0] + "Z").toString() as any
-      ),
-    }),
-    ...(input.queryEnum !== undefined && { Enum: input.queryEnum }),
-    ...(input.queryEnumList !== undefined && { EnumList: (input.queryEnumList || []).map((_entry) => _entry as any) }),
+    ...input.queryParamsMapOfStringList,
+    String: input.queryString,
+    StringList: [input.queryStringList, (input.queryStringList || []).map((_entry) => _entry as any)],
+    StringSet: [input.queryStringSet, Array.from((input.queryStringSet || []).values()).map((_entry) => _entry as any)],
+    Byte: [input.queryByte, __str(input.queryByte)],
+    Short: [input.queryShort, __str(input.queryShort)],
+    Integer: [input.queryInteger, __str(input.queryInteger)],
+    IntegerList: [input.queryIntegerList, (input.queryIntegerList || []).map((_entry) => __str(_entry) as any)],
+    IntegerSet: [
+      input.queryIntegerSet,
+      Array.from((input.queryIntegerSet || []).values()).map((_entry) => __str(_entry) as any),
+    ],
+    Long: [input.queryLong, __str(input.queryLong)],
+    Float: [input.queryFloat, __decimalString(input.queryFloat)],
+    Double: [input.queryDouble, __decimalString(input.queryDouble)],
+    DoubleList: [input.queryDoubleList, (input.queryDoubleList || []).map((_entry) => __decimalString(_entry) as any)],
+    Boolean: [input.queryBoolean, __str(input.queryBoolean)],
+    BooleanList: [input.queryBooleanList, (input.queryBooleanList || []).map((_entry) => __str(_entry) as any)],
+    Timestamp: [input.queryTimestamp, __str(__timestampInputParam(input.queryTimestamp, "D"))],
+    TimestampList: [
+      input.queryTimestampList,
+      (input.queryTimestampList || []).map((_entry) => __str(__timestampInputParam(_entry, "D")) as any),
+    ],
+    Enum: input.queryEnum,
+    EnumList: [input.queryEnumList, (input.queryEnumList || []).map((_entry) => _entry as any)],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -365,13 +355,15 @@ export const serializeAws_restJson1ConstantAndVariableQueryStringCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/ConstantAndVariableQueryString";
   const query: any = {
     foo: "bar",
-    ...(input.baz !== undefined && { baz: input.baz }),
-    ...(input.maybeSet !== undefined && { maybeSet: input.maybeSet }),
+    baz: input.baz,
+    maybeSet: input.maybeSet,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -391,21 +383,15 @@ export const serializeAws_restJson1ConstantQueryStringCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/ConstantQueryString/{hello}";
-  if (input.hello !== undefined) {
-    const labelValue: string = input.hello;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: hello.");
-    }
-    resolvedPath = resolvedPath.replace("{hello}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: hello.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "hello", input.hello, "{hello}", false);
   const query: any = {
     foo: "bar",
     hello: "",
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -427,12 +413,12 @@ export const serializeAws_restJson1DocumentTypeCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/DocumentType";
   let body: any;
   body = JSON.stringify({
-    ...(input.documentValue !== undefined &&
-      input.documentValue !== null && { documentValue: serializeAws_restJson1Document(input.documentValue, context) }),
-    ...(input.stringValue !== undefined && input.stringValue !== null && { stringValue: input.stringValue }),
+    ...(input.documentValue != null && { documentValue: serializeAws_restJson1Document(input.documentValue, context) }),
+    ...(input.stringValue != null && { stringValue: input.stringValue }),
   });
   return new __HttpRequest({
     protocol,
@@ -453,6 +439,7 @@ export const serializeAws_restJson1DocumentTypeAsPayloadCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/DocumentTypeAsPayload";
   let body: any;
   if (input.documentValue !== undefined) {
@@ -482,6 +469,7 @@ export const serializeAws_restJson1EmptyInputAndEmptyOutputCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/EmptyInputAndEmptyOutput";
   let body: any;
@@ -502,9 +490,8 @@ export const serializeAws_restJson1EndpointOperationCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/EndpointOperation";
   let body: any;
   body = "";
@@ -532,13 +519,14 @@ export const serializeAws_restJson1EndpointWithHostLabelOperationCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/json",
+    "content-type": "application/json" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/EndpointWithHostLabelOperation";
   let body: any;
   body = JSON.stringify({
-    ...(input.label !== undefined && input.label !== null && { label: input.label }),
+    ...(input.label != null && { label: input.label }),
   });
   let { hostname: resolvedHostname } = await context.endpoint();
   if (context.disableHostPrefix !== true) {
@@ -567,9 +555,8 @@ export const serializeAws_restJson1GreetingWithErrorsCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/GreetingWithErrors";
   let body: any;
   body = "";
@@ -589,9 +576,8 @@ export const serializeAws_restJson1HostWithPathOperationCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HostWithPathOperation";
   let body: any;
   body = "";
@@ -612,12 +598,13 @@ export const serializeAws_restJson1HttpChecksumRequiredCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/json",
+    "content-type": "application/json" || "application/json" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpChecksumRequired";
   let body: any;
   body = JSON.stringify({
-    ...(input.foo !== undefined && input.foo !== null && { foo: input.foo }),
+    ...(input.foo != null && { foo: input.foo }),
   });
   return new __HttpRequest({
     protocol,
@@ -638,6 +625,7 @@ export const serializeAws_restJson1HttpEnumPayloadCommand = async (
   const headers: any = {
     "content-type": "text/plain",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/EnumPayload";
   let body: any;
   if (input.payload !== undefined) {
@@ -660,9 +648,10 @@ export const serializeAws_restJson1HttpPayloadTraitsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-foo": input.foo!,
     "content-type": "application/octet-stream",
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpPayloadTraits";
   let body: any;
   if (input.blob !== undefined) {
@@ -685,9 +674,10 @@ export const serializeAws_restJson1HttpPayloadTraitsWithMediaTypeCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-foo": input.foo!,
     "content-type": "text/plain",
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpPayloadTraitsWithMediaType";
   let body: any;
@@ -713,6 +703,7 @@ export const serializeAws_restJson1HttpPayloadWithStructureCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpPayloadWithStructure";
   let body: any;
@@ -740,16 +731,16 @@ export const serializeAws_restJson1HttpPrefixHeadersCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
-    ...(input.fooMap !== undefined &&
-      Object.keys(input.fooMap).reduce(
-        (acc: any, suffix: string) => ({
-          ...acc,
-          [`x-foo-${suffix.toLowerCase()}`]: input.fooMap![suffix],
-        }),
-        {}
-      )),
+    "x-foo": input.foo!,
+    ...Object.keys(input.fooMap || {}).reduce(
+      (acc: any, suffix: string) => ({
+        ...acc,
+        [`x-foo-${suffix.toLowerCase()}`]: input.fooMap![suffix],
+      }),
+      {}
+    ),
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpPrefixHeaders";
   let body: any;
   return new __HttpRequest({
@@ -771,6 +762,7 @@ export const serializeAws_restJson1HttpPrefixHeadersInResponseCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpPrefixHeadersResponse";
   let body: any;
@@ -792,26 +784,11 @@ export const serializeAws_restJson1HttpRequestWithFloatLabelsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/FloatHttpLabels/{float}/{double}";
-  if (input.float !== undefined) {
-    const labelValue: string = input.float % 1 == 0 ? input.float + ".0" : input.float.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: float.");
-    }
-    resolvedPath = resolvedPath.replace("{float}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: float.");
-  }
-  if (input.double !== undefined) {
-    const labelValue: string = input.double % 1 == 0 ? input.double + ".0" : input.double.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: double.");
-    }
-    resolvedPath = resolvedPath.replace("{double}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: double.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "float", __decimalString(input.float), "{float}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "double", __decimalString(input.double), "{double}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -830,33 +807,12 @@ export const serializeAws_restJson1HttpRequestWithGreedyLabelInPathCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/HttpRequestWithGreedyLabelInPath/foo/{foo}/baz/{baz+}";
-  if (input.foo !== undefined) {
-    const labelValue: string = input.foo;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: foo.");
-    }
-    resolvedPath = resolvedPath.replace("{foo}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: foo.");
-  }
-  if (input.baz !== undefined) {
-    const labelValue: string = input.baz;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: baz.");
-    }
-    resolvedPath = resolvedPath.replace(
-      "{baz+}",
-      labelValue
-        .split("/")
-        .map((segment) => __extendedEncodeURIComponent(segment))
-        .join("/")
-    );
-  } else {
-    throw new Error("No value provided for input HTTP label: baz.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "foo", input.foo, "{foo}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "baz", input.baz, "{baz+}", true);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -875,81 +831,25 @@ export const serializeAws_restJson1HttpRequestWithLabelsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/HttpRequestWithLabels/{string}/{short}/{integer}/{long}/{float}/{double}/{boolean}/{timestamp}";
-  if (input.string !== undefined) {
-    const labelValue: string = input.string;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: string.");
-    }
-    resolvedPath = resolvedPath.replace("{string}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: string.");
-  }
-  if (input.short !== undefined) {
-    const labelValue: string = input.short.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: short.");
-    }
-    resolvedPath = resolvedPath.replace("{short}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: short.");
-  }
-  if (input.integer !== undefined) {
-    const labelValue: string = input.integer.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: integer.");
-    }
-    resolvedPath = resolvedPath.replace("{integer}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: integer.");
-  }
-  if (input.long !== undefined) {
-    const labelValue: string = input.long.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: long.");
-    }
-    resolvedPath = resolvedPath.replace("{long}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: long.");
-  }
-  if (input.float !== undefined) {
-    const labelValue: string = input.float % 1 == 0 ? input.float + ".0" : input.float.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: float.");
-    }
-    resolvedPath = resolvedPath.replace("{float}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: float.");
-  }
-  if (input.double !== undefined) {
-    const labelValue: string = input.double % 1 == 0 ? input.double + ".0" : input.double.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: double.");
-    }
-    resolvedPath = resolvedPath.replace("{double}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: double.");
-  }
-  if (input.boolean !== undefined) {
-    const labelValue: string = input.boolean.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: boolean.");
-    }
-    resolvedPath = resolvedPath.replace("{boolean}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: boolean.");
-  }
-  if (input.timestamp !== undefined) {
-    const labelValue: string = (input.timestamp.toISOString().split(".")[0] + "Z").toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: timestamp.");
-    }
-    resolvedPath = resolvedPath.replace("{timestamp}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: timestamp.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "string", input.string, "{string}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "short", __str(input.short), "{short}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "integer", __str(input.integer), "{integer}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "long", __str(input.long), "{long}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "float", __decimalString(input.float), "{float}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "double", __decimalString(input.double), "{double}", false);
+  resolvedPath = __resolvedPath(resolvedPath, input, "boolean", __str(input.boolean), "{boolean}", false);
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "timestamp",
+    __str(__timestampInputParam(input.timestamp, "D")),
+    "{timestamp}",
+    false
+  );
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -968,72 +868,66 @@ export const serializeAws_restJson1HttpRequestWithLabelsAndTimestampFormatComman
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/HttpRequestWithLabelsAndTimestampFormat/{memberEpochSeconds}/{memberHttpDate}/{memberDateTime}/{defaultFormat}/{targetEpochSeconds}/{targetHttpDate}/{targetDateTime}";
-  if (input.memberEpochSeconds !== undefined) {
-    const labelValue: string = Math.round(input.memberEpochSeconds.getTime() / 1000).toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: memberEpochSeconds.");
-    }
-    resolvedPath = resolvedPath.replace("{memberEpochSeconds}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: memberEpochSeconds.");
-  }
-  if (input.memberHttpDate !== undefined) {
-    const labelValue: string = __dateToUtcString(input.memberHttpDate).toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: memberHttpDate.");
-    }
-    resolvedPath = resolvedPath.replace("{memberHttpDate}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: memberHttpDate.");
-  }
-  if (input.memberDateTime !== undefined) {
-    const labelValue: string = (input.memberDateTime.toISOString().split(".")[0] + "Z").toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: memberDateTime.");
-    }
-    resolvedPath = resolvedPath.replace("{memberDateTime}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: memberDateTime.");
-  }
-  if (input.defaultFormat !== undefined) {
-    const labelValue: string = (input.defaultFormat.toISOString().split(".")[0] + "Z").toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: defaultFormat.");
-    }
-    resolvedPath = resolvedPath.replace("{defaultFormat}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: defaultFormat.");
-  }
-  if (input.targetEpochSeconds !== undefined) {
-    const labelValue: string = Math.round(input.targetEpochSeconds.getTime() / 1000).toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: targetEpochSeconds.");
-    }
-    resolvedPath = resolvedPath.replace("{targetEpochSeconds}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: targetEpochSeconds.");
-  }
-  if (input.targetHttpDate !== undefined) {
-    const labelValue: string = __dateToUtcString(input.targetHttpDate).toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: targetHttpDate.");
-    }
-    resolvedPath = resolvedPath.replace("{targetHttpDate}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: targetHttpDate.");
-  }
-  if (input.targetDateTime !== undefined) {
-    const labelValue: string = (input.targetDateTime.toISOString().split(".")[0] + "Z").toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: targetDateTime.");
-    }
-    resolvedPath = resolvedPath.replace("{targetDateTime}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: targetDateTime.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "memberEpochSeconds",
+    __str(__timestampInputParam(input.memberEpochSeconds, "E")),
+    "{memberEpochSeconds}",
+    false
+  );
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "memberHttpDate",
+    __str(__dateToUtcString(input.memberHttpDate)),
+    "{memberHttpDate}",
+    false
+  );
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "memberDateTime",
+    __str(__timestampInputParam(input.memberDateTime, "D")),
+    "{memberDateTime}",
+    false
+  );
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "defaultFormat",
+    __str(__timestampInputParam(input.defaultFormat, "D")),
+    "{defaultFormat}",
+    false
+  );
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "targetEpochSeconds",
+    __str(__timestampInputParam(input.targetEpochSeconds, "E")),
+    "{targetEpochSeconds}",
+    false
+  );
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "targetHttpDate",
+    __str(__dateToUtcString(input.targetHttpDate)),
+    "{targetHttpDate}",
+    false
+  );
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "targetDateTime",
+    __str(__timestampInputParam(input.targetDateTime, "D")),
+    "{targetDateTime}",
+    false
+  );
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1052,17 +946,10 @@ export const serializeAws_restJson1HttpRequestWithRegexLiteralCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/ReDosLiteral/{str}/(a+)+";
-  if (input.str !== undefined) {
-    const labelValue: string = input.str;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: str.");
-    }
-    resolvedPath = resolvedPath.replace("{str}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: str.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "str", input.str, "{str}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1080,9 +967,8 @@ export const serializeAws_restJson1HttpResponseCodeCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/HttpResponseCode";
   let body: any;
   body = "";
@@ -1103,8 +989,9 @@ export const serializeAws_restJson1HttpStringPayloadCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "text/plain",
+    "content-type": "text/plain" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/StringPayload";
   let body: any;
   if (input.payload !== undefined) {
@@ -1126,9 +1013,8 @@ export const serializeAws_restJson1IgnoreQueryParamsInResponseCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/IgnoreQueryParamsInResponse";
   let body: any;
@@ -1150,41 +1036,39 @@ export const serializeAws_restJson1InputAndOutputWithHeadersCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.headerString) && { "x-string": input.headerString! }),
-    ...(isSerializableHeaderValue(input.headerByte) && { "x-byte": input.headerByte!.toString() }),
-    ...(isSerializableHeaderValue(input.headerShort) && { "x-short": input.headerShort!.toString() }),
-    ...(isSerializableHeaderValue(input.headerInteger) && { "x-integer": input.headerInteger!.toString() }),
-    ...(isSerializableHeaderValue(input.headerLong) && { "x-long": input.headerLong!.toString() }),
-    ...(isSerializableHeaderValue(input.headerFloat) && {
-      "x-float": input.headerFloat! % 1 == 0 ? input.headerFloat! + ".0" : input.headerFloat!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.headerDouble) && {
-      "x-double": input.headerDouble! % 1 == 0 ? input.headerDouble! + ".0" : input.headerDouble!.toString(),
-    }),
-    ...(isSerializableHeaderValue(input.headerTrueBool) && { "x-boolean1": input.headerTrueBool!.toString() }),
-    ...(isSerializableHeaderValue(input.headerFalseBool) && { "x-boolean2": input.headerFalseBool!.toString() }),
-    ...(isSerializableHeaderValue(input.headerStringList) && {
-      "x-stringlist": (input.headerStringList! || []).map((_entry) => _entry as any).join(", "),
-    }),
-    ...(isSerializableHeaderValue(input.headerStringSet) && {
-      "x-stringset": (Array.from(input.headerStringSet!.values()) || []).map((_entry) => _entry as any).join(", "),
-    }),
-    ...(isSerializableHeaderValue(input.headerIntegerList) && {
-      "x-integerlist": (input.headerIntegerList! || []).map((_entry) => _entry.toString() as any).join(", "),
-    }),
-    ...(isSerializableHeaderValue(input.headerBooleanList) && {
-      "x-booleanlist": (input.headerBooleanList! || []).map((_entry) => _entry.toString() as any).join(", "),
-    }),
-    ...(isSerializableHeaderValue(input.headerTimestampList) && {
-      "x-timestamplist": (input.headerTimestampList! || [])
-        .map((_entry) => __dateToUtcString(_entry).toString() as any)
+    "x-booleanlist": [
+      input.headerBooleanList,
+      (input.headerBooleanList! || []).map((_entry) => __str(_entry) as any).join(", "),
+    ],
+    "x-float": [input.headerFloat, __decimalString(input.headerFloat!)],
+    "x-long": [input.headerLong, __str(input.headerLong!)],
+    "x-stringlist": [input.headerStringList, (input.headerStringList! || []).map((_entry) => _entry as any).join(", ")],
+    "x-enumlist": [input.headerEnumList, (input.headerEnumList! || []).map((_entry) => _entry as any).join(", ")],
+    "x-stringset": [
+      input.headerStringSet,
+      Array.from((input.headerStringSet! || []).values())
+        .map((_entry) => _entry as any)
         .join(", "),
-    }),
-    ...(isSerializableHeaderValue(input.headerEnum) && { "x-enum": input.headerEnum! }),
-    ...(isSerializableHeaderValue(input.headerEnumList) && {
-      "x-enumlist": (input.headerEnumList! || []).map((_entry) => _entry as any).join(", "),
-    }),
+    ],
+    "x-integerlist": [
+      input.headerIntegerList,
+      (input.headerIntegerList! || []).map((_entry) => __str(_entry) as any).join(", "),
+    ],
+    "x-byte": [input.headerByte, __str(input.headerByte!)],
+    "x-timestamplist": [
+      input.headerTimestampList,
+      (input.headerTimestampList! || []).map((_entry) => __str(__dateToUtcString(_entry)) as any).join(", "),
+    ],
+    "x-integer": [input.headerInteger, __str(input.headerInteger!)],
+    "x-boolean1": [input.headerTrueBool, __str(input.headerTrueBool!)],
+    "x-boolean2": [input.headerFalseBool, __str(input.headerFalseBool!)],
+    "x-enum": input.headerEnum!,
+    "content-type": "application/json",
+    "x-double": [input.headerDouble, __decimalString(input.headerDouble!)],
+    "x-string": input.headerString!,
+    "x-short": [input.headerShort, __str(input.headerShort!)],
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/InputAndOutputWithHeaders";
   let body: any;
@@ -1207,10 +1091,11 @@ export const serializeAws_restJson1JsonBlobsCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/JsonBlobs";
   let body: any;
   body = JSON.stringify({
-    ...(input.data !== undefined && input.data !== null && { data: context.base64Encoder(input.data) }),
+    ...(input.data != null && { data: context.base64Encoder(input.data) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1231,18 +1116,16 @@ export const serializeAws_restJson1JsonEnumsCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/JsonEnums";
   let body: any;
   body = JSON.stringify({
-    ...(input.fooEnum1 !== undefined && input.fooEnum1 !== null && { fooEnum1: input.fooEnum1 }),
-    ...(input.fooEnum2 !== undefined && input.fooEnum2 !== null && { fooEnum2: input.fooEnum2 }),
-    ...(input.fooEnum3 !== undefined && input.fooEnum3 !== null && { fooEnum3: input.fooEnum3 }),
-    ...(input.fooEnumList !== undefined &&
-      input.fooEnumList !== null && { fooEnumList: serializeAws_restJson1FooEnumList(input.fooEnumList, context) }),
-    ...(input.fooEnumMap !== undefined &&
-      input.fooEnumMap !== null && { fooEnumMap: serializeAws_restJson1FooEnumMap(input.fooEnumMap, context) }),
-    ...(input.fooEnumSet !== undefined &&
-      input.fooEnumSet !== null && { fooEnumSet: serializeAws_restJson1FooEnumSet(input.fooEnumSet, context) }),
+    ...(input.fooEnum1 != null && { fooEnum1: input.fooEnum1 }),
+    ...(input.fooEnum2 != null && { fooEnum2: input.fooEnum2 }),
+    ...(input.fooEnum3 != null && { fooEnum3: input.fooEnum3 }),
+    ...(input.fooEnumList != null && { fooEnumList: serializeAws_restJson1FooEnumList(input.fooEnumList, context) }),
+    ...(input.fooEnumMap != null && { fooEnumMap: serializeAws_restJson1FooEnumMap(input.fooEnumMap, context) }),
+    ...(input.fooEnumSet != null && { fooEnumSet: serializeAws_restJson1FooEnumSet(input.fooEnumSet, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1263,35 +1146,27 @@ export const serializeAws_restJson1JsonListsCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/JsonLists";
   let body: any;
   body = JSON.stringify({
-    ...(input.booleanList !== undefined &&
-      input.booleanList !== null && { booleanList: serializeAws_restJson1BooleanList(input.booleanList, context) }),
-    ...(input.enumList !== undefined &&
-      input.enumList !== null && { enumList: serializeAws_restJson1FooEnumList(input.enumList, context) }),
-    ...(input.integerList !== undefined &&
-      input.integerList !== null && { integerList: serializeAws_restJson1IntegerList(input.integerList, context) }),
-    ...(input.nestedStringList !== undefined &&
-      input.nestedStringList !== null && {
-        nestedStringList: serializeAws_restJson1NestedStringList(input.nestedStringList, context),
-      }),
-    ...(input.sparseStringList !== undefined &&
-      input.sparseStringList !== null && {
-        sparseStringList: serializeAws_restJson1SparseStringList(input.sparseStringList, context),
-      }),
-    ...(input.stringList !== undefined &&
-      input.stringList !== null && { stringList: serializeAws_restJson1StringList(input.stringList, context) }),
-    ...(input.stringSet !== undefined &&
-      input.stringSet !== null && { stringSet: serializeAws_restJson1StringSet(input.stringSet, context) }),
-    ...(input.structureList !== undefined &&
-      input.structureList !== null && {
-        myStructureList: serializeAws_restJson1StructureList(input.structureList, context),
-      }),
-    ...(input.timestampList !== undefined &&
-      input.timestampList !== null && {
-        timestampList: serializeAws_restJson1TimestampList(input.timestampList, context),
-      }),
+    ...(input.booleanList != null && { booleanList: serializeAws_restJson1BooleanList(input.booleanList, context) }),
+    ...(input.enumList != null && { enumList: serializeAws_restJson1FooEnumList(input.enumList, context) }),
+    ...(input.integerList != null && { integerList: serializeAws_restJson1IntegerList(input.integerList, context) }),
+    ...(input.nestedStringList != null && {
+      nestedStringList: serializeAws_restJson1NestedStringList(input.nestedStringList, context),
+    }),
+    ...(input.sparseStringList != null && {
+      sparseStringList: serializeAws_restJson1SparseStringList(input.sparseStringList, context),
+    }),
+    ...(input.stringList != null && { stringList: serializeAws_restJson1StringList(input.stringList, context) }),
+    ...(input.stringSet != null && { stringSet: serializeAws_restJson1StringSet(input.stringSet, context) }),
+    ...(input.structureList != null && {
+      myStructureList: serializeAws_restJson1StructureList(input.structureList, context),
+    }),
+    ...(input.timestampList != null && {
+      timestampList: serializeAws_restJson1TimestampList(input.timestampList, context),
+    }),
   });
   return new __HttpRequest({
     protocol,
@@ -1312,45 +1187,38 @@ export const serializeAws_restJson1JsonMapsCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/JsonMaps";
   let body: any;
   body = JSON.stringify({
-    ...(input.denseBooleanMap !== undefined &&
-      input.denseBooleanMap !== null && {
-        denseBooleanMap: serializeAws_restJson1DenseBooleanMap(input.denseBooleanMap, context),
-      }),
-    ...(input.denseNumberMap !== undefined &&
-      input.denseNumberMap !== null && {
-        denseNumberMap: serializeAws_restJson1DenseNumberMap(input.denseNumberMap, context),
-      }),
-    ...(input.denseSetMap !== undefined &&
-      input.denseSetMap !== null && { denseSetMap: serializeAws_restJson1DenseSetMap(input.denseSetMap, context) }),
-    ...(input.denseStringMap !== undefined &&
-      input.denseStringMap !== null && {
-        denseStringMap: serializeAws_restJson1DenseStringMap(input.denseStringMap, context),
-      }),
-    ...(input.denseStructMap !== undefined &&
-      input.denseStructMap !== null && {
-        denseStructMap: serializeAws_restJson1DenseStructMap(input.denseStructMap, context),
-      }),
-    ...(input.sparseBooleanMap !== undefined &&
-      input.sparseBooleanMap !== null && {
-        sparseBooleanMap: serializeAws_restJson1SparseBooleanMap(input.sparseBooleanMap, context),
-      }),
-    ...(input.sparseNumberMap !== undefined &&
-      input.sparseNumberMap !== null && {
-        sparseNumberMap: serializeAws_restJson1SparseNumberMap(input.sparseNumberMap, context),
-      }),
-    ...(input.sparseSetMap !== undefined &&
-      input.sparseSetMap !== null && { sparseSetMap: serializeAws_restJson1SparseSetMap(input.sparseSetMap, context) }),
-    ...(input.sparseStringMap !== undefined &&
-      input.sparseStringMap !== null && {
-        sparseStringMap: serializeAws_restJson1SparseStringMap(input.sparseStringMap, context),
-      }),
-    ...(input.sparseStructMap !== undefined &&
-      input.sparseStructMap !== null && {
-        sparseStructMap: serializeAws_restJson1SparseStructMap(input.sparseStructMap, context),
-      }),
+    ...(input.denseBooleanMap != null && {
+      denseBooleanMap: serializeAws_restJson1DenseBooleanMap(input.denseBooleanMap, context),
+    }),
+    ...(input.denseNumberMap != null && {
+      denseNumberMap: serializeAws_restJson1DenseNumberMap(input.denseNumberMap, context),
+    }),
+    ...(input.denseSetMap != null && { denseSetMap: serializeAws_restJson1DenseSetMap(input.denseSetMap, context) }),
+    ...(input.denseStringMap != null && {
+      denseStringMap: serializeAws_restJson1DenseStringMap(input.denseStringMap, context),
+    }),
+    ...(input.denseStructMap != null && {
+      denseStructMap: serializeAws_restJson1DenseStructMap(input.denseStructMap, context),
+    }),
+    ...(input.sparseBooleanMap != null && {
+      sparseBooleanMap: serializeAws_restJson1SparseBooleanMap(input.sparseBooleanMap, context),
+    }),
+    ...(input.sparseNumberMap != null && {
+      sparseNumberMap: serializeAws_restJson1SparseNumberMap(input.sparseNumberMap, context),
+    }),
+    ...(input.sparseSetMap != null && {
+      sparseSetMap: serializeAws_restJson1SparseSetMap(input.sparseSetMap, context),
+    }),
+    ...(input.sparseStringMap != null && {
+      sparseStringMap: serializeAws_restJson1SparseStringMap(input.sparseStringMap, context),
+    }),
+    ...(input.sparseStructMap != null && {
+      sparseStructMap: serializeAws_restJson1SparseStructMap(input.sparseStructMap, context),
+    }),
   });
   return new __HttpRequest({
     protocol,
@@ -1371,15 +1239,14 @@ export const serializeAws_restJson1JsonTimestampsCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/JsonTimestamps";
   let body: any;
   body = JSON.stringify({
-    ...(input.dateTime !== undefined &&
-      input.dateTime !== null && { dateTime: input.dateTime.toISOString().split(".")[0] + "Z" }),
-    ...(input.epochSeconds !== undefined &&
-      input.epochSeconds !== null && { epochSeconds: Math.round(input.epochSeconds.getTime() / 1000) }),
-    ...(input.httpDate !== undefined && input.httpDate !== null && { httpDate: __dateToUtcString(input.httpDate) }),
-    ...(input.normal !== undefined && input.normal !== null && { normal: Math.round(input.normal.getTime() / 1000) }),
+    ...(input.dateTime != null && { dateTime: __timestampInputParam(input.dateTime, "D") }),
+    ...(input.epochSeconds != null && { epochSeconds: __timestampInputParam(input.epochSeconds, "E") }),
+    ...(input.httpDate != null && { httpDate: __dateToUtcString(input.httpDate) }),
+    ...(input.normal != null && { normal: __timestampInputParam(input.normal, "E") }),
   });
   return new __HttpRequest({
     protocol,
@@ -1400,11 +1267,11 @@ export const serializeAws_restJson1JsonUnionsCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/JsonUnions";
   let body: any;
   body = JSON.stringify({
-    ...(input.contents !== undefined &&
-      input.contents !== null && { contents: serializeAws_restJson1MyUnion(input.contents, context) }),
+    ...(input.contents != null && { contents: serializeAws_restJson1MyUnion(input.contents, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1422,9 +1289,8 @@ export const serializeAws_restJson1MalformedAcceptWithBodyCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedAcceptWithBody";
   let body: any;
@@ -1446,8 +1312,9 @@ export const serializeAws_restJson1MalformedAcceptWithGenericStringCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/octet-stream",
+    "content-type": "application/octet-stream" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedAcceptWithGenericString";
   let body: any;
@@ -1470,9 +1337,8 @@ export const serializeAws_restJson1MalformedAcceptWithPayloadCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedAcceptWithPayload";
   let body: any;
@@ -1494,12 +1360,13 @@ export const serializeAws_restJson1MalformedBlobCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/json",
+    "content-type": "application/json" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedBlob";
   let body: any;
   body = JSON.stringify({
-    ...(input.blob !== undefined && input.blob !== null && { blob: context.base64Encoder(input.blob) }),
+    ...(input.blob != null && { blob: context.base64Encoder(input.blob) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1518,26 +1385,27 @@ export const serializeAws_restJson1MalformedBooleanCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    booleaninheader: [input.booleanInHeader, __str(input.booleanInHeader!)],
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.booleanInHeader) && { booleaninheader: input.booleanInHeader!.toString() }),
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedBoolean/{booleanInPath}";
-  if (input.booleanInPath !== undefined) {
-    const labelValue: string = input.booleanInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: booleanInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{booleanInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: booleanInPath.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "booleanInPath",
+    __str(input.booleanInPath),
+    "{booleanInPath}",
+    false
+  );
   const query: any = {
-    ...(input.booleanInQuery !== undefined && { booleanInQuery: input.booleanInQuery.toString() }),
+    booleanInQuery: [input.booleanInQuery, __str(input.booleanInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.booleanInBody !== undefined && input.booleanInBody !== null && { booleanInBody: input.booleanInBody }),
+    ...(input.booleanInBody != null && { booleanInBody: input.booleanInBody }),
   });
   return new __HttpRequest({
     protocol,
@@ -1557,26 +1425,20 @@ export const serializeAws_restJson1MalformedByteCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    byteinheader: [input.byteInHeader, __str(input.byteInHeader!)],
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.byteInHeader) && { byteinheader: input.byteInHeader!.toString() }),
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedByte/{byteInPath}";
-  if (input.byteInPath !== undefined) {
-    const labelValue: string = input.byteInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: byteInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{byteInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: byteInPath.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "byteInPath", __str(input.byteInPath), "{byteInPath}", false);
   const query: any = {
-    ...(input.byteInQuery !== undefined && { byteInQuery: input.byteInQuery.toString() }),
+    byteInQuery: [input.byteInQuery, __str(input.byteInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.byteInBody !== undefined && input.byteInBody !== null && { byteInBody: input.byteInBody }),
+    ...(input.byteInBody != null && { byteInBody: input.byteInBody }),
   });
   return new __HttpRequest({
     protocol,
@@ -1598,11 +1460,12 @@ export const serializeAws_restJson1MalformedContentTypeWithBodyCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedContentTypeWithBody";
   let body: any;
   body = JSON.stringify({
-    ...(input.hi !== undefined && input.hi !== null && { hi: input.hi }),
+    ...(input.hi != null && { hi: input.hi }),
   });
   return new __HttpRequest({
     protocol,
@@ -1623,6 +1486,7 @@ export const serializeAws_restJson1MalformedContentTypeWithGenericStringCommand 
   const headers: any = {
     "content-type": "text/plain",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedContentTypeWithGenericString";
   let body: any;
@@ -1645,9 +1509,8 @@ export const serializeAws_restJson1MalformedContentTypeWithoutBodyCommand = asyn
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedContentTypeWithoutBody";
   let body: any;
@@ -1669,8 +1532,9 @@ export const serializeAws_restJson1MalformedContentTypeWithPayloadCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "image/jpeg",
+    "content-type": "image/jpeg" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedContentTypeWithPayload";
   let body: any;
@@ -1694,31 +1558,27 @@ export const serializeAws_restJson1MalformedDoubleCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    doubleinheader: [input.doubleInHeader, __decimalString(input.doubleInHeader!)],
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.doubleInHeader) && {
-      doubleinheader: input.doubleInHeader! % 1 == 0 ? input.doubleInHeader! + ".0" : input.doubleInHeader!.toString(),
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedDouble/{doubleInPath}";
-  if (input.doubleInPath !== undefined) {
-    const labelValue: string = input.doubleInPath % 1 == 0 ? input.doubleInPath + ".0" : input.doubleInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: doubleInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{doubleInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: doubleInPath.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "doubleInPath",
+    __decimalString(input.doubleInPath),
+    "{doubleInPath}",
+    false
+  );
   const query: any = {
-    ...(input.doubleInQuery !== undefined && {
-      doubleInQuery: input.doubleInQuery % 1 == 0 ? input.doubleInQuery + ".0" : input.doubleInQuery.toString(),
-    }),
+    doubleInQuery: [input.doubleInQuery, __decimalString(input.doubleInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.doubleInBody !== undefined &&
-      input.doubleInBody !== null && { doubleInBody: __serializeFloat(input.doubleInBody) }),
+    ...(input.doubleInBody != null && { doubleInBody: __serializeFloat(input.doubleInBody) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1738,31 +1598,27 @@ export const serializeAws_restJson1MalformedFloatCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    floatinheader: [input.floatInHeader, __decimalString(input.floatInHeader!)],
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.floatInHeader) && {
-      floatinheader: input.floatInHeader! % 1 == 0 ? input.floatInHeader! + ".0" : input.floatInHeader!.toString(),
-    }),
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedFloat/{floatInPath}";
-  if (input.floatInPath !== undefined) {
-    const labelValue: string = input.floatInPath % 1 == 0 ? input.floatInPath + ".0" : input.floatInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: floatInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{floatInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: floatInPath.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "floatInPath",
+    __decimalString(input.floatInPath),
+    "{floatInPath}",
+    false
+  );
   const query: any = {
-    ...(input.floatInQuery !== undefined && {
-      floatInQuery: input.floatInQuery % 1 == 0 ? input.floatInQuery + ".0" : input.floatInQuery.toString(),
-    }),
+    floatInQuery: [input.floatInQuery, __decimalString(input.floatInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.floatInBody !== undefined &&
-      input.floatInBody !== null && { floatInBody: __serializeFloat(input.floatInBody) }),
+    ...(input.floatInBody != null && { floatInBody: __serializeFloat(input.floatInBody) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1782,26 +1638,27 @@ export const serializeAws_restJson1MalformedIntegerCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    integerinheader: [input.integerInHeader, __str(input.integerInHeader!)],
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.integerInHeader) && { integerinheader: input.integerInHeader!.toString() }),
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedInteger/{integerInPath}";
-  if (input.integerInPath !== undefined) {
-    const labelValue: string = input.integerInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: integerInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{integerInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: integerInPath.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "integerInPath",
+    __str(input.integerInPath),
+    "{integerInPath}",
+    false
+  );
   const query: any = {
-    ...(input.integerInQuery !== undefined && { integerInQuery: input.integerInQuery.toString() }),
+    integerInQuery: [input.integerInQuery, __str(input.integerInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.integerInBody !== undefined && input.integerInBody !== null && { integerInBody: input.integerInBody }),
+    ...(input.integerInBody != null && { integerInBody: input.integerInBody }),
   });
   return new __HttpRequest({
     protocol,
@@ -1823,11 +1680,11 @@ export const serializeAws_restJson1MalformedListCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedList";
   let body: any;
   body = JSON.stringify({
-    ...(input.bodyList !== undefined &&
-      input.bodyList !== null && { bodyList: serializeAws_restJson1SimpleList(input.bodyList, context) }),
+    ...(input.bodyList != null && { bodyList: serializeAws_restJson1SimpleList(input.bodyList, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1847,25 +1704,19 @@ export const serializeAws_restJson1MalformedLongCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.longInHeader) && { longinheader: input.longInHeader!.toString() }),
+    longinheader: [input.longInHeader, __str(input.longInHeader!)],
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedLong/{longInPath}";
-  if (input.longInPath !== undefined) {
-    const labelValue: string = input.longInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: longInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{longInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: longInPath.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "longInPath", __str(input.longInPath), "{longInPath}", false);
   const query: any = {
-    ...(input.longInQuery !== undefined && { longInQuery: input.longInQuery.toString() }),
+    longInQuery: [input.longInQuery, __str(input.longInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.longInBody !== undefined && input.longInBody !== null && { longInBody: input.longInBody }),
+    ...(input.longInBody != null && { longInBody: input.longInBody }),
   });
   return new __HttpRequest({
     protocol,
@@ -1887,11 +1738,11 @@ export const serializeAws_restJson1MalformedMapCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedMap";
   let body: any;
   body = JSON.stringify({
-    ...(input.bodyMap !== undefined &&
-      input.bodyMap !== null && { bodyMap: serializeAws_restJson1SimpleMap(input.bodyMap, context) }),
+    ...(input.bodyMap != null && { bodyMap: serializeAws_restJson1SimpleMap(input.bodyMap, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1912,11 +1763,12 @@ export const serializeAws_restJson1MalformedRequestBodyCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedRequestBody";
   let body: any;
   body = JSON.stringify({
-    ...(input.float !== undefined && input.float !== null && { float: __serializeFloat(input.float) }),
-    ...(input.int !== undefined && input.int !== null && { int: input.int }),
+    ...(input.float != null && { float: __serializeFloat(input.float) }),
+    ...(input.int != null && { int: input.int }),
   });
   return new __HttpRequest({
     protocol,
@@ -1937,12 +1789,12 @@ export const serializeAws_restJson1MalformedSetCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedSet";
   let body: any;
   body = JSON.stringify({
-    ...(input.blobSet !== undefined &&
-      input.blobSet !== null && { blobSet: serializeAws_restJson1BlobSet(input.blobSet, context) }),
-    ...(input.set !== undefined && input.set !== null && { set: serializeAws_restJson1SimpleSet(input.set, context) }),
+    ...(input.blobSet != null && { blobSet: serializeAws_restJson1BlobSet(input.blobSet, context) }),
+    ...(input.set != null && { set: serializeAws_restJson1SimpleSet(input.set, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -1961,26 +1813,20 @@ export const serializeAws_restJson1MalformedShortCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    shortinheader: [input.shortInHeader, __str(input.shortInHeader!)],
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.shortInHeader) && { shortinheader: input.shortInHeader!.toString() }),
   };
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedShort/{shortInPath}";
-  if (input.shortInPath !== undefined) {
-    const labelValue: string = input.shortInPath.toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: shortInPath.");
-    }
-    resolvedPath = resolvedPath.replace("{shortInPath}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: shortInPath.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "shortInPath", __str(input.shortInPath), "{shortInPath}", false);
   const query: any = {
-    ...(input.shortInQuery !== undefined && { shortInQuery: input.shortInQuery.toString() }),
+    shortInQuery: [input.shortInQuery, __str(input.shortInQuery)],
   };
+  __filterUndefined(query);
   let body: any;
   body = JSON.stringify({
-    ...(input.shortInBody !== undefined && input.shortInBody !== null && { shortInBody: input.shortInBody }),
+    ...(input.shortInBody != null && { shortInBody: input.shortInBody }),
   });
   return new __HttpRequest({
     protocol,
@@ -2000,10 +1846,12 @@ export const serializeAws_restJson1MalformedStringCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.blob) && {
-      "amz-media-typed-header": context.base64Encoder(Buffer.from(__LazyJsonString.fromObject(input.blob!))),
-    }),
+    "amz-media-typed-header": [
+      input.blob,
+      context.base64Encoder(Buffer.from(__LazyJsonString.fromObject(input.blob!))),
+    ],
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedString";
   let body: any;
   return new __HttpRequest({
@@ -2025,12 +1873,12 @@ export const serializeAws_restJson1MalformedTimestampBodyDateTimeCommand = async
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampBodyDateTime";
   let body: any;
   body = JSON.stringify({
-    ...(input.timestamp !== undefined &&
-      input.timestamp !== null && { timestamp: input.timestamp.toISOString().split(".")[0] + "Z" }),
+    ...(input.timestamp != null && { timestamp: __timestampInputParam(input.timestamp, "D") }),
   });
   return new __HttpRequest({
     protocol,
@@ -2051,12 +1899,12 @@ export const serializeAws_restJson1MalformedTimestampBodyDefaultCommand = async 
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampBodyDefault";
   let body: any;
   body = JSON.stringify({
-    ...(input.timestamp !== undefined &&
-      input.timestamp !== null && { timestamp: Math.round(input.timestamp.getTime() / 1000) }),
+    ...(input.timestamp != null && { timestamp: __timestampInputParam(input.timestamp, "E") }),
   });
   return new __HttpRequest({
     protocol,
@@ -2077,11 +1925,12 @@ export const serializeAws_restJson1MalformedTimestampBodyHttpDateCommand = async
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampBodyHttpDate";
   let body: any;
   body = JSON.stringify({
-    ...(input.timestamp !== undefined && input.timestamp !== null && { timestamp: __dateToUtcString(input.timestamp) }),
+    ...(input.timestamp != null && { timestamp: __dateToUtcString(input.timestamp) }),
   });
   return new __HttpRequest({
     protocol,
@@ -2100,10 +1949,9 @@ export const serializeAws_restJson1MalformedTimestampHeaderDateTimeCommand = asy
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.timestamp) && {
-      timestamp: (input.timestamp!.toISOString().split(".")[0] + "Z").toString(),
-    }),
+    timestamp: [input.timestamp, __str(__timestampInputParam(input.timestamp!, "D"))],
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampHeaderDateTime";
   let body: any;
@@ -2124,8 +1972,9 @@ export const serializeAws_restJson1MalformedTimestampHeaderDefaultCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.timestamp) && { timestamp: __dateToUtcString(input.timestamp!).toString() }),
+    timestamp: [input.timestamp, __str(__dateToUtcString(input.timestamp!))],
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampHeaderDefault";
   let body: any;
@@ -2146,10 +1995,9 @@ export const serializeAws_restJson1MalformedTimestampHeaderEpochCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.timestamp) && {
-      timestamp: Math.round(input.timestamp!.getTime() / 1000).toString(),
-    }),
+    timestamp: [input.timestamp, __str(__timestampInputParam(input.timestamp!, "E"))],
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampHeaderEpoch";
   let body: any;
@@ -2170,18 +2018,18 @@ export const serializeAws_restJson1MalformedTimestampPathDefaultCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/MalformedTimestampPathDefault/{timestamp}";
-  if (input.timestamp !== undefined) {
-    const labelValue: string = (input.timestamp.toISOString().split(".")[0] + "Z").toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: timestamp.");
-    }
-    resolvedPath = resolvedPath.replace("{timestamp}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: timestamp.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "timestamp",
+    __str(__timestampInputParam(input.timestamp, "D")),
+    "{timestamp}",
+    false
+  );
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2200,17 +2048,17 @@ export const serializeAws_restJson1MalformedTimestampPathEpochCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampPathEpoch/{timestamp}";
-  if (input.timestamp !== undefined) {
-    const labelValue: string = Math.round(input.timestamp.getTime() / 1000).toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: timestamp.");
-    }
-    resolvedPath = resolvedPath.replace("{timestamp}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: timestamp.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "timestamp",
+    __str(__timestampInputParam(input.timestamp, "E")),
+    "{timestamp}",
+    false
+  );
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2229,18 +2077,18 @@ export const serializeAws_restJson1MalformedTimestampPathHttpDateCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/MalformedTimestampPathHttpDate/{timestamp}";
-  if (input.timestamp !== undefined) {
-    const labelValue: string = __dateToUtcString(input.timestamp).toString();
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: timestamp.");
-    }
-    resolvedPath = resolvedPath.replace("{timestamp}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: timestamp.");
-  }
+  resolvedPath = __resolvedPath(
+    resolvedPath,
+    input,
+    "timestamp",
+    __str(__dateToUtcString(input.timestamp)),
+    "{timestamp}",
+    false
+  );
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2259,11 +2107,13 @@ export const serializeAws_restJson1MalformedTimestampQueryDefaultCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampQueryDefault";
   const query: any = {
-    ...(input.timestamp !== undefined && { timestamp: (input.timestamp.toISOString().split(".")[0] + "Z").toString() }),
+    timestamp: [input.timestamp, __str(__timestampInputParam(input.timestamp, "D"))],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2283,11 +2133,13 @@ export const serializeAws_restJson1MalformedTimestampQueryEpochCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampQueryEpoch";
   const query: any = {
-    ...(input.timestamp !== undefined && { timestamp: Math.round(input.timestamp.getTime() / 1000).toString() }),
+    timestamp: [input.timestamp, __str(__timestampInputParam(input.timestamp, "E"))],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2307,11 +2159,13 @@ export const serializeAws_restJson1MalformedTimestampQueryHttpDateCommand = asyn
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedTimestampQueryHttpDate";
   const query: any = {
-    ...(input.timestamp !== undefined && { timestamp: __dateToUtcString(input.timestamp).toString() }),
+    timestamp: [input.timestamp, __str(__dateToUtcString(input.timestamp))],
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2333,11 +2187,11 @@ export const serializeAws_restJson1MalformedUnionCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MalformedUnion";
   let body: any;
   body = JSON.stringify({
-    ...(input.union !== undefined &&
-      input.union !== null && { union: serializeAws_restJson1SimpleUnion(input.union, context) }),
+    ...(input.union != null && { union: serializeAws_restJson1SimpleUnion(input.union, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -2356,10 +2210,9 @@ export const serializeAws_restJson1MediaTypeHeaderCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.json) && {
-      "x-json": context.base64Encoder(Buffer.from(__LazyJsonString.fromObject(input.json!))),
-    }),
+    "x-json": [input.json, context.base64Encoder(Buffer.from(__LazyJsonString.fromObject(input.json!)))],
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/MediaTypeHeader";
   let body: any;
   return new __HttpRequest({
@@ -2378,9 +2231,8 @@ export const serializeAws_restJson1NoInputAndNoOutputCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/NoInputAndNoOutput";
   let body: any;
   body = "";
@@ -2400,9 +2252,8 @@ export const serializeAws_restJson1NoInputAndOutputCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/NoInputAndOutputOutput";
   let body: any;
@@ -2424,10 +2275,12 @@ export const serializeAws_restJson1NullAndEmptyHeadersClientCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.a) && { "x-a": input.a! }),
-    ...(isSerializableHeaderValue(input.b) && { "x-b": input.b! }),
-    ...(isSerializableHeaderValue(input.c) && { "x-c": (input.c! || []).map((_entry) => _entry as any).join(", ") }),
+    "x-b": input.b!,
+    "x-a": input.a!,
+    "x-c": [input.c, (input.c! || []).map((_entry) => _entry as any).join(", ")],
+    "content-type": "application/json" || "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/NullAndEmptyHeadersClient";
   let body: any;
@@ -2448,10 +2301,11 @@ export const serializeAws_restJson1NullAndEmptyHeadersServerCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.a) && { "x-a": input.a! }),
-    ...(isSerializableHeaderValue(input.b) && { "x-b": input.b! }),
-    ...(isSerializableHeaderValue(input.c) && { "x-c": (input.c! || []).map((_entry) => _entry as any).join(", ") }),
+    "x-b": input.b!,
+    "x-a": input.a!,
+    "x-c": [input.c, (input.c! || []).map((_entry) => _entry as any).join(", ")],
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/NullAndEmptyHeadersServer";
   let body: any;
@@ -2472,12 +2326,14 @@ export const serializeAws_restJson1OmitsNullSerializesEmptyStringCommand = async
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/OmitsNullSerializesEmptyString";
   const query: any = {
-    ...(input.nullValue !== undefined && { Null: input.nullValue }),
-    ...(input.emptyString !== undefined && { Empty: input.emptyString }),
+    Null: input.nullValue,
+    Empty: input.emptyString,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2499,11 +2355,11 @@ export const serializeAws_restJson1PostPlayerActionCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/PostPlayerAction";
   let body: any;
   body = JSON.stringify({
-    ...(input.action !== undefined &&
-      input.action !== null && { action: serializeAws_restJson1PlayerAction(input.action, context) }),
+    ...(input.action != null && { action: serializeAws_restJson1PlayerAction(input.action, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -2522,11 +2378,13 @@ export const serializeAws_restJson1QueryIdempotencyTokenAutoFillCommand = async 
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/QueryIdempotencyTokenAutoFill";
   const query: any = {
-    ...(input.token !== undefined && { token: input.token }),
+    token: input.token,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2546,11 +2404,13 @@ export const serializeAws_restJson1QueryParamsAsStringListMapCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/StringListMap";
   const query: any = {
-    ...(input.foo !== undefined && input.foo),
-    ...(input.qux !== undefined && { corge: input.qux }),
+    ...input.foo,
+    corge: input.qux,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2570,11 +2430,13 @@ export const serializeAws_restJson1QueryPrecedenceCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/Precedence";
   const query: any = {
-    ...(input.baz !== undefined && input.baz),
-    ...(input.foo !== undefined && { bar: input.foo }),
+    ...input.baz,
+    bar: input.foo,
   };
+  __filterUndefined(query);
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -2596,13 +2458,13 @@ export const serializeAws_restJson1RecursiveShapesCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/RecursiveShapes";
   let body: any;
   body = JSON.stringify({
-    ...(input.nested !== undefined &&
-      input.nested !== null && {
-        nested: serializeAws_restJson1RecursiveShapesInputOutputNested1(input.nested, context),
-      }),
+    ...(input.nested != null && {
+      nested: serializeAws_restJson1RecursiveShapesInputOutputNested1(input.nested, context),
+    }),
   });
   return new __HttpRequest({
     protocol,
@@ -2621,26 +2483,23 @@ export const serializeAws_restJson1SimpleScalarPropertiesCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-foo": input.foo!,
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/SimpleScalarProperties";
   let body: any;
   body = JSON.stringify({
-    ...(input.byteValue !== undefined && input.byteValue !== null && { byteValue: input.byteValue }),
-    ...(input.doubleValue !== undefined &&
-      input.doubleValue !== null && { DoubleDribble: __serializeFloat(input.doubleValue) }),
-    ...(input.falseBooleanValue !== undefined &&
-      input.falseBooleanValue !== null && { falseBooleanValue: input.falseBooleanValue }),
-    ...(input.floatValue !== undefined &&
-      input.floatValue !== null && { floatValue: __serializeFloat(input.floatValue) }),
-    ...(input.integerValue !== undefined && input.integerValue !== null && { integerValue: input.integerValue }),
-    ...(input.longValue !== undefined && input.longValue !== null && { longValue: input.longValue }),
-    ...(input.shortValue !== undefined && input.shortValue !== null && { shortValue: input.shortValue }),
-    ...(input.stringValue !== undefined && input.stringValue !== null && { stringValue: input.stringValue }),
-    ...(input.trueBooleanValue !== undefined &&
-      input.trueBooleanValue !== null && { trueBooleanValue: input.trueBooleanValue }),
+    ...(input.byteValue != null && { byteValue: input.byteValue }),
+    ...(input.doubleValue != null && { DoubleDribble: __serializeFloat(input.doubleValue) }),
+    ...(input.falseBooleanValue != null && { falseBooleanValue: input.falseBooleanValue }),
+    ...(input.floatValue != null && { floatValue: __serializeFloat(input.floatValue) }),
+    ...(input.integerValue != null && { integerValue: input.integerValue }),
+    ...(input.longValue != null && { longValue: input.longValue }),
+    ...(input.shortValue != null && { shortValue: input.shortValue }),
+    ...(input.stringValue != null && { stringValue: input.stringValue }),
+    ...(input.trueBooleanValue != null && { trueBooleanValue: input.trueBooleanValue }),
   });
   return new __HttpRequest({
     protocol,
@@ -2659,9 +2518,10 @@ export const serializeAws_restJson1StreamingTraitsCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-foo": input.foo!,
     "content-type": "application/octet-stream",
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/StreamingTraits";
   let body: any;
   if (input.blob !== undefined) {
@@ -2684,9 +2544,10 @@ export const serializeAws_restJson1StreamingTraitsRequireLengthCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-foo": input.foo!,
     "content-type": "application/octet-stream",
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/StreamingTraitsRequireLength";
   let body: any;
@@ -2710,9 +2571,10 @@ export const serializeAws_restJson1StreamingTraitsWithMediaTypeCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-foo": input.foo!,
     "content-type": "text/plain",
-    ...(isSerializableHeaderValue(input.foo) && { "x-foo": input.foo! }),
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/StreamingTraitsWithMediaType";
   let body: any;
@@ -2736,14 +2598,14 @@ export const serializeAws_restJson1TestBodyStructureCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-test-id": input.testId!,
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.testId) && { "x-amz-test-id": input.testId! }),
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/body";
   let body: any;
   body = JSON.stringify({
-    ...(input.testConfig !== undefined &&
-      input.testConfig !== null && { testConfig: serializeAws_restJson1TestConfig(input.testConfig, context) }),
+    ...(input.testConfig != null && { testConfig: serializeAws_restJson1TestConfig(input.testConfig, context) }),
   });
   return new __HttpRequest({
     protocol,
@@ -2762,8 +2624,9 @@ export const serializeAws_restJson1TestNoPayloadCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.testId) && { "x-amz-test-id": input.testId! }),
+    "x-amz-test-id": input.testId!,
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/no_payload";
   let body: any;
   return new __HttpRequest({
@@ -2783,9 +2646,9 @@ export const serializeAws_restJson1TestPayloadBlobCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    "content-type": "application/octet-stream",
-    ...(isSerializableHeaderValue(input.contentType) && { "content-type": input.contentType! }),
+    "content-type": input.contentType! || "application/octet-stream",
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/blob_payload";
   let body: any;
   if (input.data !== undefined) {
@@ -2808,9 +2671,10 @@ export const serializeAws_restJson1TestPayloadStructureCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
+    "x-amz-test-id": input.testId!,
     "content-type": "application/json",
-    ...(isSerializableHeaderValue(input.testId) && { "x-amz-test-id": input.testId! }),
   };
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/payload";
   let body: any;
   if (input.payloadConfig !== undefined) {
@@ -2837,28 +2701,15 @@ export const serializeAws_restJson1TimestampFormatHeadersCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {
-    ...(isSerializableHeaderValue(input.memberEpochSeconds) && {
-      "x-memberepochseconds": Math.round(input.memberEpochSeconds!.getTime() / 1000).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.memberHttpDate) && {
-      "x-memberhttpdate": __dateToUtcString(input.memberHttpDate!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.memberDateTime) && {
-      "x-memberdatetime": (input.memberDateTime!.toISOString().split(".")[0] + "Z").toString(),
-    }),
-    ...(isSerializableHeaderValue(input.defaultFormat) && {
-      "x-defaultformat": __dateToUtcString(input.defaultFormat!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.targetEpochSeconds) && {
-      "x-targetepochseconds": Math.round(input.targetEpochSeconds!.getTime() / 1000).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.targetHttpDate) && {
-      "x-targethttpdate": __dateToUtcString(input.targetHttpDate!).toString(),
-    }),
-    ...(isSerializableHeaderValue(input.targetDateTime) && {
-      "x-targetdatetime": (input.targetDateTime!.toISOString().split(".")[0] + "Z").toString(),
-    }),
+    "x-targetepochseconds": [input.targetEpochSeconds, __str(__timestampInputParam(input.targetEpochSeconds!, "E"))],
+    "x-memberepochseconds": [input.memberEpochSeconds, __str(__timestampInputParam(input.memberEpochSeconds!, "E"))],
+    "x-defaultformat": [input.defaultFormat, __str(__dateToUtcString(input.defaultFormat!))],
+    "x-memberhttpdate": [input.memberHttpDate, __str(__dateToUtcString(input.memberHttpDate!))],
+    "x-memberdatetime": [input.memberDateTime, __str(__timestampInputParam(input.memberDateTime!, "D"))],
+    "x-targethttpdate": [input.targetHttpDate, __str(__dateToUtcString(input.targetHttpDate!))],
+    "x-targetdatetime": [input.targetDateTime, __str(__timestampInputParam(input.targetDateTime!, "D"))],
   };
+  __filterHeaders(headers);
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/TimestampFormatHeaders";
   let body: any;
@@ -2878,9 +2729,8 @@ export const serializeAws_restJson1UnitInputAndOutputCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = {
-    "content-type": "application/json",
-  };
+  const headers: any = {};
+  __filterHeaders(headers);
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/UnitInputAndOutput";
   let body: any;
   body = "";
@@ -2920,16 +2770,13 @@ const deserializeAws_restJson1AllQueryStringTypesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1ConstantAndVariableQueryStringCommand = async (
@@ -2957,16 +2804,13 @@ const deserializeAws_restJson1ConstantAndVariableQueryStringCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1ConstantQueryStringCommand = async (
@@ -2994,16 +2838,13 @@ const deserializeAws_restJson1ConstantQueryStringCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1DocumentTypeCommand = async (
@@ -3039,16 +2880,13 @@ const deserializeAws_restJson1DocumentTypeCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1DocumentTypeAsPayloadCommand = async (
@@ -3079,16 +2917,13 @@ const deserializeAws_restJson1DocumentTypeAsPayloadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1EmptyInputAndEmptyOutputCommand = async (
@@ -3116,16 +2951,13 @@ const deserializeAws_restJson1EmptyInputAndEmptyOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1EndpointOperationCommand = async (
@@ -3153,16 +2985,13 @@ const deserializeAws_restJson1EndpointOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1EndpointWithHostLabelOperationCommand = async (
@@ -3190,16 +3019,13 @@ const deserializeAws_restJson1EndpointWithHostLabelOperationCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1GreetingWithErrorsCommand = async (
@@ -3277,16 +3103,13 @@ const deserializeAws_restJson1HostWithPathOperationCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpChecksumRequiredCommand = async (
@@ -3318,16 +3141,13 @@ const deserializeAws_restJson1HttpChecksumRequiredCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpEnumPayloadCommand = async (
@@ -3357,16 +3177,13 @@ const deserializeAws_restJson1HttpEnumPayloadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpPayloadTraitsCommand = async (
@@ -3400,16 +3217,13 @@ const deserializeAws_restJson1HttpPayloadTraitsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpPayloadTraitsWithMediaTypeCommand = async (
@@ -3443,16 +3257,13 @@ const deserializeAws_restJson1HttpPayloadTraitsWithMediaTypeCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpPayloadWithStructureCommand = async (
@@ -3482,16 +3293,13 @@ const deserializeAws_restJson1HttpPayloadWithStructureCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpPrefixHeadersCommand = async (
@@ -3532,16 +3340,13 @@ const deserializeAws_restJson1HttpPrefixHeadersCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpPrefixHeadersInResponseCommand = async (
@@ -3578,16 +3383,13 @@ const deserializeAws_restJson1HttpPrefixHeadersInResponseCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpRequestWithFloatLabelsCommand = async (
@@ -3615,16 +3417,13 @@ const deserializeAws_restJson1HttpRequestWithFloatLabelsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpRequestWithGreedyLabelInPathCommand = async (
@@ -3652,16 +3451,13 @@ const deserializeAws_restJson1HttpRequestWithGreedyLabelInPathCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpRequestWithLabelsCommand = async (
@@ -3689,16 +3485,13 @@ const deserializeAws_restJson1HttpRequestWithLabelsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpRequestWithLabelsAndTimestampFormatCommand = async (
@@ -3726,16 +3519,13 @@ const deserializeAws_restJson1HttpRequestWithLabelsAndTimestampFormatCommandErro
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpRequestWithRegexLiteralCommand = async (
@@ -3763,16 +3553,13 @@ const deserializeAws_restJson1HttpRequestWithRegexLiteralCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpResponseCodeCommand = async (
@@ -3804,16 +3591,13 @@ const deserializeAws_restJson1HttpResponseCodeCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1HttpStringPayloadCommand = async (
@@ -3843,16 +3627,13 @@ const deserializeAws_restJson1HttpStringPayloadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1IgnoreQueryParamsInResponseCommand = async (
@@ -3884,16 +3665,13 @@ const deserializeAws_restJson1IgnoreQueryParamsInResponseCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1InputAndOutputWithHeadersCommand = async (
@@ -3991,16 +3769,13 @@ const deserializeAws_restJson1InputAndOutputWithHeadersCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1JsonBlobsCommand = async (
@@ -4032,16 +3807,13 @@ const deserializeAws_restJson1JsonBlobsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1JsonEnumsCommand = async (
@@ -4093,16 +3865,13 @@ const deserializeAws_restJson1JsonEnumsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1JsonListsCommand = async (
@@ -4166,16 +3935,13 @@ const deserializeAws_restJson1JsonListsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1JsonMapsCommand = async (
@@ -4243,16 +4009,13 @@ const deserializeAws_restJson1JsonMapsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1JsonTimestampsCommand = async (
@@ -4296,16 +4059,13 @@ const deserializeAws_restJson1JsonTimestampsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1JsonUnionsCommand = async (
@@ -4337,16 +4097,13 @@ const deserializeAws_restJson1JsonUnionsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedAcceptWithBodyCommand = async (
@@ -4378,16 +4135,13 @@ const deserializeAws_restJson1MalformedAcceptWithBodyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedAcceptWithGenericStringCommand = async (
@@ -4415,16 +4169,13 @@ const deserializeAws_restJson1MalformedAcceptWithGenericStringCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedAcceptWithPayloadCommand = async (
@@ -4454,16 +4205,13 @@ const deserializeAws_restJson1MalformedAcceptWithPayloadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedBlobCommand = async (
@@ -4491,16 +4239,13 @@ const deserializeAws_restJson1MalformedBlobCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedBooleanCommand = async (
@@ -4528,16 +4273,13 @@ const deserializeAws_restJson1MalformedBooleanCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedByteCommand = async (
@@ -4565,16 +4307,13 @@ const deserializeAws_restJson1MalformedByteCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedContentTypeWithBodyCommand = async (
@@ -4602,16 +4341,13 @@ const deserializeAws_restJson1MalformedContentTypeWithBodyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedContentTypeWithGenericStringCommand = async (
@@ -4639,16 +4375,13 @@ const deserializeAws_restJson1MalformedContentTypeWithGenericStringCommandError 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedContentTypeWithoutBodyCommand = async (
@@ -4676,16 +4409,13 @@ const deserializeAws_restJson1MalformedContentTypeWithoutBodyCommandError = asyn
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedContentTypeWithPayloadCommand = async (
@@ -4713,16 +4443,13 @@ const deserializeAws_restJson1MalformedContentTypeWithPayloadCommandError = asyn
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedDoubleCommand = async (
@@ -4750,16 +4477,13 @@ const deserializeAws_restJson1MalformedDoubleCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedFloatCommand = async (
@@ -4787,16 +4511,13 @@ const deserializeAws_restJson1MalformedFloatCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedIntegerCommand = async (
@@ -4824,16 +4545,13 @@ const deserializeAws_restJson1MalformedIntegerCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedListCommand = async (
@@ -4861,16 +4579,13 @@ const deserializeAws_restJson1MalformedListCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedLongCommand = async (
@@ -4898,16 +4613,13 @@ const deserializeAws_restJson1MalformedLongCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedMapCommand = async (
@@ -4935,16 +4647,13 @@ const deserializeAws_restJson1MalformedMapCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedRequestBodyCommand = async (
@@ -4972,16 +4681,13 @@ const deserializeAws_restJson1MalformedRequestBodyCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedSetCommand = async (
@@ -5009,16 +4715,13 @@ const deserializeAws_restJson1MalformedSetCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedShortCommand = async (
@@ -5046,16 +4749,13 @@ const deserializeAws_restJson1MalformedShortCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedStringCommand = async (
@@ -5083,16 +4783,13 @@ const deserializeAws_restJson1MalformedStringCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampBodyDateTimeCommand = async (
@@ -5120,16 +4817,13 @@ const deserializeAws_restJson1MalformedTimestampBodyDateTimeCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampBodyDefaultCommand = async (
@@ -5157,16 +4851,13 @@ const deserializeAws_restJson1MalformedTimestampBodyDefaultCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampBodyHttpDateCommand = async (
@@ -5194,16 +4885,13 @@ const deserializeAws_restJson1MalformedTimestampBodyHttpDateCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampHeaderDateTimeCommand = async (
@@ -5231,16 +4919,13 @@ const deserializeAws_restJson1MalformedTimestampHeaderDateTimeCommandError = asy
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampHeaderDefaultCommand = async (
@@ -5268,16 +4953,13 @@ const deserializeAws_restJson1MalformedTimestampHeaderDefaultCommandError = asyn
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampHeaderEpochCommand = async (
@@ -5305,16 +4987,13 @@ const deserializeAws_restJson1MalformedTimestampHeaderEpochCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampPathDefaultCommand = async (
@@ -5342,16 +5021,13 @@ const deserializeAws_restJson1MalformedTimestampPathDefaultCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampPathEpochCommand = async (
@@ -5379,16 +5055,13 @@ const deserializeAws_restJson1MalformedTimestampPathEpochCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampPathHttpDateCommand = async (
@@ -5416,16 +5089,13 @@ const deserializeAws_restJson1MalformedTimestampPathHttpDateCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampQueryDefaultCommand = async (
@@ -5453,16 +5123,13 @@ const deserializeAws_restJson1MalformedTimestampQueryDefaultCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampQueryEpochCommand = async (
@@ -5490,16 +5157,13 @@ const deserializeAws_restJson1MalformedTimestampQueryEpochCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedTimestampQueryHttpDateCommand = async (
@@ -5527,16 +5191,13 @@ const deserializeAws_restJson1MalformedTimestampQueryHttpDateCommandError = asyn
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MalformedUnionCommand = async (
@@ -5564,16 +5225,13 @@ const deserializeAws_restJson1MalformedUnionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1MediaTypeHeaderCommand = async (
@@ -5605,16 +5263,13 @@ const deserializeAws_restJson1MediaTypeHeaderCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1NoInputAndNoOutputCommand = async (
@@ -5642,16 +5297,13 @@ const deserializeAws_restJson1NoInputAndNoOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1NoInputAndOutputCommand = async (
@@ -5679,16 +5331,13 @@ const deserializeAws_restJson1NoInputAndOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1NullAndEmptyHeadersClientCommand = async (
@@ -5728,16 +5377,13 @@ const deserializeAws_restJson1NullAndEmptyHeadersClientCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1NullAndEmptyHeadersServerCommand = async (
@@ -5777,16 +5423,13 @@ const deserializeAws_restJson1NullAndEmptyHeadersServerCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1OmitsNullSerializesEmptyStringCommand = async (
@@ -5814,16 +5457,13 @@ const deserializeAws_restJson1OmitsNullSerializesEmptyStringCommandError = async
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1PostPlayerActionCommand = async (
@@ -5855,16 +5495,13 @@ const deserializeAws_restJson1PostPlayerActionCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1QueryIdempotencyTokenAutoFillCommand = async (
@@ -5892,16 +5529,13 @@ const deserializeAws_restJson1QueryIdempotencyTokenAutoFillCommandError = async 
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1QueryParamsAsStringListMapCommand = async (
@@ -5929,16 +5563,13 @@ const deserializeAws_restJson1QueryParamsAsStringListMapCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1QueryPrecedenceCommand = async (
@@ -5966,16 +5597,13 @@ const deserializeAws_restJson1QueryPrecedenceCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1RecursiveShapesCommand = async (
@@ -6007,16 +5635,13 @@ const deserializeAws_restJson1RecursiveShapesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1SimpleScalarPropertiesCommand = async (
@@ -6084,16 +5709,13 @@ const deserializeAws_restJson1SimpleScalarPropertiesCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1StreamingTraitsCommand = async (
@@ -6127,16 +5749,13 @@ const deserializeAws_restJson1StreamingTraitsCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1StreamingTraitsRequireLengthCommand = async (
@@ -6164,16 +5783,13 @@ const deserializeAws_restJson1StreamingTraitsRequireLengthCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1StreamingTraitsWithMediaTypeCommand = async (
@@ -6207,16 +5823,13 @@ const deserializeAws_restJson1StreamingTraitsWithMediaTypeCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1TestBodyStructureCommand = async (
@@ -6252,16 +5865,13 @@ const deserializeAws_restJson1TestBodyStructureCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1TestNoPayloadCommand = async (
@@ -6293,16 +5903,13 @@ const deserializeAws_restJson1TestNoPayloadCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1TestPayloadBlobCommand = async (
@@ -6336,16 +5943,13 @@ const deserializeAws_restJson1TestPayloadBlobCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1TestPayloadStructureCommand = async (
@@ -6379,16 +5983,13 @@ const deserializeAws_restJson1TestPayloadStructureCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1TimestampFormatHeadersCommand = async (
@@ -6444,16 +6045,13 @@ const deserializeAws_restJson1TimestampFormatHeadersCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 export const deserializeAws_restJson1UnitInputAndOutputCommand = async (
@@ -6481,16 +6079,13 @@ const deserializeAws_restJson1UnitInputAndOutputCommandError = async (
   let response: __BaseException;
   let errorCode = "UnknownError";
   errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  switch (errorCode) {
-    default:
-      const parsedBody = parsedOutput.body;
-      response = new __BaseException({
-        name: parsedBody.code || parsedBody.Code || errorCode,
-        $fault: "client",
-        $metadata: deserializeMetadata(output),
-      });
-      throw __decorateServiceException(response, parsedBody);
-  }
+  const parsedBody = parsedOutput.body;
+  response = new __BaseException({
+    name: parsedBody.code || parsedBody.Code || errorCode,
+    $fault: "client",
+    $metadata: deserializeMetadata(output),
+  });
+  throw __decorateServiceException(response, parsedBody);
 };
 
 const deserializeAws_restJson1ComplexErrorResponse = async (
@@ -6635,21 +6230,21 @@ const serializeAws_restJson1MyUnion = (input: MyUnion, context: __SerdeContext):
     }),
     stringValue: (value) => ({ stringValue: value }),
     structureValue: (value) => ({ structureValue: serializeAws_restJson1GreetingStruct(value, context) }),
-    timestampValue: (value) => ({ timestampValue: Math.round(value.getTime() / 1000) }),
+    timestampValue: (value) => ({ timestampValue: __timestampInputParam(value, "E") }),
     _: (name, value) => ({ name: value } as any),
   });
 };
 
 const serializeAws_restJson1NestedPayload = (input: NestedPayload, context: __SerdeContext): any => {
   return {
-    ...(input.greeting !== undefined && input.greeting !== null && { greeting: input.greeting }),
-    ...(input.name !== undefined && input.name !== null && { name: input.name }),
+    ...(input.greeting != null && { greeting: input.greeting }),
+    ...(input.name != null && { name: input.name }),
   };
 };
 
 const serializeAws_restJson1PayloadConfig = (input: PayloadConfig, context: __SerdeContext): any => {
   return {
-    ...(input.data !== undefined && input.data !== null && { data: input.data }),
+    ...(input.data != null && { data: input.data }),
   };
 };
 
@@ -6665,11 +6260,10 @@ const serializeAws_restJson1RecursiveShapesInputOutputNested1 = (
   context: __SerdeContext
 ): any => {
   return {
-    ...(input.foo !== undefined && input.foo !== null && { foo: input.foo }),
-    ...(input.nested !== undefined &&
-      input.nested !== null && {
-        nested: serializeAws_restJson1RecursiveShapesInputOutputNested2(input.nested, context),
-      }),
+    ...(input.foo != null && { foo: input.foo }),
+    ...(input.nested != null && {
+      nested: serializeAws_restJson1RecursiveShapesInputOutputNested2(input.nested, context),
+    }),
   };
 };
 
@@ -6678,11 +6272,10 @@ const serializeAws_restJson1RecursiveShapesInputOutputNested2 = (
   context: __SerdeContext
 ): any => {
   return {
-    ...(input.bar !== undefined && input.bar !== null && { bar: input.bar }),
-    ...(input.recursiveMember !== undefined &&
-      input.recursiveMember !== null && {
-        recursiveMember: serializeAws_restJson1RecursiveShapesInputOutputNested1(input.recursiveMember, context),
-      }),
+    ...(input.bar != null && { bar: input.bar }),
+    ...(input.recursiveMember != null && {
+      recursiveMember: serializeAws_restJson1RecursiveShapesInputOutputNested1(input.recursiveMember, context),
+    }),
   };
 };
 
@@ -6792,20 +6385,20 @@ const serializeAws_restJson1StructureList = (input: StructureListMember[], conte
 
 const serializeAws_restJson1StructureListMember = (input: StructureListMember, context: __SerdeContext): any => {
   return {
-    ...(input.a !== undefined && input.a !== null && { value: input.a }),
-    ...(input.b !== undefined && input.b !== null && { other: input.b }),
+    ...(input.a != null && { value: input.a }),
+    ...(input.b != null && { other: input.b }),
   };
 };
 
 const serializeAws_restJson1TestConfig = (input: TestConfig, context: __SerdeContext): any => {
   return {
-    ...(input.timeout !== undefined && input.timeout !== null && { timeout: input.timeout }),
+    ...(input.timeout != null && { timeout: input.timeout }),
   };
 };
 
 const serializeAws_restJson1RenamedGreeting = (input: RenamedGreeting, context: __SerdeContext): any => {
   return {
-    ...(input.salutation !== undefined && input.salutation !== null && { salutation: input.salutation }),
+    ...(input.salutation != null && { salutation: input.salutation }),
   };
 };
 
@@ -6856,7 +6449,7 @@ const serializeAws_restJson1FooEnumSet = (input: (FooEnum | string)[], context: 
 
 const serializeAws_restJson1GreetingStruct = (input: GreetingStruct, context: __SerdeContext): any => {
   return {
-    ...(input.hi !== undefined && input.hi !== null && { hi: input.hi }),
+    ...(input.hi != null && { hi: input.hi }),
   };
 };
 
@@ -6944,7 +6537,7 @@ const serializeAws_restJson1TimestampList = (input: Date[], context: __SerdeCont
       if (entry === null) {
         return null as any;
       }
-      return Math.round(entry.getTime() / 1000);
+      return __timestampInputParam(entry, "E");
     });
 };
 
@@ -7103,7 +6696,7 @@ const deserializeAws_restJson1RecursiveShapesInputOutputNested1 = (
   return {
     foo: __expectString(output.foo),
     nested:
-      output.nested !== undefined && output.nested !== null
+      output.nested != null
         ? deserializeAws_restJson1RecursiveShapesInputOutputNested2(output.nested, context)
         : undefined,
   } as any;
@@ -7116,7 +6709,7 @@ const deserializeAws_restJson1RecursiveShapesInputOutputNested2 = (
   return {
     bar: __expectString(output.bar),
     recursiveMember:
-      output.recursiveMember !== undefined && output.recursiveMember !== null
+      output.recursiveMember != null
         ? deserializeAws_restJson1RecursiveShapesInputOutputNested1(output.recursiveMember, context)
         : undefined,
   } as any;

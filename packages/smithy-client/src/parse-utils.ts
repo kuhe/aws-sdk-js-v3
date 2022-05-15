@@ -444,3 +444,14 @@ export const strictParseByte = (value: string | number): number | undefined => {
   }
   return expectByte(value);
 };
+
+/**
+ * @param value - number input or undefined.
+ * @returns a string representation of the number that always contains at least 1 decimal place.
+ */
+export function decimalString(value: number): string;
+export function decimalString(value: undefined): undefined;
+export function decimalString(value: number | undefined): string | undefined;
+export function decimalString(value: number | undefined): string | undefined {
+  return value !== undefined ? (value % 1 == 0 ? value + ".0" : String(value)) : undefined;
+}

@@ -54,5 +54,6 @@ codegen/*/.project
 codegen/*/.classpath
 codegen/*/.settings/
 codegen/*/bin
+codegen/.attach_pid*
 
 benchmark/size/raw

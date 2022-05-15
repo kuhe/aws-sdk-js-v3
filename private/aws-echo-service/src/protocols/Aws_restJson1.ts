@@ -5,12 +5,15 @@ import { EchoServiceServiceException as __BaseException } from "../models/EchoSe
 import { PalindromeException } from "../models/models_0";
 import { HttpRequest as __HttpRequest, HttpResponse as __HttpResponse } from "@aws-sdk/protocol-http";
 import {
+  decimalString as __decimalString,
   decorateServiceException as __decorateServiceException,
   expectInt32 as __expectInt32,
   expectNonNull as __expectNonNull,
   expectObject as __expectObject,
   expectString as __expectString,
-  extendedEncodeURIComponent as __extendedEncodeURIComponent,
+  filterHeaders as __filterHeaders,
+  resolvedPath as __resolvedPath,
+  str as __str,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -27,10 +30,11 @@ export const serializeAws_restJson1EchoCommand = async (
   const headers: any = {
     "content-type": "application/json",
   };
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/echo";
   let body: any;
   body = JSON.stringify({
-    ...(input.string !== undefined && input.string !== null && { string: input.string }),
+    ...(input.string != null && { string: input.string }),
   });
   return new __HttpRequest({
     protocol,
@@ -49,16 +53,9 @@ export const serializeAws_restJson1LengthCommand = async (
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
+  __filterHeaders(headers);
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/length/{string}";
-  if (input.string !== undefined) {
-    const labelValue: string = input.string;
-    if (labelValue.length <= 0) {
-      throw new Error("Empty value provided for input HTTP label: string.");
-    }
-    resolvedPath = resolvedPath.replace("{string}", __extendedEncodeURIComponent(labelValue));
-  } else {
-    throw new Error("No value provided for input HTTP label: string.");
-  }
+  resolvedPath = __resolvedPath(resolvedPath, input, "string", input.string, "{string}", false);
   let body: any;
   return new __HttpRequest({
     protocol,
