@@ -12,10 +12,7 @@ import {
   expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
   limitedParseDouble as __limitedParseDouble,
-  map as __map,
   parseEpochTimestamp as __parseEpochTimestamp,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -78,15 +75,24 @@ export const serializeAws_restJson1CancelJobRunCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/applications/{applicationId}/jobruns/{jobRunId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobRunId", () => input.jobRunId!, "{jobRunId}", false);
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
+  if (input.jobRunId !== undefined) {
+    const labelValue: string = input.jobRunId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobRunId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobRunId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobRunId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -150,14 +156,15 @@ export const serializeAws_restJson1DeleteApplicationCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -178,14 +185,15 @@ export const serializeAws_restJson1GetApplicationCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -207,15 +215,24 @@ export const serializeAws_restJson1GetJobRunCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/applications/{applicationId}/jobruns/{jobRunId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobRunId", () => input.jobRunId!, "{jobRunId}", false);
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
+  if (input.jobRunId !== undefined) {
+    const labelValue: string = input.jobRunId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobRunId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobRunId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobRunId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -235,14 +252,13 @@ export const serializeAws_restJson1ListApplicationsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications";
-  const query: any = map({
-    nextToken: [, input.nextToken!],
-    maxResults: [() => input.maxResults !== void 0, () => input.maxResults!.toString()],
-    states: [
-      () => input.states !== void 0,
-      () => (Array.from(input.states!.values()) || []).map((_entry) => _entry as any),
-    ],
-  });
+  const query: any = {
+    ...(input.nextToken !== undefined && { nextToken: input.nextToken }),
+    ...(input.maxResults !== undefined && { maxResults: input.maxResults.toString() }),
+    ...(input.states !== undefined && {
+      states: (Array.from(input.states.values()) || []).map((_entry) => _entry as any),
+    }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -264,30 +280,28 @@ export const serializeAws_restJson1ListJobRunsCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}/jobruns";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
-  const query: any = map({
-    nextToken: [, input.nextToken!],
-    maxResults: [() => input.maxResults !== void 0, () => input.maxResults!.toString()],
-    createdAtAfter: [
-      () => input.createdAtAfter !== void 0,
-      () => (input.createdAtAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    createdAtBefore: [
-      () => input.createdAtBefore !== void 0,
-      () => (input.createdAtBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    states: [
-      () => input.states !== void 0,
-      () => (Array.from(input.states!.values()) || []).map((_entry) => _entry as any),
-    ],
-  });
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
+  const query: any = {
+    ...(input.nextToken !== undefined && { nextToken: input.nextToken }),
+    ...(input.maxResults !== undefined && { maxResults: input.maxResults.toString() }),
+    ...(input.createdAtAfter !== undefined && {
+      createdAtAfter: (input.createdAtAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.createdAtBefore !== undefined && {
+      createdAtBefore: (input.createdAtBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.states !== undefined && {
+      states: (Array.from(input.states.values()) || []).map((_entry) => _entry as any),
+    }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -308,7 +322,15 @@ export const serializeAws_restJson1ListTagsForResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{resourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "resourceArn", () => input.resourceArn!, "{resourceArn}", false);
+  if (input.resourceArn !== undefined) {
+    const labelValue: string = input.resourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: resourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{resourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: resourceArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -329,14 +351,15 @@ export const serializeAws_restJson1StartApplicationCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}/start";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -359,14 +382,15 @@ export const serializeAws_restJson1StartJobRunCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}/jobruns";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
   let body: any;
   body = JSON.stringify({
     clientToken: input.clientToken ?? generateIdempotencyToken(),
@@ -398,14 +422,15 @@ export const serializeAws_restJson1StopApplicationCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}/stop";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -427,7 +452,15 @@ export const serializeAws_restJson1TagResourceCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{resourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "resourceArn", () => input.resourceArn!, "{resourceArn}", false);
+  if (input.resourceArn !== undefined) {
+    const labelValue: string = input.resourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: resourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{resourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: resourceArn.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.tags != null && { tags: serializeAws_restJson1TagMap(input.tags, context) }),
@@ -450,10 +483,18 @@ export const serializeAws_restJson1UntagResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{resourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "resourceArn", () => input.resourceArn!, "{resourceArn}", false);
-  const query: any = map({
-    tagKeys: [() => input.tagKeys !== void 0, () => (input.tagKeys! || []).map((_entry) => _entry as any)],
-  });
+  if (input.resourceArn !== undefined) {
+    const labelValue: string = input.resourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: resourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{resourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: resourceArn.");
+  }
+  const query: any = {
+    ...(input.tagKeys !== undefined && { tagKeys: (input.tagKeys || []).map((_entry) => _entry as any) }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -477,14 +518,15 @@ export const serializeAws_restJson1UpdateApplicationCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/applications/{applicationId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "applicationId",
-    () => input.applicationId!,
-    "{applicationId}",
-    false
-  );
+  if (input.applicationId !== undefined) {
+    const labelValue: string = input.applicationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: applicationId.");
+    }
+    resolvedPath = resolvedPath.replace("{applicationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: applicationId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.autoStartConfiguration != null && {
@@ -522,17 +564,19 @@ export const deserializeAws_restJson1CancelJobRunCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CancelJobRunCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CancelJobRunCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    applicationId: undefined,
+    jobRunId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.applicationId != null) {
+  if (data.applicationId !== undefined && data.applicationId !== null) {
     contents.applicationId = __expectString(data.applicationId);
   }
-  if (data.jobRunId != null) {
+  if (data.jobRunId !== undefined && data.jobRunId !== null) {
     contents.jobRunId = __expectString(data.jobRunId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CancelJobRunCommandError = async (
@@ -543,6 +587,7 @@ const deserializeAws_restJson1CancelJobRunCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -556,12 +601,14 @@ const deserializeAws_restJson1CancelJobRunCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -572,20 +619,23 @@ export const deserializeAws_restJson1CreateApplicationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateApplicationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateApplicationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    applicationId: undefined,
+    arn: undefined,
+    name: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.applicationId != null) {
+  if (data.applicationId !== undefined && data.applicationId !== null) {
     contents.applicationId = __expectString(data.applicationId);
   }
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
-  if (data.name != null) {
+  if (data.name !== undefined && data.name !== null) {
     contents.name = __expectString(data.name);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateApplicationCommandError = async (
@@ -596,6 +646,7 @@ const deserializeAws_restJson1CreateApplicationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConflictException":
@@ -609,12 +660,14 @@ const deserializeAws_restJson1CreateApplicationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -625,11 +678,11 @@ export const deserializeAws_restJson1DeleteApplicationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteApplicationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteApplicationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteApplicationCommandError = async (
@@ -640,6 +693,7 @@ const deserializeAws_restJson1DeleteApplicationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -653,12 +707,14 @@ const deserializeAws_restJson1DeleteApplicationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -669,14 +725,15 @@ export const deserializeAws_restJson1GetApplicationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetApplicationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetApplicationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    application: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.application != null) {
+  if (data.application !== undefined && data.application !== null) {
     contents.application = deserializeAws_restJson1Application(data.application, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetApplicationCommandError = async (
@@ -687,6 +744,7 @@ const deserializeAws_restJson1GetApplicationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -700,12 +758,14 @@ const deserializeAws_restJson1GetApplicationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -716,14 +776,15 @@ export const deserializeAws_restJson1GetJobRunCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetJobRunCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetJobRunCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    jobRun: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.jobRun != null) {
+  if (data.jobRun !== undefined && data.jobRun !== null) {
     contents.jobRun = deserializeAws_restJson1JobRun(data.jobRun, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetJobRunCommandError = async (
@@ -734,6 +795,7 @@ const deserializeAws_restJson1GetJobRunCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -747,12 +809,14 @@ const deserializeAws_restJson1GetJobRunCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -763,17 +827,19 @@ export const deserializeAws_restJson1ListApplicationsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListApplicationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListApplicationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    applications: undefined,
+    nextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.applications != null) {
+  if (data.applications !== undefined && data.applications !== null) {
     contents.applications = deserializeAws_restJson1ApplicationList(data.applications, context);
   }
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListApplicationsCommandError = async (
@@ -784,6 +850,7 @@ const deserializeAws_restJson1ListApplicationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -794,12 +861,14 @@ const deserializeAws_restJson1ListApplicationsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -810,17 +879,19 @@ export const deserializeAws_restJson1ListJobRunsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListJobRunsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListJobRunsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    jobRuns: undefined,
+    nextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.jobRuns != null) {
+  if (data.jobRuns !== undefined && data.jobRuns !== null) {
     contents.jobRuns = deserializeAws_restJson1JobRuns(data.jobRuns, context);
   }
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListJobRunsCommandError = async (
@@ -831,6 +902,7 @@ const deserializeAws_restJson1ListJobRunsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -841,12 +913,14 @@ const deserializeAws_restJson1ListJobRunsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -857,14 +931,15 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTagsForResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTagsForResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagMap(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTagsForResourceCommandError = async (
@@ -875,6 +950,7 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -888,12 +964,14 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -904,11 +982,11 @@ export const deserializeAws_restJson1StartApplicationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartApplicationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartApplicationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartApplicationCommandError = async (
@@ -919,6 +997,7 @@ const deserializeAws_restJson1StartApplicationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -935,12 +1014,14 @@ const deserializeAws_restJson1StartApplicationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -951,20 +1032,23 @@ export const deserializeAws_restJson1StartJobRunCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartJobRunCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartJobRunCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    applicationId: undefined,
+    arn: undefined,
+    jobRunId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.applicationId != null) {
+  if (data.applicationId !== undefined && data.applicationId !== null) {
     contents.applicationId = __expectString(data.applicationId);
   }
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.arn = __expectString(data.arn);
   }
-  if (data.jobRunId != null) {
+  if (data.jobRunId !== undefined && data.jobRunId !== null) {
     contents.jobRunId = __expectString(data.jobRunId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartJobRunCommandError = async (
@@ -975,6 +1059,7 @@ const deserializeAws_restJson1StartJobRunCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConflictException":
@@ -991,12 +1076,14 @@ const deserializeAws_restJson1StartJobRunCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1007,11 +1094,11 @@ export const deserializeAws_restJson1StopApplicationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StopApplicationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StopApplicationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StopApplicationCommandError = async (
@@ -1022,6 +1109,7 @@ const deserializeAws_restJson1StopApplicationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -1035,12 +1123,14 @@ const deserializeAws_restJson1StopApplicationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1051,11 +1141,11 @@ export const deserializeAws_restJson1TagResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1TagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: TagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1TagResourceCommandError = async (
@@ -1066,6 +1156,7 @@ const deserializeAws_restJson1TagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -1079,12 +1170,14 @@ const deserializeAws_restJson1TagResourceCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1095,11 +1188,11 @@ export const deserializeAws_restJson1UntagResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UntagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UntagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UntagResourceCommandError = async (
@@ -1110,6 +1203,7 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -1123,12 +1217,14 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1139,14 +1235,15 @@ export const deserializeAws_restJson1UpdateApplicationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateApplicationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateApplicationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    application: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.application != null) {
+  if (data.application !== undefined && data.application !== null) {
     contents.application = deserializeAws_restJson1Application(data.application, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateApplicationCommandError = async (
@@ -1157,6 +1254,7 @@ const deserializeAws_restJson1UpdateApplicationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -1170,23 +1268,24 @@ const deserializeAws_restJson1UpdateApplicationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1ConflictExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ConflictException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ConflictException({
@@ -1200,9 +1299,9 @@ const deserializeAws_restJson1InternalServerExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalServerException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InternalServerException({
@@ -1216,9 +1315,9 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ResourceNotFoundException({
@@ -1232,9 +1331,9 @@ const deserializeAws_restJson1ServiceQuotaExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceQuotaExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ServiceQuotaExceededException({
@@ -1248,9 +1347,9 @@ const deserializeAws_restJson1ValidationExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ValidationException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ValidationException({
@@ -1289,6 +1388,9 @@ const serializeAws_restJson1ConfigurationList = (input: Configuration[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1Configuration(entry, context);
     });
 };
@@ -1308,6 +1410,9 @@ const serializeAws_restJson1EntryPointArguments = (input: string[], context: __S
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1416,6 +1521,9 @@ const serializeAws_restJson1SecurityGroupIds = (input: string[], context: __Serd
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1446,6 +1554,9 @@ const serializeAws_restJson1SubnetIds = (input: string[], context: __SerdeContex
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1636,12 +1747,12 @@ const deserializeAws_restJson1InitialCapacityConfigMap = (
 };
 
 const deserializeAws_restJson1JobDriver = (output: any, context: __SerdeContext): JobDriver => {
-  if (output.hive != null) {
+  if (output.hive !== undefined && output.hive !== null) {
     return {
       hive: deserializeAws_restJson1Hive(output.hive, context),
     };
   }
-  if (output.sparkSubmit != null) {
+  if (output.sparkSubmit !== undefined && output.sparkSubmit !== null) {
     return {
       sparkSubmit: deserializeAws_restJson1SparkSubmit(output.sparkSubmit, context),
     };

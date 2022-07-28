@@ -7,9 +7,7 @@ import {
   expectString as __expectString,
   expectUnion as __expectUnion,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
   strictParseInt32 as __strictParseInt32,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -42,9 +40,9 @@ export const serializeAws_restJson1GetLatestConfigurationCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/configuration";
-  const query: any = map({
-    configuration_token: [, input.ConfigurationToken!],
-  });
+  const query: any = {
+    ...(input.ConfigurationToken !== undefined && { configuration_token: input.ConfigurationToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -96,18 +94,25 @@ export const deserializeAws_restJson1GetLatestConfigurationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetLatestConfigurationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetLatestConfigurationCommandOutput = {
     $metadata: deserializeMetadata(output),
-    NextPollConfigurationToken: [, output.headers["next-poll-configuration-token"]],
-    NextPollIntervalInSeconds: [
-      () => void 0 !== output.headers["next-poll-interval-in-seconds"],
-      () => __strictParseInt32(output.headers["next-poll-interval-in-seconds"]),
-    ],
-    ContentType: [, output.headers["content-type"]],
-  });
+    Configuration: undefined,
+    ContentType: undefined,
+    NextPollConfigurationToken: undefined,
+    NextPollIntervalInSeconds: undefined,
+  };
+  if (output.headers["next-poll-configuration-token"] !== undefined) {
+    contents.NextPollConfigurationToken = output.headers["next-poll-configuration-token"];
+  }
+  if (output.headers["next-poll-interval-in-seconds"] !== undefined) {
+    contents.NextPollIntervalInSeconds = __strictParseInt32(output.headers["next-poll-interval-in-seconds"]);
+  }
+  if (output.headers["content-type"] !== undefined) {
+    contents.ContentType = output.headers["content-type"];
+  }
   const data: any = await collectBody(output.body, context);
   contents.Configuration = data;
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetLatestConfigurationCommandError = async (
@@ -118,6 +123,7 @@ const deserializeAws_restJson1GetLatestConfigurationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "BadRequestException":
@@ -134,12 +140,14 @@ const deserializeAws_restJson1GetLatestConfigurationCommandError = async (
       throw await deserializeAws_restJson1ThrottlingExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -150,14 +158,15 @@ export const deserializeAws_restJson1StartConfigurationSessionCommand = async (
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartConfigurationSessionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartConfigurationSessionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    InitialConfigurationToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.InitialConfigurationToken != null) {
+  if (data.InitialConfigurationToken !== undefined && data.InitialConfigurationToken !== null) {
     contents.InitialConfigurationToken = __expectString(data.InitialConfigurationToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartConfigurationSessionCommandError = async (
@@ -168,6 +177,7 @@ const deserializeAws_restJson1StartConfigurationSessionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "BadRequestException":
@@ -184,29 +194,30 @@ const deserializeAws_restJson1StartConfigurationSessionCommandError = async (
       throw await deserializeAws_restJson1ThrottlingExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1BadRequestExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<BadRequestException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Details != null) {
+  if (data.Details !== undefined && data.Details !== null) {
     contents.Details = deserializeAws_restJson1BadRequestDetails(__expectUnion(data.Details), context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Reason != null) {
+  if (data.Reason !== undefined && data.Reason !== null) {
     contents.Reason = __expectString(data.Reason);
   }
   const exception = new BadRequestException({
@@ -220,9 +231,9 @@ const deserializeAws_restJson1InternalServerExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalServerException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InternalServerException({
@@ -236,15 +247,15 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.ReferencedBy != null) {
+  if (data.ReferencedBy !== undefined && data.ReferencedBy !== null) {
     contents.ReferencedBy = deserializeAws_restJson1StringMap(data.ReferencedBy, context);
   }
-  if (data.ResourceType != null) {
+  if (data.ResourceType !== undefined && data.ResourceType !== null) {
     contents.ResourceType = __expectString(data.ResourceType);
   }
   const exception = new ResourceNotFoundException({
@@ -258,9 +269,9 @@ const deserializeAws_restJson1ThrottlingExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ThrottlingException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ThrottlingException({
@@ -271,7 +282,7 @@ const deserializeAws_restJson1ThrottlingExceptionResponse = async (
 };
 
 const deserializeAws_restJson1BadRequestDetails = (output: any, context: __SerdeContext): BadRequestDetails => {
-  if (output.InvalidParameters != null) {
+  if (output.InvalidParameters !== undefined && output.InvalidParameters !== null) {
     return {
       InvalidParameters: deserializeAws_restJson1InvalidParameterMap(output.InvalidParameters, context),
     };

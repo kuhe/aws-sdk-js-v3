@@ -6,8 +6,6 @@ import {
   expectNonNull as __expectNonNull,
   expectObject as __expectObject,
   expectString as __expectString,
-  map as __map,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -93,14 +91,15 @@ export const deserializeAws_restJson1GetIceServerConfigCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetIceServerConfigCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetIceServerConfigCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    IceServerList: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.IceServerList != null) {
+  if (data.IceServerList !== undefined && data.IceServerList !== null) {
     contents.IceServerList = deserializeAws_restJson1IceServerList(data.IceServerList, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetIceServerConfigCommandError = async (
@@ -111,6 +110,7 @@ const deserializeAws_restJson1GetIceServerConfigCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -133,12 +133,14 @@ const deserializeAws_restJson1GetIceServerConfigCommandError = async (
       throw await deserializeAws_restJson1SessionExpiredExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -149,14 +151,15 @@ export const deserializeAws_restJson1SendAlexaOfferToMasterCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1SendAlexaOfferToMasterCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: SendAlexaOfferToMasterCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Answer: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Answer != null) {
+  if (data.Answer !== undefined && data.Answer !== null) {
     contents.Answer = __expectString(data.Answer);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1SendAlexaOfferToMasterCommandError = async (
@@ -167,6 +170,7 @@ const deserializeAws_restJson1SendAlexaOfferToMasterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -183,23 +187,24 @@ const deserializeAws_restJson1SendAlexaOfferToMasterCommandError = async (
       throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1ClientLimitExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ClientLimitExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ClientLimitExceededException({
@@ -213,9 +218,9 @@ const deserializeAws_restJson1InvalidArgumentExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidArgumentException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InvalidArgumentException({
@@ -229,9 +234,9 @@ const deserializeAws_restJson1InvalidClientExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidClientException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidClientException({
@@ -245,9 +250,9 @@ const deserializeAws_restJson1NotAuthorizedExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<NotAuthorizedException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new NotAuthorizedException({
@@ -261,9 +266,9 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ResourceNotFoundException({
@@ -277,9 +282,9 @@ const deserializeAws_restJson1SessionExpiredExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<SessionExpiredException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new SessionExpiredException({

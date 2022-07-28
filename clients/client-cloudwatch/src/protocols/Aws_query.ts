@@ -13,7 +13,6 @@ import {
   strictParseFloat as __strictParseFloat,
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -807,6 +806,7 @@ const deserializeAws_queryDeleteAlarmsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ResourceNotFound":
@@ -814,12 +814,14 @@ const deserializeAws_queryDeleteAlarmsCommandError = async (
       throw await deserializeAws_queryResourceNotFoundResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -848,6 +850,7 @@ const deserializeAws_queryDeleteAnomalyDetectorCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -867,12 +870,14 @@ const deserializeAws_queryDeleteAnomalyDetectorCommandError = async (
       throw await deserializeAws_queryResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -901,6 +906,7 @@ const deserializeAws_queryDeleteDashboardsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DashboardNotFoundError":
@@ -914,12 +920,14 @@ const deserializeAws_queryDeleteDashboardsCommandError = async (
       throw await deserializeAws_queryInvalidParameterValueExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -948,6 +956,7 @@ const deserializeAws_queryDeleteInsightRulesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -958,12 +967,14 @@ const deserializeAws_queryDeleteInsightRulesCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -992,6 +1003,7 @@ const deserializeAws_queryDeleteMetricStreamCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1005,12 +1017,14 @@ const deserializeAws_queryDeleteMetricStreamCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1039,6 +1053,7 @@ const deserializeAws_queryDescribeAlarmHistoryCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextToken":
@@ -1046,12 +1061,14 @@ const deserializeAws_queryDescribeAlarmHistoryCommandError = async (
       throw await deserializeAws_queryInvalidNextTokenResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1080,6 +1097,7 @@ const deserializeAws_queryDescribeAlarmsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextToken":
@@ -1087,12 +1105,14 @@ const deserializeAws_queryDescribeAlarmsCommandError = async (
       throw await deserializeAws_queryInvalidNextTokenResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1121,14 +1141,20 @@ const deserializeAws_queryDescribeAlarmsForMetricCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeAnomalyDetectorsCommand = async (
@@ -1156,6 +1182,7 @@ const deserializeAws_queryDescribeAnomalyDetectorsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1172,12 +1199,14 @@ const deserializeAws_queryDescribeAnomalyDetectorsCommandError = async (
       throw await deserializeAws_queryInvalidParameterValueExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1206,6 +1235,7 @@ const deserializeAws_queryDescribeInsightRulesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextToken":
@@ -1213,12 +1243,14 @@ const deserializeAws_queryDescribeInsightRulesCommandError = async (
       throw await deserializeAws_queryInvalidNextTokenResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1244,14 +1276,20 @@ const deserializeAws_queryDisableAlarmActionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDisableInsightRulesCommand = async (
@@ -1279,6 +1317,7 @@ const deserializeAws_queryDisableInsightRulesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1289,12 +1328,14 @@ const deserializeAws_queryDisableInsightRulesCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1320,14 +1361,20 @@ const deserializeAws_queryEnableAlarmActionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryEnableInsightRulesCommand = async (
@@ -1355,6 +1402,7 @@ const deserializeAws_queryEnableInsightRulesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1368,12 +1416,14 @@ const deserializeAws_queryEnableInsightRulesCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1402,6 +1452,7 @@ const deserializeAws_queryGetDashboardCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DashboardNotFoundError":
@@ -1415,12 +1466,14 @@ const deserializeAws_queryGetDashboardCommandError = async (
       throw await deserializeAws_queryInvalidParameterValueExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1449,6 +1502,7 @@ const deserializeAws_queryGetInsightRuleReportCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1462,12 +1516,14 @@ const deserializeAws_queryGetInsightRuleReportCommandError = async (
       throw await deserializeAws_queryResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1496,6 +1552,7 @@ const deserializeAws_queryGetMetricDataCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextToken":
@@ -1503,12 +1560,14 @@ const deserializeAws_queryGetMetricDataCommandError = async (
       throw await deserializeAws_queryInvalidNextTokenResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1537,6 +1596,7 @@ const deserializeAws_queryGetMetricStatisticsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1553,12 +1613,14 @@ const deserializeAws_queryGetMetricStatisticsCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1587,6 +1649,7 @@ const deserializeAws_queryGetMetricStreamCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1606,12 +1669,14 @@ const deserializeAws_queryGetMetricStreamCommandError = async (
       throw await deserializeAws_queryResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1640,14 +1705,20 @@ const deserializeAws_queryGetMetricWidgetImageCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryListDashboardsCommand = async (
@@ -1675,6 +1746,7 @@ const deserializeAws_queryListDashboardsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1685,12 +1757,14 @@ const deserializeAws_queryListDashboardsCommandError = async (
       throw await deserializeAws_queryInvalidParameterValueExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1719,6 +1793,7 @@ const deserializeAws_queryListMetricsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1729,12 +1804,14 @@ const deserializeAws_queryListMetricsCommandError = async (
       throw await deserializeAws_queryInvalidParameterValueExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1763,6 +1840,7 @@ const deserializeAws_queryListMetricStreamsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1779,12 +1857,14 @@ const deserializeAws_queryListMetricStreamsCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1813,6 +1893,7 @@ const deserializeAws_queryListTagsForResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1826,12 +1907,14 @@ const deserializeAws_queryListTagsForResourceCommandError = async (
       throw await deserializeAws_queryResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1860,6 +1943,7 @@ const deserializeAws_queryPutAnomalyDetectorCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -1879,12 +1963,14 @@ const deserializeAws_queryPutAnomalyDetectorCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1910,6 +1996,7 @@ const deserializeAws_queryPutCompositeAlarmCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "LimitExceededFault":
@@ -1917,12 +2004,14 @@ const deserializeAws_queryPutCompositeAlarmCommandError = async (
       throw await deserializeAws_queryLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1951,6 +2040,7 @@ const deserializeAws_queryPutDashboardCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DashboardInvalidInputError":
@@ -1961,12 +2051,14 @@ const deserializeAws_queryPutDashboardCommandError = async (
       throw await deserializeAws_queryInternalServiceFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1995,6 +2087,7 @@ const deserializeAws_queryPutInsightRuleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2008,12 +2101,14 @@ const deserializeAws_queryPutInsightRuleCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2039,6 +2134,7 @@ const deserializeAws_queryPutMetricAlarmCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "LimitExceededFault":
@@ -2046,12 +2142,14 @@ const deserializeAws_queryPutMetricAlarmCommandError = async (
       throw await deserializeAws_queryLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2077,6 +2175,7 @@ const deserializeAws_queryPutMetricDataCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -2093,12 +2192,14 @@ const deserializeAws_queryPutMetricDataCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2127,6 +2228,7 @@ const deserializeAws_queryPutMetricStreamCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConcurrentModificationException":
@@ -2146,12 +2248,14 @@ const deserializeAws_queryPutMetricStreamCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2177,6 +2281,7 @@ const deserializeAws_querySetAlarmStateCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidFormatFault":
@@ -2187,12 +2292,14 @@ const deserializeAws_querySetAlarmStateCommandError = async (
       throw await deserializeAws_queryResourceNotFoundResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2221,6 +2328,7 @@ const deserializeAws_queryStartMetricStreamsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -2234,12 +2342,14 @@ const deserializeAws_queryStartMetricStreamsCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2268,6 +2378,7 @@ const deserializeAws_queryStopMetricStreamsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServiceFault":
@@ -2281,12 +2392,14 @@ const deserializeAws_queryStopMetricStreamsCommandError = async (
       throw await deserializeAws_queryMissingRequiredParameterExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2315,6 +2428,7 @@ const deserializeAws_queryTagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConcurrentModificationException":
@@ -2331,12 +2445,14 @@ const deserializeAws_queryTagResourceCommandError = async (
       throw await deserializeAws_queryResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2365,6 +2481,7 @@ const deserializeAws_queryUntagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConcurrentModificationException":
@@ -2381,12 +2498,14 @@ const deserializeAws_queryUntagResourceCommandError = async (
       throw await deserializeAws_queryResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2590,14 +2709,14 @@ const serializeAws_queryAnomalyDetectorConfiguration = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ExcludedTimeRanges != null) {
+  if (input.ExcludedTimeRanges !== undefined && input.ExcludedTimeRanges !== null) {
     const memberEntries = serializeAws_queryAnomalyDetectorExcludedTimeRanges(input.ExcludedTimeRanges, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ExcludedTimeRanges.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MetricTimezone != null) {
+  if (input.MetricTimezone !== undefined && input.MetricTimezone !== null) {
     entries["MetricTimezone"] = input.MetricTimezone;
   }
   return entries;
@@ -2663,7 +2782,7 @@ const serializeAws_queryDashboardNames = (input: string[], context: __SerdeConte
 
 const serializeAws_queryDeleteAlarmsInput = (input: DeleteAlarmsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AlarmNames != null) {
+  if (input.AlarmNames !== undefined && input.AlarmNames !== null) {
     const memberEntries = serializeAws_queryAlarmNames(input.AlarmNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmNames.${key}`;
@@ -2678,30 +2797,30 @@ const serializeAws_queryDeleteAnomalyDetectorInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Stat != null) {
+  if (input.Stat !== undefined && input.Stat !== null) {
     entries["Stat"] = input.Stat;
   }
-  if (input.SingleMetricAnomalyDetector != null) {
+  if (input.SingleMetricAnomalyDetector !== undefined && input.SingleMetricAnomalyDetector !== null) {
     const memberEntries = serializeAws_querySingleMetricAnomalyDetector(input.SingleMetricAnomalyDetector, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SingleMetricAnomalyDetector.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MetricMathAnomalyDetector != null) {
+  if (input.MetricMathAnomalyDetector !== undefined && input.MetricMathAnomalyDetector !== null) {
     const memberEntries = serializeAws_queryMetricMathAnomalyDetector(input.MetricMathAnomalyDetector, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MetricMathAnomalyDetector.${key}`;
@@ -2713,7 +2832,7 @@ const serializeAws_queryDeleteAnomalyDetectorInput = (
 
 const serializeAws_queryDeleteDashboardsInput = (input: DeleteDashboardsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DashboardNames != null) {
+  if (input.DashboardNames !== undefined && input.DashboardNames !== null) {
     const memberEntries = serializeAws_queryDashboardNames(input.DashboardNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `DashboardNames.${key}`;
@@ -2725,7 +2844,7 @@ const serializeAws_queryDeleteDashboardsInput = (input: DeleteDashboardsInput, c
 
 const serializeAws_queryDeleteInsightRulesInput = (input: DeleteInsightRulesInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.RuleNames != null) {
+  if (input.RuleNames !== undefined && input.RuleNames !== null) {
     const memberEntries = serializeAws_queryInsightRuleNames(input.RuleNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `RuleNames.${key}`;
@@ -2737,7 +2856,7 @@ const serializeAws_queryDeleteInsightRulesInput = (input: DeleteInsightRulesInpu
 
 const serializeAws_queryDeleteMetricStreamInput = (input: DeleteMetricStreamInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
   return entries;
@@ -2748,32 +2867,32 @@ const serializeAws_queryDescribeAlarmHistoryInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AlarmName != null) {
+  if (input.AlarmName !== undefined && input.AlarmName !== null) {
     entries["AlarmName"] = input.AlarmName;
   }
-  if (input.AlarmTypes != null) {
+  if (input.AlarmTypes !== undefined && input.AlarmTypes !== null) {
     const memberEntries = serializeAws_queryAlarmTypes(input.AlarmTypes, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmTypes.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.HistoryItemType != null) {
+  if (input.HistoryItemType !== undefined && input.HistoryItemType !== null) {
     entries["HistoryItemType"] = input.HistoryItemType;
   }
-  if (input.StartDate != null) {
+  if (input.StartDate !== undefined && input.StartDate !== null) {
     entries["StartDate"] = input.StartDate.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndDate != null) {
+  if (input.EndDate !== undefined && input.EndDate !== null) {
     entries["EndDate"] = input.EndDate.toISOString().split(".")[0] + "Z";
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
-  if (input.ScanBy != null) {
+  if (input.ScanBy !== undefined && input.ScanBy !== null) {
     entries["ScanBy"] = input.ScanBy;
   }
   return entries;
@@ -2784,29 +2903,29 @@ const serializeAws_queryDescribeAlarmsForMetricInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.Statistic != null) {
+  if (input.Statistic !== undefined && input.Statistic !== null) {
     entries["Statistic"] = input.Statistic;
   }
-  if (input.ExtendedStatistic != null) {
+  if (input.ExtendedStatistic !== undefined && input.ExtendedStatistic !== null) {
     entries["ExtendedStatistic"] = input.ExtendedStatistic;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.Unit != null) {
+  if (input.Unit !== undefined && input.Unit !== null) {
     entries["Unit"] = input.Unit;
   }
   return entries;
@@ -2814,39 +2933,39 @@ const serializeAws_queryDescribeAlarmsForMetricInput = (
 
 const serializeAws_queryDescribeAlarmsInput = (input: DescribeAlarmsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AlarmNames != null) {
+  if (input.AlarmNames !== undefined && input.AlarmNames !== null) {
     const memberEntries = serializeAws_queryAlarmNames(input.AlarmNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmNames.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.AlarmNamePrefix != null) {
+  if (input.AlarmNamePrefix !== undefined && input.AlarmNamePrefix !== null) {
     entries["AlarmNamePrefix"] = input.AlarmNamePrefix;
   }
-  if (input.AlarmTypes != null) {
+  if (input.AlarmTypes !== undefined && input.AlarmTypes !== null) {
     const memberEntries = serializeAws_queryAlarmTypes(input.AlarmTypes, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmTypes.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ChildrenOfAlarmName != null) {
+  if (input.ChildrenOfAlarmName !== undefined && input.ChildrenOfAlarmName !== null) {
     entries["ChildrenOfAlarmName"] = input.ChildrenOfAlarmName;
   }
-  if (input.ParentsOfAlarmName != null) {
+  if (input.ParentsOfAlarmName !== undefined && input.ParentsOfAlarmName !== null) {
     entries["ParentsOfAlarmName"] = input.ParentsOfAlarmName;
   }
-  if (input.StateValue != null) {
+  if (input.StateValue !== undefined && input.StateValue !== null) {
     entries["StateValue"] = input.StateValue;
   }
-  if (input.ActionPrefix != null) {
+  if (input.ActionPrefix !== undefined && input.ActionPrefix !== null) {
     entries["ActionPrefix"] = input.ActionPrefix;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
   return entries;
@@ -2857,26 +2976,26 @@ const serializeAws_queryDescribeAnomalyDetectorsInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
-  if (input.MaxResults != null) {
+  if (input.MaxResults !== undefined && input.MaxResults !== null) {
     entries["MaxResults"] = input.MaxResults;
   }
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.AnomalyDetectorTypes != null) {
+  if (input.AnomalyDetectorTypes !== undefined && input.AnomalyDetectorTypes !== null) {
     const memberEntries = serializeAws_queryAnomalyDetectorTypes(input.AnomalyDetectorTypes, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AnomalyDetectorTypes.${key}`;
@@ -2891,10 +3010,10 @@ const serializeAws_queryDescribeInsightRulesInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
-  if (input.MaxResults != null) {
+  if (input.MaxResults !== undefined && input.MaxResults !== null) {
     entries["MaxResults"] = input.MaxResults;
   }
   return entries;
@@ -2902,10 +3021,10 @@ const serializeAws_queryDescribeInsightRulesInput = (
 
 const serializeAws_queryDimension = (input: Dimension, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = input.Value;
   }
   return entries;
@@ -2913,10 +3032,10 @@ const serializeAws_queryDimension = (input: Dimension, context: __SerdeContext):
 
 const serializeAws_queryDimensionFilter = (input: DimensionFilter, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = input.Value;
   }
   return entries;
@@ -2956,7 +3075,7 @@ const serializeAws_queryDimensions = (input: Dimension[], context: __SerdeContex
 
 const serializeAws_queryDisableAlarmActionsInput = (input: DisableAlarmActionsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AlarmNames != null) {
+  if (input.AlarmNames !== undefined && input.AlarmNames !== null) {
     const memberEntries = serializeAws_queryAlarmNames(input.AlarmNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmNames.${key}`;
@@ -2968,7 +3087,7 @@ const serializeAws_queryDisableAlarmActionsInput = (input: DisableAlarmActionsIn
 
 const serializeAws_queryDisableInsightRulesInput = (input: DisableInsightRulesInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.RuleNames != null) {
+  if (input.RuleNames !== undefined && input.RuleNames !== null) {
     const memberEntries = serializeAws_queryInsightRuleNames(input.RuleNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `RuleNames.${key}`;
@@ -2980,7 +3099,7 @@ const serializeAws_queryDisableInsightRulesInput = (input: DisableInsightRulesIn
 
 const serializeAws_queryEnableAlarmActionsInput = (input: EnableAlarmActionsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AlarmNames != null) {
+  if (input.AlarmNames !== undefined && input.AlarmNames !== null) {
     const memberEntries = serializeAws_queryAlarmNames(input.AlarmNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmNames.${key}`;
@@ -2992,7 +3111,7 @@ const serializeAws_queryEnableAlarmActionsInput = (input: EnableAlarmActionsInpu
 
 const serializeAws_queryEnableInsightRulesInput = (input: EnableInsightRulesInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.RuleNames != null) {
+  if (input.RuleNames !== undefined && input.RuleNames !== null) {
     const memberEntries = serializeAws_queryInsightRuleNames(input.RuleNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `RuleNames.${key}`;
@@ -3017,7 +3136,7 @@ const serializeAws_queryExtendedStatistics = (input: string[], context: __SerdeC
 
 const serializeAws_queryGetDashboardInput = (input: GetDashboardInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DashboardName != null) {
+  if (input.DashboardName !== undefined && input.DashboardName !== null) {
     entries["DashboardName"] = input.DashboardName;
   }
   return entries;
@@ -3028,29 +3147,29 @@ const serializeAws_queryGetInsightRuleReportInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.RuleName != null) {
+  if (input.RuleName !== undefined && input.RuleName !== null) {
     entries["RuleName"] = input.RuleName;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.MaxContributorCount != null) {
+  if (input.MaxContributorCount !== undefined && input.MaxContributorCount !== null) {
     entries["MaxContributorCount"] = input.MaxContributorCount;
   }
-  if (input.Metrics != null) {
+  if (input.Metrics !== undefined && input.Metrics !== null) {
     const memberEntries = serializeAws_queryInsightRuleMetricList(input.Metrics, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Metrics.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.OrderBy != null) {
+  if (input.OrderBy !== undefined && input.OrderBy !== null) {
     entries["OrderBy"] = input.OrderBy;
   }
   return entries;
@@ -3058,29 +3177,29 @@ const serializeAws_queryGetInsightRuleReportInput = (
 
 const serializeAws_queryGetMetricDataInput = (input: GetMetricDataInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.MetricDataQueries != null) {
+  if (input.MetricDataQueries !== undefined && input.MetricDataQueries !== null) {
     const memberEntries = serializeAws_queryMetricDataQueries(input.MetricDataQueries, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MetricDataQueries.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
-  if (input.ScanBy != null) {
+  if (input.ScanBy !== undefined && input.ScanBy !== null) {
     entries["ScanBy"] = input.ScanBy;
   }
-  if (input.MaxDatapoints != null) {
+  if (input.MaxDatapoints !== undefined && input.MaxDatapoints !== null) {
     entries["MaxDatapoints"] = input.MaxDatapoints;
   }
-  if (input.LabelOptions != null) {
+  if (input.LabelOptions !== undefined && input.LabelOptions !== null) {
     const memberEntries = serializeAws_queryLabelOptions(input.LabelOptions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `LabelOptions.${key}`;
@@ -3092,43 +3211,43 @@ const serializeAws_queryGetMetricDataInput = (input: GetMetricDataInput, context
 
 const serializeAws_queryGetMetricStatisticsInput = (input: GetMetricStatisticsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.Statistics != null) {
+  if (input.Statistics !== undefined && input.Statistics !== null) {
     const memberEntries = serializeAws_queryStatistics(input.Statistics, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Statistics.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ExtendedStatistics != null) {
+  if (input.ExtendedStatistics !== undefined && input.ExtendedStatistics !== null) {
     const memberEntries = serializeAws_queryExtendedStatistics(input.ExtendedStatistics, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ExtendedStatistics.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Unit != null) {
+  if (input.Unit !== undefined && input.Unit !== null) {
     entries["Unit"] = input.Unit;
   }
   return entries;
@@ -3136,7 +3255,7 @@ const serializeAws_queryGetMetricStatisticsInput = (input: GetMetricStatisticsIn
 
 const serializeAws_queryGetMetricStreamInput = (input: GetMetricStreamInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
   return entries;
@@ -3147,10 +3266,10 @@ const serializeAws_queryGetMetricWidgetImageInput = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.MetricWidget != null) {
+  if (input.MetricWidget !== undefined && input.MetricWidget !== null) {
     entries["MetricWidget"] = input.MetricWidget;
   }
-  if (input.OutputFormat != null) {
+  if (input.OutputFormat !== undefined && input.OutputFormat !== null) {
     entries["OutputFormat"] = input.OutputFormat;
   }
   return entries;
@@ -3184,7 +3303,7 @@ const serializeAws_queryInsightRuleNames = (input: string[], context: __SerdeCon
 
 const serializeAws_queryLabelOptions = (input: LabelOptions, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Timezone != null) {
+  if (input.Timezone !== undefined && input.Timezone !== null) {
     entries["Timezone"] = input.Timezone;
   }
   return entries;
@@ -3192,10 +3311,10 @@ const serializeAws_queryLabelOptions = (input: LabelOptions, context: __SerdeCon
 
 const serializeAws_queryListDashboardsInput = (input: ListDashboardsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DashboardNamePrefix != null) {
+  if (input.DashboardNamePrefix !== undefined && input.DashboardNamePrefix !== null) {
     entries["DashboardNamePrefix"] = input.DashboardNamePrefix;
   }
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
   return entries;
@@ -3203,23 +3322,23 @@ const serializeAws_queryListDashboardsInput = (input: ListDashboardsInput, conte
 
 const serializeAws_queryListMetricsInput = (input: ListMetricsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensionFilters(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
-  if (input.RecentlyActive != null) {
+  if (input.RecentlyActive !== undefined && input.RecentlyActive !== null) {
     entries["RecentlyActive"] = input.RecentlyActive;
   }
   return entries;
@@ -3227,10 +3346,10 @@ const serializeAws_queryListMetricsInput = (input: ListMetricsInput, context: __
 
 const serializeAws_queryListMetricStreamsInput = (input: ListMetricStreamsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.NextToken != null) {
+  if (input.NextToken !== undefined && input.NextToken !== null) {
     entries["NextToken"] = input.NextToken;
   }
-  if (input.MaxResults != null) {
+  if (input.MaxResults !== undefined && input.MaxResults !== null) {
     entries["MaxResults"] = input.MaxResults;
   }
   return entries;
@@ -3238,7 +3357,7 @@ const serializeAws_queryListMetricStreamsInput = (input: ListMetricStreamsInput,
 
 const serializeAws_queryListTagsForResourceInput = (input: ListTagsForResourceInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceARN != null) {
+  if (input.ResourceARN !== undefined && input.ResourceARN !== null) {
     entries["ResourceARN"] = input.ResourceARN;
   }
   return entries;
@@ -3246,13 +3365,13 @@ const serializeAws_queryListTagsForResourceInput = (input: ListTagsForResourceIn
 
 const serializeAws_queryMetric = (input: Metric, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
@@ -3296,29 +3415,29 @@ const serializeAws_queryMetricDataQueries = (input: MetricDataQuery[], context: 
 
 const serializeAws_queryMetricDataQuery = (input: MetricDataQuery, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Id != null) {
+  if (input.Id !== undefined && input.Id !== null) {
     entries["Id"] = input.Id;
   }
-  if (input.MetricStat != null) {
+  if (input.MetricStat !== undefined && input.MetricStat !== null) {
     const memberEntries = serializeAws_queryMetricStat(input.MetricStat, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MetricStat.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Expression != null) {
+  if (input.Expression !== undefined && input.Expression !== null) {
     entries["Expression"] = input.Expression;
   }
-  if (input.Label != null) {
+  if (input.Label !== undefined && input.Label !== null) {
     entries["Label"] = input.Label;
   }
-  if (input.ReturnData != null) {
+  if (input.ReturnData !== undefined && input.ReturnData !== null) {
     entries["ReturnData"] = input.ReturnData;
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.AccountId != null) {
+  if (input.AccountId !== undefined && input.AccountId !== null) {
     entries["AccountId"] = input.AccountId;
   }
   return entries;
@@ -3326,47 +3445,47 @@ const serializeAws_queryMetricDataQuery = (input: MetricDataQuery, context: __Se
 
 const serializeAws_queryMetricDatum = (input: MetricDatum, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Timestamp != null) {
+  if (input.Timestamp !== undefined && input.Timestamp !== null) {
     entries["Timestamp"] = input.Timestamp.toISOString().split(".")[0] + "Z";
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = __serializeFloat(input.Value);
   }
-  if (input.StatisticValues != null) {
+  if (input.StatisticValues !== undefined && input.StatisticValues !== null) {
     const memberEntries = serializeAws_queryStatisticSet(input.StatisticValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `StatisticValues.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Values != null) {
+  if (input.Values !== undefined && input.Values !== null) {
     const memberEntries = serializeAws_queryValues(input.Values, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Values.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Counts != null) {
+  if (input.Counts !== undefined && input.Counts !== null) {
     const memberEntries = serializeAws_queryCounts(input.Counts, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Counts.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Unit != null) {
+  if (input.Unit !== undefined && input.Unit !== null) {
     entries["Unit"] = input.Unit;
   }
-  if (input.StorageResolution != null) {
+  if (input.StorageResolution !== undefined && input.StorageResolution !== null) {
     entries["StorageResolution"] = input.StorageResolution;
   }
   return entries;
@@ -3377,7 +3496,7 @@ const serializeAws_queryMetricMathAnomalyDetector = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.MetricDataQueries != null) {
+  if (input.MetricDataQueries !== undefined && input.MetricDataQueries !== null) {
     const memberEntries = serializeAws_queryMetricDataQueries(input.MetricDataQueries, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MetricDataQueries.${key}`;
@@ -3389,20 +3508,20 @@ const serializeAws_queryMetricMathAnomalyDetector = (
 
 const serializeAws_queryMetricStat = (input: MetricStat, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Metric != null) {
+  if (input.Metric !== undefined && input.Metric !== null) {
     const memberEntries = serializeAws_queryMetric(input.Metric, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Metric.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.Stat != null) {
+  if (input.Stat !== undefined && input.Stat !== null) {
     entries["Stat"] = input.Stat;
   }
-  if (input.Unit != null) {
+  if (input.Unit !== undefined && input.Unit !== null) {
     entries["Unit"] = input.Unit;
   }
   return entries;
@@ -3410,7 +3529,7 @@ const serializeAws_queryMetricStat = (input: MetricStat, context: __SerdeContext
 
 const serializeAws_queryMetricStreamFilter = (input: MetricStreamFilter, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
   return entries;
@@ -3466,14 +3585,14 @@ const serializeAws_queryMetricStreamStatisticsConfiguration = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.IncludeMetrics != null) {
+  if (input.IncludeMetrics !== undefined && input.IncludeMetrics !== null) {
     const memberEntries = serializeAws_queryMetricStreamStatisticsIncludeMetrics(input.IncludeMetrics, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `IncludeMetrics.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.AdditionalStatistics != null) {
+  if (input.AdditionalStatistics !== undefined && input.AdditionalStatistics !== null) {
     const memberEntries = serializeAws_queryMetricStreamStatisticsAdditionalStatistics(
       input.AdditionalStatistics,
       context
@@ -3529,10 +3648,10 @@ const serializeAws_queryMetricStreamStatisticsMetric = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
   return entries;
@@ -3540,37 +3659,37 @@ const serializeAws_queryMetricStreamStatisticsMetric = (
 
 const serializeAws_queryPutAnomalyDetectorInput = (input: PutAnomalyDetectorInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Stat != null) {
+  if (input.Stat !== undefined && input.Stat !== null) {
     entries["Stat"] = input.Stat;
   }
-  if (input.Configuration != null) {
+  if (input.Configuration !== undefined && input.Configuration !== null) {
     const memberEntries = serializeAws_queryAnomalyDetectorConfiguration(input.Configuration, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Configuration.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.SingleMetricAnomalyDetector != null) {
+  if (input.SingleMetricAnomalyDetector !== undefined && input.SingleMetricAnomalyDetector !== null) {
     const memberEntries = serializeAws_querySingleMetricAnomalyDetector(input.SingleMetricAnomalyDetector, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SingleMetricAnomalyDetector.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MetricMathAnomalyDetector != null) {
+  if (input.MetricMathAnomalyDetector !== undefined && input.MetricMathAnomalyDetector !== null) {
     const memberEntries = serializeAws_queryMetricMathAnomalyDetector(input.MetricMathAnomalyDetector, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MetricMathAnomalyDetector.${key}`;
@@ -3582,53 +3701,53 @@ const serializeAws_queryPutAnomalyDetectorInput = (input: PutAnomalyDetectorInpu
 
 const serializeAws_queryPutCompositeAlarmInput = (input: PutCompositeAlarmInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ActionsEnabled != null) {
+  if (input.ActionsEnabled !== undefined && input.ActionsEnabled !== null) {
     entries["ActionsEnabled"] = input.ActionsEnabled;
   }
-  if (input.AlarmActions != null) {
+  if (input.AlarmActions !== undefined && input.AlarmActions !== null) {
     const memberEntries = serializeAws_queryResourceList(input.AlarmActions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmActions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.AlarmDescription != null) {
+  if (input.AlarmDescription !== undefined && input.AlarmDescription !== null) {
     entries["AlarmDescription"] = input.AlarmDescription;
   }
-  if (input.AlarmName != null) {
+  if (input.AlarmName !== undefined && input.AlarmName !== null) {
     entries["AlarmName"] = input.AlarmName;
   }
-  if (input.AlarmRule != null) {
+  if (input.AlarmRule !== undefined && input.AlarmRule !== null) {
     entries["AlarmRule"] = input.AlarmRule;
   }
-  if (input.InsufficientDataActions != null) {
+  if (input.InsufficientDataActions !== undefined && input.InsufficientDataActions !== null) {
     const memberEntries = serializeAws_queryResourceList(input.InsufficientDataActions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `InsufficientDataActions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.OKActions != null) {
+  if (input.OKActions !== undefined && input.OKActions !== null) {
     const memberEntries = serializeAws_queryResourceList(input.OKActions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `OKActions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ActionsSuppressor != null) {
+  if (input.ActionsSuppressor !== undefined && input.ActionsSuppressor !== null) {
     entries["ActionsSuppressor"] = input.ActionsSuppressor;
   }
-  if (input.ActionsSuppressorWaitPeriod != null) {
+  if (input.ActionsSuppressorWaitPeriod !== undefined && input.ActionsSuppressorWaitPeriod !== null) {
     entries["ActionsSuppressorWaitPeriod"] = input.ActionsSuppressorWaitPeriod;
   }
-  if (input.ActionsSuppressorExtensionPeriod != null) {
+  if (input.ActionsSuppressorExtensionPeriod !== undefined && input.ActionsSuppressorExtensionPeriod !== null) {
     entries["ActionsSuppressorExtensionPeriod"] = input.ActionsSuppressorExtensionPeriod;
   }
   return entries;
@@ -3636,10 +3755,10 @@ const serializeAws_queryPutCompositeAlarmInput = (input: PutCompositeAlarmInput,
 
 const serializeAws_queryPutDashboardInput = (input: PutDashboardInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DashboardName != null) {
+  if (input.DashboardName !== undefined && input.DashboardName !== null) {
     entries["DashboardName"] = input.DashboardName;
   }
-  if (input.DashboardBody != null) {
+  if (input.DashboardBody !== undefined && input.DashboardBody !== null) {
     entries["DashboardBody"] = input.DashboardBody;
   }
   return entries;
@@ -3647,16 +3766,16 @@ const serializeAws_queryPutDashboardInput = (input: PutDashboardInput, context: 
 
 const serializeAws_queryPutInsightRuleInput = (input: PutInsightRuleInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.RuleName != null) {
+  if (input.RuleName !== undefined && input.RuleName !== null) {
     entries["RuleName"] = input.RuleName;
   }
-  if (input.RuleState != null) {
+  if (input.RuleState !== undefined && input.RuleState !== null) {
     entries["RuleState"] = input.RuleState;
   }
-  if (input.RuleDefinition != null) {
+  if (input.RuleDefinition !== undefined && input.RuleDefinition !== null) {
     entries["RuleDefinition"] = input.RuleDefinition;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -3668,94 +3787,94 @@ const serializeAws_queryPutInsightRuleInput = (input: PutInsightRuleInput, conte
 
 const serializeAws_queryPutMetricAlarmInput = (input: PutMetricAlarmInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AlarmName != null) {
+  if (input.AlarmName !== undefined && input.AlarmName !== null) {
     entries["AlarmName"] = input.AlarmName;
   }
-  if (input.AlarmDescription != null) {
+  if (input.AlarmDescription !== undefined && input.AlarmDescription !== null) {
     entries["AlarmDescription"] = input.AlarmDescription;
   }
-  if (input.ActionsEnabled != null) {
+  if (input.ActionsEnabled !== undefined && input.ActionsEnabled !== null) {
     entries["ActionsEnabled"] = input.ActionsEnabled;
   }
-  if (input.OKActions != null) {
+  if (input.OKActions !== undefined && input.OKActions !== null) {
     const memberEntries = serializeAws_queryResourceList(input.OKActions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `OKActions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.AlarmActions != null) {
+  if (input.AlarmActions !== undefined && input.AlarmActions !== null) {
     const memberEntries = serializeAws_queryResourceList(input.AlarmActions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AlarmActions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.InsufficientDataActions != null) {
+  if (input.InsufficientDataActions !== undefined && input.InsufficientDataActions !== null) {
     const memberEntries = serializeAws_queryResourceList(input.InsufficientDataActions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `InsufficientDataActions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.Statistic != null) {
+  if (input.Statistic !== undefined && input.Statistic !== null) {
     entries["Statistic"] = input.Statistic;
   }
-  if (input.ExtendedStatistic != null) {
+  if (input.ExtendedStatistic !== undefined && input.ExtendedStatistic !== null) {
     entries["ExtendedStatistic"] = input.ExtendedStatistic;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.Unit != null) {
+  if (input.Unit !== undefined && input.Unit !== null) {
     entries["Unit"] = input.Unit;
   }
-  if (input.EvaluationPeriods != null) {
+  if (input.EvaluationPeriods !== undefined && input.EvaluationPeriods !== null) {
     entries["EvaluationPeriods"] = input.EvaluationPeriods;
   }
-  if (input.DatapointsToAlarm != null) {
+  if (input.DatapointsToAlarm !== undefined && input.DatapointsToAlarm !== null) {
     entries["DatapointsToAlarm"] = input.DatapointsToAlarm;
   }
-  if (input.Threshold != null) {
+  if (input.Threshold !== undefined && input.Threshold !== null) {
     entries["Threshold"] = __serializeFloat(input.Threshold);
   }
-  if (input.ComparisonOperator != null) {
+  if (input.ComparisonOperator !== undefined && input.ComparisonOperator !== null) {
     entries["ComparisonOperator"] = input.ComparisonOperator;
   }
-  if (input.TreatMissingData != null) {
+  if (input.TreatMissingData !== undefined && input.TreatMissingData !== null) {
     entries["TreatMissingData"] = input.TreatMissingData;
   }
-  if (input.EvaluateLowSampleCountPercentile != null) {
+  if (input.EvaluateLowSampleCountPercentile !== undefined && input.EvaluateLowSampleCountPercentile !== null) {
     entries["EvaluateLowSampleCountPercentile"] = input.EvaluateLowSampleCountPercentile;
   }
-  if (input.Metrics != null) {
+  if (input.Metrics !== undefined && input.Metrics !== null) {
     const memberEntries = serializeAws_queryMetricDataQueries(input.Metrics, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Metrics.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ThresholdMetricId != null) {
+  if (input.ThresholdMetricId !== undefined && input.ThresholdMetricId !== null) {
     entries["ThresholdMetricId"] = input.ThresholdMetricId;
   }
   return entries;
@@ -3763,10 +3882,10 @@ const serializeAws_queryPutMetricAlarmInput = (input: PutMetricAlarmInput, conte
 
 const serializeAws_queryPutMetricDataInput = (input: PutMetricDataInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricData != null) {
+  if (input.MetricData !== undefined && input.MetricData !== null) {
     const memberEntries = serializeAws_queryMetricData(input.MetricData, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MetricData.${key}`;
@@ -3778,40 +3897,40 @@ const serializeAws_queryPutMetricDataInput = (input: PutMetricDataInput, context
 
 const serializeAws_queryPutMetricStreamInput = (input: PutMetricStreamInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.IncludeFilters != null) {
+  if (input.IncludeFilters !== undefined && input.IncludeFilters !== null) {
     const memberEntries = serializeAws_queryMetricStreamFilters(input.IncludeFilters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `IncludeFilters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ExcludeFilters != null) {
+  if (input.ExcludeFilters !== undefined && input.ExcludeFilters !== null) {
     const memberEntries = serializeAws_queryMetricStreamFilters(input.ExcludeFilters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ExcludeFilters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.FirehoseArn != null) {
+  if (input.FirehoseArn !== undefined && input.FirehoseArn !== null) {
     entries["FirehoseArn"] = input.FirehoseArn;
   }
-  if (input.RoleArn != null) {
+  if (input.RoleArn !== undefined && input.RoleArn !== null) {
     entries["RoleArn"] = input.RoleArn;
   }
-  if (input.OutputFormat != null) {
+  if (input.OutputFormat !== undefined && input.OutputFormat !== null) {
     entries["OutputFormat"] = input.OutputFormat;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.StatisticsConfigurations != null) {
+  if (input.StatisticsConfigurations !== undefined && input.StatisticsConfigurations !== null) {
     const memberEntries = serializeAws_queryMetricStreamStatisticsConfigurations(
       input.StatisticsConfigurations,
       context
@@ -3826,10 +3945,10 @@ const serializeAws_queryPutMetricStreamInput = (input: PutMetricStreamInput, con
 
 const serializeAws_queryRange = (input: Range, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
   return entries;
@@ -3850,16 +3969,16 @@ const serializeAws_queryResourceList = (input: string[], context: __SerdeContext
 
 const serializeAws_querySetAlarmStateInput = (input: SetAlarmStateInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AlarmName != null) {
+  if (input.AlarmName !== undefined && input.AlarmName !== null) {
     entries["AlarmName"] = input.AlarmName;
   }
-  if (input.StateValue != null) {
+  if (input.StateValue !== undefined && input.StateValue !== null) {
     entries["StateValue"] = input.StateValue;
   }
-  if (input.StateReason != null) {
+  if (input.StateReason !== undefined && input.StateReason !== null) {
     entries["StateReason"] = input.StateReason;
   }
-  if (input.StateReasonData != null) {
+  if (input.StateReasonData !== undefined && input.StateReasonData !== null) {
     entries["StateReasonData"] = input.StateReasonData;
   }
   return entries;
@@ -3870,20 +3989,20 @@ const serializeAws_querySingleMetricAnomalyDetector = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Namespace != null) {
+  if (input.Namespace !== undefined && input.Namespace !== null) {
     entries["Namespace"] = input.Namespace;
   }
-  if (input.MetricName != null) {
+  if (input.MetricName !== undefined && input.MetricName !== null) {
     entries["MetricName"] = input.MetricName;
   }
-  if (input.Dimensions != null) {
+  if (input.Dimensions !== undefined && input.Dimensions !== null) {
     const memberEntries = serializeAws_queryDimensions(input.Dimensions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Dimensions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Stat != null) {
+  if (input.Stat !== undefined && input.Stat !== null) {
     entries["Stat"] = input.Stat;
   }
   return entries;
@@ -3891,7 +4010,7 @@ const serializeAws_querySingleMetricAnomalyDetector = (
 
 const serializeAws_queryStartMetricStreamsInput = (input: StartMetricStreamsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Names != null) {
+  if (input.Names !== undefined && input.Names !== null) {
     const memberEntries = serializeAws_queryMetricStreamNames(input.Names, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Names.${key}`;
@@ -3916,16 +4035,16 @@ const serializeAws_queryStatistics = (input: (Statistic | string)[], context: __
 
 const serializeAws_queryStatisticSet = (input: StatisticSet, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.SampleCount != null) {
+  if (input.SampleCount !== undefined && input.SampleCount !== null) {
     entries["SampleCount"] = __serializeFloat(input.SampleCount);
   }
-  if (input.Sum != null) {
+  if (input.Sum !== undefined && input.Sum !== null) {
     entries["Sum"] = __serializeFloat(input.Sum);
   }
-  if (input.Minimum != null) {
+  if (input.Minimum !== undefined && input.Minimum !== null) {
     entries["Minimum"] = __serializeFloat(input.Minimum);
   }
-  if (input.Maximum != null) {
+  if (input.Maximum !== undefined && input.Maximum !== null) {
     entries["Maximum"] = __serializeFloat(input.Maximum);
   }
   return entries;
@@ -3933,7 +4052,7 @@ const serializeAws_queryStatisticSet = (input: StatisticSet, context: __SerdeCon
 
 const serializeAws_queryStopMetricStreamsInput = (input: StopMetricStreamsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Names != null) {
+  if (input.Names !== undefined && input.Names !== null) {
     const memberEntries = serializeAws_queryMetricStreamNames(input.Names, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Names.${key}`;
@@ -3945,10 +4064,10 @@ const serializeAws_queryStopMetricStreamsInput = (input: StopMetricStreamsInput,
 
 const serializeAws_queryTag = (input: Tag, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Key != null) {
+  if (input.Key !== undefined && input.Key !== null) {
     entries["Key"] = input.Key;
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = input.Value;
   }
   return entries;
@@ -3985,10 +4104,10 @@ const serializeAws_queryTagList = (input: Tag[], context: __SerdeContext): any =
 
 const serializeAws_queryTagResourceInput = (input: TagResourceInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceARN != null) {
+  if (input.ResourceARN !== undefined && input.ResourceARN !== null) {
     entries["ResourceARN"] = input.ResourceARN;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4000,10 +4119,10 @@ const serializeAws_queryTagResourceInput = (input: TagResourceInput, context: __
 
 const serializeAws_queryUntagResourceInput = (input: UntagResourceInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceARN != null) {
+  if (input.ResourceARN !== undefined && input.ResourceARN !== null) {
     entries["ResourceARN"] = input.ResourceARN;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
@@ -4060,6 +4179,9 @@ const deserializeAws_queryAlarmHistoryItems = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAlarmHistoryItem(entry, context);
     });
 };
@@ -4139,6 +4261,9 @@ const deserializeAws_queryAnomalyDetectorExcludedTimeRanges = (output: any, cont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryRange(entry, context);
     });
 };
@@ -4147,6 +4272,9 @@ const deserializeAws_queryAnomalyDetectors = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAnomalyDetector(entry, context);
     });
 };
@@ -4155,6 +4283,9 @@ const deserializeAws_queryBatchFailures = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryPartialFailure(entry, context);
     });
 };
@@ -4267,6 +4398,9 @@ const deserializeAws_queryCompositeAlarms = (output: any, context: __SerdeContex
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryCompositeAlarm(entry, context);
     });
 };
@@ -4288,6 +4422,9 @@ const deserializeAws_queryDashboardEntries = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDashboardEntry(entry, context);
     });
 };
@@ -4373,6 +4510,9 @@ const deserializeAws_queryDashboardValidationMessages = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDashboardValidationMessage(entry, context);
     });
 };
@@ -4424,6 +4564,9 @@ const deserializeAws_queryDatapoints = (output: any, context: __SerdeContext): D
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDatapoint(entry, context);
     });
 };
@@ -4444,6 +4587,9 @@ const deserializeAws_queryDatapointValues = (output: any, context: __SerdeContex
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __strictParseFloat(entry) as number;
     });
 };
@@ -4617,6 +4763,9 @@ const deserializeAws_queryDimensions = (output: any, context: __SerdeContext): D
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDimension(entry, context);
     });
 };
@@ -4928,6 +5077,9 @@ const deserializeAws_queryInsightRuleContributorDatapoints = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryInsightRuleContributorDatapoint(entry, context);
     });
 };
@@ -4936,6 +5088,9 @@ const deserializeAws_queryInsightRuleContributorKeyLabels = (output: any, contex
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -4944,6 +5099,9 @@ const deserializeAws_queryInsightRuleContributorKeys = (output: any, context: __
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -4955,6 +5113,9 @@ const deserializeAws_queryInsightRuleContributors = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryInsightRuleContributor(entry, context);
     });
 };
@@ -5007,6 +5168,9 @@ const deserializeAws_queryInsightRuleMetricDatapoints = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryInsightRuleMetricDatapoint(entry, context);
     });
 };
@@ -5015,6 +5179,9 @@ const deserializeAws_queryInsightRules = (output: any, context: __SerdeContext):
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryInsightRule(entry, context);
     });
 };
@@ -5349,6 +5516,9 @@ const deserializeAws_queryMetricAlarms = (output: any, context: __SerdeContext):
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricAlarm(entry, context);
     });
 };
@@ -5357,6 +5527,9 @@ const deserializeAws_queryMetricDataQueries = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricDataQuery(entry, context);
     });
 };
@@ -5441,6 +5614,9 @@ const deserializeAws_queryMetricDataResultMessages = (output: any, context: __Se
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMessageData(entry, context);
     });
 };
@@ -5449,6 +5625,9 @@ const deserializeAws_queryMetricDataResults = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricDataResult(entry, context);
     });
 };
@@ -5475,6 +5654,9 @@ const deserializeAws_queryMetrics = (output: any, context: __SerdeContext): Metr
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetric(entry, context);
     });
 };
@@ -5505,6 +5687,9 @@ const deserializeAws_queryMetricStreamEntries = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricStreamEntry(entry, context);
     });
 };
@@ -5557,6 +5742,9 @@ const deserializeAws_queryMetricStreamFilters = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricStreamFilter(entry, context);
     });
 };
@@ -5568,6 +5756,9 @@ const deserializeAws_queryMetricStreamStatisticsAdditionalStatistics = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -5606,6 +5797,9 @@ const deserializeAws_queryMetricStreamStatisticsConfigurations = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricStreamStatisticsConfiguration(entry, context);
     });
 };
@@ -5617,6 +5811,9 @@ const deserializeAws_queryMetricStreamStatisticsIncludeMetrics = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMetricStreamStatisticsMetric(entry, context);
     });
 };
@@ -5732,6 +5929,9 @@ const deserializeAws_queryResourceList = (output: any, context: __SerdeContext):
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -5828,6 +6028,9 @@ const deserializeAws_queryTagList = (output: any, context: __SerdeContext): Tag[
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryTag(entry, context);
     });
 };
@@ -5841,6 +6044,9 @@ const deserializeAws_queryTimestamps = (output: any, context: __SerdeContext): D
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectNonNull(__parseRfc3339DateTime(entry));
     });
 };

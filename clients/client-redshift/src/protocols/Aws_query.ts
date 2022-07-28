@@ -12,7 +12,6 @@ import {
   strictParseFloat as __strictParseFloat,
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -2752,6 +2751,7 @@ const deserializeAws_queryAcceptReservedNodeExchangeCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependentServiceUnavailableFault":
@@ -2777,12 +2777,14 @@ const deserializeAws_queryAcceptReservedNodeExchangeCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2811,6 +2813,7 @@ const deserializeAws_queryAddPartnerCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -2824,12 +2827,14 @@ const deserializeAws_queryAddPartnerCommandError = async (
       throw await deserializeAws_queryUnauthorizedPartnerIntegrationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2858,6 +2863,7 @@ const deserializeAws_queryAssociateDataShareConsumerCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDataShareFault":
@@ -2868,12 +2874,14 @@ const deserializeAws_queryAssociateDataShareConsumerCommandError = async (
       throw await deserializeAws_queryInvalidNamespaceFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2905,6 +2913,7 @@ const deserializeAws_queryAuthorizeClusterSecurityGroupIngressCommandError = asy
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthorizationAlreadyExistsFault":
@@ -2921,12 +2930,14 @@ const deserializeAws_queryAuthorizeClusterSecurityGroupIngressCommandError = asy
       throw await deserializeAws_queryInvalidClusterSecurityGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2955,6 +2966,7 @@ const deserializeAws_queryAuthorizeDataShareCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDataShareFault":
@@ -2962,12 +2974,14 @@ const deserializeAws_queryAuthorizeDataShareCommandError = async (
       throw await deserializeAws_queryInvalidDataShareFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2996,6 +3010,7 @@ const deserializeAws_queryAuthorizeEndpointAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -3018,12 +3033,14 @@ const deserializeAws_queryAuthorizeEndpointAccessCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3052,6 +3069,7 @@ const deserializeAws_queryAuthorizeSnapshotAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthorizationAlreadyExistsFault":
@@ -3077,12 +3095,14 @@ const deserializeAws_queryAuthorizeSnapshotAccessCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3111,6 +3131,7 @@ const deserializeAws_queryBatchDeleteClusterSnapshotsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "BatchDeleteRequestSizeExceededFault":
@@ -3118,12 +3139,14 @@ const deserializeAws_queryBatchDeleteClusterSnapshotsCommandError = async (
       throw await deserializeAws_queryBatchDeleteRequestSizeExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3155,6 +3178,7 @@ const deserializeAws_queryBatchModifyClusterSnapshotsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "BatchModifyClusterSnapshotsLimitExceededFault":
@@ -3165,12 +3189,14 @@ const deserializeAws_queryBatchModifyClusterSnapshotsCommandError = async (
       throw await deserializeAws_queryInvalidRetentionPeriodFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3199,6 +3225,7 @@ const deserializeAws_queryCancelResizeCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -3215,12 +3242,14 @@ const deserializeAws_queryCancelResizeCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3249,6 +3278,7 @@ const deserializeAws_queryCopyClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSnapshotAlreadyExistsFault":
@@ -3268,12 +3298,14 @@ const deserializeAws_queryCopyClusterSnapshotCommandError = async (
       throw await deserializeAws_queryInvalidRetentionPeriodFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3302,6 +3334,7 @@ const deserializeAws_queryCreateAuthenticationProfileCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthenticationProfileAlreadyExistsFault":
@@ -3315,12 +3348,14 @@ const deserializeAws_queryCreateAuthenticationProfileCommandError = async (
       throw await deserializeAws_queryInvalidAuthenticationProfileRequestFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3349,6 +3384,7 @@ const deserializeAws_queryCreateClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterAlreadyExistsFault":
@@ -3419,12 +3455,14 @@ const deserializeAws_queryCreateClusterCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3453,6 +3491,7 @@ const deserializeAws_queryCreateClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterParameterGroupAlreadyExistsFault":
@@ -3469,12 +3508,14 @@ const deserializeAws_queryCreateClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3503,6 +3544,7 @@ const deserializeAws_queryCreateClusterSecurityGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSecurityGroupAlreadyExistsFault":
@@ -3519,12 +3561,14 @@ const deserializeAws_queryCreateClusterSecurityGroupCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3553,6 +3597,7 @@ const deserializeAws_queryCreateClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -3578,12 +3623,14 @@ const deserializeAws_queryCreateClusterSnapshotCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3612,6 +3659,7 @@ const deserializeAws_queryCreateClusterSubnetGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSubnetGroupAlreadyExistsFault":
@@ -3640,12 +3688,14 @@ const deserializeAws_queryCreateClusterSubnetGroupCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3674,6 +3724,7 @@ const deserializeAws_queryCreateEndpointAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessToClusterDeniedFault":
@@ -3708,12 +3759,14 @@ const deserializeAws_queryCreateEndpointAccessCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3742,6 +3795,7 @@ const deserializeAws_queryCreateEventSubscriptionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "EventSubscriptionQuotaExceededFault":
@@ -3779,12 +3833,14 @@ const deserializeAws_queryCreateEventSubscriptionCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3813,6 +3869,7 @@ const deserializeAws_queryCreateHsmClientCertificateCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "HsmClientCertificateAlreadyExistsFault":
@@ -3829,12 +3886,14 @@ const deserializeAws_queryCreateHsmClientCertificateCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3863,6 +3922,7 @@ const deserializeAws_queryCreateHsmConfigurationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "HsmConfigurationAlreadyExistsFault":
@@ -3879,12 +3939,14 @@ const deserializeAws_queryCreateHsmConfigurationCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3913,6 +3975,7 @@ const deserializeAws_queryCreateScheduledActionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidScheduledActionFault":
@@ -3935,12 +3998,14 @@ const deserializeAws_queryCreateScheduledActionCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3969,6 +4034,7 @@ const deserializeAws_queryCreateSnapshotCopyGrantCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependentServiceRequestThrottlingFault":
@@ -3991,12 +4057,14 @@ const deserializeAws_queryCreateSnapshotCopyGrantCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4025,6 +4093,7 @@ const deserializeAws_queryCreateSnapshotScheduleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidScheduleFault":
@@ -4047,12 +4116,14 @@ const deserializeAws_queryCreateSnapshotScheduleCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4078,6 +4149,7 @@ const deserializeAws_queryCreateTagsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidClusterStateFault":
@@ -4094,12 +4166,14 @@ const deserializeAws_queryCreateTagsCommandError = async (
       throw await deserializeAws_queryTagLimitExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4128,6 +4202,7 @@ const deserializeAws_queryCreateUsageLimitCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -4153,12 +4228,14 @@ const deserializeAws_queryCreateUsageLimitCommandError = async (
       throw await deserializeAws_queryUsageLimitAlreadyExistsFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4187,6 +4264,7 @@ const deserializeAws_queryDeauthorizeDataShareCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDataShareFault":
@@ -4194,12 +4272,14 @@ const deserializeAws_queryDeauthorizeDataShareCommandError = async (
       throw await deserializeAws_queryInvalidDataShareFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4228,6 +4308,7 @@ const deserializeAws_queryDeleteAuthenticationProfileCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthenticationProfileNotFoundFault":
@@ -4238,12 +4319,14 @@ const deserializeAws_queryDeleteAuthenticationProfileCommandError = async (
       throw await deserializeAws_queryInvalidAuthenticationProfileRequestFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4272,6 +4355,7 @@ const deserializeAws_queryDeleteClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -4291,12 +4375,14 @@ const deserializeAws_queryDeleteClusterCommandError = async (
       throw await deserializeAws_queryInvalidRetentionPeriodFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4322,6 +4408,7 @@ const deserializeAws_queryDeleteClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterParameterGroupNotFoundFault":
@@ -4332,12 +4419,14 @@ const deserializeAws_queryDeleteClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryInvalidClusterParameterGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4363,6 +4452,7 @@ const deserializeAws_queryDeleteClusterSecurityGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSecurityGroupNotFoundFault":
@@ -4373,12 +4463,14 @@ const deserializeAws_queryDeleteClusterSecurityGroupCommandError = async (
       throw await deserializeAws_queryInvalidClusterSecurityGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4407,6 +4499,7 @@ const deserializeAws_queryDeleteClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSnapshotNotFoundFault":
@@ -4417,12 +4510,14 @@ const deserializeAws_queryDeleteClusterSnapshotCommandError = async (
       throw await deserializeAws_queryInvalidClusterSnapshotStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4448,6 +4543,7 @@ const deserializeAws_queryDeleteClusterSubnetGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSubnetGroupNotFoundFault":
@@ -4461,12 +4557,14 @@ const deserializeAws_queryDeleteClusterSubnetGroupCommandError = async (
       throw await deserializeAws_queryInvalidClusterSubnetStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4495,6 +4593,7 @@ const deserializeAws_queryDeleteEndpointAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -4514,12 +4613,14 @@ const deserializeAws_queryDeleteEndpointAccessCommandError = async (
       throw await deserializeAws_queryInvalidEndpointStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4545,6 +4646,7 @@ const deserializeAws_queryDeleteEventSubscriptionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidSubscriptionStateFault":
@@ -4555,12 +4657,14 @@ const deserializeAws_queryDeleteEventSubscriptionCommandError = async (
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4586,6 +4690,7 @@ const deserializeAws_queryDeleteHsmClientCertificateCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "HsmClientCertificateNotFoundFault":
@@ -4596,12 +4701,14 @@ const deserializeAws_queryDeleteHsmClientCertificateCommandError = async (
       throw await deserializeAws_queryInvalidHsmClientCertificateStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4627,6 +4734,7 @@ const deserializeAws_queryDeleteHsmConfigurationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "HsmConfigurationNotFoundFault":
@@ -4637,12 +4745,14 @@ const deserializeAws_queryDeleteHsmConfigurationCommandError = async (
       throw await deserializeAws_queryInvalidHsmConfigurationStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4671,6 +4781,7 @@ const deserializeAws_queryDeletePartnerCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -4684,12 +4795,14 @@ const deserializeAws_queryDeletePartnerCommandError = async (
       throw await deserializeAws_queryUnauthorizedPartnerIntegrationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4715,6 +4828,7 @@ const deserializeAws_queryDeleteScheduledActionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ScheduledActionNotFoundFault":
@@ -4725,12 +4839,14 @@ const deserializeAws_queryDeleteScheduledActionCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4756,6 +4872,7 @@ const deserializeAws_queryDeleteSnapshotCopyGrantCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidSnapshotCopyGrantStateFault":
@@ -4766,12 +4883,14 @@ const deserializeAws_queryDeleteSnapshotCopyGrantCommandError = async (
       throw await deserializeAws_querySnapshotCopyGrantNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4797,6 +4916,7 @@ const deserializeAws_queryDeleteSnapshotScheduleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidClusterSnapshotScheduleStateFault":
@@ -4807,12 +4927,14 @@ const deserializeAws_queryDeleteSnapshotScheduleCommandError = async (
       throw await deserializeAws_querySnapshotScheduleNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4838,6 +4960,7 @@ const deserializeAws_queryDeleteTagsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidTagFault":
@@ -4848,12 +4971,14 @@ const deserializeAws_queryDeleteTagsCommandError = async (
       throw await deserializeAws_queryResourceNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4879,6 +5004,7 @@ const deserializeAws_queryDeleteUsageLimitCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "UnsupportedOperationFault":
@@ -4889,12 +5015,14 @@ const deserializeAws_queryDeleteUsageLimitCommandError = async (
       throw await deserializeAws_queryUsageLimitNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4923,14 +5051,20 @@ const deserializeAws_queryDescribeAccountAttributesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeAuthenticationProfilesCommand = async (
@@ -4961,6 +5095,7 @@ const deserializeAws_queryDescribeAuthenticationProfilesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthenticationProfileNotFoundFault":
@@ -4971,12 +5106,14 @@ const deserializeAws_queryDescribeAuthenticationProfilesCommandError = async (
       throw await deserializeAws_queryInvalidAuthenticationProfileRequestFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5005,6 +5142,7 @@ const deserializeAws_queryDescribeClusterDbRevisionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5015,12 +5153,14 @@ const deserializeAws_queryDescribeClusterDbRevisionsCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5049,6 +5189,7 @@ const deserializeAws_queryDescribeClusterParameterGroupsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterParameterGroupNotFoundFault":
@@ -5059,12 +5200,14 @@ const deserializeAws_queryDescribeClusterParameterGroupsCommandError = async (
       throw await deserializeAws_queryInvalidTagFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5093,6 +5236,7 @@ const deserializeAws_queryDescribeClusterParametersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterParameterGroupNotFoundFault":
@@ -5100,12 +5244,14 @@ const deserializeAws_queryDescribeClusterParametersCommandError = async (
       throw await deserializeAws_queryClusterParameterGroupNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5134,6 +5280,7 @@ const deserializeAws_queryDescribeClustersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5144,12 +5291,14 @@ const deserializeAws_queryDescribeClustersCommandError = async (
       throw await deserializeAws_queryInvalidTagFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5178,6 +5327,7 @@ const deserializeAws_queryDescribeClusterSecurityGroupsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSecurityGroupNotFoundFault":
@@ -5188,12 +5338,14 @@ const deserializeAws_queryDescribeClusterSecurityGroupsCommandError = async (
       throw await deserializeAws_queryInvalidTagFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5222,6 +5374,7 @@ const deserializeAws_queryDescribeClusterSnapshotsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5238,12 +5391,14 @@ const deserializeAws_queryDescribeClusterSnapshotsCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5272,6 +5427,7 @@ const deserializeAws_queryDescribeClusterSubnetGroupsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSubnetGroupNotFoundFault":
@@ -5282,12 +5438,14 @@ const deserializeAws_queryDescribeClusterSubnetGroupsCommandError = async (
       throw await deserializeAws_queryInvalidTagFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5316,6 +5474,7 @@ const deserializeAws_queryDescribeClusterTracksCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidClusterTrackFault":
@@ -5326,12 +5485,14 @@ const deserializeAws_queryDescribeClusterTracksCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5360,14 +5521,20 @@ const deserializeAws_queryDescribeClusterVersionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeDataSharesCommand = async (
@@ -5395,6 +5562,7 @@ const deserializeAws_queryDescribeDataSharesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDataShareFault":
@@ -5402,12 +5570,14 @@ const deserializeAws_queryDescribeDataSharesCommandError = async (
       throw await deserializeAws_queryInvalidDataShareFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5436,6 +5606,7 @@ const deserializeAws_queryDescribeDataSharesForConsumerCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNamespaceFault":
@@ -5443,12 +5614,14 @@ const deserializeAws_queryDescribeDataSharesForConsumerCommandError = async (
       throw await deserializeAws_queryInvalidNamespaceFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5477,6 +5650,7 @@ const deserializeAws_queryDescribeDataSharesForProducerCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNamespaceFault":
@@ -5484,12 +5658,14 @@ const deserializeAws_queryDescribeDataSharesForProducerCommandError = async (
       throw await deserializeAws_queryInvalidNamespaceFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5521,14 +5697,20 @@ const deserializeAws_queryDescribeDefaultClusterParametersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeEndpointAccessCommand = async (
@@ -5556,6 +5738,7 @@ const deserializeAws_queryDescribeEndpointAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5569,12 +5752,14 @@ const deserializeAws_queryDescribeEndpointAccessCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5603,6 +5788,7 @@ const deserializeAws_queryDescribeEndpointAuthorizationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5613,12 +5799,14 @@ const deserializeAws_queryDescribeEndpointAuthorizationCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5647,14 +5835,20 @@ const deserializeAws_queryDescribeEventCategoriesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeEventsCommand = async (
@@ -5682,14 +5876,20 @@ const deserializeAws_queryDescribeEventsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeEventSubscriptionsCommand = async (
@@ -5717,6 +5917,7 @@ const deserializeAws_queryDescribeEventSubscriptionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidTagFault":
@@ -5727,12 +5928,14 @@ const deserializeAws_queryDescribeEventSubscriptionsCommandError = async (
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5761,6 +5964,7 @@ const deserializeAws_queryDescribeHsmClientCertificatesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "HsmClientCertificateNotFoundFault":
@@ -5771,12 +5975,14 @@ const deserializeAws_queryDescribeHsmClientCertificatesCommandError = async (
       throw await deserializeAws_queryInvalidTagFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5805,6 +6011,7 @@ const deserializeAws_queryDescribeHsmConfigurationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "HsmConfigurationNotFoundFault":
@@ -5815,12 +6022,14 @@ const deserializeAws_queryDescribeHsmConfigurationsCommandError = async (
       throw await deserializeAws_queryInvalidTagFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5849,6 +6058,7 @@ const deserializeAws_queryDescribeLoggingStatusCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5856,12 +6066,14 @@ const deserializeAws_queryDescribeLoggingStatusCommandError = async (
       throw await deserializeAws_queryClusterNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5890,6 +6102,7 @@ const deserializeAws_queryDescribeNodeConfigurationOptionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessToSnapshotDeniedFault":
@@ -5909,12 +6122,14 @@ const deserializeAws_queryDescribeNodeConfigurationOptionsCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -5943,14 +6158,20 @@ const deserializeAws_queryDescribeOrderableClusterOptionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribePartnersCommand = async (
@@ -5978,6 +6199,7 @@ const deserializeAws_queryDescribePartnersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -5988,12 +6210,14 @@ const deserializeAws_queryDescribePartnersCommandError = async (
       throw await deserializeAws_queryUnauthorizedPartnerIntegrationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6025,6 +6249,7 @@ const deserializeAws_queryDescribeReservedNodeExchangeStatusCommandError = async
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ReservedNodeExchangeNotFoundFault":
@@ -6038,12 +6263,14 @@ const deserializeAws_queryDescribeReservedNodeExchangeStatusCommandError = async
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6072,6 +6299,7 @@ const deserializeAws_queryDescribeReservedNodeOfferingsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependentServiceUnavailableFault":
@@ -6085,12 +6313,14 @@ const deserializeAws_queryDescribeReservedNodeOfferingsCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6119,6 +6349,7 @@ const deserializeAws_queryDescribeReservedNodesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependentServiceUnavailableFault":
@@ -6129,12 +6360,14 @@ const deserializeAws_queryDescribeReservedNodesCommandError = async (
       throw await deserializeAws_queryReservedNodeNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6163,6 +6396,7 @@ const deserializeAws_queryDescribeResizeCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6173,12 +6407,14 @@ const deserializeAws_queryDescribeResizeCommandError = async (
       throw await deserializeAws_queryResizeNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6207,6 +6443,7 @@ const deserializeAws_queryDescribeScheduledActionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ScheduledActionNotFoundFault":
@@ -6217,12 +6454,14 @@ const deserializeAws_queryDescribeScheduledActionsCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6251,6 +6490,7 @@ const deserializeAws_queryDescribeSnapshotCopyGrantsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidTagFault":
@@ -6261,12 +6501,14 @@ const deserializeAws_queryDescribeSnapshotCopyGrantsCommandError = async (
       throw await deserializeAws_querySnapshotCopyGrantNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6295,14 +6537,20 @@ const deserializeAws_queryDescribeSnapshotSchedulesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeStorageCommand = async (
@@ -6330,14 +6578,20 @@ const deserializeAws_queryDescribeStorageCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeTableRestoreStatusCommand = async (
@@ -6365,6 +6619,7 @@ const deserializeAws_queryDescribeTableRestoreStatusCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6375,12 +6630,14 @@ const deserializeAws_queryDescribeTableRestoreStatusCommandError = async (
       throw await deserializeAws_queryTableRestoreNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6409,6 +6666,7 @@ const deserializeAws_queryDescribeTagsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidTagFault":
@@ -6419,12 +6677,14 @@ const deserializeAws_queryDescribeTagsCommandError = async (
       throw await deserializeAws_queryResourceNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6453,6 +6713,7 @@ const deserializeAws_queryDescribeUsageLimitsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6463,12 +6724,14 @@ const deserializeAws_queryDescribeUsageLimitsCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6497,6 +6760,7 @@ const deserializeAws_queryDisableLoggingCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6507,12 +6771,14 @@ const deserializeAws_queryDisableLoggingCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6541,6 +6807,7 @@ const deserializeAws_queryDisableSnapshotCopyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6557,12 +6824,14 @@ const deserializeAws_queryDisableSnapshotCopyCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6591,6 +6860,7 @@ const deserializeAws_queryDisassociateDataShareConsumerCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDataShareFault":
@@ -6601,12 +6871,14 @@ const deserializeAws_queryDisassociateDataShareConsumerCommandError = async (
       throw await deserializeAws_queryInvalidNamespaceFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6635,6 +6907,7 @@ const deserializeAws_queryEnableLoggingCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "BucketNotFoundFault":
@@ -6657,12 +6930,14 @@ const deserializeAws_queryEnableLoggingCommandError = async (
       throw await deserializeAws_queryInvalidS3KeyPrefixFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6691,6 +6966,7 @@ const deserializeAws_queryEnableSnapshotCopyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6728,12 +7004,14 @@ const deserializeAws_queryEnableSnapshotCopyCommandError = async (
       throw await deserializeAws_queryUnknownSnapshotCopyRegionFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6762,6 +7040,7 @@ const deserializeAws_queryGetClusterCredentialsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6772,12 +7051,14 @@ const deserializeAws_queryGetClusterCredentialsCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6806,6 +7087,7 @@ const deserializeAws_queryGetClusterCredentialsWithIAMCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6816,12 +7098,14 @@ const deserializeAws_queryGetClusterCredentialsWithIAMCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6853,6 +7137,7 @@ const deserializeAws_queryGetReservedNodeExchangeConfigurationOptionsCommandErro
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6881,12 +7166,14 @@ const deserializeAws_queryGetReservedNodeExchangeConfigurationOptionsCommandErro
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6918,6 +7205,7 @@ const deserializeAws_queryGetReservedNodeExchangeOfferingsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependentServiceUnavailableFault":
@@ -6940,12 +7228,14 @@ const deserializeAws_queryGetReservedNodeExchangeOfferingsCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -6974,6 +7264,7 @@ const deserializeAws_queryModifyAquaConfigurationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -6987,12 +7278,14 @@ const deserializeAws_queryModifyAquaConfigurationCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7021,6 +7314,7 @@ const deserializeAws_queryModifyAuthenticationProfileCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthenticationProfileNotFoundFault":
@@ -7034,12 +7328,14 @@ const deserializeAws_queryModifyAuthenticationProfileCommandError = async (
       throw await deserializeAws_queryInvalidAuthenticationProfileRequestFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7068,6 +7364,7 @@ const deserializeAws_queryModifyClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterAlreadyExistsFault":
@@ -7129,12 +7426,14 @@ const deserializeAws_queryModifyClusterCommandError = async (
       throw await deserializeAws_queryUnsupportedOptionFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7163,6 +7462,7 @@ const deserializeAws_queryModifyClusterDbRevisionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7176,12 +7476,14 @@ const deserializeAws_queryModifyClusterDbRevisionCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7210,6 +7512,7 @@ const deserializeAws_queryModifyClusterIamRolesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7220,12 +7523,14 @@ const deserializeAws_queryModifyClusterIamRolesCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7254,6 +7559,7 @@ const deserializeAws_queryModifyClusterMaintenanceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7264,12 +7570,14 @@ const deserializeAws_queryModifyClusterMaintenanceCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7298,6 +7606,7 @@ const deserializeAws_queryModifyClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterParameterGroupNotFoundFault":
@@ -7308,12 +7617,14 @@ const deserializeAws_queryModifyClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryInvalidClusterParameterGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7342,6 +7653,7 @@ const deserializeAws_queryModifyClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSnapshotNotFoundFault":
@@ -7355,12 +7667,14 @@ const deserializeAws_queryModifyClusterSnapshotCommandError = async (
       throw await deserializeAws_queryInvalidRetentionPeriodFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7386,6 +7700,7 @@ const deserializeAws_queryModifyClusterSnapshotScheduleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7399,12 +7714,14 @@ const deserializeAws_queryModifyClusterSnapshotScheduleCommandError = async (
       throw await deserializeAws_querySnapshotScheduleNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7433,6 +7750,7 @@ const deserializeAws_queryModifyClusterSubnetGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterSubnetGroupNotFoundFault":
@@ -7455,12 +7773,14 @@ const deserializeAws_queryModifyClusterSubnetGroupCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7489,6 +7809,7 @@ const deserializeAws_queryModifyEndpointAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7511,12 +7832,14 @@ const deserializeAws_queryModifyEndpointAccessCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7545,6 +7868,7 @@ const deserializeAws_queryModifyEventSubscriptionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidSubscriptionStateFault":
@@ -7576,12 +7900,14 @@ const deserializeAws_queryModifyEventSubscriptionCommandError = async (
       throw await deserializeAws_querySubscriptionSeverityNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7610,6 +7936,7 @@ const deserializeAws_queryModifyScheduledActionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidScheduledActionFault":
@@ -7629,12 +7956,14 @@ const deserializeAws_queryModifyScheduledActionCommandError = async (
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7666,6 +7995,7 @@ const deserializeAws_queryModifySnapshotCopyRetentionPeriodCommandError = async 
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7685,12 +8015,14 @@ const deserializeAws_queryModifySnapshotCopyRetentionPeriodCommandError = async 
       throw await deserializeAws_queryUnauthorizedOperationResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7719,6 +8051,7 @@ const deserializeAws_queryModifySnapshotScheduleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidScheduleFault":
@@ -7732,12 +8065,14 @@ const deserializeAws_queryModifySnapshotScheduleCommandError = async (
       throw await deserializeAws_querySnapshotScheduleUpdateInProgressFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7766,6 +8101,7 @@ const deserializeAws_queryModifyUsageLimitCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidUsageLimitFault":
@@ -7779,12 +8115,14 @@ const deserializeAws_queryModifyUsageLimitCommandError = async (
       throw await deserializeAws_queryUsageLimitNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7813,6 +8151,7 @@ const deserializeAws_queryPauseClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7823,12 +8162,14 @@ const deserializeAws_queryPauseClusterCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7857,6 +8198,7 @@ const deserializeAws_queryPurchaseReservedNodeOfferingCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ReservedNodeAlreadyExistsFault":
@@ -7873,12 +8215,14 @@ const deserializeAws_queryPurchaseReservedNodeOfferingCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7907,6 +8251,7 @@ const deserializeAws_queryRebootClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -7917,12 +8262,14 @@ const deserializeAws_queryRebootClusterCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7951,6 +8298,7 @@ const deserializeAws_queryRejectDataShareCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDataShareFault":
@@ -7958,12 +8306,14 @@ const deserializeAws_queryRejectDataShareCommandError = async (
       throw await deserializeAws_queryInvalidDataShareFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -7992,6 +8342,7 @@ const deserializeAws_queryResetClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterParameterGroupNotFoundFault":
@@ -8002,12 +8353,14 @@ const deserializeAws_queryResetClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryInvalidClusterParameterGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8036,6 +8389,7 @@ const deserializeAws_queryResizeClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -8085,12 +8439,14 @@ const deserializeAws_queryResizeClusterCommandError = async (
       throw await deserializeAws_queryUnsupportedOptionFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8119,6 +8475,7 @@ const deserializeAws_queryRestoreFromClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessToSnapshotDeniedFault":
@@ -8219,12 +8576,14 @@ const deserializeAws_queryRestoreFromClusterSnapshotCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8256,6 +8615,7 @@ const deserializeAws_queryRestoreTableFromClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -8281,12 +8641,14 @@ const deserializeAws_queryRestoreTableFromClusterSnapshotCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8315,6 +8677,7 @@ const deserializeAws_queryResumeClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -8328,12 +8691,14 @@ const deserializeAws_queryResumeClusterCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8365,6 +8730,7 @@ const deserializeAws_queryRevokeClusterSecurityGroupIngressCommandError = async 
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthorizationNotFoundFault":
@@ -8378,12 +8744,14 @@ const deserializeAws_queryRevokeClusterSecurityGroupIngressCommandError = async 
       throw await deserializeAws_queryInvalidClusterSecurityGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8412,6 +8780,7 @@ const deserializeAws_queryRevokeEndpointAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -8437,12 +8806,14 @@ const deserializeAws_queryRevokeEndpointAccessCommandError = async (
       throw await deserializeAws_queryInvalidEndpointStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8471,6 +8842,7 @@ const deserializeAws_queryRevokeSnapshotAccessCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessToSnapshotDeniedFault":
@@ -8487,12 +8859,14 @@ const deserializeAws_queryRevokeSnapshotAccessCommandError = async (
       throw await deserializeAws_queryUnsupportedOperationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8521,6 +8895,7 @@ const deserializeAws_queryRotateEncryptionKeyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -8534,12 +8909,14 @@ const deserializeAws_queryRotateEncryptionKeyCommandError = async (
       throw await deserializeAws_queryInvalidClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -8568,6 +8945,7 @@ const deserializeAws_queryUpdatePartnerStatusCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClusterNotFoundFault":
@@ -8581,12 +8959,14 @@ const deserializeAws_queryUpdatePartnerStatusCommandError = async (
       throw await deserializeAws_queryUnauthorizedPartnerIntegrationFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -10233,10 +10613,10 @@ const serializeAws_queryAcceptReservedNodeExchangeInputMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ReservedNodeId != null) {
+  if (input.ReservedNodeId !== undefined && input.ReservedNodeId !== null) {
     entries["ReservedNodeId"] = input.ReservedNodeId;
   }
-  if (input.TargetReservedNodeOfferingId != null) {
+  if (input.TargetReservedNodeOfferingId !== undefined && input.TargetReservedNodeOfferingId !== null) {
     entries["TargetReservedNodeOfferingId"] = input.TargetReservedNodeOfferingId;
   }
   return entries;
@@ -10247,16 +10627,16 @@ const serializeAws_queryAssociateDataShareConsumerMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DataShareArn != null) {
+  if (input.DataShareArn !== undefined && input.DataShareArn !== null) {
     entries["DataShareArn"] = input.DataShareArn;
   }
-  if (input.AssociateEntireAccount != null) {
+  if (input.AssociateEntireAccount !== undefined && input.AssociateEntireAccount !== null) {
     entries["AssociateEntireAccount"] = input.AssociateEntireAccount;
   }
-  if (input.ConsumerArn != null) {
+  if (input.ConsumerArn !== undefined && input.ConsumerArn !== null) {
     entries["ConsumerArn"] = input.ConsumerArn;
   }
-  if (input.ConsumerRegion != null) {
+  if (input.ConsumerRegion !== undefined && input.ConsumerRegion !== null) {
     entries["ConsumerRegion"] = input.ConsumerRegion;
   }
   return entries;
@@ -10280,16 +10660,16 @@ const serializeAws_queryAuthorizeClusterSecurityGroupIngressMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSecurityGroupName != null) {
+  if (input.ClusterSecurityGroupName !== undefined && input.ClusterSecurityGroupName !== null) {
     entries["ClusterSecurityGroupName"] = input.ClusterSecurityGroupName;
   }
-  if (input.CIDRIP != null) {
+  if (input.CIDRIP !== undefined && input.CIDRIP !== null) {
     entries["CIDRIP"] = input.CIDRIP;
   }
-  if (input.EC2SecurityGroupName != null) {
+  if (input.EC2SecurityGroupName !== undefined && input.EC2SecurityGroupName !== null) {
     entries["EC2SecurityGroupName"] = input.EC2SecurityGroupName;
   }
-  if (input.EC2SecurityGroupOwnerId != null) {
+  if (input.EC2SecurityGroupOwnerId !== undefined && input.EC2SecurityGroupOwnerId !== null) {
     entries["EC2SecurityGroupOwnerId"] = input.EC2SecurityGroupOwnerId;
   }
   return entries;
@@ -10300,10 +10680,10 @@ const serializeAws_queryAuthorizeDataShareMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DataShareArn != null) {
+  if (input.DataShareArn !== undefined && input.DataShareArn !== null) {
     entries["DataShareArn"] = input.DataShareArn;
   }
-  if (input.ConsumerIdentifier != null) {
+  if (input.ConsumerIdentifier !== undefined && input.ConsumerIdentifier !== null) {
     entries["ConsumerIdentifier"] = input.ConsumerIdentifier;
   }
   return entries;
@@ -10314,13 +10694,13 @@ const serializeAws_queryAuthorizeEndpointAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.Account != null) {
+  if (input.Account !== undefined && input.Account !== null) {
     entries["Account"] = input.Account;
   }
-  if (input.VpcIds != null) {
+  if (input.VpcIds !== undefined && input.VpcIds !== null) {
     const memberEntries = serializeAws_queryVpcIdentifierList(input.VpcIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcIds.${key}`;
@@ -10335,16 +10715,16 @@ const serializeAws_queryAuthorizeSnapshotAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SnapshotArn != null) {
+  if (input.SnapshotArn !== undefined && input.SnapshotArn !== null) {
     entries["SnapshotArn"] = input.SnapshotArn;
   }
-  if (input.SnapshotClusterIdentifier != null) {
+  if (input.SnapshotClusterIdentifier !== undefined && input.SnapshotClusterIdentifier !== null) {
     entries["SnapshotClusterIdentifier"] = input.SnapshotClusterIdentifier;
   }
-  if (input.AccountWithRestoreAccess != null) {
+  if (input.AccountWithRestoreAccess !== undefined && input.AccountWithRestoreAccess !== null) {
     entries["AccountWithRestoreAccess"] = input.AccountWithRestoreAccess;
   }
   return entries;
@@ -10355,7 +10735,7 @@ const serializeAws_queryBatchDeleteClusterSnapshotsRequest = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Identifiers != null) {
+  if (input.Identifiers !== undefined && input.Identifiers !== null) {
     const memberEntries = serializeAws_queryDeleteClusterSnapshotMessageList(input.Identifiers, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Identifiers.${key}`;
@@ -10370,17 +10750,17 @@ const serializeAws_queryBatchModifyClusterSnapshotsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotIdentifierList != null) {
+  if (input.SnapshotIdentifierList !== undefined && input.SnapshotIdentifierList !== null) {
     const memberEntries = serializeAws_querySnapshotIdentifierList(input.SnapshotIdentifierList, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SnapshotIdentifierList.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
-  if (input.Force != null) {
+  if (input.Force !== undefined && input.Force !== null) {
     entries["Force"] = input.Force;
   }
   return entries;
@@ -10388,7 +10768,7 @@ const serializeAws_queryBatchModifyClusterSnapshotsMessage = (
 
 const serializeAws_queryCancelResizeMessage = (input: CancelResizeMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -10412,16 +10792,16 @@ const serializeAws_queryCopyClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SourceSnapshotIdentifier != null) {
+  if (input.SourceSnapshotIdentifier !== undefined && input.SourceSnapshotIdentifier !== null) {
     entries["SourceSnapshotIdentifier"] = input.SourceSnapshotIdentifier;
   }
-  if (input.SourceSnapshotClusterIdentifier != null) {
+  if (input.SourceSnapshotClusterIdentifier !== undefined && input.SourceSnapshotClusterIdentifier !== null) {
     entries["SourceSnapshotClusterIdentifier"] = input.SourceSnapshotClusterIdentifier;
   }
-  if (input.TargetSnapshotIdentifier != null) {
+  if (input.TargetSnapshotIdentifier !== undefined && input.TargetSnapshotIdentifier !== null) {
     entries["TargetSnapshotIdentifier"] = input.TargetSnapshotIdentifier;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
   return entries;
@@ -10432,10 +10812,10 @@ const serializeAws_queryCreateAuthenticationProfileMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AuthenticationProfileName != null) {
+  if (input.AuthenticationProfileName !== undefined && input.AuthenticationProfileName !== null) {
     entries["AuthenticationProfileName"] = input.AuthenticationProfileName;
   }
-  if (input.AuthenticationProfileContent != null) {
+  if (input.AuthenticationProfileContent !== undefined && input.AuthenticationProfileContent !== null) {
     entries["AuthenticationProfileContent"] = input.AuthenticationProfileContent;
   }
   return entries;
@@ -10443,122 +10823,122 @@ const serializeAws_queryCreateAuthenticationProfileMessage = (
 
 const serializeAws_queryCreateClusterMessage = (input: CreateClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBName != null) {
+  if (input.DBName !== undefined && input.DBName !== null) {
     entries["DBName"] = input.DBName;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ClusterType != null) {
+  if (input.ClusterType !== undefined && input.ClusterType !== null) {
     entries["ClusterType"] = input.ClusterType;
   }
-  if (input.NodeType != null) {
+  if (input.NodeType !== undefined && input.NodeType !== null) {
     entries["NodeType"] = input.NodeType;
   }
-  if (input.MasterUsername != null) {
+  if (input.MasterUsername !== undefined && input.MasterUsername !== null) {
     entries["MasterUsername"] = input.MasterUsername;
   }
-  if (input.MasterUserPassword != null) {
+  if (input.MasterUserPassword !== undefined && input.MasterUserPassword !== null) {
     entries["MasterUserPassword"] = input.MasterUserPassword;
   }
-  if (input.ClusterSecurityGroups != null) {
+  if (input.ClusterSecurityGroups !== undefined && input.ClusterSecurityGroups !== null) {
     const memberEntries = serializeAws_queryClusterSecurityGroupNameList(input.ClusterSecurityGroups, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ClusterSecurityGroups.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ClusterSubnetGroupName != null) {
+  if (input.ClusterSubnetGroupName !== undefined && input.ClusterSubnetGroupName !== null) {
     entries["ClusterSubnetGroupName"] = input.ClusterSubnetGroupName;
   }
-  if (input.AvailabilityZone != null) {
+  if (input.AvailabilityZone !== undefined && input.AvailabilityZone !== null) {
     entries["AvailabilityZone"] = input.AvailabilityZone;
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.ClusterParameterGroupName != null) {
+  if (input.ClusterParameterGroupName !== undefined && input.ClusterParameterGroupName !== null) {
     entries["ClusterParameterGroupName"] = input.ClusterParameterGroupName;
   }
-  if (input.AutomatedSnapshotRetentionPeriod != null) {
+  if (input.AutomatedSnapshotRetentionPeriod !== undefined && input.AutomatedSnapshotRetentionPeriod !== null) {
     entries["AutomatedSnapshotRetentionPeriod"] = input.AutomatedSnapshotRetentionPeriod;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
-  if (input.ClusterVersion != null) {
+  if (input.ClusterVersion !== undefined && input.ClusterVersion !== null) {
     entries["ClusterVersion"] = input.ClusterVersion;
   }
-  if (input.AllowVersionUpgrade != null) {
+  if (input.AllowVersionUpgrade !== undefined && input.AllowVersionUpgrade !== null) {
     entries["AllowVersionUpgrade"] = input.AllowVersionUpgrade;
   }
-  if (input.NumberOfNodes != null) {
+  if (input.NumberOfNodes !== undefined && input.NumberOfNodes !== null) {
     entries["NumberOfNodes"] = input.NumberOfNodes;
   }
-  if (input.PubliclyAccessible != null) {
+  if (input.PubliclyAccessible !== undefined && input.PubliclyAccessible !== null) {
     entries["PubliclyAccessible"] = input.PubliclyAccessible;
   }
-  if (input.Encrypted != null) {
+  if (input.Encrypted !== undefined && input.Encrypted !== null) {
     entries["Encrypted"] = input.Encrypted;
   }
-  if (input.HsmClientCertificateIdentifier != null) {
+  if (input.HsmClientCertificateIdentifier !== undefined && input.HsmClientCertificateIdentifier !== null) {
     entries["HsmClientCertificateIdentifier"] = input.HsmClientCertificateIdentifier;
   }
-  if (input.HsmConfigurationIdentifier != null) {
+  if (input.HsmConfigurationIdentifier !== undefined && input.HsmConfigurationIdentifier !== null) {
     entries["HsmConfigurationIdentifier"] = input.HsmConfigurationIdentifier;
   }
-  if (input.ElasticIp != null) {
+  if (input.ElasticIp !== undefined && input.ElasticIp !== null) {
     entries["ElasticIp"] = input.ElasticIp;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.EnhancedVpcRouting != null) {
+  if (input.EnhancedVpcRouting !== undefined && input.EnhancedVpcRouting !== null) {
     entries["EnhancedVpcRouting"] = input.EnhancedVpcRouting;
   }
-  if (input.AdditionalInfo != null) {
+  if (input.AdditionalInfo !== undefined && input.AdditionalInfo !== null) {
     entries["AdditionalInfo"] = input.AdditionalInfo;
   }
-  if (input.IamRoles != null) {
+  if (input.IamRoles !== undefined && input.IamRoles !== null) {
     const memberEntries = serializeAws_queryIamRoleArnList(input.IamRoles, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `IamRoles.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaintenanceTrackName != null) {
+  if (input.MaintenanceTrackName !== undefined && input.MaintenanceTrackName !== null) {
     entries["MaintenanceTrackName"] = input.MaintenanceTrackName;
   }
-  if (input.SnapshotScheduleIdentifier != null) {
+  if (input.SnapshotScheduleIdentifier !== undefined && input.SnapshotScheduleIdentifier !== null) {
     entries["SnapshotScheduleIdentifier"] = input.SnapshotScheduleIdentifier;
   }
-  if (input.AvailabilityZoneRelocation != null) {
+  if (input.AvailabilityZoneRelocation !== undefined && input.AvailabilityZoneRelocation !== null) {
     entries["AvailabilityZoneRelocation"] = input.AvailabilityZoneRelocation;
   }
-  if (input.AquaConfigurationStatus != null) {
+  if (input.AquaConfigurationStatus !== undefined && input.AquaConfigurationStatus !== null) {
     entries["AquaConfigurationStatus"] = input.AquaConfigurationStatus;
   }
-  if (input.DefaultIamRoleArn != null) {
+  if (input.DefaultIamRoleArn !== undefined && input.DefaultIamRoleArn !== null) {
     entries["DefaultIamRoleArn"] = input.DefaultIamRoleArn;
   }
-  if (input.LoadSampleData != null) {
+  if (input.LoadSampleData !== undefined && input.LoadSampleData !== null) {
     entries["LoadSampleData"] = input.LoadSampleData;
   }
   return entries;
@@ -10569,16 +10949,16 @@ const serializeAws_queryCreateClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupName != null) {
+  if (input.ParameterGroupName !== undefined && input.ParameterGroupName !== null) {
     entries["ParameterGroupName"] = input.ParameterGroupName;
   }
-  if (input.ParameterGroupFamily != null) {
+  if (input.ParameterGroupFamily !== undefined && input.ParameterGroupFamily !== null) {
     entries["ParameterGroupFamily"] = input.ParameterGroupFamily;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10593,13 +10973,13 @@ const serializeAws_queryCreateClusterSecurityGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSecurityGroupName != null) {
+  if (input.ClusterSecurityGroupName !== undefined && input.ClusterSecurityGroupName !== null) {
     entries["ClusterSecurityGroupName"] = input.ClusterSecurityGroupName;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10614,16 +10994,16 @@ const serializeAws_queryCreateClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10638,20 +11018,20 @@ const serializeAws_queryCreateClusterSubnetGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSubnetGroupName != null) {
+  if (input.ClusterSubnetGroupName !== undefined && input.ClusterSubnetGroupName !== null) {
     entries["ClusterSubnetGroupName"] = input.ClusterSubnetGroupName;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.SubnetIds != null) {
+  if (input.SubnetIds !== undefined && input.SubnetIds !== null) {
     const memberEntries = serializeAws_querySubnetIdentifierList(input.SubnetIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SubnetIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10666,19 +11046,19 @@ const serializeAws_queryCreateEndpointAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ResourceOwner != null) {
+  if (input.ResourceOwner !== undefined && input.ResourceOwner !== null) {
     entries["ResourceOwner"] = input.ResourceOwner;
   }
-  if (input.EndpointName != null) {
+  if (input.EndpointName !== undefined && input.EndpointName !== null) {
     entries["EndpointName"] = input.EndpointName;
   }
-  if (input.SubnetGroupName != null) {
+  if (input.SubnetGroupName !== undefined && input.SubnetGroupName !== null) {
     entries["SubnetGroupName"] = input.SubnetGroupName;
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
@@ -10693,36 +11073,36 @@ const serializeAws_queryCreateEventSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.SnsTopicArn != null) {
+  if (input.SnsTopicArn !== undefined && input.SnsTopicArn !== null) {
     entries["SnsTopicArn"] = input.SnsTopicArn;
   }
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.SourceIds != null) {
+  if (input.SourceIds !== undefined && input.SourceIds !== null) {
     const memberEntries = serializeAws_querySourceIdsList(input.SourceIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SourceIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.EventCategories != null) {
+  if (input.EventCategories !== undefined && input.EventCategories !== null) {
     const memberEntries = serializeAws_queryEventCategoriesList(input.EventCategories, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EventCategories.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Severity != null) {
+  if (input.Severity !== undefined && input.Severity !== null) {
     entries["Severity"] = input.Severity;
   }
-  if (input.Enabled != null) {
+  if (input.Enabled !== undefined && input.Enabled !== null) {
     entries["Enabled"] = input.Enabled;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10737,10 +11117,10 @@ const serializeAws_queryCreateHsmClientCertificateMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.HsmClientCertificateIdentifier != null) {
+  if (input.HsmClientCertificateIdentifier !== undefined && input.HsmClientCertificateIdentifier !== null) {
     entries["HsmClientCertificateIdentifier"] = input.HsmClientCertificateIdentifier;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10755,25 +11135,25 @@ const serializeAws_queryCreateHsmConfigurationMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.HsmConfigurationIdentifier != null) {
+  if (input.HsmConfigurationIdentifier !== undefined && input.HsmConfigurationIdentifier !== null) {
     entries["HsmConfigurationIdentifier"] = input.HsmConfigurationIdentifier;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.HsmIpAddress != null) {
+  if (input.HsmIpAddress !== undefined && input.HsmIpAddress !== null) {
     entries["HsmIpAddress"] = input.HsmIpAddress;
   }
-  if (input.HsmPartitionName != null) {
+  if (input.HsmPartitionName !== undefined && input.HsmPartitionName !== null) {
     entries["HsmPartitionName"] = input.HsmPartitionName;
   }
-  if (input.HsmPartitionPassword != null) {
+  if (input.HsmPartitionPassword !== undefined && input.HsmPartitionPassword !== null) {
     entries["HsmPartitionPassword"] = input.HsmPartitionPassword;
   }
-  if (input.HsmServerPublicCertificate != null) {
+  if (input.HsmServerPublicCertificate !== undefined && input.HsmServerPublicCertificate !== null) {
     entries["HsmServerPublicCertificate"] = input.HsmServerPublicCertificate;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10788,32 +11168,32 @@ const serializeAws_queryCreateScheduledActionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduledActionName != null) {
+  if (input.ScheduledActionName !== undefined && input.ScheduledActionName !== null) {
     entries["ScheduledActionName"] = input.ScheduledActionName;
   }
-  if (input.TargetAction != null) {
+  if (input.TargetAction !== undefined && input.TargetAction !== null) {
     const memberEntries = serializeAws_queryScheduledActionType(input.TargetAction, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TargetAction.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Schedule != null) {
+  if (input.Schedule !== undefined && input.Schedule !== null) {
     entries["Schedule"] = input.Schedule;
   }
-  if (input.IamRole != null) {
+  if (input.IamRole !== undefined && input.IamRole !== null) {
     entries["IamRole"] = input.IamRole;
   }
-  if (input.ScheduledActionDescription != null) {
+  if (input.ScheduledActionDescription !== undefined && input.ScheduledActionDescription !== null) {
     entries["ScheduledActionDescription"] = input.ScheduledActionDescription;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Enable != null) {
+  if (input.Enable !== undefined && input.Enable !== null) {
     entries["Enable"] = input.Enable;
   }
   return entries;
@@ -10824,13 +11204,13 @@ const serializeAws_queryCreateSnapshotCopyGrantMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotCopyGrantName != null) {
+  if (input.SnapshotCopyGrantName !== undefined && input.SnapshotCopyGrantName !== null) {
     entries["SnapshotCopyGrantName"] = input.SnapshotCopyGrantName;
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10845,30 +11225,30 @@ const serializeAws_queryCreateSnapshotScheduleMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduleDefinitions != null) {
+  if (input.ScheduleDefinitions !== undefined && input.ScheduleDefinitions !== null) {
     const memberEntries = serializeAws_queryScheduleDefinitionList(input.ScheduleDefinitions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ScheduleDefinitions.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ScheduleIdentifier != null) {
+  if (input.ScheduleIdentifier !== undefined && input.ScheduleIdentifier !== null) {
     entries["ScheduleIdentifier"] = input.ScheduleIdentifier;
   }
-  if (input.ScheduleDescription != null) {
+  if (input.ScheduleDescription !== undefined && input.ScheduleDescription !== null) {
     entries["ScheduleDescription"] = input.ScheduleDescription;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DryRun != null) {
+  if (input.DryRun !== undefined && input.DryRun !== null) {
     entries["DryRun"] = input.DryRun;
   }
-  if (input.NextInvocations != null) {
+  if (input.NextInvocations !== undefined && input.NextInvocations !== null) {
     entries["NextInvocations"] = input.NextInvocations;
   }
   return entries;
@@ -10876,10 +11256,10 @@ const serializeAws_queryCreateSnapshotScheduleMessage = (
 
 const serializeAws_queryCreateTagsMessage = (input: CreateTagsMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceName != null) {
+  if (input.ResourceName !== undefined && input.ResourceName !== null) {
     entries["ResourceName"] = input.ResourceName;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10891,25 +11271,25 @@ const serializeAws_queryCreateTagsMessage = (input: CreateTagsMessage, context: 
 
 const serializeAws_queryCreateUsageLimitMessage = (input: CreateUsageLimitMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.FeatureType != null) {
+  if (input.FeatureType !== undefined && input.FeatureType !== null) {
     entries["FeatureType"] = input.FeatureType;
   }
-  if (input.LimitType != null) {
+  if (input.LimitType !== undefined && input.LimitType !== null) {
     entries["LimitType"] = input.LimitType;
   }
-  if (input.Amount != null) {
+  if (input.Amount !== undefined && input.Amount !== null) {
     entries["Amount"] = input.Amount;
   }
-  if (input.Period != null) {
+  if (input.Period !== undefined && input.Period !== null) {
     entries["Period"] = input.Period;
   }
-  if (input.BreachAction != null) {
+  if (input.BreachAction !== undefined && input.BreachAction !== null) {
     entries["BreachAction"] = input.BreachAction;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -10937,10 +11317,10 @@ const serializeAws_queryDeauthorizeDataShareMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DataShareArn != null) {
+  if (input.DataShareArn !== undefined && input.DataShareArn !== null) {
     entries["DataShareArn"] = input.DataShareArn;
   }
-  if (input.ConsumerIdentifier != null) {
+  if (input.ConsumerIdentifier !== undefined && input.ConsumerIdentifier !== null) {
     entries["ConsumerIdentifier"] = input.ConsumerIdentifier;
   }
   return entries;
@@ -10951,7 +11331,7 @@ const serializeAws_queryDeleteAuthenticationProfileMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AuthenticationProfileName != null) {
+  if (input.AuthenticationProfileName !== undefined && input.AuthenticationProfileName !== null) {
     entries["AuthenticationProfileName"] = input.AuthenticationProfileName;
   }
   return entries;
@@ -10959,16 +11339,16 @@ const serializeAws_queryDeleteAuthenticationProfileMessage = (
 
 const serializeAws_queryDeleteClusterMessage = (input: DeleteClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.SkipFinalClusterSnapshot != null) {
+  if (input.SkipFinalClusterSnapshot !== undefined && input.SkipFinalClusterSnapshot !== null) {
     entries["SkipFinalClusterSnapshot"] = input.SkipFinalClusterSnapshot;
   }
-  if (input.FinalClusterSnapshotIdentifier != null) {
+  if (input.FinalClusterSnapshotIdentifier !== undefined && input.FinalClusterSnapshotIdentifier !== null) {
     entries["FinalClusterSnapshotIdentifier"] = input.FinalClusterSnapshotIdentifier;
   }
-  if (input.FinalClusterSnapshotRetentionPeriod != null) {
+  if (input.FinalClusterSnapshotRetentionPeriod !== undefined && input.FinalClusterSnapshotRetentionPeriod !== null) {
     entries["FinalClusterSnapshotRetentionPeriod"] = input.FinalClusterSnapshotRetentionPeriod;
   }
   return entries;
@@ -10979,7 +11359,7 @@ const serializeAws_queryDeleteClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupName != null) {
+  if (input.ParameterGroupName !== undefined && input.ParameterGroupName !== null) {
     entries["ParameterGroupName"] = input.ParameterGroupName;
   }
   return entries;
@@ -10990,7 +11370,7 @@ const serializeAws_queryDeleteClusterSecurityGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSecurityGroupName != null) {
+  if (input.ClusterSecurityGroupName !== undefined && input.ClusterSecurityGroupName !== null) {
     entries["ClusterSecurityGroupName"] = input.ClusterSecurityGroupName;
   }
   return entries;
@@ -11001,10 +11381,10 @@ const serializeAws_queryDeleteClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SnapshotClusterIdentifier != null) {
+  if (input.SnapshotClusterIdentifier !== undefined && input.SnapshotClusterIdentifier !== null) {
     entries["SnapshotClusterIdentifier"] = input.SnapshotClusterIdentifier;
   }
   return entries;
@@ -11034,7 +11414,7 @@ const serializeAws_queryDeleteClusterSubnetGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSubnetGroupName != null) {
+  if (input.ClusterSubnetGroupName !== undefined && input.ClusterSubnetGroupName !== null) {
     entries["ClusterSubnetGroupName"] = input.ClusterSubnetGroupName;
   }
   return entries;
@@ -11045,7 +11425,7 @@ const serializeAws_queryDeleteEndpointAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.EndpointName != null) {
+  if (input.EndpointName !== undefined && input.EndpointName !== null) {
     entries["EndpointName"] = input.EndpointName;
   }
   return entries;
@@ -11056,7 +11436,7 @@ const serializeAws_queryDeleteEventSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
   return entries;
@@ -11067,7 +11447,7 @@ const serializeAws_queryDeleteHsmClientCertificateMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.HsmClientCertificateIdentifier != null) {
+  if (input.HsmClientCertificateIdentifier !== undefined && input.HsmClientCertificateIdentifier !== null) {
     entries["HsmClientCertificateIdentifier"] = input.HsmClientCertificateIdentifier;
   }
   return entries;
@@ -11078,7 +11458,7 @@ const serializeAws_queryDeleteHsmConfigurationMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.HsmConfigurationIdentifier != null) {
+  if (input.HsmConfigurationIdentifier !== undefined && input.HsmConfigurationIdentifier !== null) {
     entries["HsmConfigurationIdentifier"] = input.HsmConfigurationIdentifier;
   }
   return entries;
@@ -11089,7 +11469,7 @@ const serializeAws_queryDeleteScheduledActionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduledActionName != null) {
+  if (input.ScheduledActionName !== undefined && input.ScheduledActionName !== null) {
     entries["ScheduledActionName"] = input.ScheduledActionName;
   }
   return entries;
@@ -11100,7 +11480,7 @@ const serializeAws_queryDeleteSnapshotCopyGrantMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotCopyGrantName != null) {
+  if (input.SnapshotCopyGrantName !== undefined && input.SnapshotCopyGrantName !== null) {
     entries["SnapshotCopyGrantName"] = input.SnapshotCopyGrantName;
   }
   return entries;
@@ -11111,7 +11491,7 @@ const serializeAws_queryDeleteSnapshotScheduleMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduleIdentifier != null) {
+  if (input.ScheduleIdentifier !== undefined && input.ScheduleIdentifier !== null) {
     entries["ScheduleIdentifier"] = input.ScheduleIdentifier;
   }
   return entries;
@@ -11119,10 +11499,10 @@ const serializeAws_queryDeleteSnapshotScheduleMessage = (
 
 const serializeAws_queryDeleteTagsMessage = (input: DeleteTagsMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceName != null) {
+  if (input.ResourceName !== undefined && input.ResourceName !== null) {
     entries["ResourceName"] = input.ResourceName;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
@@ -11134,7 +11514,7 @@ const serializeAws_queryDeleteTagsMessage = (input: DeleteTagsMessage, context: 
 
 const serializeAws_queryDeleteUsageLimitMessage = (input: DeleteUsageLimitMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.UsageLimitId != null) {
+  if (input.UsageLimitId !== undefined && input.UsageLimitId !== null) {
     entries["UsageLimitId"] = input.UsageLimitId;
   }
   return entries;
@@ -11145,7 +11525,7 @@ const serializeAws_queryDescribeAccountAttributesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AttributeNames != null) {
+  if (input.AttributeNames !== undefined && input.AttributeNames !== null) {
     const memberEntries = serializeAws_queryAttributeNameList(input.AttributeNames, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AttributeNames.${key}`;
@@ -11160,7 +11540,7 @@ const serializeAws_queryDescribeAuthenticationProfilesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AuthenticationProfileName != null) {
+  if (input.AuthenticationProfileName !== undefined && input.AuthenticationProfileName !== null) {
     entries["AuthenticationProfileName"] = input.AuthenticationProfileName;
   }
   return entries;
@@ -11171,13 +11551,13 @@ const serializeAws_queryDescribeClusterDbRevisionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11188,23 +11568,23 @@ const serializeAws_queryDescribeClusterParameterGroupsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupName != null) {
+  if (input.ParameterGroupName !== undefined && input.ParameterGroupName !== null) {
     entries["ParameterGroupName"] = input.ParameterGroupName;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11219,16 +11599,16 @@ const serializeAws_queryDescribeClusterParametersMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupName != null) {
+  if (input.ParameterGroupName !== undefined && input.ParameterGroupName !== null) {
     entries["ParameterGroupName"] = input.ParameterGroupName;
   }
-  if (input.Source != null) {
+  if (input.Source !== undefined && input.Source !== null) {
     entries["Source"] = input.Source;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11239,23 +11619,23 @@ const serializeAws_queryDescribeClusterSecurityGroupsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSecurityGroupName != null) {
+  if (input.ClusterSecurityGroupName !== undefined && input.ClusterSecurityGroupName !== null) {
     entries["ClusterSecurityGroupName"] = input.ClusterSecurityGroupName;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11267,23 +11647,23 @@ const serializeAws_queryDescribeClusterSecurityGroupsMessage = (
 
 const serializeAws_queryDescribeClustersMessage = (input: DescribeClustersMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11298,51 +11678,51 @@ const serializeAws_queryDescribeClusterSnapshotsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SnapshotArn != null) {
+  if (input.SnapshotArn !== undefined && input.SnapshotArn !== null) {
     entries["SnapshotArn"] = input.SnapshotArn;
   }
-  if (input.SnapshotType != null) {
+  if (input.SnapshotType !== undefined && input.SnapshotType !== null) {
     entries["SnapshotType"] = input.SnapshotType;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.OwnerAccount != null) {
+  if (input.OwnerAccount !== undefined && input.OwnerAccount !== null) {
     entries["OwnerAccount"] = input.OwnerAccount;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ClusterExists != null) {
+  if (input.ClusterExists !== undefined && input.ClusterExists !== null) {
     entries["ClusterExists"] = input.ClusterExists;
   }
-  if (input.SortingEntities != null) {
+  if (input.SortingEntities !== undefined && input.SortingEntities !== null) {
     const memberEntries = serializeAws_querySnapshotSortingEntityList(input.SortingEntities, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SortingEntities.${key}`;
@@ -11357,23 +11737,23 @@ const serializeAws_queryDescribeClusterSubnetGroupsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSubnetGroupName != null) {
+  if (input.ClusterSubnetGroupName !== undefined && input.ClusterSubnetGroupName !== null) {
     entries["ClusterSubnetGroupName"] = input.ClusterSubnetGroupName;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11388,13 +11768,13 @@ const serializeAws_queryDescribeClusterTracksMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.MaintenanceTrackName != null) {
+  if (input.MaintenanceTrackName !== undefined && input.MaintenanceTrackName !== null) {
     entries["MaintenanceTrackName"] = input.MaintenanceTrackName;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11405,16 +11785,16 @@ const serializeAws_queryDescribeClusterVersionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterVersion != null) {
+  if (input.ClusterVersion !== undefined && input.ClusterVersion !== null) {
     entries["ClusterVersion"] = input.ClusterVersion;
   }
-  if (input.ClusterParameterGroupFamily != null) {
+  if (input.ClusterParameterGroupFamily !== undefined && input.ClusterParameterGroupFamily !== null) {
     entries["ClusterParameterGroupFamily"] = input.ClusterParameterGroupFamily;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11425,16 +11805,16 @@ const serializeAws_queryDescribeDataSharesForConsumerMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ConsumerArn != null) {
+  if (input.ConsumerArn !== undefined && input.ConsumerArn !== null) {
     entries["ConsumerArn"] = input.ConsumerArn;
   }
-  if (input.Status != null) {
+  if (input.Status !== undefined && input.Status !== null) {
     entries["Status"] = input.Status;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11445,16 +11825,16 @@ const serializeAws_queryDescribeDataSharesForProducerMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ProducerArn != null) {
+  if (input.ProducerArn !== undefined && input.ProducerArn !== null) {
     entries["ProducerArn"] = input.ProducerArn;
   }
-  if (input.Status != null) {
+  if (input.Status !== undefined && input.Status !== null) {
     entries["Status"] = input.Status;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11465,13 +11845,13 @@ const serializeAws_queryDescribeDataSharesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DataShareArn != null) {
+  if (input.DataShareArn !== undefined && input.DataShareArn !== null) {
     entries["DataShareArn"] = input.DataShareArn;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11482,13 +11862,13 @@ const serializeAws_queryDescribeDefaultClusterParametersMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupFamily != null) {
+  if (input.ParameterGroupFamily !== undefined && input.ParameterGroupFamily !== null) {
     entries["ParameterGroupFamily"] = input.ParameterGroupFamily;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11499,22 +11879,22 @@ const serializeAws_queryDescribeEndpointAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ResourceOwner != null) {
+  if (input.ResourceOwner !== undefined && input.ResourceOwner !== null) {
     entries["ResourceOwner"] = input.ResourceOwner;
   }
-  if (input.EndpointName != null) {
+  if (input.EndpointName !== undefined && input.EndpointName !== null) {
     entries["EndpointName"] = input.EndpointName;
   }
-  if (input.VpcId != null) {
+  if (input.VpcId !== undefined && input.VpcId !== null) {
     entries["VpcId"] = input.VpcId;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11525,19 +11905,19 @@ const serializeAws_queryDescribeEndpointAuthorizationMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.Account != null) {
+  if (input.Account !== undefined && input.Account !== null) {
     entries["Account"] = input.Account;
   }
-  if (input.Grantee != null) {
+  if (input.Grantee !== undefined && input.Grantee !== null) {
     entries["Grantee"] = input.Grantee;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11548,7 +11928,7 @@ const serializeAws_queryDescribeEventCategoriesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
   return entries;
@@ -11556,25 +11936,25 @@ const serializeAws_queryDescribeEventCategoriesMessage = (
 
 const serializeAws_queryDescribeEventsMessage = (input: DescribeEventsMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.SourceIdentifier != null) {
+  if (input.SourceIdentifier !== undefined && input.SourceIdentifier !== null) {
     entries["SourceIdentifier"] = input.SourceIdentifier;
   }
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Duration != null) {
+  if (input.Duration !== undefined && input.Duration !== null) {
     entries["Duration"] = input.Duration;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11585,23 +11965,23 @@ const serializeAws_queryDescribeEventSubscriptionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11616,23 +11996,23 @@ const serializeAws_queryDescribeHsmClientCertificatesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.HsmClientCertificateIdentifier != null) {
+  if (input.HsmClientCertificateIdentifier !== undefined && input.HsmClientCertificateIdentifier !== null) {
     entries["HsmClientCertificateIdentifier"] = input.HsmClientCertificateIdentifier;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11647,23 +12027,23 @@ const serializeAws_queryDescribeHsmConfigurationsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.HsmConfigurationIdentifier != null) {
+  if (input.HsmConfigurationIdentifier !== undefined && input.HsmConfigurationIdentifier !== null) {
     entries["HsmConfigurationIdentifier"] = input.HsmConfigurationIdentifier;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11678,7 +12058,7 @@ const serializeAws_queryDescribeLoggingStatusMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -11689,32 +12069,32 @@ const serializeAws_queryDescribeNodeConfigurationOptionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ActionType != null) {
+  if (input.ActionType !== undefined && input.ActionType !== null) {
     entries["ActionType"] = input.ActionType;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SnapshotArn != null) {
+  if (input.SnapshotArn !== undefined && input.SnapshotArn !== null) {
     entries["SnapshotArn"] = input.SnapshotArn;
   }
-  if (input.OwnerAccount != null) {
+  if (input.OwnerAccount !== undefined && input.OwnerAccount !== null) {
     entries["OwnerAccount"] = input.OwnerAccount;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryNodeConfigurationOptionsFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filter.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
   return entries;
@@ -11725,16 +12105,16 @@ const serializeAws_queryDescribeOrderableClusterOptionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterVersion != null) {
+  if (input.ClusterVersion !== undefined && input.ClusterVersion !== null) {
     entries["ClusterVersion"] = input.ClusterVersion;
   }
-  if (input.NodeType != null) {
+  if (input.NodeType !== undefined && input.NodeType !== null) {
     entries["NodeType"] = input.NodeType;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11745,16 +12125,16 @@ const serializeAws_queryDescribePartnersInputMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AccountId != null) {
+  if (input.AccountId !== undefined && input.AccountId !== null) {
     entries["AccountId"] = input.AccountId;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DatabaseName != null) {
+  if (input.DatabaseName !== undefined && input.DatabaseName !== null) {
     entries["DatabaseName"] = input.DatabaseName;
   }
-  if (input.PartnerName != null) {
+  if (input.PartnerName !== undefined && input.PartnerName !== null) {
     entries["PartnerName"] = input.PartnerName;
   }
   return entries;
@@ -11765,16 +12145,16 @@ const serializeAws_queryDescribeReservedNodeExchangeStatusInputMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ReservedNodeId != null) {
+  if (input.ReservedNodeId !== undefined && input.ReservedNodeId !== null) {
     entries["ReservedNodeId"] = input.ReservedNodeId;
   }
-  if (input.ReservedNodeExchangeRequestId != null) {
+  if (input.ReservedNodeExchangeRequestId !== undefined && input.ReservedNodeExchangeRequestId !== null) {
     entries["ReservedNodeExchangeRequestId"] = input.ReservedNodeExchangeRequestId;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11785,13 +12165,13 @@ const serializeAws_queryDescribeReservedNodeOfferingsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ReservedNodeOfferingId != null) {
+  if (input.ReservedNodeOfferingId !== undefined && input.ReservedNodeOfferingId !== null) {
     entries["ReservedNodeOfferingId"] = input.ReservedNodeOfferingId;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11802,13 +12182,13 @@ const serializeAws_queryDescribeReservedNodesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ReservedNodeId != null) {
+  if (input.ReservedNodeId !== undefined && input.ReservedNodeId !== null) {
     entries["ReservedNodeId"] = input.ReservedNodeId;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11816,7 +12196,7 @@ const serializeAws_queryDescribeReservedNodesMessage = (
 
 const serializeAws_queryDescribeResizeMessage = (input: DescribeResizeMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -11827,32 +12207,32 @@ const serializeAws_queryDescribeScheduledActionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduledActionName != null) {
+  if (input.ScheduledActionName !== undefined && input.ScheduledActionName !== null) {
     entries["ScheduledActionName"] = input.ScheduledActionName;
   }
-  if (input.TargetActionType != null) {
+  if (input.TargetActionType !== undefined && input.TargetActionType !== null) {
     entries["TargetActionType"] = input.TargetActionType;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Active != null) {
+  if (input.Active !== undefined && input.Active !== null) {
     entries["Active"] = input.Active;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryScheduledActionFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
   return entries;
@@ -11863,23 +12243,23 @@ const serializeAws_queryDescribeSnapshotCopyGrantsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotCopyGrantName != null) {
+  if (input.SnapshotCopyGrantName !== undefined && input.SnapshotCopyGrantName !== null) {
     entries["SnapshotCopyGrantName"] = input.SnapshotCopyGrantName;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11894,30 +12274,30 @@ const serializeAws_queryDescribeSnapshotSchedulesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ScheduleIdentifier != null) {
+  if (input.ScheduleIdentifier !== undefined && input.ScheduleIdentifier !== null) {
     entries["ScheduleIdentifier"] = input.ScheduleIdentifier;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
   return entries;
@@ -11928,16 +12308,16 @@ const serializeAws_queryDescribeTableRestoreStatusMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.TableRestoreRequestId != null) {
+  if (input.TableRestoreRequestId !== undefined && input.TableRestoreRequestId !== null) {
     entries["TableRestoreRequestId"] = input.TableRestoreRequestId;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -11945,26 +12325,26 @@ const serializeAws_queryDescribeTableRestoreStatusMessage = (
 
 const serializeAws_queryDescribeTagsMessage = (input: DescribeTagsMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceName != null) {
+  if (input.ResourceName !== undefined && input.ResourceName !== null) {
     entries["ResourceName"] = input.ResourceName;
   }
-  if (input.ResourceType != null) {
+  if (input.ResourceType !== undefined && input.ResourceType !== null) {
     entries["ResourceType"] = input.ResourceType;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -11979,29 +12359,29 @@ const serializeAws_queryDescribeUsageLimitsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.UsageLimitId != null) {
+  if (input.UsageLimitId !== undefined && input.UsageLimitId !== null) {
     entries["UsageLimitId"] = input.UsageLimitId;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.FeatureType != null) {
+  if (input.FeatureType !== undefined && input.FeatureType !== null) {
     entries["FeatureType"] = input.FeatureType;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryTagKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TagValues != null) {
+  if (input.TagValues !== undefined && input.TagValues !== null) {
     const memberEntries = serializeAws_queryTagValueList(input.TagValues, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagValues.${key}`;
@@ -12013,7 +12393,7 @@ const serializeAws_queryDescribeUsageLimitsMessage = (
 
 const serializeAws_queryDisableLoggingMessage = (input: DisableLoggingMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -12024,7 +12404,7 @@ const serializeAws_queryDisableSnapshotCopyMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -12035,16 +12415,16 @@ const serializeAws_queryDisassociateDataShareConsumerMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DataShareArn != null) {
+  if (input.DataShareArn !== undefined && input.DataShareArn !== null) {
     entries["DataShareArn"] = input.DataShareArn;
   }
-  if (input.DisassociateEntireAccount != null) {
+  if (input.DisassociateEntireAccount !== undefined && input.DisassociateEntireAccount !== null) {
     entries["DisassociateEntireAccount"] = input.DisassociateEntireAccount;
   }
-  if (input.ConsumerArn != null) {
+  if (input.ConsumerArn !== undefined && input.ConsumerArn !== null) {
     entries["ConsumerArn"] = input.ConsumerArn;
   }
-  if (input.ConsumerRegion != null) {
+  if (input.ConsumerRegion !== undefined && input.ConsumerRegion !== null) {
     entries["ConsumerRegion"] = input.ConsumerRegion;
   }
   return entries;
@@ -12052,19 +12432,19 @@ const serializeAws_queryDisassociateDataShareConsumerMessage = (
 
 const serializeAws_queryEnableLoggingMessage = (input: EnableLoggingMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.BucketName != null) {
+  if (input.BucketName !== undefined && input.BucketName !== null) {
     entries["BucketName"] = input.BucketName;
   }
-  if (input.S3KeyPrefix != null) {
+  if (input.S3KeyPrefix !== undefined && input.S3KeyPrefix !== null) {
     entries["S3KeyPrefix"] = input.S3KeyPrefix;
   }
-  if (input.LogDestinationType != null) {
+  if (input.LogDestinationType !== undefined && input.LogDestinationType !== null) {
     entries["LogDestinationType"] = input.LogDestinationType;
   }
-  if (input.LogExports != null) {
+  if (input.LogExports !== undefined && input.LogExports !== null) {
     const memberEntries = serializeAws_queryLogTypeList(input.LogExports, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `LogExports.${key}`;
@@ -12079,19 +12459,19 @@ const serializeAws_queryEnableSnapshotCopyMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DestinationRegion != null) {
+  if (input.DestinationRegion !== undefined && input.DestinationRegion !== null) {
     entries["DestinationRegion"] = input.DestinationRegion;
   }
-  if (input.RetentionPeriod != null) {
+  if (input.RetentionPeriod !== undefined && input.RetentionPeriod !== null) {
     entries["RetentionPeriod"] = input.RetentionPeriod;
   }
-  if (input.SnapshotCopyGrantName != null) {
+  if (input.SnapshotCopyGrantName !== undefined && input.SnapshotCopyGrantName !== null) {
     entries["SnapshotCopyGrantName"] = input.SnapshotCopyGrantName;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
   return entries;
@@ -12115,22 +12495,22 @@ const serializeAws_queryGetClusterCredentialsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DbUser != null) {
+  if (input.DbUser !== undefined && input.DbUser !== null) {
     entries["DbUser"] = input.DbUser;
   }
-  if (input.DbName != null) {
+  if (input.DbName !== undefined && input.DbName !== null) {
     entries["DbName"] = input.DbName;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
-  if (input.AutoCreate != null) {
+  if (input.AutoCreate !== undefined && input.AutoCreate !== null) {
     entries["AutoCreate"] = input.AutoCreate;
   }
-  if (input.DbGroups != null) {
+  if (input.DbGroups !== undefined && input.DbGroups !== null) {
     const memberEntries = serializeAws_queryDbGroupList(input.DbGroups, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `DbGroups.${key}`;
@@ -12145,13 +12525,13 @@ const serializeAws_queryGetClusterCredentialsWithIAMMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DbName != null) {
+  if (input.DbName !== undefined && input.DbName !== null) {
     entries["DbName"] = input.DbName;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
   return entries;
@@ -12162,19 +12542,19 @@ const serializeAws_queryGetReservedNodeExchangeConfigurationOptionsInputMessage 
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ActionType != null) {
+  if (input.ActionType !== undefined && input.ActionType !== null) {
     entries["ActionType"] = input.ActionType;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -12185,13 +12565,13 @@ const serializeAws_queryGetReservedNodeExchangeOfferingsInputMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ReservedNodeId != null) {
+  if (input.ReservedNodeId !== undefined && input.ReservedNodeId !== null) {
     entries["ReservedNodeId"] = input.ReservedNodeId;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -12225,10 +12605,10 @@ const serializeAws_queryLogTypeList = (input: string[], context: __SerdeContext)
 
 const serializeAws_queryModifyAquaInputMessage = (input: ModifyAquaInputMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.AquaConfigurationStatus != null) {
+  if (input.AquaConfigurationStatus !== undefined && input.AquaConfigurationStatus !== null) {
     entries["AquaConfigurationStatus"] = input.AquaConfigurationStatus;
   }
   return entries;
@@ -12239,10 +12619,10 @@ const serializeAws_queryModifyAuthenticationProfileMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AuthenticationProfileName != null) {
+  if (input.AuthenticationProfileName !== undefined && input.AuthenticationProfileName !== null) {
     entries["AuthenticationProfileName"] = input.AuthenticationProfileName;
   }
-  if (input.AuthenticationProfileContent != null) {
+  if (input.AuthenticationProfileContent !== undefined && input.AuthenticationProfileContent !== null) {
     entries["AuthenticationProfileContent"] = input.AuthenticationProfileContent;
   }
   return entries;
@@ -12253,10 +12633,10 @@ const serializeAws_queryModifyClusterDbRevisionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.RevisionTarget != null) {
+  if (input.RevisionTarget !== undefined && input.RevisionTarget !== null) {
     entries["RevisionTarget"] = input.RevisionTarget;
   }
   return entries;
@@ -12267,24 +12647,24 @@ const serializeAws_queryModifyClusterIamRolesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.AddIamRoles != null) {
+  if (input.AddIamRoles !== undefined && input.AddIamRoles !== null) {
     const memberEntries = serializeAws_queryIamRoleArnList(input.AddIamRoles, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AddIamRoles.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.RemoveIamRoles != null) {
+  if (input.RemoveIamRoles !== undefined && input.RemoveIamRoles !== null) {
     const memberEntries = serializeAws_queryIamRoleArnList(input.RemoveIamRoles, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `RemoveIamRoles.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DefaultIamRoleArn != null) {
+  if (input.DefaultIamRoleArn !== undefined && input.DefaultIamRoleArn !== null) {
     entries["DefaultIamRoleArn"] = input.DefaultIamRoleArn;
   }
   return entries;
@@ -12295,22 +12675,22 @@ const serializeAws_queryModifyClusterMaintenanceMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DeferMaintenance != null) {
+  if (input.DeferMaintenance !== undefined && input.DeferMaintenance !== null) {
     entries["DeferMaintenance"] = input.DeferMaintenance;
   }
-  if (input.DeferMaintenanceIdentifier != null) {
+  if (input.DeferMaintenanceIdentifier !== undefined && input.DeferMaintenanceIdentifier !== null) {
     entries["DeferMaintenanceIdentifier"] = input.DeferMaintenanceIdentifier;
   }
-  if (input.DeferMaintenanceStartTime != null) {
+  if (input.DeferMaintenanceStartTime !== undefined && input.DeferMaintenanceStartTime !== null) {
     entries["DeferMaintenanceStartTime"] = input.DeferMaintenanceStartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.DeferMaintenanceEndTime != null) {
+  if (input.DeferMaintenanceEndTime !== undefined && input.DeferMaintenanceEndTime !== null) {
     entries["DeferMaintenanceEndTime"] = input.DeferMaintenanceEndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.DeferMaintenanceDuration != null) {
+  if (input.DeferMaintenanceDuration !== undefined && input.DeferMaintenanceDuration !== null) {
     entries["DeferMaintenanceDuration"] = input.DeferMaintenanceDuration;
   }
   return entries;
@@ -12318,87 +12698,87 @@ const serializeAws_queryModifyClusterMaintenanceMessage = (
 
 const serializeAws_queryModifyClusterMessage = (input: ModifyClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ClusterType != null) {
+  if (input.ClusterType !== undefined && input.ClusterType !== null) {
     entries["ClusterType"] = input.ClusterType;
   }
-  if (input.NodeType != null) {
+  if (input.NodeType !== undefined && input.NodeType !== null) {
     entries["NodeType"] = input.NodeType;
   }
-  if (input.NumberOfNodes != null) {
+  if (input.NumberOfNodes !== undefined && input.NumberOfNodes !== null) {
     entries["NumberOfNodes"] = input.NumberOfNodes;
   }
-  if (input.ClusterSecurityGroups != null) {
+  if (input.ClusterSecurityGroups !== undefined && input.ClusterSecurityGroups !== null) {
     const memberEntries = serializeAws_queryClusterSecurityGroupNameList(input.ClusterSecurityGroups, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ClusterSecurityGroups.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MasterUserPassword != null) {
+  if (input.MasterUserPassword !== undefined && input.MasterUserPassword !== null) {
     entries["MasterUserPassword"] = input.MasterUserPassword;
   }
-  if (input.ClusterParameterGroupName != null) {
+  if (input.ClusterParameterGroupName !== undefined && input.ClusterParameterGroupName !== null) {
     entries["ClusterParameterGroupName"] = input.ClusterParameterGroupName;
   }
-  if (input.AutomatedSnapshotRetentionPeriod != null) {
+  if (input.AutomatedSnapshotRetentionPeriod !== undefined && input.AutomatedSnapshotRetentionPeriod !== null) {
     entries["AutomatedSnapshotRetentionPeriod"] = input.AutomatedSnapshotRetentionPeriod;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.ClusterVersion != null) {
+  if (input.ClusterVersion !== undefined && input.ClusterVersion !== null) {
     entries["ClusterVersion"] = input.ClusterVersion;
   }
-  if (input.AllowVersionUpgrade != null) {
+  if (input.AllowVersionUpgrade !== undefined && input.AllowVersionUpgrade !== null) {
     entries["AllowVersionUpgrade"] = input.AllowVersionUpgrade;
   }
-  if (input.HsmClientCertificateIdentifier != null) {
+  if (input.HsmClientCertificateIdentifier !== undefined && input.HsmClientCertificateIdentifier !== null) {
     entries["HsmClientCertificateIdentifier"] = input.HsmClientCertificateIdentifier;
   }
-  if (input.HsmConfigurationIdentifier != null) {
+  if (input.HsmConfigurationIdentifier !== undefined && input.HsmConfigurationIdentifier !== null) {
     entries["HsmConfigurationIdentifier"] = input.HsmConfigurationIdentifier;
   }
-  if (input.NewClusterIdentifier != null) {
+  if (input.NewClusterIdentifier !== undefined && input.NewClusterIdentifier !== null) {
     entries["NewClusterIdentifier"] = input.NewClusterIdentifier;
   }
-  if (input.PubliclyAccessible != null) {
+  if (input.PubliclyAccessible !== undefined && input.PubliclyAccessible !== null) {
     entries["PubliclyAccessible"] = input.PubliclyAccessible;
   }
-  if (input.ElasticIp != null) {
+  if (input.ElasticIp !== undefined && input.ElasticIp !== null) {
     entries["ElasticIp"] = input.ElasticIp;
   }
-  if (input.EnhancedVpcRouting != null) {
+  if (input.EnhancedVpcRouting !== undefined && input.EnhancedVpcRouting !== null) {
     entries["EnhancedVpcRouting"] = input.EnhancedVpcRouting;
   }
-  if (input.MaintenanceTrackName != null) {
+  if (input.MaintenanceTrackName !== undefined && input.MaintenanceTrackName !== null) {
     entries["MaintenanceTrackName"] = input.MaintenanceTrackName;
   }
-  if (input.Encrypted != null) {
+  if (input.Encrypted !== undefined && input.Encrypted !== null) {
     entries["Encrypted"] = input.Encrypted;
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.AvailabilityZoneRelocation != null) {
+  if (input.AvailabilityZoneRelocation !== undefined && input.AvailabilityZoneRelocation !== null) {
     entries["AvailabilityZoneRelocation"] = input.AvailabilityZoneRelocation;
   }
-  if (input.AvailabilityZone != null) {
+  if (input.AvailabilityZone !== undefined && input.AvailabilityZone !== null) {
     entries["AvailabilityZone"] = input.AvailabilityZone;
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
   return entries;
@@ -12409,10 +12789,10 @@ const serializeAws_queryModifyClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupName != null) {
+  if (input.ParameterGroupName !== undefined && input.ParameterGroupName !== null) {
     entries["ParameterGroupName"] = input.ParameterGroupName;
   }
-  if (input.Parameters != null) {
+  if (input.Parameters !== undefined && input.Parameters !== null) {
     const memberEntries = serializeAws_queryParametersList(input.Parameters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Parameters.${key}`;
@@ -12427,13 +12807,13 @@ const serializeAws_queryModifyClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
-  if (input.Force != null) {
+  if (input.Force !== undefined && input.Force !== null) {
     entries["Force"] = input.Force;
   }
   return entries;
@@ -12444,13 +12824,13 @@ const serializeAws_queryModifyClusterSnapshotScheduleMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ScheduleIdentifier != null) {
+  if (input.ScheduleIdentifier !== undefined && input.ScheduleIdentifier !== null) {
     entries["ScheduleIdentifier"] = input.ScheduleIdentifier;
   }
-  if (input.DisassociateSchedule != null) {
+  if (input.DisassociateSchedule !== undefined && input.DisassociateSchedule !== null) {
     entries["DisassociateSchedule"] = input.DisassociateSchedule;
   }
   return entries;
@@ -12461,13 +12841,13 @@ const serializeAws_queryModifyClusterSubnetGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSubnetGroupName != null) {
+  if (input.ClusterSubnetGroupName !== undefined && input.ClusterSubnetGroupName !== null) {
     entries["ClusterSubnetGroupName"] = input.ClusterSubnetGroupName;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.SubnetIds != null) {
+  if (input.SubnetIds !== undefined && input.SubnetIds !== null) {
     const memberEntries = serializeAws_querySubnetIdentifierList(input.SubnetIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SubnetIds.${key}`;
@@ -12482,10 +12862,10 @@ const serializeAws_queryModifyEndpointAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.EndpointName != null) {
+  if (input.EndpointName !== undefined && input.EndpointName !== null) {
     entries["EndpointName"] = input.EndpointName;
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
@@ -12500,33 +12880,33 @@ const serializeAws_queryModifyEventSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.SnsTopicArn != null) {
+  if (input.SnsTopicArn !== undefined && input.SnsTopicArn !== null) {
     entries["SnsTopicArn"] = input.SnsTopicArn;
   }
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.SourceIds != null) {
+  if (input.SourceIds !== undefined && input.SourceIds !== null) {
     const memberEntries = serializeAws_querySourceIdsList(input.SourceIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SourceIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.EventCategories != null) {
+  if (input.EventCategories !== undefined && input.EventCategories !== null) {
     const memberEntries = serializeAws_queryEventCategoriesList(input.EventCategories, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EventCategories.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Severity != null) {
+  if (input.Severity !== undefined && input.Severity !== null) {
     entries["Severity"] = input.Severity;
   }
-  if (input.Enabled != null) {
+  if (input.Enabled !== undefined && input.Enabled !== null) {
     entries["Enabled"] = input.Enabled;
   }
   return entries;
@@ -12537,32 +12917,32 @@ const serializeAws_queryModifyScheduledActionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduledActionName != null) {
+  if (input.ScheduledActionName !== undefined && input.ScheduledActionName !== null) {
     entries["ScheduledActionName"] = input.ScheduledActionName;
   }
-  if (input.TargetAction != null) {
+  if (input.TargetAction !== undefined && input.TargetAction !== null) {
     const memberEntries = serializeAws_queryScheduledActionType(input.TargetAction, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TargetAction.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Schedule != null) {
+  if (input.Schedule !== undefined && input.Schedule !== null) {
     entries["Schedule"] = input.Schedule;
   }
-  if (input.IamRole != null) {
+  if (input.IamRole !== undefined && input.IamRole !== null) {
     entries["IamRole"] = input.IamRole;
   }
-  if (input.ScheduledActionDescription != null) {
+  if (input.ScheduledActionDescription !== undefined && input.ScheduledActionDescription !== null) {
     entries["ScheduledActionDescription"] = input.ScheduledActionDescription;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Enable != null) {
+  if (input.Enable !== undefined && input.Enable !== null) {
     entries["Enable"] = input.Enable;
   }
   return entries;
@@ -12573,13 +12953,13 @@ const serializeAws_queryModifySnapshotCopyRetentionPeriodMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.RetentionPeriod != null) {
+  if (input.RetentionPeriod !== undefined && input.RetentionPeriod !== null) {
     entries["RetentionPeriod"] = input.RetentionPeriod;
   }
-  if (input.Manual != null) {
+  if (input.Manual !== undefined && input.Manual !== null) {
     entries["Manual"] = input.Manual;
   }
   return entries;
@@ -12590,10 +12970,10 @@ const serializeAws_queryModifySnapshotScheduleMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ScheduleIdentifier != null) {
+  if (input.ScheduleIdentifier !== undefined && input.ScheduleIdentifier !== null) {
     entries["ScheduleIdentifier"] = input.ScheduleIdentifier;
   }
-  if (input.ScheduleDefinitions != null) {
+  if (input.ScheduleDefinitions !== undefined && input.ScheduleDefinitions !== null) {
     const memberEntries = serializeAws_queryScheduleDefinitionList(input.ScheduleDefinitions, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ScheduleDefinitions.${key}`;
@@ -12605,13 +12985,13 @@ const serializeAws_queryModifySnapshotScheduleMessage = (
 
 const serializeAws_queryModifyUsageLimitMessage = (input: ModifyUsageLimitMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.UsageLimitId != null) {
+  if (input.UsageLimitId !== undefined && input.UsageLimitId !== null) {
     entries["UsageLimitId"] = input.UsageLimitId;
   }
-  if (input.Amount != null) {
+  if (input.Amount !== undefined && input.Amount !== null) {
     entries["Amount"] = input.Amount;
   }
-  if (input.BreachAction != null) {
+  if (input.BreachAction !== undefined && input.BreachAction !== null) {
     entries["BreachAction"] = input.BreachAction;
   }
   return entries;
@@ -12622,13 +13002,13 @@ const serializeAws_queryNodeConfigurationOptionsFilter = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.Operator != null) {
+  if (input.Operator !== undefined && input.Operator !== null) {
     entries["Operator"] = input.Operator;
   }
-  if (input.Values != null) {
+  if (input.Values !== undefined && input.Values !== null) {
     const memberEntries = serializeAws_queryValueStringList(input.Values, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Value.${key}`;
@@ -12659,31 +13039,31 @@ const serializeAws_queryNodeConfigurationOptionsFilterList = (
 
 const serializeAws_queryParameter = (input: Parameter, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ParameterName != null) {
+  if (input.ParameterName !== undefined && input.ParameterName !== null) {
     entries["ParameterName"] = input.ParameterName;
   }
-  if (input.ParameterValue != null) {
+  if (input.ParameterValue !== undefined && input.ParameterValue !== null) {
     entries["ParameterValue"] = input.ParameterValue;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.Source != null) {
+  if (input.Source !== undefined && input.Source !== null) {
     entries["Source"] = input.Source;
   }
-  if (input.DataType != null) {
+  if (input.DataType !== undefined && input.DataType !== null) {
     entries["DataType"] = input.DataType;
   }
-  if (input.AllowedValues != null) {
+  if (input.AllowedValues !== undefined && input.AllowedValues !== null) {
     entries["AllowedValues"] = input.AllowedValues;
   }
-  if (input.ApplyType != null) {
+  if (input.ApplyType !== undefined && input.ApplyType !== null) {
     entries["ApplyType"] = input.ApplyType;
   }
-  if (input.IsModifiable != null) {
+  if (input.IsModifiable !== undefined && input.IsModifiable !== null) {
     entries["IsModifiable"] = input.IsModifiable;
   }
-  if (input.MinimumEngineVersion != null) {
+  if (input.MinimumEngineVersion !== undefined && input.MinimumEngineVersion !== null) {
     entries["MinimumEngineVersion"] = input.MinimumEngineVersion;
   }
   return entries;
@@ -12710,16 +13090,16 @@ const serializeAws_queryPartnerIntegrationInputMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AccountId != null) {
+  if (input.AccountId !== undefined && input.AccountId !== null) {
     entries["AccountId"] = input.AccountId;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DatabaseName != null) {
+  if (input.DatabaseName !== undefined && input.DatabaseName !== null) {
     entries["DatabaseName"] = input.DatabaseName;
   }
-  if (input.PartnerName != null) {
+  if (input.PartnerName !== undefined && input.PartnerName !== null) {
     entries["PartnerName"] = input.PartnerName;
   }
   return entries;
@@ -12727,7 +13107,7 @@ const serializeAws_queryPartnerIntegrationInputMessage = (
 
 const serializeAws_queryPauseClusterMessage = (input: PauseClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -12738,10 +13118,10 @@ const serializeAws_queryPurchaseReservedNodeOfferingMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ReservedNodeOfferingId != null) {
+  if (input.ReservedNodeOfferingId !== undefined && input.ReservedNodeOfferingId !== null) {
     entries["ReservedNodeOfferingId"] = input.ReservedNodeOfferingId;
   }
-  if (input.NodeCount != null) {
+  if (input.NodeCount !== undefined && input.NodeCount !== null) {
     entries["NodeCount"] = input.NodeCount;
   }
   return entries;
@@ -12749,7 +13129,7 @@ const serializeAws_queryPurchaseReservedNodeOfferingMessage = (
 
 const serializeAws_queryRebootClusterMessage = (input: RebootClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -12757,7 +13137,7 @@ const serializeAws_queryRebootClusterMessage = (input: RebootClusterMessage, con
 
 const serializeAws_queryRejectDataShareMessage = (input: RejectDataShareMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DataShareArn != null) {
+  if (input.DataShareArn !== undefined && input.DataShareArn !== null) {
     entries["DataShareArn"] = input.DataShareArn;
   }
   return entries;
@@ -12768,13 +13148,13 @@ const serializeAws_queryResetClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ParameterGroupName != null) {
+  if (input.ParameterGroupName !== undefined && input.ParameterGroupName !== null) {
     entries["ParameterGroupName"] = input.ParameterGroupName;
   }
-  if (input.ResetAllParameters != null) {
+  if (input.ResetAllParameters !== undefined && input.ResetAllParameters !== null) {
     entries["ResetAllParameters"] = input.ResetAllParameters;
   }
-  if (input.Parameters != null) {
+  if (input.Parameters !== undefined && input.Parameters !== null) {
     const memberEntries = serializeAws_queryParametersList(input.Parameters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Parameters.${key}`;
@@ -12786,25 +13166,25 @@ const serializeAws_queryResetClusterParameterGroupMessage = (
 
 const serializeAws_queryResizeClusterMessage = (input: ResizeClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.ClusterType != null) {
+  if (input.ClusterType !== undefined && input.ClusterType !== null) {
     entries["ClusterType"] = input.ClusterType;
   }
-  if (input.NodeType != null) {
+  if (input.NodeType !== undefined && input.NodeType !== null) {
     entries["NodeType"] = input.NodeType;
   }
-  if (input.NumberOfNodes != null) {
+  if (input.NumberOfNodes !== undefined && input.NumberOfNodes !== null) {
     entries["NumberOfNodes"] = input.NumberOfNodes;
   }
-  if (input.Classic != null) {
+  if (input.Classic !== undefined && input.Classic !== null) {
     entries["Classic"] = input.Classic;
   }
-  if (input.ReservedNodeId != null) {
+  if (input.ReservedNodeId !== undefined && input.ReservedNodeId !== null) {
     entries["ReservedNodeId"] = input.ReservedNodeId;
   }
-  if (input.TargetReservedNodeOfferingId != null) {
+  if (input.TargetReservedNodeOfferingId !== undefined && input.TargetReservedNodeOfferingId !== null) {
     entries["TargetReservedNodeOfferingId"] = input.TargetReservedNodeOfferingId;
   }
   return entries;
@@ -12815,115 +13195,115 @@ const serializeAws_queryRestoreFromClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SnapshotArn != null) {
+  if (input.SnapshotArn !== undefined && input.SnapshotArn !== null) {
     entries["SnapshotArn"] = input.SnapshotArn;
   }
-  if (input.SnapshotClusterIdentifier != null) {
+  if (input.SnapshotClusterIdentifier !== undefined && input.SnapshotClusterIdentifier !== null) {
     entries["SnapshotClusterIdentifier"] = input.SnapshotClusterIdentifier;
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
-  if (input.AvailabilityZone != null) {
+  if (input.AvailabilityZone !== undefined && input.AvailabilityZone !== null) {
     entries["AvailabilityZone"] = input.AvailabilityZone;
   }
-  if (input.AllowVersionUpgrade != null) {
+  if (input.AllowVersionUpgrade !== undefined && input.AllowVersionUpgrade !== null) {
     entries["AllowVersionUpgrade"] = input.AllowVersionUpgrade;
   }
-  if (input.ClusterSubnetGroupName != null) {
+  if (input.ClusterSubnetGroupName !== undefined && input.ClusterSubnetGroupName !== null) {
     entries["ClusterSubnetGroupName"] = input.ClusterSubnetGroupName;
   }
-  if (input.PubliclyAccessible != null) {
+  if (input.PubliclyAccessible !== undefined && input.PubliclyAccessible !== null) {
     entries["PubliclyAccessible"] = input.PubliclyAccessible;
   }
-  if (input.OwnerAccount != null) {
+  if (input.OwnerAccount !== undefined && input.OwnerAccount !== null) {
     entries["OwnerAccount"] = input.OwnerAccount;
   }
-  if (input.HsmClientCertificateIdentifier != null) {
+  if (input.HsmClientCertificateIdentifier !== undefined && input.HsmClientCertificateIdentifier !== null) {
     entries["HsmClientCertificateIdentifier"] = input.HsmClientCertificateIdentifier;
   }
-  if (input.HsmConfigurationIdentifier != null) {
+  if (input.HsmConfigurationIdentifier !== undefined && input.HsmConfigurationIdentifier !== null) {
     entries["HsmConfigurationIdentifier"] = input.HsmConfigurationIdentifier;
   }
-  if (input.ElasticIp != null) {
+  if (input.ElasticIp !== undefined && input.ElasticIp !== null) {
     entries["ElasticIp"] = input.ElasticIp;
   }
-  if (input.ClusterParameterGroupName != null) {
+  if (input.ClusterParameterGroupName !== undefined && input.ClusterParameterGroupName !== null) {
     entries["ClusterParameterGroupName"] = input.ClusterParameterGroupName;
   }
-  if (input.ClusterSecurityGroups != null) {
+  if (input.ClusterSecurityGroups !== undefined && input.ClusterSecurityGroups !== null) {
     const memberEntries = serializeAws_queryClusterSecurityGroupNameList(input.ClusterSecurityGroups, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ClusterSecurityGroups.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.AutomatedSnapshotRetentionPeriod != null) {
+  if (input.AutomatedSnapshotRetentionPeriod !== undefined && input.AutomatedSnapshotRetentionPeriod !== null) {
     entries["AutomatedSnapshotRetentionPeriod"] = input.AutomatedSnapshotRetentionPeriod;
   }
-  if (input.ManualSnapshotRetentionPeriod != null) {
+  if (input.ManualSnapshotRetentionPeriod !== undefined && input.ManualSnapshotRetentionPeriod !== null) {
     entries["ManualSnapshotRetentionPeriod"] = input.ManualSnapshotRetentionPeriod;
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.NodeType != null) {
+  if (input.NodeType !== undefined && input.NodeType !== null) {
     entries["NodeType"] = input.NodeType;
   }
-  if (input.EnhancedVpcRouting != null) {
+  if (input.EnhancedVpcRouting !== undefined && input.EnhancedVpcRouting !== null) {
     entries["EnhancedVpcRouting"] = input.EnhancedVpcRouting;
   }
-  if (input.AdditionalInfo != null) {
+  if (input.AdditionalInfo !== undefined && input.AdditionalInfo !== null) {
     entries["AdditionalInfo"] = input.AdditionalInfo;
   }
-  if (input.IamRoles != null) {
+  if (input.IamRoles !== undefined && input.IamRoles !== null) {
     const memberEntries = serializeAws_queryIamRoleArnList(input.IamRoles, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `IamRoles.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaintenanceTrackName != null) {
+  if (input.MaintenanceTrackName !== undefined && input.MaintenanceTrackName !== null) {
     entries["MaintenanceTrackName"] = input.MaintenanceTrackName;
   }
-  if (input.SnapshotScheduleIdentifier != null) {
+  if (input.SnapshotScheduleIdentifier !== undefined && input.SnapshotScheduleIdentifier !== null) {
     entries["SnapshotScheduleIdentifier"] = input.SnapshotScheduleIdentifier;
   }
-  if (input.NumberOfNodes != null) {
+  if (input.NumberOfNodes !== undefined && input.NumberOfNodes !== null) {
     entries["NumberOfNodes"] = input.NumberOfNodes;
   }
-  if (input.AvailabilityZoneRelocation != null) {
+  if (input.AvailabilityZoneRelocation !== undefined && input.AvailabilityZoneRelocation !== null) {
     entries["AvailabilityZoneRelocation"] = input.AvailabilityZoneRelocation;
   }
-  if (input.AquaConfigurationStatus != null) {
+  if (input.AquaConfigurationStatus !== undefined && input.AquaConfigurationStatus !== null) {
     entries["AquaConfigurationStatus"] = input.AquaConfigurationStatus;
   }
-  if (input.DefaultIamRoleArn != null) {
+  if (input.DefaultIamRoleArn !== undefined && input.DefaultIamRoleArn !== null) {
     entries["DefaultIamRoleArn"] = input.DefaultIamRoleArn;
   }
-  if (input.ReservedNodeId != null) {
+  if (input.ReservedNodeId !== undefined && input.ReservedNodeId !== null) {
     entries["ReservedNodeId"] = input.ReservedNodeId;
   }
-  if (input.TargetReservedNodeOfferingId != null) {
+  if (input.TargetReservedNodeOfferingId !== undefined && input.TargetReservedNodeOfferingId !== null) {
     entries["TargetReservedNodeOfferingId"] = input.TargetReservedNodeOfferingId;
   }
-  if (input.Encrypted != null) {
+  if (input.Encrypted !== undefined && input.Encrypted !== null) {
     entries["Encrypted"] = input.Encrypted;
   }
   return entries;
@@ -12934,31 +13314,31 @@ const serializeAws_queryRestoreTableFromClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SourceDatabaseName != null) {
+  if (input.SourceDatabaseName !== undefined && input.SourceDatabaseName !== null) {
     entries["SourceDatabaseName"] = input.SourceDatabaseName;
   }
-  if (input.SourceSchemaName != null) {
+  if (input.SourceSchemaName !== undefined && input.SourceSchemaName !== null) {
     entries["SourceSchemaName"] = input.SourceSchemaName;
   }
-  if (input.SourceTableName != null) {
+  if (input.SourceTableName !== undefined && input.SourceTableName !== null) {
     entries["SourceTableName"] = input.SourceTableName;
   }
-  if (input.TargetDatabaseName != null) {
+  if (input.TargetDatabaseName !== undefined && input.TargetDatabaseName !== null) {
     entries["TargetDatabaseName"] = input.TargetDatabaseName;
   }
-  if (input.TargetSchemaName != null) {
+  if (input.TargetSchemaName !== undefined && input.TargetSchemaName !== null) {
     entries["TargetSchemaName"] = input.TargetSchemaName;
   }
-  if (input.NewTableName != null) {
+  if (input.NewTableName !== undefined && input.NewTableName !== null) {
     entries["NewTableName"] = input.NewTableName;
   }
-  if (input.EnableCaseSensitiveIdentifier != null) {
+  if (input.EnableCaseSensitiveIdentifier !== undefined && input.EnableCaseSensitiveIdentifier !== null) {
     entries["EnableCaseSensitiveIdentifier"] = input.EnableCaseSensitiveIdentifier;
   }
   return entries;
@@ -12966,7 +13346,7 @@ const serializeAws_queryRestoreTableFromClusterSnapshotMessage = (
 
 const serializeAws_queryResumeClusterMessage = (input: ResumeClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -12977,16 +13357,16 @@ const serializeAws_queryRevokeClusterSecurityGroupIngressMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterSecurityGroupName != null) {
+  if (input.ClusterSecurityGroupName !== undefined && input.ClusterSecurityGroupName !== null) {
     entries["ClusterSecurityGroupName"] = input.ClusterSecurityGroupName;
   }
-  if (input.CIDRIP != null) {
+  if (input.CIDRIP !== undefined && input.CIDRIP !== null) {
     entries["CIDRIP"] = input.CIDRIP;
   }
-  if (input.EC2SecurityGroupName != null) {
+  if (input.EC2SecurityGroupName !== undefined && input.EC2SecurityGroupName !== null) {
     entries["EC2SecurityGroupName"] = input.EC2SecurityGroupName;
   }
-  if (input.EC2SecurityGroupOwnerId != null) {
+  if (input.EC2SecurityGroupOwnerId !== undefined && input.EC2SecurityGroupOwnerId !== null) {
     entries["EC2SecurityGroupOwnerId"] = input.EC2SecurityGroupOwnerId;
   }
   return entries;
@@ -12997,20 +13377,20 @@ const serializeAws_queryRevokeEndpointAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.Account != null) {
+  if (input.Account !== undefined && input.Account !== null) {
     entries["Account"] = input.Account;
   }
-  if (input.VpcIds != null) {
+  if (input.VpcIds !== undefined && input.VpcIds !== null) {
     const memberEntries = serializeAws_queryVpcIdentifierList(input.VpcIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Force != null) {
+  if (input.Force !== undefined && input.Force !== null) {
     entries["Force"] = input.Force;
   }
   return entries;
@@ -13021,16 +13401,16 @@ const serializeAws_queryRevokeSnapshotAccessMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.SnapshotArn != null) {
+  if (input.SnapshotArn !== undefined && input.SnapshotArn !== null) {
     entries["SnapshotArn"] = input.SnapshotArn;
   }
-  if (input.SnapshotClusterIdentifier != null) {
+  if (input.SnapshotClusterIdentifier !== undefined && input.SnapshotClusterIdentifier !== null) {
     entries["SnapshotClusterIdentifier"] = input.SnapshotClusterIdentifier;
   }
-  if (input.AccountWithRestoreAccess != null) {
+  if (input.AccountWithRestoreAccess !== undefined && input.AccountWithRestoreAccess !== null) {
     entries["AccountWithRestoreAccess"] = input.AccountWithRestoreAccess;
   }
   return entries;
@@ -13041,7 +13421,7 @@ const serializeAws_queryRotateEncryptionKeyMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
   return entries;
@@ -13049,10 +13429,10 @@ const serializeAws_queryRotateEncryptionKeyMessage = (
 
 const serializeAws_queryScheduledActionFilter = (input: ScheduledActionFilter, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.Values != null) {
+  if (input.Values !== undefined && input.Values !== null) {
     const memberEntries = serializeAws_queryValueStringList(input.Values, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Values.${key}`;
@@ -13080,21 +13460,21 @@ const serializeAws_queryScheduledActionFilterList = (input: ScheduledActionFilte
 
 const serializeAws_queryScheduledActionType = (input: ScheduledActionType, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResizeCluster != null) {
+  if (input.ResizeCluster !== undefined && input.ResizeCluster !== null) {
     const memberEntries = serializeAws_queryResizeClusterMessage(input.ResizeCluster, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ResizeCluster.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.PauseCluster != null) {
+  if (input.PauseCluster !== undefined && input.PauseCluster !== null) {
     const memberEntries = serializeAws_queryPauseClusterMessage(input.PauseCluster, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `PauseCluster.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ResumeCluster != null) {
+  if (input.ResumeCluster !== undefined && input.ResumeCluster !== null) {
     const memberEntries = serializeAws_queryResumeClusterMessage(input.ResumeCluster, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ResumeCluster.${key}`;
@@ -13132,10 +13512,10 @@ const serializeAws_querySnapshotIdentifierList = (input: string[], context: __Se
 
 const serializeAws_querySnapshotSortingEntity = (input: SnapshotSortingEntity, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Attribute != null) {
+  if (input.Attribute !== undefined && input.Attribute !== null) {
     entries["Attribute"] = input.Attribute;
   }
-  if (input.SortOrder != null) {
+  if (input.SortOrder !== undefined && input.SortOrder !== null) {
     entries["SortOrder"] = input.SortOrder;
   }
   return entries;
@@ -13185,10 +13565,10 @@ const serializeAws_querySubnetIdentifierList = (input: string[], context: __Serd
 
 const serializeAws_queryTag = (input: Tag, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Key != null) {
+  if (input.Key !== undefined && input.Key !== null) {
     entries["Key"] = input.Key;
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = input.Value;
   }
   return entries;
@@ -13241,22 +13621,22 @@ const serializeAws_queryUpdatePartnerStatusInputMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AccountId != null) {
+  if (input.AccountId !== undefined && input.AccountId !== null) {
     entries["AccountId"] = input.AccountId;
   }
-  if (input.ClusterIdentifier != null) {
+  if (input.ClusterIdentifier !== undefined && input.ClusterIdentifier !== null) {
     entries["ClusterIdentifier"] = input.ClusterIdentifier;
   }
-  if (input.DatabaseName != null) {
+  if (input.DatabaseName !== undefined && input.DatabaseName !== null) {
     entries["DatabaseName"] = input.DatabaseName;
   }
-  if (input.PartnerName != null) {
+  if (input.PartnerName !== undefined && input.PartnerName !== null) {
     entries["PartnerName"] = input.PartnerName;
   }
-  if (input.Status != null) {
+  if (input.Status !== undefined && input.Status !== null) {
     entries["Status"] = input.Status;
   }
-  if (input.StatusMessage != null) {
+  if (input.StatusMessage !== undefined && input.StatusMessage !== null) {
     entries["StatusMessage"] = input.StatusMessage;
   }
   return entries;
@@ -13387,6 +13767,9 @@ const deserializeAws_queryAccountsWithRestoreAccessList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAccountWithRestoreAccess(entry, context);
     });
 };
@@ -13429,6 +13812,9 @@ const deserializeAws_queryAssociatedClusterList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterAssociatedToSchedule(entry, context);
     });
 };
@@ -13437,6 +13823,9 @@ const deserializeAws_queryAttributeList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAccountAttribute(entry, context);
     });
 };
@@ -13445,6 +13834,9 @@ const deserializeAws_queryAttributeValueList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAttributeValueTarget(entry, context);
     });
 };
@@ -13493,6 +13885,9 @@ const deserializeAws_queryAuthenticationProfileList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAuthenticationProfile(entry, context);
     });
 };
@@ -13614,6 +14009,9 @@ const deserializeAws_queryAvailabilityZoneList = (output: any, context: __SerdeC
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAvailabilityZone(entry, context);
     });
 };
@@ -13705,6 +14103,9 @@ const deserializeAws_queryBatchSnapshotOperationErrorList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySnapshotErrorMessage(entry, context);
     });
 };
@@ -13716,6 +14117,9 @@ const deserializeAws_queryBatchSnapshotOperationErrors = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySnapshotErrorMessage(entry, context);
     });
 };
@@ -14089,6 +14493,9 @@ const deserializeAws_queryClusterDbRevisionsList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterDbRevision(entry, context);
     });
 };
@@ -14161,6 +14568,9 @@ const deserializeAws_queryClusterIamRoleList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterIamRole(entry, context);
     });
 };
@@ -14169,6 +14579,9 @@ const deserializeAws_queryClusterList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryCluster(entry, context);
     });
 };
@@ -14195,6 +14608,9 @@ const deserializeAws_queryClusterNodesList = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterNode(entry, context);
     });
 };
@@ -14385,6 +14801,9 @@ const deserializeAws_queryClusterParameterGroupStatusList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterParameterGroupStatus(entry, context);
     });
 };
@@ -14414,6 +14833,9 @@ const deserializeAws_queryClusterParameterStatusList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterParameterStatus(entry, context);
     });
 };
@@ -14506,6 +14928,9 @@ const deserializeAws_queryClusterSecurityGroupMembershipList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterSecurityGroupMembership(entry, context);
     });
 };
@@ -14565,6 +14990,9 @@ const deserializeAws_queryClusterSecurityGroups = (output: any, context: __Serde
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterSecurityGroup(entry, context);
     });
 };
@@ -14751,6 +15179,9 @@ const deserializeAws_queryClusterSubnetGroups = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterSubnetGroup(entry, context);
     });
 };
@@ -14790,6 +15221,9 @@ const deserializeAws_queryClusterVersionList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterVersion(entry, context);
     });
 };
@@ -15050,6 +15484,9 @@ const deserializeAws_queryDataShareAssociationList = (output: any, context: __Se
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDataShareAssociation(entry, context);
     });
 };
@@ -15058,6 +15495,9 @@ const deserializeAws_queryDataShareList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDataShare(entry, context);
     });
 };
@@ -15148,6 +15588,9 @@ const deserializeAws_queryDeferredMaintenanceWindowsList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDeferredMaintenanceWindow(entry, context);
     });
 };
@@ -15429,6 +15872,9 @@ const deserializeAws_queryEC2SecurityGroupList = (output: any, context: __SerdeC
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEC2SecurityGroup(entry, context);
     });
 };
@@ -15451,6 +15897,9 @@ const deserializeAws_queryEligibleTracksToUpdateList = (output: any, context: __
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryUpdateTarget(entry, context);
     });
 };
@@ -15549,6 +15998,9 @@ const deserializeAws_queryEndpointAccesses = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEndpointAccess(entry, context);
     });
 };
@@ -15687,6 +16139,9 @@ const deserializeAws_queryEndpointAuthorizations = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEndpointAuthorization(entry, context);
     });
 };
@@ -15783,6 +16238,9 @@ const deserializeAws_queryEventCategoriesList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -15810,6 +16268,9 @@ const deserializeAws_queryEventCategoriesMapList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEventCategoriesMap(entry, context);
     });
 };
@@ -15863,6 +16324,9 @@ const deserializeAws_queryEventInfoMapList = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEventInfoMap(entry, context);
     });
 };
@@ -15871,6 +16335,9 @@ const deserializeAws_queryEventList = (output: any, context: __SerdeContext): Ev
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEvent(entry, context);
     });
 };
@@ -15973,6 +16440,9 @@ const deserializeAws_queryEventSubscriptionsList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEventSubscription(entry, context);
     });
 };
@@ -16089,6 +16559,9 @@ const deserializeAws_queryHsmClientCertificateList = (output: any, context: __Se
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryHsmClientCertificate(entry, context);
     });
 };
@@ -16189,6 +16662,9 @@ const deserializeAws_queryHsmConfigurationList = (output: any, context: __SerdeC
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryHsmConfiguration(entry, context);
     });
 };
@@ -16263,6 +16739,9 @@ const deserializeAws_queryImportTablesCompleted = (output: any, context: __Serde
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -16271,6 +16750,9 @@ const deserializeAws_queryImportTablesInProgress = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -16279,6 +16761,9 @@ const deserializeAws_queryImportTablesNotStarted = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -16722,6 +17207,9 @@ const deserializeAws_queryIPRangeList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryIPRange(entry, context);
     });
 };
@@ -16783,6 +17271,9 @@ const deserializeAws_queryLogTypeList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -16964,6 +17455,9 @@ const deserializeAws_queryNetworkInterfaceList = (output: any, context: __SerdeC
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryNetworkInterface(entry, context);
     });
 };
@@ -16997,6 +17491,9 @@ const deserializeAws_queryNodeConfigurationOptionList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryNodeConfigurationOption(entry, context);
     });
 };
@@ -17089,6 +17586,9 @@ const deserializeAws_queryOrderableClusterOptionsList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryOrderableClusterOption(entry, context);
     });
 };
@@ -17164,6 +17664,9 @@ const deserializeAws_queryParameterGroupList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryClusterParameterGroup(entry, context);
     });
 };
@@ -17172,6 +17675,9 @@ const deserializeAws_queryParametersList = (output: any, context: __SerdeContext
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryParameter(entry, context);
     });
 };
@@ -17213,6 +17719,9 @@ const deserializeAws_queryPartnerIntegrationInfoList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryPartnerIntegrationInfo(entry, context);
     });
 };
@@ -17268,6 +17777,9 @@ const deserializeAws_queryPendingActionsList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -17365,6 +17877,9 @@ const deserializeAws_queryRecurringChargeList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryRecurringCharge(entry, context);
     });
 };
@@ -17489,6 +18004,9 @@ const deserializeAws_queryReservedNodeConfigurationOptionList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryReservedNodeConfigurationOption(entry, context);
     });
 };
@@ -17558,6 +18076,9 @@ const deserializeAws_queryReservedNodeExchangeStatusList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryReservedNodeExchangeStatus(entry, context);
     });
 };
@@ -17566,6 +18087,9 @@ const deserializeAws_queryReservedNodeList = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryReservedNode(entry, context);
     });
 };
@@ -17634,6 +18158,9 @@ const deserializeAws_queryReservedNodeOfferingList = (output: any, context: __Se
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryReservedNodeOffering(entry, context);
     });
 };
@@ -17885,6 +18412,9 @@ const deserializeAws_queryRestorableNodeTypeList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -17993,6 +18523,9 @@ const deserializeAws_queryRevisionTargetsList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryRevisionTarget(entry, context);
     });
 };
@@ -18103,6 +18636,9 @@ const deserializeAws_queryScheduledActionList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryScheduledAction(entry, context);
     });
 };
@@ -18156,6 +18692,9 @@ const deserializeAws_queryScheduledActionTimeList = (output: any, context: __Ser
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectNonNull(__parseRfc3339DateTime(entry));
     });
 };
@@ -18195,6 +18734,9 @@ const deserializeAws_queryScheduleDefinitionList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -18216,6 +18758,9 @@ const deserializeAws_queryScheduledSnapshotTimeList = (output: any, context: __S
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectNonNull(__parseRfc3339DateTime(entry));
     });
 };
@@ -18457,6 +19002,9 @@ const deserializeAws_querySnapshotCopyGrantList = (output: any, context: __Serde
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySnapshotCopyGrant(entry, context);
     });
 };
@@ -18538,6 +19086,9 @@ const deserializeAws_querySnapshotIdentifierList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -18546,6 +19097,9 @@ const deserializeAws_querySnapshotList = (output: any, context: __SerdeContext):
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySnapshot(entry, context);
     });
 };
@@ -18643,6 +19197,9 @@ const deserializeAws_querySnapshotScheduleList = (output: any, context: __SerdeC
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySnapshotSchedule(entry, context);
     });
 };
@@ -18723,6 +19280,9 @@ const deserializeAws_querySourceIdsList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -18769,6 +19329,9 @@ const deserializeAws_querySubnetList = (output: any, context: __SerdeContext): S
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySubnet(entry, context);
     });
 };
@@ -18852,6 +19415,9 @@ const deserializeAws_querySupportedOperationList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySupportedOperation(entry, context);
     });
 };
@@ -18870,6 +19436,9 @@ const deserializeAws_querySupportedPlatformsList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySupportedPlatform(entry, context);
     });
 };
@@ -18963,6 +19532,9 @@ const deserializeAws_queryTableRestoreStatusList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryTableRestoreStatus(entry, context);
     });
 };
@@ -19028,6 +19600,9 @@ const deserializeAws_queryTaggedResourceList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryTaggedResource(entry, context);
     });
 };
@@ -19068,6 +19643,9 @@ const deserializeAws_queryTagList = (output: any, context: __SerdeContext): Tag[
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryTag(entry, context);
     });
 };
@@ -19076,6 +19654,9 @@ const deserializeAws_queryTrackList = (output: any, context: __SerdeContext): Ma
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryMaintenanceTrack(entry, context);
     });
 };
@@ -19273,6 +19854,9 @@ const deserializeAws_queryUsageLimits = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryUsageLimit(entry, context);
     });
 };
@@ -19307,6 +19891,9 @@ const deserializeAws_queryVpcEndpointsList = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryVpcEndpoint(entry, context);
     });
 };
@@ -19315,6 +19902,9 @@ const deserializeAws_queryVpcIdentifierList = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -19343,6 +19933,9 @@ const deserializeAws_queryVpcSecurityGroupMembershipList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryVpcSecurityGroupMembership(entry, context);
     });
 };

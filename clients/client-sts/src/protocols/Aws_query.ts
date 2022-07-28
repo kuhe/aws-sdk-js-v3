@@ -8,7 +8,6 @@ import {
   getValueFromTextNode as __getValueFromTextNode,
   parseRfc3339DateTime as __parseRfc3339DateTime,
   strictParseInt32 as __strictParseInt32,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -219,6 +218,7 @@ const deserializeAws_queryAssumeRoleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ExpiredTokenException":
@@ -235,12 +235,14 @@ const deserializeAws_queryAssumeRoleCommandError = async (
       throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -269,6 +271,7 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ExpiredTokenException":
@@ -291,12 +294,14 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (
       throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -325,6 +330,7 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ExpiredTokenException":
@@ -350,12 +356,14 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (
       throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -384,6 +392,7 @@ const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidAuthorizationMessageException":
@@ -391,12 +400,14 @@ const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (
       throw await deserializeAws_queryInvalidAuthorizationMessageExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -425,14 +436,20 @@ const deserializeAws_queryGetAccessKeyInfoCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryGetCallerIdentityCommand = async (
@@ -460,14 +477,20 @@ const deserializeAws_queryGetCallerIdentityCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryGetFederationTokenCommand = async (
@@ -495,6 +518,7 @@ const deserializeAws_queryGetFederationTokenCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "MalformedPolicyDocumentException":
@@ -508,12 +532,14 @@ const deserializeAws_queryGetFederationTokenCommandError = async (
       throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -542,6 +568,7 @@ const deserializeAws_queryGetSessionTokenCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "RegionDisabledException":
@@ -549,12 +576,14 @@ const deserializeAws_queryGetSessionTokenCommandError = async (
       throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -664,49 +693,49 @@ const deserializeAws_queryRegionDisabledExceptionResponse = async (
 
 const serializeAws_queryAssumeRoleRequest = (input: AssumeRoleRequest, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.RoleArn != null) {
+  if (input.RoleArn !== undefined && input.RoleArn !== null) {
     entries["RoleArn"] = input.RoleArn;
   }
-  if (input.RoleSessionName != null) {
+  if (input.RoleSessionName !== undefined && input.RoleSessionName !== null) {
     entries["RoleSessionName"] = input.RoleSessionName;
   }
-  if (input.PolicyArns != null) {
+  if (input.PolicyArns !== undefined && input.PolicyArns !== null) {
     const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `PolicyArns.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Policy != null) {
+  if (input.Policy !== undefined && input.Policy !== null) {
     entries["Policy"] = input.Policy;
   }
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_querytagListType(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.TransitiveTagKeys != null) {
+  if (input.TransitiveTagKeys !== undefined && input.TransitiveTagKeys !== null) {
     const memberEntries = serializeAws_querytagKeyListType(input.TransitiveTagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TransitiveTagKeys.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ExternalId != null) {
+  if (input.ExternalId !== undefined && input.ExternalId !== null) {
     entries["ExternalId"] = input.ExternalId;
   }
-  if (input.SerialNumber != null) {
+  if (input.SerialNumber !== undefined && input.SerialNumber !== null) {
     entries["SerialNumber"] = input.SerialNumber;
   }
-  if (input.TokenCode != null) {
+  if (input.TokenCode !== undefined && input.TokenCode !== null) {
     entries["TokenCode"] = input.TokenCode;
   }
-  if (input.SourceIdentity != null) {
+  if (input.SourceIdentity !== undefined && input.SourceIdentity !== null) {
     entries["SourceIdentity"] = input.SourceIdentity;
   }
   return entries;
@@ -717,26 +746,26 @@ const serializeAws_queryAssumeRoleWithSAMLRequest = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.RoleArn != null) {
+  if (input.RoleArn !== undefined && input.RoleArn !== null) {
     entries["RoleArn"] = input.RoleArn;
   }
-  if (input.PrincipalArn != null) {
+  if (input.PrincipalArn !== undefined && input.PrincipalArn !== null) {
     entries["PrincipalArn"] = input.PrincipalArn;
   }
-  if (input.SAMLAssertion != null) {
+  if (input.SAMLAssertion !== undefined && input.SAMLAssertion !== null) {
     entries["SAMLAssertion"] = input.SAMLAssertion;
   }
-  if (input.PolicyArns != null) {
+  if (input.PolicyArns !== undefined && input.PolicyArns !== null) {
     const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `PolicyArns.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Policy != null) {
+  if (input.Policy !== undefined && input.Policy !== null) {
     entries["Policy"] = input.Policy;
   }
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
   return entries;
@@ -747,29 +776,29 @@ const serializeAws_queryAssumeRoleWithWebIdentityRequest = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.RoleArn != null) {
+  if (input.RoleArn !== undefined && input.RoleArn !== null) {
     entries["RoleArn"] = input.RoleArn;
   }
-  if (input.RoleSessionName != null) {
+  if (input.RoleSessionName !== undefined && input.RoleSessionName !== null) {
     entries["RoleSessionName"] = input.RoleSessionName;
   }
-  if (input.WebIdentityToken != null) {
+  if (input.WebIdentityToken !== undefined && input.WebIdentityToken !== null) {
     entries["WebIdentityToken"] = input.WebIdentityToken;
   }
-  if (input.ProviderId != null) {
+  if (input.ProviderId !== undefined && input.ProviderId !== null) {
     entries["ProviderId"] = input.ProviderId;
   }
-  if (input.PolicyArns != null) {
+  if (input.PolicyArns !== undefined && input.PolicyArns !== null) {
     const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `PolicyArns.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Policy != null) {
+  if (input.Policy !== undefined && input.Policy !== null) {
     entries["Policy"] = input.Policy;
   }
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
   return entries;
@@ -780,7 +809,7 @@ const serializeAws_queryDecodeAuthorizationMessageRequest = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.EncodedMessage != null) {
+  if (input.EncodedMessage !== undefined && input.EncodedMessage !== null) {
     entries["EncodedMessage"] = input.EncodedMessage;
   }
   return entries;
@@ -788,7 +817,7 @@ const serializeAws_queryDecodeAuthorizationMessageRequest = (
 
 const serializeAws_queryGetAccessKeyInfoRequest = (input: GetAccessKeyInfoRequest, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AccessKeyId != null) {
+  if (input.AccessKeyId !== undefined && input.AccessKeyId !== null) {
     entries["AccessKeyId"] = input.AccessKeyId;
   }
   return entries;
@@ -804,23 +833,23 @@ const serializeAws_queryGetFederationTokenRequest = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.Policy != null) {
+  if (input.Policy !== undefined && input.Policy !== null) {
     entries["Policy"] = input.Policy;
   }
-  if (input.PolicyArns != null) {
+  if (input.PolicyArns !== undefined && input.PolicyArns !== null) {
     const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `PolicyArns.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_querytagListType(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -832,13 +861,13 @@ const serializeAws_queryGetFederationTokenRequest = (
 
 const serializeAws_queryGetSessionTokenRequest = (input: GetSessionTokenRequest, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DurationSeconds != null) {
+  if (input.DurationSeconds !== undefined && input.DurationSeconds !== null) {
     entries["DurationSeconds"] = input.DurationSeconds;
   }
-  if (input.SerialNumber != null) {
+  if (input.SerialNumber !== undefined && input.SerialNumber !== null) {
     entries["SerialNumber"] = input.SerialNumber;
   }
-  if (input.TokenCode != null) {
+  if (input.TokenCode !== undefined && input.TokenCode !== null) {
     entries["TokenCode"] = input.TokenCode;
   }
   return entries;
@@ -862,7 +891,7 @@ const serializeAws_querypolicyDescriptorListType = (input: PolicyDescriptorType[
 
 const serializeAws_queryPolicyDescriptorType = (input: PolicyDescriptorType, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.arn != null) {
+  if (input.arn !== undefined && input.arn !== null) {
     entries["arn"] = input.arn;
   }
   return entries;
@@ -870,10 +899,10 @@ const serializeAws_queryPolicyDescriptorType = (input: PolicyDescriptorType, con
 
 const serializeAws_queryTag = (input: Tag, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Key != null) {
+  if (input.Key !== undefined && input.Key !== null) {
     entries["Key"] = input.Key;
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = input.Value;
   }
   return entries;

@@ -6,9 +6,7 @@ import {
   expectNonNull as __expectNonNull,
   expectObject as __expectObject,
   expectString as __expectString,
-  map as __map,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
+  extendedEncodeURIComponent as __extendedEncodeURIComponent,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -36,25 +34,31 @@ export const serializeAws_restJson1InvokeEndpointCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
-    "content-type": input.ContentType! || "application/octet-stream",
-    accept: input.Accept!,
-    "x-amzn-sagemaker-custom-attributes": input.CustomAttributes!,
-    "x-amzn-sagemaker-target-model": input.TargetModel!,
-    "x-amzn-sagemaker-target-variant": input.TargetVariant!,
-    "x-amzn-sagemaker-target-container-hostname": input.TargetContainerHostname!,
-    "x-amzn-sagemaker-inference-id": input.InferenceId!,
-  });
+  const headers: any = {
+    "content-type": "application/octet-stream",
+    ...(isSerializableHeaderValue(input.ContentType) && { "content-type": input.ContentType! }),
+    ...(isSerializableHeaderValue(input.Accept) && { accept: input.Accept! }),
+    ...(isSerializableHeaderValue(input.CustomAttributes) && {
+      "x-amzn-sagemaker-custom-attributes": input.CustomAttributes!,
+    }),
+    ...(isSerializableHeaderValue(input.TargetModel) && { "x-amzn-sagemaker-target-model": input.TargetModel! }),
+    ...(isSerializableHeaderValue(input.TargetVariant) && { "x-amzn-sagemaker-target-variant": input.TargetVariant! }),
+    ...(isSerializableHeaderValue(input.TargetContainerHostname) && {
+      "x-amzn-sagemaker-target-container-hostname": input.TargetContainerHostname!,
+    }),
+    ...(isSerializableHeaderValue(input.InferenceId) && { "x-amzn-sagemaker-inference-id": input.InferenceId! }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/endpoints/{EndpointName}/invocations";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "EndpointName",
-    () => input.EndpointName!,
-    "{EndpointName}",
-    false
-  );
+  if (input.EndpointName !== undefined) {
+    const labelValue: string = input.EndpointName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: EndpointName.");
+    }
+    resolvedPath = resolvedPath.replace("{EndpointName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: EndpointName.");
+  }
   let body: any;
   if (input.Body !== undefined) {
     body = input.Body;
@@ -75,28 +79,30 @@ export const serializeAws_restJson1InvokeEndpointAsyncCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
-    "x-amzn-sagemaker-content-type": input.ContentType!,
-    "x-amzn-sagemaker-accept": input.Accept!,
-    "x-amzn-sagemaker-custom-attributes": input.CustomAttributes!,
-    "x-amzn-sagemaker-inference-id": input.InferenceId!,
-    "x-amzn-sagemaker-inputlocation": input.InputLocation!,
-    "x-amzn-sagemaker-requestttlseconds": [
-      () => isSerializableHeaderValue(input.RequestTTLSeconds),
-      () => input.RequestTTLSeconds!.toString(),
-    ],
-  });
+  const headers: any = {
+    ...(isSerializableHeaderValue(input.ContentType) && { "x-amzn-sagemaker-content-type": input.ContentType! }),
+    ...(isSerializableHeaderValue(input.Accept) && { "x-amzn-sagemaker-accept": input.Accept! }),
+    ...(isSerializableHeaderValue(input.CustomAttributes) && {
+      "x-amzn-sagemaker-custom-attributes": input.CustomAttributes!,
+    }),
+    ...(isSerializableHeaderValue(input.InferenceId) && { "x-amzn-sagemaker-inference-id": input.InferenceId! }),
+    ...(isSerializableHeaderValue(input.InputLocation) && { "x-amzn-sagemaker-inputlocation": input.InputLocation! }),
+    ...(isSerializableHeaderValue(input.RequestTTLSeconds) && {
+      "x-amzn-sagemaker-requestttlseconds": input.RequestTTLSeconds!.toString(),
+    }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/endpoints/{EndpointName}/async-invocations";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "EndpointName",
-    () => input.EndpointName!,
-    "{EndpointName}",
-    false
-  );
+  if (input.EndpointName !== undefined) {
+    const labelValue: string = input.EndpointName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: EndpointName.");
+    }
+    resolvedPath = resolvedPath.replace("{EndpointName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: EndpointName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -116,15 +122,25 @@ export const deserializeAws_restJson1InvokeEndpointCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1InvokeEndpointCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: InvokeEndpointCommandOutput = {
     $metadata: deserializeMetadata(output),
-    ContentType: [, output.headers["content-type"]],
-    InvokedProductionVariant: [, output.headers["x-amzn-invoked-production-variant"]],
-    CustomAttributes: [, output.headers["x-amzn-sagemaker-custom-attributes"]],
-  });
+    Body: undefined,
+    ContentType: undefined,
+    CustomAttributes: undefined,
+    InvokedProductionVariant: undefined,
+  };
+  if (output.headers["content-type"] !== undefined) {
+    contents.ContentType = output.headers["content-type"];
+  }
+  if (output.headers["x-amzn-invoked-production-variant"] !== undefined) {
+    contents.InvokedProductionVariant = output.headers["x-amzn-invoked-production-variant"];
+  }
+  if (output.headers["x-amzn-sagemaker-custom-attributes"] !== undefined) {
+    contents.CustomAttributes = output.headers["x-amzn-sagemaker-custom-attributes"];
+  }
   const data: any = await collectBody(output.body, context);
   contents.Body = data;
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1InvokeEndpointCommandError = async (
@@ -135,6 +151,7 @@ const deserializeAws_restJson1InvokeEndpointCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalDependencyException":
@@ -157,12 +174,14 @@ const deserializeAws_restJson1InvokeEndpointCommandError = async (
       throw await deserializeAws_restJson1ValidationErrorResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -173,15 +192,19 @@ export const deserializeAws_restJson1InvokeEndpointAsyncCommand = async (
   if (output.statusCode !== 202 && output.statusCode >= 300) {
     return deserializeAws_restJson1InvokeEndpointAsyncCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: InvokeEndpointAsyncCommandOutput = {
     $metadata: deserializeMetadata(output),
-    OutputLocation: [, output.headers["x-amzn-sagemaker-outputlocation"]],
-  });
+    InferenceId: undefined,
+    OutputLocation: undefined,
+  };
+  if (output.headers["x-amzn-sagemaker-outputlocation"] !== undefined) {
+    contents.OutputLocation = output.headers["x-amzn-sagemaker-outputlocation"];
+  }
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.InferenceId != null) {
+  if (data.InferenceId !== undefined && data.InferenceId !== null) {
     contents.InferenceId = __expectString(data.InferenceId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1InvokeEndpointAsyncCommandError = async (
@@ -192,6 +215,7 @@ const deserializeAws_restJson1InvokeEndpointAsyncCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalFailure":
@@ -205,23 +229,24 @@ const deserializeAws_restJson1InvokeEndpointAsyncCommandError = async (
       throw await deserializeAws_restJson1ValidationErrorResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1InternalDependencyExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalDependencyException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InternalDependencyException({
@@ -235,9 +260,9 @@ const deserializeAws_restJson1InternalFailureResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalFailure> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InternalFailure({
@@ -251,18 +276,18 @@ const deserializeAws_restJson1ModelErrorResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ModelError> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.LogStreamArn != null) {
+  if (data.LogStreamArn !== undefined && data.LogStreamArn !== null) {
     contents.LogStreamArn = __expectString(data.LogStreamArn);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.OriginalMessage != null) {
+  if (data.OriginalMessage !== undefined && data.OriginalMessage !== null) {
     contents.OriginalMessage = __expectString(data.OriginalMessage);
   }
-  if (data.OriginalStatusCode != null) {
+  if (data.OriginalStatusCode !== undefined && data.OriginalStatusCode !== null) {
     contents.OriginalStatusCode = __expectInt32(data.OriginalStatusCode);
   }
   const exception = new ModelError({
@@ -276,9 +301,9 @@ const deserializeAws_restJson1ModelNotReadyExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ModelNotReadyException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ModelNotReadyException({
@@ -292,9 +317,9 @@ const deserializeAws_restJson1ServiceUnavailableResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceUnavailable> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ServiceUnavailable({
@@ -308,9 +333,9 @@ const deserializeAws_restJson1ValidationErrorResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ValidationError> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ValidationError({

@@ -7,9 +7,7 @@ import {
   expectNumber as __expectNumber,
   expectObject as __expectObject,
   expectString as __expectString,
-  map as __map,
   parseEpochTimestamp as __parseEpochTimestamp,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -256,13 +254,17 @@ export const deserializeAws_restJson1GetClipCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetClipCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetClipCommandOutput = {
     $metadata: deserializeMetadata(output),
-    ContentType: [, output.headers["content-type"]],
-  });
+    ContentType: undefined,
+    Payload: undefined,
+  };
+  if (output.headers["content-type"] !== undefined) {
+    contents.ContentType = output.headers["content-type"];
+  }
   const data: any = output.body;
   contents.Payload = data;
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetClipCommandError = async (
@@ -273,6 +275,7 @@ const deserializeAws_restJson1GetClipCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -304,12 +307,14 @@ const deserializeAws_restJson1GetClipCommandError = async (
       throw await deserializeAws_restJson1UnsupportedStreamMediaTypeExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -320,14 +325,15 @@ export const deserializeAws_restJson1GetDASHStreamingSessionURLCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetDASHStreamingSessionURLCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetDASHStreamingSessionURLCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    DASHStreamingSessionURL: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.DASHStreamingSessionURL != null) {
+  if (data.DASHStreamingSessionURL !== undefined && data.DASHStreamingSessionURL !== null) {
     contents.DASHStreamingSessionURL = __expectString(data.DASHStreamingSessionURL);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetDASHStreamingSessionURLCommandError = async (
@@ -338,6 +344,7 @@ const deserializeAws_restJson1GetDASHStreamingSessionURLCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -366,12 +373,14 @@ const deserializeAws_restJson1GetDASHStreamingSessionURLCommandError = async (
       throw await deserializeAws_restJson1UnsupportedStreamMediaTypeExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -382,14 +391,15 @@ export const deserializeAws_restJson1GetHLSStreamingSessionURLCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetHLSStreamingSessionURLCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetHLSStreamingSessionURLCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    HLSStreamingSessionURL: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.HLSStreamingSessionURL != null) {
+  if (data.HLSStreamingSessionURL !== undefined && data.HLSStreamingSessionURL !== null) {
     contents.HLSStreamingSessionURL = __expectString(data.HLSStreamingSessionURL);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetHLSStreamingSessionURLCommandError = async (
@@ -400,6 +410,7 @@ const deserializeAws_restJson1GetHLSStreamingSessionURLCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -428,12 +439,14 @@ const deserializeAws_restJson1GetHLSStreamingSessionURLCommandError = async (
       throw await deserializeAws_restJson1UnsupportedStreamMediaTypeExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -444,17 +457,19 @@ export const deserializeAws_restJson1GetImagesCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetImagesCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetImagesCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Images: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Images != null) {
+  if (data.Images !== undefined && data.Images !== null) {
     contents.Images = deserializeAws_restJson1Images(data.Images, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetImagesCommandError = async (
@@ -465,6 +480,7 @@ const deserializeAws_restJson1GetImagesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -481,12 +497,14 @@ const deserializeAws_restJson1GetImagesCommandError = async (
       throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -497,13 +515,17 @@ export const deserializeAws_restJson1GetMediaForFragmentListCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetMediaForFragmentListCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetMediaForFragmentListCommandOutput = {
     $metadata: deserializeMetadata(output),
-    ContentType: [, output.headers["content-type"]],
-  });
+    ContentType: undefined,
+    Payload: undefined,
+  };
+  if (output.headers["content-type"] !== undefined) {
+    contents.ContentType = output.headers["content-type"];
+  }
   const data: any = output.body;
   contents.Payload = data;
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetMediaForFragmentListCommandError = async (
@@ -514,6 +536,7 @@ const deserializeAws_restJson1GetMediaForFragmentListCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -530,12 +553,14 @@ const deserializeAws_restJson1GetMediaForFragmentListCommandError = async (
       throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -546,17 +571,19 @@ export const deserializeAws_restJson1ListFragmentsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListFragmentsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListFragmentsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Fragments: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Fragments != null) {
+  if (data.Fragments !== undefined && data.Fragments !== null) {
     contents.Fragments = deserializeAws_restJson1FragmentList(data.Fragments, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListFragmentsCommandError = async (
@@ -567,6 +594,7 @@ const deserializeAws_restJson1ListFragmentsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ClientLimitExceededException":
@@ -583,23 +611,24 @@ const deserializeAws_restJson1ListFragmentsCommandError = async (
       throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1ClientLimitExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ClientLimitExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ClientLimitExceededException({
@@ -613,9 +642,9 @@ const deserializeAws_restJson1InvalidArgumentExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidArgumentException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InvalidArgumentException({
@@ -629,9 +658,9 @@ const deserializeAws_restJson1InvalidCodecPrivateDataExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidCodecPrivateDataException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InvalidCodecPrivateDataException({
@@ -645,9 +674,9 @@ const deserializeAws_restJson1InvalidMediaFrameExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidMediaFrameException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InvalidMediaFrameException({
@@ -661,9 +690,9 @@ const deserializeAws_restJson1MissingCodecPrivateDataExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<MissingCodecPrivateDataException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new MissingCodecPrivateDataException({
@@ -677,9 +706,9 @@ const deserializeAws_restJson1NoDataRetentionExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<NoDataRetentionException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new NoDataRetentionException({
@@ -693,9 +722,9 @@ const deserializeAws_restJson1NotAuthorizedExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<NotAuthorizedException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new NotAuthorizedException({
@@ -709,9 +738,9 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ResourceNotFoundException({
@@ -725,9 +754,9 @@ const deserializeAws_restJson1UnsupportedStreamMediaTypeExceptionResponse = asyn
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<UnsupportedStreamMediaTypeException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new UnsupportedStreamMediaTypeException({
@@ -785,6 +814,9 @@ const serializeAws_restJson1FragmentNumberList = (input: string[], context: __Se
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };

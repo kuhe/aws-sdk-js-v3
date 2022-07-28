@@ -7,10 +7,7 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
   parseEpochTimestamp as __parseEpochTimestamp,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -46,14 +43,15 @@ export const serializeAws_restJson1DeleteHumanLoopCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/human-loops/{HumanLoopName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "HumanLoopName",
-    () => input.HumanLoopName!,
-    "{HumanLoopName}",
-    false
-  );
+  if (input.HumanLoopName !== undefined) {
+    const labelValue: string = input.HumanLoopName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: HumanLoopName.");
+    }
+    resolvedPath = resolvedPath.replace("{HumanLoopName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: HumanLoopName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -74,14 +72,15 @@ export const serializeAws_restJson1DescribeHumanLoopCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/human-loops/{HumanLoopName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "HumanLoopName",
-    () => input.HumanLoopName!,
-    "{HumanLoopName}",
-    false
-  );
+  if (input.HumanLoopName !== undefined) {
+    const labelValue: string = input.HumanLoopName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: HumanLoopName.");
+    }
+    resolvedPath = resolvedPath.replace("{HumanLoopName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: HumanLoopName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -101,20 +100,18 @@ export const serializeAws_restJson1ListHumanLoopsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/human-loops";
-  const query: any = map({
-    CreationTimeAfter: [
-      () => input.CreationTimeAfter !== void 0,
-      () => (input.CreationTimeAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    CreationTimeBefore: [
-      () => input.CreationTimeBefore !== void 0,
-      () => (input.CreationTimeBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    FlowDefinitionArn: [, input.FlowDefinitionArn!],
-    SortOrder: [, input.SortOrder!],
-    NextToken: [, input.NextToken!],
-    MaxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  const query: any = {
+    ...(input.CreationTimeAfter !== undefined && {
+      CreationTimeAfter: (input.CreationTimeAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.CreationTimeBefore !== undefined && {
+      CreationTimeBefore: (input.CreationTimeBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.FlowDefinitionArn !== undefined && { FlowDefinitionArn: input.FlowDefinitionArn }),
+    ...(input.SortOrder !== undefined && { SortOrder: input.SortOrder }),
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { MaxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -190,11 +187,11 @@ export const deserializeAws_restJson1DeleteHumanLoopCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteHumanLoopCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteHumanLoopCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteHumanLoopCommandError = async (
@@ -205,6 +202,7 @@ const deserializeAws_restJson1DeleteHumanLoopCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -221,12 +219,14 @@ const deserializeAws_restJson1DeleteHumanLoopCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -237,35 +237,43 @@ export const deserializeAws_restJson1DescribeHumanLoopCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeHumanLoopCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeHumanLoopCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationTime: undefined,
+    FailureCode: undefined,
+    FailureReason: undefined,
+    FlowDefinitionArn: undefined,
+    HumanLoopArn: undefined,
+    HumanLoopName: undefined,
+    HumanLoopOutput: undefined,
+    HumanLoopStatus: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationTime != null) {
+  if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationTime)));
   }
-  if (data.FailureCode != null) {
+  if (data.FailureCode !== undefined && data.FailureCode !== null) {
     contents.FailureCode = __expectString(data.FailureCode);
   }
-  if (data.FailureReason != null) {
+  if (data.FailureReason !== undefined && data.FailureReason !== null) {
     contents.FailureReason = __expectString(data.FailureReason);
   }
-  if (data.FlowDefinitionArn != null) {
+  if (data.FlowDefinitionArn !== undefined && data.FlowDefinitionArn !== null) {
     contents.FlowDefinitionArn = __expectString(data.FlowDefinitionArn);
   }
-  if (data.HumanLoopArn != null) {
+  if (data.HumanLoopArn !== undefined && data.HumanLoopArn !== null) {
     contents.HumanLoopArn = __expectString(data.HumanLoopArn);
   }
-  if (data.HumanLoopName != null) {
+  if (data.HumanLoopName !== undefined && data.HumanLoopName !== null) {
     contents.HumanLoopName = __expectString(data.HumanLoopName);
   }
-  if (data.HumanLoopOutput != null) {
+  if (data.HumanLoopOutput !== undefined && data.HumanLoopOutput !== null) {
     contents.HumanLoopOutput = deserializeAws_restJson1HumanLoopOutput(data.HumanLoopOutput, context);
   }
-  if (data.HumanLoopStatus != null) {
+  if (data.HumanLoopStatus !== undefined && data.HumanLoopStatus !== null) {
     contents.HumanLoopStatus = __expectString(data.HumanLoopStatus);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeHumanLoopCommandError = async (
@@ -276,6 +284,7 @@ const deserializeAws_restJson1DescribeHumanLoopCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -292,12 +301,14 @@ const deserializeAws_restJson1DescribeHumanLoopCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -308,17 +319,19 @@ export const deserializeAws_restJson1ListHumanLoopsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListHumanLoopsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListHumanLoopsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    HumanLoopSummaries: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.HumanLoopSummaries != null) {
+  if (data.HumanLoopSummaries !== undefined && data.HumanLoopSummaries !== null) {
     contents.HumanLoopSummaries = deserializeAws_restJson1HumanLoopSummaries(data.HumanLoopSummaries, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListHumanLoopsCommandError = async (
@@ -329,6 +342,7 @@ const deserializeAws_restJson1ListHumanLoopsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -345,12 +359,14 @@ const deserializeAws_restJson1ListHumanLoopsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -361,14 +377,15 @@ export const deserializeAws_restJson1StartHumanLoopCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartHumanLoopCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartHumanLoopCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    HumanLoopArn: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.HumanLoopArn != null) {
+  if (data.HumanLoopArn !== undefined && data.HumanLoopArn !== null) {
     contents.HumanLoopArn = __expectString(data.HumanLoopArn);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartHumanLoopCommandError = async (
@@ -379,6 +396,7 @@ const deserializeAws_restJson1StartHumanLoopCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConflictException":
@@ -398,12 +416,14 @@ const deserializeAws_restJson1StartHumanLoopCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -414,11 +434,11 @@ export const deserializeAws_restJson1StopHumanLoopCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StopHumanLoopCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StopHumanLoopCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StopHumanLoopCommandError = async (
@@ -429,6 +449,7 @@ const deserializeAws_restJson1StopHumanLoopCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerException":
@@ -445,23 +466,24 @@ const deserializeAws_restJson1StopHumanLoopCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1ConflictExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ConflictException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ConflictException({
@@ -475,9 +497,9 @@ const deserializeAws_restJson1InternalServerExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalServerException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new InternalServerException({
@@ -491,9 +513,9 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ResourceNotFoundException({
@@ -507,9 +529,9 @@ const deserializeAws_restJson1ServiceQuotaExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceQuotaExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ServiceQuotaExceededException({
@@ -523,9 +545,9 @@ const deserializeAws_restJson1ThrottlingExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ThrottlingException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ThrottlingException({
@@ -539,9 +561,9 @@ const deserializeAws_restJson1ValidationExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ValidationException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
   const exception = new ValidationException({
@@ -558,6 +580,9 @@ const serializeAws_restJson1ContentClassifiers = (
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };

@@ -8,11 +8,8 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
   parseEpochTimestamp as __parseEpochTimestamp,
-  resolvedPath as __resolvedPath,
   strictParseInt32 as __strictParseInt32,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -78,7 +75,15 @@ export const serializeAws_restJson1DeleteLexiconCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/lexicons/{Name}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Name", () => input.Name!, "{Name}", false);
+  if (input.Name !== undefined) {
+    const labelValue: string = input.Name;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Name.");
+    }
+    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Name.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -98,15 +103,14 @@ export const serializeAws_restJson1DescribeVoicesCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/voices";
-  const query: any = map({
-    Engine: [, input.Engine!],
-    LanguageCode: [, input.LanguageCode!],
-    IncludeAdditionalLanguageCodes: [
-      () => input.IncludeAdditionalLanguageCodes !== void 0,
-      () => input.IncludeAdditionalLanguageCodes!.toString(),
-    ],
-    NextToken: [, input.NextToken!],
-  });
+  const query: any = {
+    ...(input.Engine !== undefined && { Engine: input.Engine }),
+    ...(input.LanguageCode !== undefined && { LanguageCode: input.LanguageCode }),
+    ...(input.IncludeAdditionalLanguageCodes !== undefined && {
+      IncludeAdditionalLanguageCodes: input.IncludeAdditionalLanguageCodes.toString(),
+    }),
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -127,7 +131,15 @@ export const serializeAws_restJson1GetLexiconCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/lexicons/{Name}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Name", () => input.Name!, "{Name}", false);
+  if (input.Name !== undefined) {
+    const labelValue: string = input.Name;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Name.");
+    }
+    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Name.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -148,7 +160,15 @@ export const serializeAws_restJson1GetSpeechSynthesisTaskCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/synthesisTasks/{TaskId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "TaskId", () => input.TaskId!, "{TaskId}", false);
+  if (input.TaskId !== undefined) {
+    const labelValue: string = input.TaskId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: TaskId.");
+    }
+    resolvedPath = resolvedPath.replace("{TaskId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: TaskId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -168,9 +188,9 @@ export const serializeAws_restJson1ListLexiconsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/lexicons";
-  const query: any = map({
-    NextToken: [, input.NextToken!],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -191,11 +211,11 @@ export const serializeAws_restJson1ListSpeechSynthesisTasksCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/synthesisTasks";
-  const query: any = map({
-    MaxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    NextToken: [, input.NextToken!],
-    Status: [, input.Status!],
-  });
+  const query: any = {
+    ...(input.MaxResults !== undefined && { MaxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+    ...(input.Status !== undefined && { Status: input.Status }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -218,7 +238,15 @@ export const serializeAws_restJson1PutLexiconCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/v1/lexicons/{Name}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Name", () => input.Name!, "{Name}", false);
+  if (input.Name !== undefined) {
+    const labelValue: string = input.Name;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Name.");
+    }
+    resolvedPath = resolvedPath.replace("{Name}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Name.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Content != null && { Content: input.Content }),
@@ -316,11 +344,11 @@ export const deserializeAws_restJson1DeleteLexiconCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteLexiconCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteLexiconCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteLexiconCommandError = async (
@@ -331,6 +359,7 @@ const deserializeAws_restJson1DeleteLexiconCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "LexiconNotFoundException":
@@ -341,12 +370,14 @@ const deserializeAws_restJson1DeleteLexiconCommandError = async (
       throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -357,17 +388,19 @@ export const deserializeAws_restJson1DescribeVoicesCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeVoicesCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeVoicesCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    Voices: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.Voices != null) {
+  if (data.Voices !== undefined && data.Voices !== null) {
     contents.Voices = deserializeAws_restJson1VoiceList(data.Voices, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeVoicesCommandError = async (
@@ -378,6 +411,7 @@ const deserializeAws_restJson1DescribeVoicesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextTokenException":
@@ -388,12 +422,14 @@ const deserializeAws_restJson1DescribeVoicesCommandError = async (
       throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -404,17 +440,19 @@ export const deserializeAws_restJson1GetLexiconCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetLexiconCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetLexiconCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Lexicon: undefined,
+    LexiconAttributes: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Lexicon != null) {
+  if (data.Lexicon !== undefined && data.Lexicon !== null) {
     contents.Lexicon = deserializeAws_restJson1Lexicon(data.Lexicon, context);
   }
-  if (data.LexiconAttributes != null) {
+  if (data.LexiconAttributes !== undefined && data.LexiconAttributes !== null) {
     contents.LexiconAttributes = deserializeAws_restJson1LexiconAttributes(data.LexiconAttributes, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetLexiconCommandError = async (
@@ -425,6 +463,7 @@ const deserializeAws_restJson1GetLexiconCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "LexiconNotFoundException":
@@ -435,12 +474,14 @@ const deserializeAws_restJson1GetLexiconCommandError = async (
       throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -451,14 +492,15 @@ export const deserializeAws_restJson1GetSpeechSynthesisTaskCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetSpeechSynthesisTaskCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetSpeechSynthesisTaskCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    SynthesisTask: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.SynthesisTask != null) {
+  if (data.SynthesisTask !== undefined && data.SynthesisTask !== null) {
     contents.SynthesisTask = deserializeAws_restJson1SynthesisTask(data.SynthesisTask, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetSpeechSynthesisTaskCommandError = async (
@@ -469,6 +511,7 @@ const deserializeAws_restJson1GetSpeechSynthesisTaskCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidTaskIdException":
@@ -482,12 +525,14 @@ const deserializeAws_restJson1GetSpeechSynthesisTaskCommandError = async (
       throw await deserializeAws_restJson1SynthesisTaskNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -498,17 +543,19 @@ export const deserializeAws_restJson1ListLexiconsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListLexiconsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListLexiconsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Lexicons: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Lexicons != null) {
+  if (data.Lexicons !== undefined && data.Lexicons !== null) {
     contents.Lexicons = deserializeAws_restJson1LexiconDescriptionList(data.Lexicons, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListLexiconsCommandError = async (
@@ -519,6 +566,7 @@ const deserializeAws_restJson1ListLexiconsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextTokenException":
@@ -529,12 +577,14 @@ const deserializeAws_restJson1ListLexiconsCommandError = async (
       throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -545,17 +595,19 @@ export const deserializeAws_restJson1ListSpeechSynthesisTasksCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListSpeechSynthesisTasksCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListSpeechSynthesisTasksCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    SynthesisTasks: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.SynthesisTasks != null) {
+  if (data.SynthesisTasks !== undefined && data.SynthesisTasks !== null) {
     contents.SynthesisTasks = deserializeAws_restJson1SynthesisTasks(data.SynthesisTasks, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListSpeechSynthesisTasksCommandError = async (
@@ -566,6 +618,7 @@ const deserializeAws_restJson1ListSpeechSynthesisTasksCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidNextTokenException":
@@ -576,12 +629,14 @@ const deserializeAws_restJson1ListSpeechSynthesisTasksCommandError = async (
       throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -592,11 +647,11 @@ export const deserializeAws_restJson1PutLexiconCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1PutLexiconCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: PutLexiconCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1PutLexiconCommandError = async (
@@ -607,6 +662,7 @@ const deserializeAws_restJson1PutLexiconCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidLexiconException":
@@ -632,12 +688,14 @@ const deserializeAws_restJson1PutLexiconCommandError = async (
       throw await deserializeAws_restJson1UnsupportedPlsLanguageExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -648,14 +706,15 @@ export const deserializeAws_restJson1StartSpeechSynthesisTaskCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartSpeechSynthesisTaskCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartSpeechSynthesisTaskCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    SynthesisTask: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.SynthesisTask != null) {
+  if (data.SynthesisTask !== undefined && data.SynthesisTask !== null) {
     contents.SynthesisTask = deserializeAws_restJson1SynthesisTask(data.SynthesisTask, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartSpeechSynthesisTaskCommandError = async (
@@ -666,6 +725,7 @@ const deserializeAws_restJson1StartSpeechSynthesisTaskCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "EngineNotSupportedException":
@@ -706,12 +766,14 @@ const deserializeAws_restJson1StartSpeechSynthesisTaskCommandError = async (
       throw await deserializeAws_restJson1TextLengthExceededExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -722,17 +784,21 @@ export const deserializeAws_restJson1SynthesizeSpeechCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1SynthesizeSpeechCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: SynthesizeSpeechCommandOutput = {
     $metadata: deserializeMetadata(output),
-    ContentType: [, output.headers["content-type"]],
-    RequestCharacters: [
-      () => void 0 !== output.headers["x-amzn-requestcharacters"],
-      () => __strictParseInt32(output.headers["x-amzn-requestcharacters"]),
-    ],
-  });
+    AudioStream: undefined,
+    ContentType: undefined,
+    RequestCharacters: undefined,
+  };
+  if (output.headers["content-type"] !== undefined) {
+    contents.ContentType = output.headers["content-type"];
+  }
+  if (output.headers["x-amzn-requestcharacters"] !== undefined) {
+    contents.RequestCharacters = __strictParseInt32(output.headers["x-amzn-requestcharacters"]);
+  }
   const data: any = output.body;
   contents.AudioStream = data;
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1SynthesizeSpeechCommandError = async (
@@ -743,6 +809,7 @@ const deserializeAws_restJson1SynthesizeSpeechCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "EngineNotSupportedException":
@@ -774,23 +841,24 @@ const deserializeAws_restJson1SynthesizeSpeechCommandError = async (
       throw await deserializeAws_restJson1TextLengthExceededExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1EngineNotSupportedExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<EngineNotSupportedException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new EngineNotSupportedException({
@@ -804,9 +872,9 @@ const deserializeAws_restJson1InvalidLexiconExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidLexiconException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidLexiconException({
@@ -820,9 +888,9 @@ const deserializeAws_restJson1InvalidNextTokenExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidNextTokenException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidNextTokenException({
@@ -836,9 +904,9 @@ const deserializeAws_restJson1InvalidS3BucketExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidS3BucketException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidS3BucketException({
@@ -852,9 +920,9 @@ const deserializeAws_restJson1InvalidS3KeyExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidS3KeyException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidS3KeyException({
@@ -868,9 +936,9 @@ const deserializeAws_restJson1InvalidSampleRateExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidSampleRateException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidSampleRateException({
@@ -884,9 +952,9 @@ const deserializeAws_restJson1InvalidSnsTopicArnExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidSnsTopicArnException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidSnsTopicArnException({
@@ -900,9 +968,9 @@ const deserializeAws_restJson1InvalidSsmlExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidSsmlException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidSsmlException({
@@ -916,9 +984,9 @@ const deserializeAws_restJson1InvalidTaskIdExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidTaskIdException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidTaskIdException({
@@ -932,9 +1000,9 @@ const deserializeAws_restJson1LanguageNotSupportedExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<LanguageNotSupportedException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new LanguageNotSupportedException({
@@ -948,9 +1016,9 @@ const deserializeAws_restJson1LexiconNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<LexiconNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new LexiconNotFoundException({
@@ -964,9 +1032,9 @@ const deserializeAws_restJson1LexiconSizeExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<LexiconSizeExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new LexiconSizeExceededException({
@@ -980,9 +1048,9 @@ const deserializeAws_restJson1MarksNotSupportedForFormatExceptionResponse = asyn
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<MarksNotSupportedForFormatException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new MarksNotSupportedForFormatException({
@@ -996,9 +1064,9 @@ const deserializeAws_restJson1MaxLexemeLengthExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<MaxLexemeLengthExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new MaxLexemeLengthExceededException({
@@ -1012,9 +1080,9 @@ const deserializeAws_restJson1MaxLexiconsNumberExceededExceptionResponse = async
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<MaxLexiconsNumberExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new MaxLexiconsNumberExceededException({
@@ -1028,9 +1096,9 @@ const deserializeAws_restJson1ServiceFailureExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceFailureException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ServiceFailureException({
@@ -1044,9 +1112,9 @@ const deserializeAws_restJson1SsmlMarksNotSupportedForTextTypeExceptionResponse 
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<SsmlMarksNotSupportedForTextTypeException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new SsmlMarksNotSupportedForTextTypeException({
@@ -1060,9 +1128,9 @@ const deserializeAws_restJson1SynthesisTaskNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<SynthesisTaskNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new SynthesisTaskNotFoundException({
@@ -1076,9 +1144,9 @@ const deserializeAws_restJson1TextLengthExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<TextLengthExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new TextLengthExceededException({
@@ -1092,9 +1160,9 @@ const deserializeAws_restJson1UnsupportedPlsAlphabetExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<UnsupportedPlsAlphabetException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new UnsupportedPlsAlphabetException({
@@ -1108,9 +1176,9 @@ const deserializeAws_restJson1UnsupportedPlsLanguageExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<UnsupportedPlsLanguageException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new UnsupportedPlsLanguageException({
@@ -1124,6 +1192,9 @@ const serializeAws_restJson1LexiconNameList = (input: string[], context: __Serde
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1132,6 +1203,9 @@ const serializeAws_restJson1SpeechMarkTypeList = (input: (SpeechMarkType | strin
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };

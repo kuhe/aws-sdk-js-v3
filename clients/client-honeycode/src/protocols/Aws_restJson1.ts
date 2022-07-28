@@ -10,10 +10,7 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
   parseEpochTimestamp as __parseEpochTimestamp,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -109,8 +106,24 @@ export const serializeAws_restJson1BatchCreateTableRowsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/rows/batchcreate";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.clientRequestToken != null && { clientRequestToken: input.clientRequestToken }),
@@ -140,8 +153,24 @@ export const serializeAws_restJson1BatchDeleteTableRowsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/rows/batchdelete";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.clientRequestToken != null && { clientRequestToken: input.clientRequestToken }),
@@ -169,8 +198,24 @@ export const serializeAws_restJson1BatchUpdateTableRowsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/rows/batchupdate";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.clientRequestToken != null && { clientRequestToken: input.clientRequestToken }),
@@ -200,8 +245,24 @@ export const serializeAws_restJson1BatchUpsertTableRowsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/rows/batchupsert";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.clientRequestToken != null && { clientRequestToken: input.clientRequestToken }),
@@ -229,9 +290,33 @@ export const serializeAws_restJson1DescribeTableDataImportJobCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/import/{jobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobId", () => input.jobId!, "{jobId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
+  if (input.jobId !== undefined) {
+    const labelValue: string = input.jobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -284,17 +369,42 @@ export const serializeAws_restJson1InvokeScreenAutomationCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/apps/{appId}/screens/{screenId}/automations/{screenAutomationId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "appId", () => input.appId!, "{appId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "screenId", () => input.screenId!, "{screenId}", false);
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "screenAutomationId",
-    () => input.screenAutomationId!,
-    "{screenAutomationId}",
-    false
-  );
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.appId !== undefined) {
+    const labelValue: string = input.appId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: appId.");
+    }
+    resolvedPath = resolvedPath.replace("{appId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: appId.");
+  }
+  if (input.screenId !== undefined) {
+    const labelValue: string = input.screenId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: screenId.");
+    }
+    resolvedPath = resolvedPath.replace("{screenId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: screenId.");
+  }
+  if (input.screenAutomationId !== undefined) {
+    const labelValue: string = input.screenAutomationId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: screenAutomationId.");
+    }
+    resolvedPath = resolvedPath.replace("{screenAutomationId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: screenAutomationId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.clientRequestToken != null && { clientRequestToken: input.clientRequestToken }),
@@ -321,11 +431,27 @@ export const serializeAws_restJson1ListTableColumnsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/columns";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
-  const query: any = map({
-    nextToken: [, input.nextToken!],
-  });
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
+  const query: any = {
+    ...(input.nextToken !== undefined && { nextToken: input.nextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -350,8 +476,24 @@ export const serializeAws_restJson1ListTableRowsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/rows/list";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.maxResults != null && { maxResults: input.maxResults }),
@@ -377,11 +519,19 @@ export const serializeAws_restJson1ListTablesCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/workbooks/{workbookId}/tables";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  const query: any = map({
-    maxResults: [() => input.maxResults !== void 0, () => input.maxResults!.toString()],
-    nextToken: [, input.nextToken!],
-  });
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  const query: any = {
+    ...(input.maxResults !== undefined && { maxResults: input.maxResults.toString() }),
+    ...(input.nextToken !== undefined && { nextToken: input.nextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -402,7 +552,15 @@ export const serializeAws_restJson1ListTagsForResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{resourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "resourceArn", () => input.resourceArn!, "{resourceArn}", false);
+  if (input.resourceArn !== undefined) {
+    const labelValue: string = input.resourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: resourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{resourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: resourceArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -426,8 +584,24 @@ export const serializeAws_restJson1QueryTableRowsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{tableId}/rows/query";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "tableId", () => input.tableId!, "{tableId}", false);
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.tableId !== undefined) {
+    const labelValue: string = input.tableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: tableId.");
+    }
+    resolvedPath = resolvedPath.replace("{tableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: tableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.filterFormula != null && { filterFormula: serializeAws_restJson1Filter(input.filterFormula, context) }),
@@ -456,15 +630,24 @@ export const serializeAws_restJson1StartTableDataImportJobCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/workbooks/{workbookId}/tables/{destinationTableId}/import";
-  resolvedPath = __resolvedPath(resolvedPath, input, "workbookId", () => input.workbookId!, "{workbookId}", false);
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "destinationTableId",
-    () => input.destinationTableId!,
-    "{destinationTableId}",
-    false
-  );
+  if (input.workbookId !== undefined) {
+    const labelValue: string = input.workbookId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: workbookId.");
+    }
+    resolvedPath = resolvedPath.replace("{workbookId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: workbookId.");
+  }
+  if (input.destinationTableId !== undefined) {
+    const labelValue: string = input.destinationTableId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: destinationTableId.");
+    }
+    resolvedPath = resolvedPath.replace("{destinationTableId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: destinationTableId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.clientRequestToken != null && { clientRequestToken: input.clientRequestToken }),
@@ -494,7 +677,15 @@ export const serializeAws_restJson1TagResourceCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{resourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "resourceArn", () => input.resourceArn!, "{resourceArn}", false);
+  if (input.resourceArn !== undefined) {
+    const labelValue: string = input.resourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: resourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{resourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: resourceArn.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.tags != null && { tags: serializeAws_restJson1TagsMap(input.tags, context) }),
@@ -517,10 +708,18 @@ export const serializeAws_restJson1UntagResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{resourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "resourceArn", () => input.resourceArn!, "{resourceArn}", false);
-  const query: any = map({
-    tagKeys: [() => input.tagKeys !== void 0, () => (input.tagKeys! || []).map((_entry) => _entry as any)],
-  });
+  if (input.resourceArn !== undefined) {
+    const labelValue: string = input.resourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: resourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{resourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: resourceArn.");
+  }
+  const query: any = {
+    ...(input.tagKeys !== undefined && { tagKeys: (input.tagKeys || []).map((_entry) => _entry as any) }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -541,20 +740,23 @@ export const deserializeAws_restJson1BatchCreateTableRowsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1BatchCreateTableRowsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: BatchCreateTableRowsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    createdRows: undefined,
+    failedBatchItems: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.createdRows != null) {
+  if (data.createdRows !== undefined && data.createdRows !== null) {
     contents.createdRows = deserializeAws_restJson1CreatedRowsMap(data.createdRows, context);
   }
-  if (data.failedBatchItems != null) {
+  if (data.failedBatchItems !== undefined && data.failedBatchItems !== null) {
     contents.failedBatchItems = deserializeAws_restJson1FailedBatchItems(data.failedBatchItems, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1BatchCreateTableRowsCommandError = async (
@@ -565,6 +767,7 @@ const deserializeAws_restJson1BatchCreateTableRowsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -593,12 +796,14 @@ const deserializeAws_restJson1BatchCreateTableRowsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -609,17 +814,19 @@ export const deserializeAws_restJson1BatchDeleteTableRowsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1BatchDeleteTableRowsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: BatchDeleteTableRowsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    failedBatchItems: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.failedBatchItems != null) {
+  if (data.failedBatchItems !== undefined && data.failedBatchItems !== null) {
     contents.failedBatchItems = deserializeAws_restJson1FailedBatchItems(data.failedBatchItems, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1BatchDeleteTableRowsCommandError = async (
@@ -630,6 +837,7 @@ const deserializeAws_restJson1BatchDeleteTableRowsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -655,12 +863,14 @@ const deserializeAws_restJson1BatchDeleteTableRowsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -671,17 +881,19 @@ export const deserializeAws_restJson1BatchUpdateTableRowsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1BatchUpdateTableRowsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: BatchUpdateTableRowsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    failedBatchItems: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.failedBatchItems != null) {
+  if (data.failedBatchItems !== undefined && data.failedBatchItems !== null) {
     contents.failedBatchItems = deserializeAws_restJson1FailedBatchItems(data.failedBatchItems, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1BatchUpdateTableRowsCommandError = async (
@@ -692,6 +904,7 @@ const deserializeAws_restJson1BatchUpdateTableRowsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -717,12 +930,14 @@ const deserializeAws_restJson1BatchUpdateTableRowsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -733,20 +948,23 @@ export const deserializeAws_restJson1BatchUpsertTableRowsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1BatchUpsertTableRowsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: BatchUpsertTableRowsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    failedBatchItems: undefined,
+    rows: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.failedBatchItems != null) {
+  if (data.failedBatchItems !== undefined && data.failedBatchItems !== null) {
     contents.failedBatchItems = deserializeAws_restJson1FailedBatchItems(data.failedBatchItems, context);
   }
-  if (data.rows != null) {
+  if (data.rows !== undefined && data.rows !== null) {
     contents.rows = deserializeAws_restJson1UpsertRowsResultMap(data.rows, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1BatchUpsertTableRowsCommandError = async (
@@ -757,6 +975,7 @@ const deserializeAws_restJson1BatchUpsertTableRowsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -785,12 +1004,14 @@ const deserializeAws_restJson1BatchUpsertTableRowsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -801,23 +1022,27 @@ export const deserializeAws_restJson1DescribeTableDataImportJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeTableDataImportJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeTableDataImportJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    errorCode: undefined,
+    jobMetadata: undefined,
+    jobStatus: undefined,
+    message: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.errorCode != null) {
+  if (data.errorCode !== undefined && data.errorCode !== null) {
     contents.errorCode = __expectString(data.errorCode);
   }
-  if (data.jobMetadata != null) {
+  if (data.jobMetadata !== undefined && data.jobMetadata !== null) {
     contents.jobMetadata = deserializeAws_restJson1TableDataImportJobMetadata(data.jobMetadata, context);
   }
-  if (data.jobStatus != null) {
+  if (data.jobStatus !== undefined && data.jobStatus !== null) {
     contents.jobStatus = __expectString(data.jobStatus);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeTableDataImportJobCommandError = async (
@@ -828,6 +1053,7 @@ const deserializeAws_restJson1DescribeTableDataImportJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -853,12 +1079,14 @@ const deserializeAws_restJson1DescribeTableDataImportJobCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -869,20 +1097,23 @@ export const deserializeAws_restJson1GetScreenDataCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetScreenDataCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetScreenDataCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    nextToken: undefined,
+    results: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  if (data.results != null) {
+  if (data.results !== undefined && data.results !== null) {
     contents.results = deserializeAws_restJson1ResultSetMap(data.results, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetScreenDataCommandError = async (
@@ -893,6 +1124,7 @@ const deserializeAws_restJson1GetScreenDataCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -918,12 +1150,14 @@ const deserializeAws_restJson1GetScreenDataCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -934,14 +1168,15 @@ export const deserializeAws_restJson1InvokeScreenAutomationCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1InvokeScreenAutomationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: InvokeScreenAutomationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1InvokeScreenAutomationCommandError = async (
@@ -952,6 +1187,7 @@ const deserializeAws_restJson1InvokeScreenAutomationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -986,12 +1222,14 @@ const deserializeAws_restJson1InvokeScreenAutomationCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1002,20 +1240,23 @@ export const deserializeAws_restJson1ListTableColumnsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTableColumnsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTableColumnsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    nextToken: undefined,
+    tableColumns: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  if (data.tableColumns != null) {
+  if (data.tableColumns !== undefined && data.tableColumns !== null) {
     contents.tableColumns = deserializeAws_restJson1TableColumns(data.tableColumns, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTableColumnsCommandError = async (
@@ -1026,6 +1267,7 @@ const deserializeAws_restJson1ListTableColumnsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1051,12 +1293,14 @@ const deserializeAws_restJson1ListTableColumnsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1067,26 +1311,31 @@ export const deserializeAws_restJson1ListTableRowsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTableRowsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTableRowsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    columnIds: undefined,
+    nextToken: undefined,
+    rowIdsNotFound: undefined,
+    rows: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.columnIds != null) {
+  if (data.columnIds !== undefined && data.columnIds !== null) {
     contents.columnIds = deserializeAws_restJson1ResourceIds(data.columnIds, context);
   }
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  if (data.rowIdsNotFound != null) {
+  if (data.rowIdsNotFound !== undefined && data.rowIdsNotFound !== null) {
     contents.rowIdsNotFound = deserializeAws_restJson1RowIdList(data.rowIdsNotFound, context);
   }
-  if (data.rows != null) {
+  if (data.rows !== undefined && data.rows !== null) {
     contents.rows = deserializeAws_restJson1TableRows(data.rows, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTableRowsCommandError = async (
@@ -1097,6 +1346,7 @@ const deserializeAws_restJson1ListTableRowsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1122,12 +1372,14 @@ const deserializeAws_restJson1ListTableRowsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1138,20 +1390,23 @@ export const deserializeAws_restJson1ListTablesCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTablesCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTablesCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    nextToken: undefined,
+    tables: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  if (data.tables != null) {
+  if (data.tables !== undefined && data.tables !== null) {
     contents.tables = deserializeAws_restJson1Tables(data.tables, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTablesCommandError = async (
@@ -1162,6 +1417,7 @@ const deserializeAws_restJson1ListTablesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1187,12 +1443,14 @@ const deserializeAws_restJson1ListTablesCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1203,14 +1461,15 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTagsForResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTagsForResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.tags = deserializeAws_restJson1TagsMap(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTagsForResourceCommandError = async (
@@ -1221,6 +1480,7 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1246,12 +1506,14 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1262,23 +1524,27 @@ export const deserializeAws_restJson1QueryTableRowsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1QueryTableRowsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: QueryTableRowsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    columnIds: undefined,
+    nextToken: undefined,
+    rows: undefined,
+    workbookCursor: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.columnIds != null) {
+  if (data.columnIds !== undefined && data.columnIds !== null) {
     contents.columnIds = deserializeAws_restJson1ResourceIds(data.columnIds, context);
   }
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.nextToken = __expectString(data.nextToken);
   }
-  if (data.rows != null) {
+  if (data.rows !== undefined && data.rows !== null) {
     contents.rows = deserializeAws_restJson1TableRows(data.rows, context);
   }
-  if (data.workbookCursor != null) {
+  if (data.workbookCursor !== undefined && data.workbookCursor !== null) {
     contents.workbookCursor = __expectLong(data.workbookCursor);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1QueryTableRowsCommandError = async (
@@ -1289,6 +1555,7 @@ const deserializeAws_restJson1QueryTableRowsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1314,12 +1581,14 @@ const deserializeAws_restJson1QueryTableRowsCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1330,17 +1599,19 @@ export const deserializeAws_restJson1StartTableDataImportJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartTableDataImportJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartTableDataImportJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    jobId: undefined,
+    jobStatus: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.jobId != null) {
+  if (data.jobId !== undefined && data.jobId !== null) {
     contents.jobId = __expectString(data.jobId);
   }
-  if (data.jobStatus != null) {
+  if (data.jobStatus !== undefined && data.jobStatus !== null) {
     contents.jobStatus = __expectString(data.jobStatus);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartTableDataImportJobCommandError = async (
@@ -1351,6 +1622,7 @@ const deserializeAws_restJson1StartTableDataImportJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1379,12 +1651,14 @@ const deserializeAws_restJson1StartTableDataImportJobCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1395,11 +1669,11 @@ export const deserializeAws_restJson1TagResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1TagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: TagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1TagResourceCommandError = async (
@@ -1410,6 +1684,7 @@ const deserializeAws_restJson1TagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1435,12 +1710,14 @@ const deserializeAws_restJson1TagResourceCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1451,11 +1728,11 @@ export const deserializeAws_restJson1UntagResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UntagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UntagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UntagResourceCommandError = async (
@@ -1466,6 +1743,7 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AccessDeniedException":
@@ -1491,23 +1769,24 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
       throw await deserializeAws_restJson1ValidationExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1AccessDeniedExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<AccessDeniedException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new AccessDeniedException({
@@ -1521,9 +1800,9 @@ const deserializeAws_restJson1AutomationExecutionExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<AutomationExecutionException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new AutomationExecutionException({
@@ -1537,9 +1816,9 @@ const deserializeAws_restJson1AutomationExecutionTimeoutExceptionResponse = asyn
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<AutomationExecutionTimeoutException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new AutomationExecutionTimeoutException({
@@ -1553,9 +1832,9 @@ const deserializeAws_restJson1InternalServerExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalServerException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InternalServerException({
@@ -1569,9 +1848,9 @@ const deserializeAws_restJson1RequestTimeoutExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<RequestTimeoutException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new RequestTimeoutException({
@@ -1585,9 +1864,9 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ResourceNotFoundException({
@@ -1601,9 +1880,9 @@ const deserializeAws_restJson1ServiceQuotaExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceQuotaExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ServiceQuotaExceededException({
@@ -1617,9 +1896,9 @@ const deserializeAws_restJson1ServiceUnavailableExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceUnavailableException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ServiceUnavailableException({
@@ -1633,9 +1912,9 @@ const deserializeAws_restJson1ThrottlingExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ThrottlingException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ThrottlingException({
@@ -1649,9 +1928,9 @@ const deserializeAws_restJson1ValidationExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ValidationException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ValidationException({
@@ -1681,6 +1960,9 @@ const serializeAws_restJson1CreateRowDataList = (input: CreateRowData[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1CreateRowData(entry, context);
     });
 };
@@ -1707,6 +1989,9 @@ const serializeAws_restJson1FactList = (input: string[], context: __SerdeContext
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1774,6 +2059,9 @@ const serializeAws_restJson1RowIdList = (input: string[], context: __SerdeContex
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1812,6 +2100,9 @@ const serializeAws_restJson1UpdateRowDataList = (input: UpdateRowData[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1UpdateRowData(entry, context);
     });
 };
@@ -1830,6 +2121,9 @@ const serializeAws_restJson1UpsertRowDataList = (input: UpsertRowData[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1UpsertRowData(entry, context);
     });
 };

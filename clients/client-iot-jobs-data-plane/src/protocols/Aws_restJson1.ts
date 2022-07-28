@@ -7,9 +7,6 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -52,12 +49,28 @@ export const serializeAws_restJson1DescribeJobExecutionCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/things/{thingName}/jobs/{jobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobId", () => input.jobId!, "{jobId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "thingName", () => input.thingName!, "{thingName}", false);
-  const query: any = map({
-    includeJobDocument: [() => input.includeJobDocument !== void 0, () => input.includeJobDocument!.toString()],
-    executionNumber: [() => input.executionNumber !== void 0, () => input.executionNumber!.toString()],
-  });
+  if (input.jobId !== undefined) {
+    const labelValue: string = input.jobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobId.");
+  }
+  if (input.thingName !== undefined) {
+    const labelValue: string = input.thingName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: thingName.");
+    }
+    resolvedPath = resolvedPath.replace("{thingName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: thingName.");
+  }
+  const query: any = {
+    ...(input.includeJobDocument !== undefined && { includeJobDocument: input.includeJobDocument.toString() }),
+    ...(input.executionNumber !== undefined && { executionNumber: input.executionNumber.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -78,7 +91,15 @@ export const serializeAws_restJson1GetPendingJobExecutionsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/things/{thingName}/jobs";
-  resolvedPath = __resolvedPath(resolvedPath, input, "thingName", () => input.thingName!, "{thingName}", false);
+  if (input.thingName !== undefined) {
+    const labelValue: string = input.thingName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: thingName.");
+    }
+    resolvedPath = resolvedPath.replace("{thingName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: thingName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -101,7 +122,15 @@ export const serializeAws_restJson1StartNextPendingJobExecutionCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/things/{thingName}/jobs/$next";
-  resolvedPath = __resolvedPath(resolvedPath, input, "thingName", () => input.thingName!, "{thingName}", false);
+  if (input.thingName !== undefined) {
+    const labelValue: string = input.thingName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: thingName.");
+    }
+    resolvedPath = resolvedPath.replace("{thingName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: thingName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.statusDetails != null && {
@@ -130,8 +159,24 @@ export const serializeAws_restJson1UpdateJobExecutionCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/things/{thingName}/jobs/{jobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobId", () => input.jobId!, "{jobId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "thingName", () => input.thingName!, "{thingName}", false);
+  if (input.jobId !== undefined) {
+    const labelValue: string = input.jobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobId.");
+  }
+  if (input.thingName !== undefined) {
+    const labelValue: string = input.thingName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: thingName.");
+    }
+    resolvedPath = resolvedPath.replace("{thingName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: thingName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.executionNumber != null && { executionNumber: input.executionNumber }),
@@ -162,14 +207,15 @@ export const deserializeAws_restJson1DescribeJobExecutionCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeJobExecutionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeJobExecutionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    execution: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.execution != null) {
+  if (data.execution !== undefined && data.execution !== null) {
     contents.execution = deserializeAws_restJson1JobExecution(data.execution, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeJobExecutionCommandError = async (
@@ -180,6 +226,7 @@ const deserializeAws_restJson1DescribeJobExecutionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "CertificateValidationException":
@@ -202,12 +249,14 @@ const deserializeAws_restJson1DescribeJobExecutionCommandError = async (
       throw await deserializeAws_restJson1ThrottlingExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -218,17 +267,19 @@ export const deserializeAws_restJson1GetPendingJobExecutionsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetPendingJobExecutionsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetPendingJobExecutionsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    inProgressJobs: undefined,
+    queuedJobs: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.inProgressJobs != null) {
+  if (data.inProgressJobs !== undefined && data.inProgressJobs !== null) {
     contents.inProgressJobs = deserializeAws_restJson1JobExecutionSummaryList(data.inProgressJobs, context);
   }
-  if (data.queuedJobs != null) {
+  if (data.queuedJobs !== undefined && data.queuedJobs !== null) {
     contents.queuedJobs = deserializeAws_restJson1JobExecutionSummaryList(data.queuedJobs, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetPendingJobExecutionsCommandError = async (
@@ -239,6 +290,7 @@ const deserializeAws_restJson1GetPendingJobExecutionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "CertificateValidationException":
@@ -258,12 +310,14 @@ const deserializeAws_restJson1GetPendingJobExecutionsCommandError = async (
       throw await deserializeAws_restJson1ThrottlingExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -274,14 +328,15 @@ export const deserializeAws_restJson1StartNextPendingJobExecutionCommand = async
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartNextPendingJobExecutionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartNextPendingJobExecutionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    execution: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.execution != null) {
+  if (data.execution !== undefined && data.execution !== null) {
     contents.execution = deserializeAws_restJson1JobExecution(data.execution, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartNextPendingJobExecutionCommandError = async (
@@ -292,6 +347,7 @@ const deserializeAws_restJson1StartNextPendingJobExecutionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "CertificateValidationException":
@@ -311,12 +367,14 @@ const deserializeAws_restJson1StartNextPendingJobExecutionCommandError = async (
       throw await deserializeAws_restJson1ThrottlingExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -327,17 +385,19 @@ export const deserializeAws_restJson1UpdateJobExecutionCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateJobExecutionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateJobExecutionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    executionState: undefined,
+    jobDocument: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.executionState != null) {
+  if (data.executionState !== undefined && data.executionState !== null) {
     contents.executionState = deserializeAws_restJson1JobExecutionState(data.executionState, context);
   }
-  if (data.jobDocument != null) {
+  if (data.jobDocument !== undefined && data.jobDocument !== null) {
     contents.jobDocument = __expectString(data.jobDocument);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateJobExecutionCommandError = async (
@@ -348,6 +408,7 @@ const deserializeAws_restJson1UpdateJobExecutionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "CertificateValidationException":
@@ -370,23 +431,24 @@ const deserializeAws_restJson1UpdateJobExecutionCommandError = async (
       throw await deserializeAws_restJson1ThrottlingExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1CertificateValidationExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<CertificateValidationException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new CertificateValidationException({
@@ -400,9 +462,9 @@ const deserializeAws_restJson1InvalidRequestExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidRequestException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidRequestException({
@@ -416,9 +478,9 @@ const deserializeAws_restJson1InvalidStateTransitionExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidStateTransitionException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new InvalidStateTransitionException({
@@ -432,9 +494,9 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ResourceNotFoundException({
@@ -448,9 +510,9 @@ const deserializeAws_restJson1ServiceUnavailableExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceUnavailableException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new ServiceUnavailableException({
@@ -464,9 +526,9 @@ const deserializeAws_restJson1TerminalStateExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<TerminalStateException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
   const exception = new TerminalStateException({
@@ -480,12 +542,12 @@ const deserializeAws_restJson1ThrottlingExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ThrottlingException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.payload != null) {
+  if (data.payload !== undefined && data.payload !== null) {
     contents.payload = context.base64Decoder(data.payload);
   }
   const exception = new ThrottlingException({

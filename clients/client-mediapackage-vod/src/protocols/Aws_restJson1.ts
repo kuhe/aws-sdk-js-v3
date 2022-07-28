@@ -8,9 +8,6 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -105,7 +102,15 @@ export const serializeAws_restJson1ConfigureLogsCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_groups/{Id}/configure_logs";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.EgressAccessLogs != null && {
@@ -221,7 +226,15 @@ export const serializeAws_restJson1DeleteAssetCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/assets/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -242,7 +255,15 @@ export const serializeAws_restJson1DeletePackagingConfigurationCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_configurations/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -262,7 +283,15 @@ export const serializeAws_restJson1DeletePackagingGroupCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_groups/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -282,7 +311,15 @@ export const serializeAws_restJson1DescribeAssetCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/assets/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -303,7 +340,15 @@ export const serializeAws_restJson1DescribePackagingConfigurationCommand = async
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_configurations/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -323,7 +368,15 @@ export const serializeAws_restJson1DescribePackagingGroupCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_groups/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -343,11 +396,11 @@ export const serializeAws_restJson1ListAssetsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/assets";
-  const query: any = map({
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    nextToken: [, input.NextToken!],
-    packagingGroupId: [, input.PackagingGroupId!],
-  });
+  const query: any = {
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.PackagingGroupId !== undefined && { packagingGroupId: input.PackagingGroupId }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -369,11 +422,11 @@ export const serializeAws_restJson1ListPackagingConfigurationsCommand = async (
   const headers: any = {};
   const resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_configurations";
-  const query: any = map({
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    nextToken: [, input.NextToken!],
-    packagingGroupId: [, input.PackagingGroupId!],
-  });
+  const query: any = {
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.PackagingGroupId !== undefined && { packagingGroupId: input.PackagingGroupId }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -394,10 +447,10 @@ export const serializeAws_restJson1ListPackagingGroupsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_groups";
-  const query: any = map({
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    nextToken: [, input.NextToken!],
-  });
+  const query: any = {
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -418,7 +471,15 @@ export const serializeAws_restJson1ListTagsForResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -440,7 +501,15 @@ export const serializeAws_restJson1TagResourceCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Tags != null && { tags: serializeAws_restJson1__mapOf__string(input.Tags, context) }),
@@ -463,10 +532,18 @@ export const serializeAws_restJson1UntagResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
-  const query: any = map({
-    tagKeys: [() => input.TagKeys !== void 0, () => (input.TagKeys! || []).map((_entry) => _entry as any)],
-  });
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
+  const query: any = {
+    ...(input.TagKeys !== undefined && { tagKeys: (input.TagKeys || []).map((_entry) => _entry as any) }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -489,7 +566,15 @@ export const serializeAws_restJson1UpdatePackagingGroupCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/packaging_groups/{Id}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "Id", () => input.Id!, "{Id}", false);
+  if (input.Id !== undefined) {
+    const labelValue: string = input.Id;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: Id.");
+    }
+    resolvedPath = resolvedPath.replace("{Id}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: Id.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Authorization != null && {
@@ -514,29 +599,35 @@ export const deserializeAws_restJson1ConfigureLogsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ConfigureLogsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ConfigureLogsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    Authorization: undefined,
+    DomainName: undefined,
+    EgressAccessLogs: undefined,
+    Id: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.authorization != null) {
+  if (data.authorization !== undefined && data.authorization !== null) {
     contents.Authorization = deserializeAws_restJson1Authorization(data.authorization, context);
   }
-  if (data.domainName != null) {
+  if (data.domainName !== undefined && data.domainName !== null) {
     contents.DomainName = __expectString(data.domainName);
   }
-  if (data.egressAccessLogs != null) {
+  if (data.egressAccessLogs !== undefined && data.egressAccessLogs !== null) {
     contents.EgressAccessLogs = deserializeAws_restJson1EgressAccessLogs(data.egressAccessLogs, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ConfigureLogsCommandError = async (
@@ -547,6 +638,7 @@ const deserializeAws_restJson1ConfigureLogsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -569,12 +661,14 @@ const deserializeAws_restJson1ConfigureLogsCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -585,38 +679,47 @@ export const deserializeAws_restJson1CreateAssetCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateAssetCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateAssetCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    CreatedAt: undefined,
+    EgressEndpoints: undefined,
+    Id: undefined,
+    PackagingGroupId: undefined,
+    ResourceId: undefined,
+    SourceArn: undefined,
+    SourceRoleArn: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.createdAt != null) {
+  if (data.createdAt !== undefined && data.createdAt !== null) {
     contents.CreatedAt = __expectString(data.createdAt);
   }
-  if (data.egressEndpoints != null) {
+  if (data.egressEndpoints !== undefined && data.egressEndpoints !== null) {
     contents.EgressEndpoints = deserializeAws_restJson1__listOfEgressEndpoint(data.egressEndpoints, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.packagingGroupId != null) {
+  if (data.packagingGroupId !== undefined && data.packagingGroupId !== null) {
     contents.PackagingGroupId = __expectString(data.packagingGroupId);
   }
-  if (data.resourceId != null) {
+  if (data.resourceId !== undefined && data.resourceId !== null) {
     contents.ResourceId = __expectString(data.resourceId);
   }
-  if (data.sourceArn != null) {
+  if (data.sourceArn !== undefined && data.sourceArn !== null) {
     contents.SourceArn = __expectString(data.sourceArn);
   }
-  if (data.sourceRoleArn != null) {
+  if (data.sourceRoleArn !== undefined && data.sourceRoleArn !== null) {
     contents.SourceRoleArn = __expectString(data.sourceRoleArn);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateAssetCommandError = async (
@@ -627,6 +730,7 @@ const deserializeAws_restJson1CreateAssetCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -649,12 +753,14 @@ const deserializeAws_restJson1CreateAssetCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -665,35 +771,43 @@ export const deserializeAws_restJson1CreatePackagingConfigurationCommand = async
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreatePackagingConfigurationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreatePackagingConfigurationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    CmafPackage: undefined,
+    DashPackage: undefined,
+    HlsPackage: undefined,
+    Id: undefined,
+    MssPackage: undefined,
+    PackagingGroupId: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.cmafPackage != null) {
+  if (data.cmafPackage !== undefined && data.cmafPackage !== null) {
     contents.CmafPackage = deserializeAws_restJson1CmafPackage(data.cmafPackage, context);
   }
-  if (data.dashPackage != null) {
+  if (data.dashPackage !== undefined && data.dashPackage !== null) {
     contents.DashPackage = deserializeAws_restJson1DashPackage(data.dashPackage, context);
   }
-  if (data.hlsPackage != null) {
+  if (data.hlsPackage !== undefined && data.hlsPackage !== null) {
     contents.HlsPackage = deserializeAws_restJson1HlsPackage(data.hlsPackage, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.mssPackage != null) {
+  if (data.mssPackage !== undefined && data.mssPackage !== null) {
     contents.MssPackage = deserializeAws_restJson1MssPackage(data.mssPackage, context);
   }
-  if (data.packagingGroupId != null) {
+  if (data.packagingGroupId !== undefined && data.packagingGroupId !== null) {
     contents.PackagingGroupId = __expectString(data.packagingGroupId);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreatePackagingConfigurationCommandError = async (
@@ -704,6 +818,7 @@ const deserializeAws_restJson1CreatePackagingConfigurationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -726,12 +841,14 @@ const deserializeAws_restJson1CreatePackagingConfigurationCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -742,29 +859,35 @@ export const deserializeAws_restJson1CreatePackagingGroupCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreatePackagingGroupCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreatePackagingGroupCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    Authorization: undefined,
+    DomainName: undefined,
+    EgressAccessLogs: undefined,
+    Id: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.authorization != null) {
+  if (data.authorization !== undefined && data.authorization !== null) {
     contents.Authorization = deserializeAws_restJson1Authorization(data.authorization, context);
   }
-  if (data.domainName != null) {
+  if (data.domainName !== undefined && data.domainName !== null) {
     contents.DomainName = __expectString(data.domainName);
   }
-  if (data.egressAccessLogs != null) {
+  if (data.egressAccessLogs !== undefined && data.egressAccessLogs !== null) {
     contents.EgressAccessLogs = deserializeAws_restJson1EgressAccessLogs(data.egressAccessLogs, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreatePackagingGroupCommandError = async (
@@ -775,6 +898,7 @@ const deserializeAws_restJson1CreatePackagingGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -797,12 +921,14 @@ const deserializeAws_restJson1CreatePackagingGroupCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -813,11 +939,11 @@ export const deserializeAws_restJson1DeleteAssetCommand = async (
   if (output.statusCode !== 202 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteAssetCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteAssetCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteAssetCommandError = async (
@@ -828,6 +954,7 @@ const deserializeAws_restJson1DeleteAssetCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -850,12 +977,14 @@ const deserializeAws_restJson1DeleteAssetCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -866,11 +995,11 @@ export const deserializeAws_restJson1DeletePackagingConfigurationCommand = async
   if (output.statusCode !== 202 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeletePackagingConfigurationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeletePackagingConfigurationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeletePackagingConfigurationCommandError = async (
@@ -881,6 +1010,7 @@ const deserializeAws_restJson1DeletePackagingConfigurationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -903,12 +1033,14 @@ const deserializeAws_restJson1DeletePackagingConfigurationCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -919,11 +1051,11 @@ export const deserializeAws_restJson1DeletePackagingGroupCommand = async (
   if (output.statusCode !== 202 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeletePackagingGroupCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeletePackagingGroupCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeletePackagingGroupCommandError = async (
@@ -934,6 +1066,7 @@ const deserializeAws_restJson1DeletePackagingGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -956,12 +1089,14 @@ const deserializeAws_restJson1DeletePackagingGroupCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -972,38 +1107,47 @@ export const deserializeAws_restJson1DescribeAssetCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeAssetCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeAssetCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    CreatedAt: undefined,
+    EgressEndpoints: undefined,
+    Id: undefined,
+    PackagingGroupId: undefined,
+    ResourceId: undefined,
+    SourceArn: undefined,
+    SourceRoleArn: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.createdAt != null) {
+  if (data.createdAt !== undefined && data.createdAt !== null) {
     contents.CreatedAt = __expectString(data.createdAt);
   }
-  if (data.egressEndpoints != null) {
+  if (data.egressEndpoints !== undefined && data.egressEndpoints !== null) {
     contents.EgressEndpoints = deserializeAws_restJson1__listOfEgressEndpoint(data.egressEndpoints, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.packagingGroupId != null) {
+  if (data.packagingGroupId !== undefined && data.packagingGroupId !== null) {
     contents.PackagingGroupId = __expectString(data.packagingGroupId);
   }
-  if (data.resourceId != null) {
+  if (data.resourceId !== undefined && data.resourceId !== null) {
     contents.ResourceId = __expectString(data.resourceId);
   }
-  if (data.sourceArn != null) {
+  if (data.sourceArn !== undefined && data.sourceArn !== null) {
     contents.SourceArn = __expectString(data.sourceArn);
   }
-  if (data.sourceRoleArn != null) {
+  if (data.sourceRoleArn !== undefined && data.sourceRoleArn !== null) {
     contents.SourceRoleArn = __expectString(data.sourceRoleArn);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeAssetCommandError = async (
@@ -1014,6 +1158,7 @@ const deserializeAws_restJson1DescribeAssetCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1036,12 +1181,14 @@ const deserializeAws_restJson1DescribeAssetCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1052,35 +1199,43 @@ export const deserializeAws_restJson1DescribePackagingConfigurationCommand = asy
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribePackagingConfigurationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribePackagingConfigurationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    CmafPackage: undefined,
+    DashPackage: undefined,
+    HlsPackage: undefined,
+    Id: undefined,
+    MssPackage: undefined,
+    PackagingGroupId: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.cmafPackage != null) {
+  if (data.cmafPackage !== undefined && data.cmafPackage !== null) {
     contents.CmafPackage = deserializeAws_restJson1CmafPackage(data.cmafPackage, context);
   }
-  if (data.dashPackage != null) {
+  if (data.dashPackage !== undefined && data.dashPackage !== null) {
     contents.DashPackage = deserializeAws_restJson1DashPackage(data.dashPackage, context);
   }
-  if (data.hlsPackage != null) {
+  if (data.hlsPackage !== undefined && data.hlsPackage !== null) {
     contents.HlsPackage = deserializeAws_restJson1HlsPackage(data.hlsPackage, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.mssPackage != null) {
+  if (data.mssPackage !== undefined && data.mssPackage !== null) {
     contents.MssPackage = deserializeAws_restJson1MssPackage(data.mssPackage, context);
   }
-  if (data.packagingGroupId != null) {
+  if (data.packagingGroupId !== undefined && data.packagingGroupId !== null) {
     contents.PackagingGroupId = __expectString(data.packagingGroupId);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribePackagingConfigurationCommandError = async (
@@ -1091,6 +1246,7 @@ const deserializeAws_restJson1DescribePackagingConfigurationCommandError = async
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1113,12 +1269,14 @@ const deserializeAws_restJson1DescribePackagingConfigurationCommandError = async
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1129,29 +1287,35 @@ export const deserializeAws_restJson1DescribePackagingGroupCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribePackagingGroupCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribePackagingGroupCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    Authorization: undefined,
+    DomainName: undefined,
+    EgressAccessLogs: undefined,
+    Id: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.authorization != null) {
+  if (data.authorization !== undefined && data.authorization !== null) {
     contents.Authorization = deserializeAws_restJson1Authorization(data.authorization, context);
   }
-  if (data.domainName != null) {
+  if (data.domainName !== undefined && data.domainName !== null) {
     contents.DomainName = __expectString(data.domainName);
   }
-  if (data.egressAccessLogs != null) {
+  if (data.egressAccessLogs !== undefined && data.egressAccessLogs !== null) {
     contents.EgressAccessLogs = deserializeAws_restJson1EgressAccessLogs(data.egressAccessLogs, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribePackagingGroupCommandError = async (
@@ -1162,6 +1326,7 @@ const deserializeAws_restJson1DescribePackagingGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1184,12 +1349,14 @@ const deserializeAws_restJson1DescribePackagingGroupCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1200,17 +1367,19 @@ export const deserializeAws_restJson1ListAssetsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListAssetsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListAssetsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Assets: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.assets != null) {
+  if (data.assets !== undefined && data.assets !== null) {
     contents.Assets = deserializeAws_restJson1__listOfAssetShallow(data.assets, context);
   }
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListAssetsCommandError = async (
@@ -1221,6 +1390,7 @@ const deserializeAws_restJson1ListAssetsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1243,12 +1413,14 @@ const deserializeAws_restJson1ListAssetsCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1259,20 +1431,22 @@ export const deserializeAws_restJson1ListPackagingConfigurationsCommand = async 
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListPackagingConfigurationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListPackagingConfigurationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    PackagingConfigurations: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
-  if (data.packagingConfigurations != null) {
+  if (data.packagingConfigurations !== undefined && data.packagingConfigurations !== null) {
     contents.PackagingConfigurations = deserializeAws_restJson1__listOfPackagingConfiguration(
       data.packagingConfigurations,
       context
     );
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListPackagingConfigurationsCommandError = async (
@@ -1283,6 +1457,7 @@ const deserializeAws_restJson1ListPackagingConfigurationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1305,12 +1480,14 @@ const deserializeAws_restJson1ListPackagingConfigurationsCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1321,17 +1498,19 @@ export const deserializeAws_restJson1ListPackagingGroupsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListPackagingGroupsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListPackagingGroupsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    PackagingGroups: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.nextToken != null) {
+  if (data.nextToken !== undefined && data.nextToken !== null) {
     contents.NextToken = __expectString(data.nextToken);
   }
-  if (data.packagingGroups != null) {
+  if (data.packagingGroups !== undefined && data.packagingGroups !== null) {
     contents.PackagingGroups = deserializeAws_restJson1__listOfPackagingGroup(data.packagingGroups, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListPackagingGroupsCommandError = async (
@@ -1342,6 +1521,7 @@ const deserializeAws_restJson1ListPackagingGroupsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1364,12 +1544,14 @@ const deserializeAws_restJson1ListPackagingGroupsCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1380,14 +1562,15 @@ export const deserializeAws_restJson1ListTagsForResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTagsForResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTagsForResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1__mapOf__string(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTagsForResourceCommandError = async (
@@ -1398,14 +1581,20 @@ const deserializeAws_restJson1ListTagsForResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody);
+  }
 };
 
 export const deserializeAws_restJson1TagResourceCommand = async (
@@ -1415,11 +1604,11 @@ export const deserializeAws_restJson1TagResourceCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1TagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: TagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1TagResourceCommandError = async (
@@ -1430,14 +1619,20 @@ const deserializeAws_restJson1TagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody);
+  }
 };
 
 export const deserializeAws_restJson1UntagResourceCommand = async (
@@ -1447,11 +1642,11 @@ export const deserializeAws_restJson1UntagResourceCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1UntagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UntagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UntagResourceCommandError = async (
@@ -1462,14 +1657,20 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody);
+  }
 };
 
 export const deserializeAws_restJson1UpdatePackagingGroupCommand = async (
@@ -1479,29 +1680,35 @@ export const deserializeAws_restJson1UpdatePackagingGroupCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdatePackagingGroupCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdatePackagingGroupCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Arn: undefined,
+    Authorization: undefined,
+    DomainName: undefined,
+    EgressAccessLogs: undefined,
+    Id: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.arn != null) {
+  if (data.arn !== undefined && data.arn !== null) {
     contents.Arn = __expectString(data.arn);
   }
-  if (data.authorization != null) {
+  if (data.authorization !== undefined && data.authorization !== null) {
     contents.Authorization = deserializeAws_restJson1Authorization(data.authorization, context);
   }
-  if (data.domainName != null) {
+  if (data.domainName !== undefined && data.domainName !== null) {
     contents.DomainName = __expectString(data.domainName);
   }
-  if (data.egressAccessLogs != null) {
+  if (data.egressAccessLogs !== undefined && data.egressAccessLogs !== null) {
     contents.EgressAccessLogs = deserializeAws_restJson1EgressAccessLogs(data.egressAccessLogs, context);
   }
-  if (data.id != null) {
+  if (data.id !== undefined && data.id !== null) {
     contents.Id = __expectString(data.id);
   }
-  if (data.tags != null) {
+  if (data.tags !== undefined && data.tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdatePackagingGroupCommandError = async (
@@ -1512,6 +1719,7 @@ const deserializeAws_restJson1UpdatePackagingGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ForbiddenException":
@@ -1534,23 +1742,24 @@ const deserializeAws_restJson1UpdatePackagingGroupCommandError = async (
       throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1ForbiddenExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ForbiddenException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.Message = __expectString(data.message);
   }
   const exception = new ForbiddenException({
@@ -1564,9 +1773,9 @@ const deserializeAws_restJson1InternalServerErrorExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InternalServerErrorException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.Message = __expectString(data.message);
   }
   const exception = new InternalServerErrorException({
@@ -1580,9 +1789,9 @@ const deserializeAws_restJson1NotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<NotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.Message = __expectString(data.message);
   }
   const exception = new NotFoundException({
@@ -1596,9 +1805,9 @@ const deserializeAws_restJson1ServiceUnavailableExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceUnavailableException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.Message = __expectString(data.message);
   }
   const exception = new ServiceUnavailableException({
@@ -1612,9 +1821,9 @@ const deserializeAws_restJson1TooManyRequestsExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<TooManyRequestsException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.Message = __expectString(data.message);
   }
   const exception = new TooManyRequestsException({
@@ -1628,9 +1837,9 @@ const deserializeAws_restJson1UnprocessableEntityExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<UnprocessableEntityException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.Message = __expectString(data.message);
   }
   const exception = new UnprocessableEntityException({
@@ -1647,6 +1856,9 @@ const serializeAws_restJson1__listOf__PeriodTriggersElement = (
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1655,6 +1867,9 @@ const serializeAws_restJson1__listOf__string = (input: string[], context: __Serd
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -1663,6 +1878,9 @@ const serializeAws_restJson1__listOfDashManifest = (input: DashManifest[], conte
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1DashManifest(entry, context);
     });
 };
@@ -1671,6 +1889,9 @@ const serializeAws_restJson1__listOfHlsManifest = (input: HlsManifest[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1HlsManifest(entry, context);
     });
 };
@@ -1679,6 +1900,9 @@ const serializeAws_restJson1__listOfMssManifest = (input: MssManifest[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1MssManifest(entry, context);
     });
 };

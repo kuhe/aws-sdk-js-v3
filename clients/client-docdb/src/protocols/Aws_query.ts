@@ -10,7 +10,6 @@ import {
   parseBoolean as __parseBoolean,
   parseRfc3339DateTime as __parseRfc3339DateTime,
   strictParseInt32 as __strictParseInt32,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -1264,6 +1263,7 @@ const deserializeAws_queryAddSourceIdentifierToSubscriptionCommandError = async 
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "SourceNotFoundFault":
@@ -1274,12 +1274,14 @@ const deserializeAws_queryAddSourceIdentifierToSubscriptionCommandError = async 
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1305,6 +1307,7 @@ const deserializeAws_queryAddTagsToResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -1318,12 +1321,14 @@ const deserializeAws_queryAddTagsToResourceCommandError = async (
       throw await deserializeAws_queryDBSnapshotNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1352,6 +1357,7 @@ const deserializeAws_queryApplyPendingMaintenanceActionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidDBClusterStateFault":
@@ -1365,12 +1371,14 @@ const deserializeAws_queryApplyPendingMaintenanceActionCommandError = async (
       throw await deserializeAws_queryResourceNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1399,6 +1407,7 @@ const deserializeAws_queryCopyDBClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupAlreadyExistsFault":
@@ -1412,12 +1421,14 @@ const deserializeAws_queryCopyDBClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryDBParameterGroupQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1446,6 +1457,7 @@ const deserializeAws_queryCopyDBClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterSnapshotAlreadyExistsFault":
@@ -1468,12 +1480,14 @@ const deserializeAws_queryCopyDBClusterSnapshotCommandError = async (
       throw await deserializeAws_querySnapshotQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1502,6 +1516,7 @@ const deserializeAws_queryCreateDBClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterAlreadyExistsFault":
@@ -1557,12 +1572,14 @@ const deserializeAws_queryCreateDBClusterCommandError = async (
       throw await deserializeAws_queryStorageQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1591,6 +1608,7 @@ const deserializeAws_queryCreateDBClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupAlreadyExistsFault":
@@ -1601,12 +1619,14 @@ const deserializeAws_queryCreateDBClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryDBParameterGroupQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1635,6 +1655,7 @@ const deserializeAws_queryCreateDBClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -1654,12 +1675,14 @@ const deserializeAws_queryCreateDBClusterSnapshotCommandError = async (
       throw await deserializeAws_querySnapshotQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1688,6 +1711,7 @@ const deserializeAws_queryCreateDBInstanceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthorizationNotFoundFault":
@@ -1737,12 +1761,14 @@ const deserializeAws_queryCreateDBInstanceCommandError = async (
       throw await deserializeAws_queryStorageTypeNotSupportedFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1771,6 +1797,7 @@ const deserializeAws_queryCreateDBSubnetGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBSubnetGroupAlreadyExistsFault":
@@ -1790,12 +1817,14 @@ const deserializeAws_queryCreateDBSubnetGroupCommandError = async (
       throw await deserializeAws_queryInvalidSubnetResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1824,6 +1853,7 @@ const deserializeAws_queryCreateEventSubscriptionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "EventSubscriptionQuotaExceededFault":
@@ -1849,12 +1879,14 @@ const deserializeAws_queryCreateEventSubscriptionCommandError = async (
       throw await deserializeAws_querySubscriptionCategoryNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1883,6 +1915,7 @@ const deserializeAws_queryCreateGlobalClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -1899,12 +1932,14 @@ const deserializeAws_queryCreateGlobalClusterCommandError = async (
       throw await deserializeAws_queryInvalidDBClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1933,6 +1968,7 @@ const deserializeAws_queryDeleteDBClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -1952,12 +1988,14 @@ const deserializeAws_queryDeleteDBClusterCommandError = async (
       throw await deserializeAws_querySnapshotQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -1983,6 +2021,7 @@ const deserializeAws_queryDeleteDBClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupNotFoundFault":
@@ -1993,12 +2032,14 @@ const deserializeAws_queryDeleteDBClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryInvalidDBParameterGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2027,6 +2068,7 @@ const deserializeAws_queryDeleteDBClusterSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterSnapshotNotFoundFault":
@@ -2037,12 +2079,14 @@ const deserializeAws_queryDeleteDBClusterSnapshotCommandError = async (
       throw await deserializeAws_queryInvalidDBClusterSnapshotStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2071,6 +2115,7 @@ const deserializeAws_queryDeleteDBInstanceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBInstanceNotFoundFault":
@@ -2090,12 +2135,14 @@ const deserializeAws_queryDeleteDBInstanceCommandError = async (
       throw await deserializeAws_querySnapshotQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2121,6 +2168,7 @@ const deserializeAws_queryDeleteDBSubnetGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBSubnetGroupNotFoundFault":
@@ -2134,12 +2182,14 @@ const deserializeAws_queryDeleteDBSubnetGroupCommandError = async (
       throw await deserializeAws_queryInvalidDBSubnetStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2168,6 +2218,7 @@ const deserializeAws_queryDeleteEventSubscriptionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidEventSubscriptionStateFault":
@@ -2178,12 +2229,14 @@ const deserializeAws_queryDeleteEventSubscriptionCommandError = async (
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2212,6 +2265,7 @@ const deserializeAws_queryDeleteGlobalClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "GlobalClusterNotFoundFault":
@@ -2222,12 +2276,14 @@ const deserializeAws_queryDeleteGlobalClusterCommandError = async (
       throw await deserializeAws_queryInvalidGlobalClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2256,6 +2312,7 @@ const deserializeAws_queryDescribeCertificatesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "CertificateNotFoundFault":
@@ -2263,12 +2320,14 @@ const deserializeAws_queryDescribeCertificatesCommandError = async (
       throw await deserializeAws_queryCertificateNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2297,6 +2356,7 @@ const deserializeAws_queryDescribeDBClusterParameterGroupsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupNotFoundFault":
@@ -2304,12 +2364,14 @@ const deserializeAws_queryDescribeDBClusterParameterGroupsCommandError = async (
       throw await deserializeAws_queryDBParameterGroupNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2338,6 +2400,7 @@ const deserializeAws_queryDescribeDBClusterParametersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupNotFoundFault":
@@ -2345,12 +2408,14 @@ const deserializeAws_queryDescribeDBClusterParametersCommandError = async (
       throw await deserializeAws_queryDBParameterGroupNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2379,6 +2444,7 @@ const deserializeAws_queryDescribeDBClustersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -2386,12 +2452,14 @@ const deserializeAws_queryDescribeDBClustersCommandError = async (
       throw await deserializeAws_queryDBClusterNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2423,6 +2491,7 @@ const deserializeAws_queryDescribeDBClusterSnapshotAttributesCommandError = asyn
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterSnapshotNotFoundFault":
@@ -2430,12 +2499,14 @@ const deserializeAws_queryDescribeDBClusterSnapshotAttributesCommandError = asyn
       throw await deserializeAws_queryDBClusterSnapshotNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2464,6 +2535,7 @@ const deserializeAws_queryDescribeDBClusterSnapshotsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterSnapshotNotFoundFault":
@@ -2471,12 +2543,14 @@ const deserializeAws_queryDescribeDBClusterSnapshotsCommandError = async (
       throw await deserializeAws_queryDBClusterSnapshotNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2505,14 +2579,20 @@ const deserializeAws_queryDescribeDBEngineVersionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeDBInstancesCommand = async (
@@ -2540,6 +2620,7 @@ const deserializeAws_queryDescribeDBInstancesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBInstanceNotFoundFault":
@@ -2547,12 +2628,14 @@ const deserializeAws_queryDescribeDBInstancesCommandError = async (
       throw await deserializeAws_queryDBInstanceNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2581,6 +2664,7 @@ const deserializeAws_queryDescribeDBSubnetGroupsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBSubnetGroupNotFoundFault":
@@ -2588,12 +2672,14 @@ const deserializeAws_queryDescribeDBSubnetGroupsCommandError = async (
       throw await deserializeAws_queryDBSubnetGroupNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2625,14 +2711,20 @@ const deserializeAws_queryDescribeEngineDefaultClusterParametersCommandError = a
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeEventCategoriesCommand = async (
@@ -2660,14 +2752,20 @@ const deserializeAws_queryDescribeEventCategoriesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeEventsCommand = async (
@@ -2695,14 +2793,20 @@ const deserializeAws_queryDescribeEventsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribeEventSubscriptionsCommand = async (
@@ -2730,6 +2834,7 @@ const deserializeAws_queryDescribeEventSubscriptionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "SubscriptionNotFoundFault":
@@ -2737,12 +2842,14 @@ const deserializeAws_queryDescribeEventSubscriptionsCommandError = async (
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2771,6 +2878,7 @@ const deserializeAws_queryDescribeGlobalClustersCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "GlobalClusterNotFoundFault":
@@ -2778,12 +2886,14 @@ const deserializeAws_queryDescribeGlobalClustersCommandError = async (
       throw await deserializeAws_queryGlobalClusterNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2815,14 +2925,20 @@ const deserializeAws_queryDescribeOrderableDBInstanceOptionsCommandError = async
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryDescribePendingMaintenanceActionsCommand = async (
@@ -2853,6 +2969,7 @@ const deserializeAws_queryDescribePendingMaintenanceActionsCommandError = async 
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ResourceNotFoundFault":
@@ -2860,12 +2977,14 @@ const deserializeAws_queryDescribePendingMaintenanceActionsCommandError = async 
       throw await deserializeAws_queryResourceNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2894,6 +3013,7 @@ const deserializeAws_queryFailoverDBClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -2907,12 +3027,14 @@ const deserializeAws_queryFailoverDBClusterCommandError = async (
       throw await deserializeAws_queryInvalidDBInstanceStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2941,6 +3063,7 @@ const deserializeAws_queryListTagsForResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -2954,12 +3077,14 @@ const deserializeAws_queryListTagsForResourceCommandError = async (
       throw await deserializeAws_queryDBSnapshotNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -2988,6 +3113,7 @@ const deserializeAws_queryModifyDBClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterAlreadyExistsFault":
@@ -3025,12 +3151,14 @@ const deserializeAws_queryModifyDBClusterCommandError = async (
       throw await deserializeAws_queryStorageQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3059,6 +3187,7 @@ const deserializeAws_queryModifyDBClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupNotFoundFault":
@@ -3069,12 +3198,14 @@ const deserializeAws_queryModifyDBClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryInvalidDBParameterGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3106,6 +3237,7 @@ const deserializeAws_queryModifyDBClusterSnapshotAttributeCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterSnapshotNotFoundFault":
@@ -3119,12 +3251,14 @@ const deserializeAws_queryModifyDBClusterSnapshotAttributeCommandError = async (
       throw await deserializeAws_querySharedSnapshotQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3153,6 +3287,7 @@ const deserializeAws_queryModifyDBInstanceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AuthorizationNotFoundFault":
@@ -3196,12 +3331,14 @@ const deserializeAws_queryModifyDBInstanceCommandError = async (
       throw await deserializeAws_queryStorageTypeNotSupportedFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3230,6 +3367,7 @@ const deserializeAws_queryModifyDBSubnetGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBSubnetGroupDoesNotCoverEnoughAZs":
@@ -3249,12 +3387,14 @@ const deserializeAws_queryModifyDBSubnetGroupCommandError = async (
       throw await deserializeAws_querySubnetAlreadyInUseResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3283,6 +3423,7 @@ const deserializeAws_queryModifyEventSubscriptionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "EventSubscriptionQuotaExceededFault":
@@ -3305,12 +3446,14 @@ const deserializeAws_queryModifyEventSubscriptionCommandError = async (
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3339,6 +3482,7 @@ const deserializeAws_queryModifyGlobalClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "GlobalClusterNotFoundFault":
@@ -3349,12 +3493,14 @@ const deserializeAws_queryModifyGlobalClusterCommandError = async (
       throw await deserializeAws_queryInvalidGlobalClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3383,6 +3529,7 @@ const deserializeAws_queryRebootDBInstanceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBInstanceNotFoundFault":
@@ -3393,12 +3540,14 @@ const deserializeAws_queryRebootDBInstanceCommandError = async (
       throw await deserializeAws_queryInvalidDBInstanceStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3427,6 +3576,7 @@ const deserializeAws_queryRemoveFromGlobalClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -3440,12 +3590,14 @@ const deserializeAws_queryRemoveFromGlobalClusterCommandError = async (
       throw await deserializeAws_queryInvalidGlobalClusterStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3477,6 +3629,7 @@ const deserializeAws_queryRemoveSourceIdentifierFromSubscriptionCommandError = a
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "SourceNotFoundFault":
@@ -3487,12 +3640,14 @@ const deserializeAws_queryRemoveSourceIdentifierFromSubscriptionCommandError = a
       throw await deserializeAws_querySubscriptionNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3518,6 +3673,7 @@ const deserializeAws_queryRemoveTagsFromResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -3531,12 +3687,14 @@ const deserializeAws_queryRemoveTagsFromResourceCommandError = async (
       throw await deserializeAws_queryDBSnapshotNotFoundFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3565,6 +3723,7 @@ const deserializeAws_queryResetDBClusterParameterGroupCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBParameterGroupNotFoundFault":
@@ -3575,12 +3734,14 @@ const deserializeAws_queryResetDBClusterParameterGroupCommandError = async (
       throw await deserializeAws_queryInvalidDBParameterGroupStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3609,6 +3770,7 @@ const deserializeAws_queryRestoreDBClusterFromSnapshotCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterAlreadyExistsFault":
@@ -3655,12 +3817,14 @@ const deserializeAws_queryRestoreDBClusterFromSnapshotCommandError = async (
       throw await deserializeAws_queryStorageQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3689,6 +3853,7 @@ const deserializeAws_queryRestoreDBClusterToPointInTimeCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterAlreadyExistsFault":
@@ -3738,12 +3903,14 @@ const deserializeAws_queryRestoreDBClusterToPointInTimeCommandError = async (
       throw await deserializeAws_queryStorageQuotaExceededFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3772,6 +3939,7 @@ const deserializeAws_queryStartDBClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -3785,12 +3953,14 @@ const deserializeAws_queryStartDBClusterCommandError = async (
       throw await deserializeAws_queryInvalidDBInstanceStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -3819,6 +3989,7 @@ const deserializeAws_queryStopDBClusterCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DBClusterNotFoundFault":
@@ -3832,12 +4003,14 @@ const deserializeAws_queryStopDBClusterCommandError = async (
       throw await deserializeAws_queryInvalidDBInstanceStateFaultResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -4587,10 +4760,10 @@ const serializeAws_queryAddSourceIdentifierToSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.SourceIdentifier != null) {
+  if (input.SourceIdentifier !== undefined && input.SourceIdentifier !== null) {
     entries["SourceIdentifier"] = input.SourceIdentifier;
   }
   return entries;
@@ -4598,10 +4771,10 @@ const serializeAws_queryAddSourceIdentifierToSubscriptionMessage = (
 
 const serializeAws_queryAddTagsToResourceMessage = (input: AddTagsToResourceMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ResourceName != null) {
+  if (input.ResourceName !== undefined && input.ResourceName !== null) {
     entries["ResourceName"] = input.ResourceName;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4616,13 +4789,13 @@ const serializeAws_queryApplyPendingMaintenanceActionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ResourceIdentifier != null) {
+  if (input.ResourceIdentifier !== undefined && input.ResourceIdentifier !== null) {
     entries["ResourceIdentifier"] = input.ResourceIdentifier;
   }
-  if (input.ApplyAction != null) {
+  if (input.ApplyAction !== undefined && input.ApplyAction !== null) {
     entries["ApplyAction"] = input.ApplyAction;
   }
-  if (input.OptInType != null) {
+  if (input.OptInType !== undefined && input.OptInType !== null) {
     entries["OptInType"] = input.OptInType;
   }
   return entries;
@@ -4659,14 +4832,14 @@ const serializeAws_queryCloudwatchLogsExportConfiguration = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.EnableLogTypes != null) {
+  if (input.EnableLogTypes !== undefined && input.EnableLogTypes !== null) {
     const memberEntries = serializeAws_queryLogTypeList(input.EnableLogTypes, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EnableLogTypes.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DisableLogTypes != null) {
+  if (input.DisableLogTypes !== undefined && input.DisableLogTypes !== null) {
     const memberEntries = serializeAws_queryLogTypeList(input.DisableLogTypes, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `DisableLogTypes.${key}`;
@@ -4681,16 +4854,25 @@ const serializeAws_queryCopyDBClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SourceDBClusterParameterGroupIdentifier != null) {
+  if (
+    input.SourceDBClusterParameterGroupIdentifier !== undefined &&
+    input.SourceDBClusterParameterGroupIdentifier !== null
+  ) {
     entries["SourceDBClusterParameterGroupIdentifier"] = input.SourceDBClusterParameterGroupIdentifier;
   }
-  if (input.TargetDBClusterParameterGroupIdentifier != null) {
+  if (
+    input.TargetDBClusterParameterGroupIdentifier !== undefined &&
+    input.TargetDBClusterParameterGroupIdentifier !== null
+  ) {
     entries["TargetDBClusterParameterGroupIdentifier"] = input.TargetDBClusterParameterGroupIdentifier;
   }
-  if (input.TargetDBClusterParameterGroupDescription != null) {
+  if (
+    input.TargetDBClusterParameterGroupDescription !== undefined &&
+    input.TargetDBClusterParameterGroupDescription !== null
+  ) {
     entries["TargetDBClusterParameterGroupDescription"] = input.TargetDBClusterParameterGroupDescription;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4705,22 +4887,22 @@ const serializeAws_queryCopyDBClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SourceDBClusterSnapshotIdentifier != null) {
+  if (input.SourceDBClusterSnapshotIdentifier !== undefined && input.SourceDBClusterSnapshotIdentifier !== null) {
     entries["SourceDBClusterSnapshotIdentifier"] = input.SourceDBClusterSnapshotIdentifier;
   }
-  if (input.TargetDBClusterSnapshotIdentifier != null) {
+  if (input.TargetDBClusterSnapshotIdentifier !== undefined && input.TargetDBClusterSnapshotIdentifier !== null) {
     entries["TargetDBClusterSnapshotIdentifier"] = input.TargetDBClusterSnapshotIdentifier;
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.PreSignedUrl != null) {
+  if (input.PreSignedUrl !== undefined && input.PreSignedUrl !== null) {
     entries["PreSignedUrl"] = input.PreSignedUrl;
   }
-  if (input.CopyTags != null) {
+  if (input.CopyTags !== undefined && input.CopyTags !== null) {
     entries["CopyTags"] = input.CopyTags;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4732,80 +4914,80 @@ const serializeAws_queryCopyDBClusterSnapshotMessage = (
 
 const serializeAws_queryCreateDBClusterMessage = (input: CreateDBClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.AvailabilityZones != null) {
+  if (input.AvailabilityZones !== undefined && input.AvailabilityZones !== null) {
     const memberEntries = serializeAws_queryAvailabilityZones(input.AvailabilityZones, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AvailabilityZones.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.BackupRetentionPeriod != null) {
+  if (input.BackupRetentionPeriod !== undefined && input.BackupRetentionPeriod !== null) {
     entries["BackupRetentionPeriod"] = input.BackupRetentionPeriod;
   }
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
-  if (input.Engine != null) {
+  if (input.Engine !== undefined && input.Engine !== null) {
     entries["Engine"] = input.Engine;
   }
-  if (input.EngineVersion != null) {
+  if (input.EngineVersion !== undefined && input.EngineVersion !== null) {
     entries["EngineVersion"] = input.EngineVersion;
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
-  if (input.MasterUsername != null) {
+  if (input.MasterUsername !== undefined && input.MasterUsername !== null) {
     entries["MasterUsername"] = input.MasterUsername;
   }
-  if (input.MasterUserPassword != null) {
+  if (input.MasterUserPassword !== undefined && input.MasterUserPassword !== null) {
     entries["MasterUserPassword"] = input.MasterUserPassword;
   }
-  if (input.PreferredBackupWindow != null) {
+  if (input.PreferredBackupWindow !== undefined && input.PreferredBackupWindow !== null) {
     entries["PreferredBackupWindow"] = input.PreferredBackupWindow;
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.StorageEncrypted != null) {
+  if (input.StorageEncrypted !== undefined && input.StorageEncrypted !== null) {
     entries["StorageEncrypted"] = input.StorageEncrypted;
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.PreSignedUrl != null) {
+  if (input.PreSignedUrl !== undefined && input.PreSignedUrl !== null) {
     entries["PreSignedUrl"] = input.PreSignedUrl;
   }
-  if (input.EnableCloudwatchLogsExports != null) {
+  if (input.EnableCloudwatchLogsExports !== undefined && input.EnableCloudwatchLogsExports !== null) {
     const memberEntries = serializeAws_queryLogTypeList(input.EnableCloudwatchLogsExports, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EnableCloudwatchLogsExports.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DeletionProtection != null) {
+  if (input.DeletionProtection !== undefined && input.DeletionProtection !== null) {
     entries["DeletionProtection"] = input.DeletionProtection;
   }
-  if (input.GlobalClusterIdentifier != null) {
+  if (input.GlobalClusterIdentifier !== undefined && input.GlobalClusterIdentifier !== null) {
     entries["GlobalClusterIdentifier"] = input.GlobalClusterIdentifier;
   }
   return entries;
@@ -4816,16 +4998,16 @@ const serializeAws_queryCreateDBClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.DBParameterGroupFamily != null) {
+  if (input.DBParameterGroupFamily !== undefined && input.DBParameterGroupFamily !== null) {
     entries["DBParameterGroupFamily"] = input.DBParameterGroupFamily;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4840,13 +5022,13 @@ const serializeAws_queryCreateDBClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterSnapshotIdentifier != null) {
+  if (input.DBClusterSnapshotIdentifier !== undefined && input.DBClusterSnapshotIdentifier !== null) {
     entries["DBClusterSnapshotIdentifier"] = input.DBClusterSnapshotIdentifier;
   }
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4858,44 +5040,44 @@ const serializeAws_queryCreateDBClusterSnapshotMessage = (
 
 const serializeAws_queryCreateDBInstanceMessage = (input: CreateDBInstanceMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBInstanceIdentifier != null) {
+  if (input.DBInstanceIdentifier !== undefined && input.DBInstanceIdentifier !== null) {
     entries["DBInstanceIdentifier"] = input.DBInstanceIdentifier;
   }
-  if (input.DBInstanceClass != null) {
+  if (input.DBInstanceClass !== undefined && input.DBInstanceClass !== null) {
     entries["DBInstanceClass"] = input.DBInstanceClass;
   }
-  if (input.Engine != null) {
+  if (input.Engine !== undefined && input.Engine !== null) {
     entries["Engine"] = input.Engine;
   }
-  if (input.AvailabilityZone != null) {
+  if (input.AvailabilityZone !== undefined && input.AvailabilityZone !== null) {
     entries["AvailabilityZone"] = input.AvailabilityZone;
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.AutoMinorVersionUpgrade != null) {
+  if (input.AutoMinorVersionUpgrade !== undefined && input.AutoMinorVersionUpgrade !== null) {
     entries["AutoMinorVersionUpgrade"] = input.AutoMinorVersionUpgrade;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.CopyTagsToSnapshot != null) {
+  if (input.CopyTagsToSnapshot !== undefined && input.CopyTagsToSnapshot !== null) {
     entries["CopyTagsToSnapshot"] = input.CopyTagsToSnapshot;
   }
-  if (input.PromotionTier != null) {
+  if (input.PromotionTier !== undefined && input.PromotionTier !== null) {
     entries["PromotionTier"] = input.PromotionTier;
   }
-  if (input.EnablePerformanceInsights != null) {
+  if (input.EnablePerformanceInsights !== undefined && input.EnablePerformanceInsights !== null) {
     entries["EnablePerformanceInsights"] = input.EnablePerformanceInsights;
   }
-  if (input.PerformanceInsightsKMSKeyId != null) {
+  if (input.PerformanceInsightsKMSKeyId !== undefined && input.PerformanceInsightsKMSKeyId !== null) {
     entries["PerformanceInsightsKMSKeyId"] = input.PerformanceInsightsKMSKeyId;
   }
   return entries;
@@ -4906,20 +5088,20 @@ const serializeAws_queryCreateDBSubnetGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
-  if (input.DBSubnetGroupDescription != null) {
+  if (input.DBSubnetGroupDescription !== undefined && input.DBSubnetGroupDescription !== null) {
     entries["DBSubnetGroupDescription"] = input.DBSubnetGroupDescription;
   }
-  if (input.SubnetIds != null) {
+  if (input.SubnetIds !== undefined && input.SubnetIds !== null) {
     const memberEntries = serializeAws_querySubnetIdentifierList(input.SubnetIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SubnetIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4934,33 +5116,33 @@ const serializeAws_queryCreateEventSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.SnsTopicArn != null) {
+  if (input.SnsTopicArn !== undefined && input.SnsTopicArn !== null) {
     entries["SnsTopicArn"] = input.SnsTopicArn;
   }
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.EventCategories != null) {
+  if (input.EventCategories !== undefined && input.EventCategories !== null) {
     const memberEntries = serializeAws_queryEventCategoriesList(input.EventCategories, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EventCategories.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.SourceIds != null) {
+  if (input.SourceIds !== undefined && input.SourceIds !== null) {
     const memberEntries = serializeAws_querySourceIdsList(input.SourceIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SourceIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Enabled != null) {
+  if (input.Enabled !== undefined && input.Enabled !== null) {
     entries["Enabled"] = input.Enabled;
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
@@ -4975,25 +5157,25 @@ const serializeAws_queryCreateGlobalClusterMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.GlobalClusterIdentifier != null) {
+  if (input.GlobalClusterIdentifier !== undefined && input.GlobalClusterIdentifier !== null) {
     entries["GlobalClusterIdentifier"] = input.GlobalClusterIdentifier;
   }
-  if (input.SourceDBClusterIdentifier != null) {
+  if (input.SourceDBClusterIdentifier !== undefined && input.SourceDBClusterIdentifier !== null) {
     entries["SourceDBClusterIdentifier"] = input.SourceDBClusterIdentifier;
   }
-  if (input.Engine != null) {
+  if (input.Engine !== undefined && input.Engine !== null) {
     entries["Engine"] = input.Engine;
   }
-  if (input.EngineVersion != null) {
+  if (input.EngineVersion !== undefined && input.EngineVersion !== null) {
     entries["EngineVersion"] = input.EngineVersion;
   }
-  if (input.DeletionProtection != null) {
+  if (input.DeletionProtection !== undefined && input.DeletionProtection !== null) {
     entries["DeletionProtection"] = input.DeletionProtection;
   }
-  if (input.DatabaseName != null) {
+  if (input.DatabaseName !== undefined && input.DatabaseName !== null) {
     entries["DatabaseName"] = input.DatabaseName;
   }
-  if (input.StorageEncrypted != null) {
+  if (input.StorageEncrypted !== undefined && input.StorageEncrypted !== null) {
     entries["StorageEncrypted"] = input.StorageEncrypted;
   }
   return entries;
@@ -5001,13 +5183,13 @@ const serializeAws_queryCreateGlobalClusterMessage = (
 
 const serializeAws_queryDeleteDBClusterMessage = (input: DeleteDBClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.SkipFinalSnapshot != null) {
+  if (input.SkipFinalSnapshot !== undefined && input.SkipFinalSnapshot !== null) {
     entries["SkipFinalSnapshot"] = input.SkipFinalSnapshot;
   }
-  if (input.FinalDBSnapshotIdentifier != null) {
+  if (input.FinalDBSnapshotIdentifier !== undefined && input.FinalDBSnapshotIdentifier !== null) {
     entries["FinalDBSnapshotIdentifier"] = input.FinalDBSnapshotIdentifier;
   }
   return entries;
@@ -5018,7 +5200,7 @@ const serializeAws_queryDeleteDBClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
   return entries;
@@ -5029,7 +5211,7 @@ const serializeAws_queryDeleteDBClusterSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterSnapshotIdentifier != null) {
+  if (input.DBClusterSnapshotIdentifier !== undefined && input.DBClusterSnapshotIdentifier !== null) {
     entries["DBClusterSnapshotIdentifier"] = input.DBClusterSnapshotIdentifier;
   }
   return entries;
@@ -5037,7 +5219,7 @@ const serializeAws_queryDeleteDBClusterSnapshotMessage = (
 
 const serializeAws_queryDeleteDBInstanceMessage = (input: DeleteDBInstanceMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBInstanceIdentifier != null) {
+  if (input.DBInstanceIdentifier !== undefined && input.DBInstanceIdentifier !== null) {
     entries["DBInstanceIdentifier"] = input.DBInstanceIdentifier;
   }
   return entries;
@@ -5048,7 +5230,7 @@ const serializeAws_queryDeleteDBSubnetGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
   return entries;
@@ -5059,7 +5241,7 @@ const serializeAws_queryDeleteEventSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
   return entries;
@@ -5070,7 +5252,7 @@ const serializeAws_queryDeleteGlobalClusterMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.GlobalClusterIdentifier != null) {
+  if (input.GlobalClusterIdentifier !== undefined && input.GlobalClusterIdentifier !== null) {
     entries["GlobalClusterIdentifier"] = input.GlobalClusterIdentifier;
   }
   return entries;
@@ -5081,20 +5263,20 @@ const serializeAws_queryDescribeCertificatesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.CertificateIdentifier != null) {
+  if (input.CertificateIdentifier !== undefined && input.CertificateIdentifier !== null) {
     entries["CertificateIdentifier"] = input.CertificateIdentifier;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5105,20 +5287,20 @@ const serializeAws_queryDescribeDBClusterParameterGroupsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5129,23 +5311,23 @@ const serializeAws_queryDescribeDBClusterParametersMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.Source != null) {
+  if (input.Source !== undefined && input.Source !== null) {
     entries["Source"] = input.Source;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5156,20 +5338,20 @@ const serializeAws_queryDescribeDBClustersMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5180,7 +5362,7 @@ const serializeAws_queryDescribeDBClusterSnapshotAttributesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterSnapshotIdentifier != null) {
+  if (input.DBClusterSnapshotIdentifier !== undefined && input.DBClusterSnapshotIdentifier !== null) {
     entries["DBClusterSnapshotIdentifier"] = input.DBClusterSnapshotIdentifier;
   }
   return entries;
@@ -5191,32 +5373,32 @@ const serializeAws_queryDescribeDBClusterSnapshotsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.DBClusterSnapshotIdentifier != null) {
+  if (input.DBClusterSnapshotIdentifier !== undefined && input.DBClusterSnapshotIdentifier !== null) {
     entries["DBClusterSnapshotIdentifier"] = input.DBClusterSnapshotIdentifier;
   }
-  if (input.SnapshotType != null) {
+  if (input.SnapshotType !== undefined && input.SnapshotType !== null) {
     entries["SnapshotType"] = input.SnapshotType;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.IncludeShared != null) {
+  if (input.IncludeShared !== undefined && input.IncludeShared !== null) {
     entries["IncludeShared"] = input.IncludeShared;
   }
-  if (input.IncludePublic != null) {
+  if (input.IncludePublic !== undefined && input.IncludePublic !== null) {
     entries["IncludePublic"] = input.IncludePublic;
   }
   return entries;
@@ -5227,35 +5409,35 @@ const serializeAws_queryDescribeDBEngineVersionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Engine != null) {
+  if (input.Engine !== undefined && input.Engine !== null) {
     entries["Engine"] = input.Engine;
   }
-  if (input.EngineVersion != null) {
+  if (input.EngineVersion !== undefined && input.EngineVersion !== null) {
     entries["EngineVersion"] = input.EngineVersion;
   }
-  if (input.DBParameterGroupFamily != null) {
+  if (input.DBParameterGroupFamily !== undefined && input.DBParameterGroupFamily !== null) {
     entries["DBParameterGroupFamily"] = input.DBParameterGroupFamily;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.DefaultOnly != null) {
+  if (input.DefaultOnly !== undefined && input.DefaultOnly !== null) {
     entries["DefaultOnly"] = input.DefaultOnly;
   }
-  if (input.ListSupportedCharacterSets != null) {
+  if (input.ListSupportedCharacterSets !== undefined && input.ListSupportedCharacterSets !== null) {
     entries["ListSupportedCharacterSets"] = input.ListSupportedCharacterSets;
   }
-  if (input.ListSupportedTimezones != null) {
+  if (input.ListSupportedTimezones !== undefined && input.ListSupportedTimezones !== null) {
     entries["ListSupportedTimezones"] = input.ListSupportedTimezones;
   }
   return entries;
@@ -5266,20 +5448,20 @@ const serializeAws_queryDescribeDBInstancesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBInstanceIdentifier != null) {
+  if (input.DBInstanceIdentifier !== undefined && input.DBInstanceIdentifier !== null) {
     entries["DBInstanceIdentifier"] = input.DBInstanceIdentifier;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5290,20 +5472,20 @@ const serializeAws_queryDescribeDBSubnetGroupsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5314,20 +5496,20 @@ const serializeAws_queryDescribeEngineDefaultClusterParametersMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBParameterGroupFamily != null) {
+  if (input.DBParameterGroupFamily !== undefined && input.DBParameterGroupFamily !== null) {
     entries["DBParameterGroupFamily"] = input.DBParameterGroupFamily;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5338,10 +5520,10 @@ const serializeAws_queryDescribeEventCategoriesMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
@@ -5353,39 +5535,39 @@ const serializeAws_queryDescribeEventCategoriesMessage = (
 
 const serializeAws_queryDescribeEventsMessage = (input: DescribeEventsMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.SourceIdentifier != null) {
+  if (input.SourceIdentifier !== undefined && input.SourceIdentifier !== null) {
     entries["SourceIdentifier"] = input.SourceIdentifier;
   }
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.StartTime != null) {
+  if (input.StartTime !== undefined && input.StartTime !== null) {
     entries["StartTime"] = input.StartTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.EndTime != null) {
+  if (input.EndTime !== undefined && input.EndTime !== null) {
     entries["EndTime"] = input.EndTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.Duration != null) {
+  if (input.Duration !== undefined && input.Duration !== null) {
     entries["Duration"] = input.Duration;
   }
-  if (input.EventCategories != null) {
+  if (input.EventCategories !== undefined && input.EventCategories !== null) {
     const memberEntries = serializeAws_queryEventCategoriesList(input.EventCategories, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EventCategories.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5396,20 +5578,20 @@ const serializeAws_queryDescribeEventSubscriptionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5420,20 +5602,20 @@ const serializeAws_queryDescribeGlobalClustersMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.GlobalClusterIdentifier != null) {
+  if (input.GlobalClusterIdentifier !== undefined && input.GlobalClusterIdentifier !== null) {
     entries["GlobalClusterIdentifier"] = input.GlobalClusterIdentifier;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5444,32 +5626,32 @@ const serializeAws_queryDescribeOrderableDBInstanceOptionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.Engine != null) {
+  if (input.Engine !== undefined && input.Engine !== null) {
     entries["Engine"] = input.Engine;
   }
-  if (input.EngineVersion != null) {
+  if (input.EngineVersion !== undefined && input.EngineVersion !== null) {
     entries["EngineVersion"] = input.EngineVersion;
   }
-  if (input.DBInstanceClass != null) {
+  if (input.DBInstanceClass !== undefined && input.DBInstanceClass !== null) {
     entries["DBInstanceClass"] = input.DBInstanceClass;
   }
-  if (input.LicenseModel != null) {
+  if (input.LicenseModel !== undefined && input.LicenseModel !== null) {
     entries["LicenseModel"] = input.LicenseModel;
   }
-  if (input.Vpc != null) {
+  if (input.Vpc !== undefined && input.Vpc !== null) {
     entries["Vpc"] = input.Vpc;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
   return entries;
@@ -5480,20 +5662,20 @@ const serializeAws_queryDescribePendingMaintenanceActionsMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ResourceIdentifier != null) {
+  if (input.ResourceIdentifier !== undefined && input.ResourceIdentifier !== null) {
     entries["ResourceIdentifier"] = input.ResourceIdentifier;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Marker != null) {
+  if (input.Marker !== undefined && input.Marker !== null) {
     entries["Marker"] = input.Marker;
   }
-  if (input.MaxRecords != null) {
+  if (input.MaxRecords !== undefined && input.MaxRecords !== null) {
     entries["MaxRecords"] = input.MaxRecords;
   }
   return entries;
@@ -5514,10 +5696,10 @@ const serializeAws_queryEventCategoriesList = (input: string[], context: __Serde
 
 const serializeAws_queryFailoverDBClusterMessage = (input: FailoverDBClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.TargetDBInstanceIdentifier != null) {
+  if (input.TargetDBInstanceIdentifier !== undefined && input.TargetDBInstanceIdentifier !== null) {
     entries["TargetDBInstanceIdentifier"] = input.TargetDBInstanceIdentifier;
   }
   return entries;
@@ -5525,10 +5707,10 @@ const serializeAws_queryFailoverDBClusterMessage = (input: FailoverDBClusterMess
 
 const serializeAws_queryFilter = (input: Filter, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Name != null) {
+  if (input.Name !== undefined && input.Name !== null) {
     entries["Name"] = input.Name;
   }
-  if (input.Values != null) {
+  if (input.Values !== undefined && input.Values !== null) {
     const memberEntries = serializeAws_queryFilterValueList(input.Values, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Values.${key}`;
@@ -5585,10 +5767,10 @@ const serializeAws_queryListTagsForResourceMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ResourceName != null) {
+  if (input.ResourceName !== undefined && input.ResourceName !== null) {
     entries["ResourceName"] = input.ResourceName;
   }
-  if (input.Filters != null) {
+  if (input.Filters !== undefined && input.Filters !== null) {
     const memberEntries = serializeAws_queryFilterList(input.Filters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Filters.${key}`;
@@ -5613,41 +5795,41 @@ const serializeAws_queryLogTypeList = (input: string[], context: __SerdeContext)
 
 const serializeAws_queryModifyDBClusterMessage = (input: ModifyDBClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.NewDBClusterIdentifier != null) {
+  if (input.NewDBClusterIdentifier !== undefined && input.NewDBClusterIdentifier !== null) {
     entries["NewDBClusterIdentifier"] = input.NewDBClusterIdentifier;
   }
-  if (input.ApplyImmediately != null) {
+  if (input.ApplyImmediately !== undefined && input.ApplyImmediately !== null) {
     entries["ApplyImmediately"] = input.ApplyImmediately;
   }
-  if (input.BackupRetentionPeriod != null) {
+  if (input.BackupRetentionPeriod !== undefined && input.BackupRetentionPeriod !== null) {
     entries["BackupRetentionPeriod"] = input.BackupRetentionPeriod;
   }
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
-  if (input.MasterUserPassword != null) {
+  if (input.MasterUserPassword !== undefined && input.MasterUserPassword !== null) {
     entries["MasterUserPassword"] = input.MasterUserPassword;
   }
-  if (input.PreferredBackupWindow != null) {
+  if (input.PreferredBackupWindow !== undefined && input.PreferredBackupWindow !== null) {
     entries["PreferredBackupWindow"] = input.PreferredBackupWindow;
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.CloudwatchLogsExportConfiguration != null) {
+  if (input.CloudwatchLogsExportConfiguration !== undefined && input.CloudwatchLogsExportConfiguration !== null) {
     const memberEntries = serializeAws_queryCloudwatchLogsExportConfiguration(
       input.CloudwatchLogsExportConfiguration,
       context
@@ -5657,10 +5839,10 @@ const serializeAws_queryModifyDBClusterMessage = (input: ModifyDBClusterMessage,
       entries[loc] = value;
     });
   }
-  if (input.EngineVersion != null) {
+  if (input.EngineVersion !== undefined && input.EngineVersion !== null) {
     entries["EngineVersion"] = input.EngineVersion;
   }
-  if (input.DeletionProtection != null) {
+  if (input.DeletionProtection !== undefined && input.DeletionProtection !== null) {
     entries["DeletionProtection"] = input.DeletionProtection;
   }
   return entries;
@@ -5671,10 +5853,10 @@ const serializeAws_queryModifyDBClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.Parameters != null) {
+  if (input.Parameters !== undefined && input.Parameters !== null) {
     const memberEntries = serializeAws_queryParametersList(input.Parameters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Parameters.${key}`;
@@ -5689,20 +5871,20 @@ const serializeAws_queryModifyDBClusterSnapshotAttributeMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterSnapshotIdentifier != null) {
+  if (input.DBClusterSnapshotIdentifier !== undefined && input.DBClusterSnapshotIdentifier !== null) {
     entries["DBClusterSnapshotIdentifier"] = input.DBClusterSnapshotIdentifier;
   }
-  if (input.AttributeName != null) {
+  if (input.AttributeName !== undefined && input.AttributeName !== null) {
     entries["AttributeName"] = input.AttributeName;
   }
-  if (input.ValuesToAdd != null) {
+  if (input.ValuesToAdd !== undefined && input.ValuesToAdd !== null) {
     const memberEntries = serializeAws_queryAttributeValueList(input.ValuesToAdd, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ValuesToAdd.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ValuesToRemove != null) {
+  if (input.ValuesToRemove !== undefined && input.ValuesToRemove !== null) {
     const memberEntries = serializeAws_queryAttributeValueList(input.ValuesToRemove, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ValuesToRemove.${key}`;
@@ -5714,37 +5896,37 @@ const serializeAws_queryModifyDBClusterSnapshotAttributeMessage = (
 
 const serializeAws_queryModifyDBInstanceMessage = (input: ModifyDBInstanceMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBInstanceIdentifier != null) {
+  if (input.DBInstanceIdentifier !== undefined && input.DBInstanceIdentifier !== null) {
     entries["DBInstanceIdentifier"] = input.DBInstanceIdentifier;
   }
-  if (input.DBInstanceClass != null) {
+  if (input.DBInstanceClass !== undefined && input.DBInstanceClass !== null) {
     entries["DBInstanceClass"] = input.DBInstanceClass;
   }
-  if (input.ApplyImmediately != null) {
+  if (input.ApplyImmediately !== undefined && input.ApplyImmediately !== null) {
     entries["ApplyImmediately"] = input.ApplyImmediately;
   }
-  if (input.PreferredMaintenanceWindow != null) {
+  if (input.PreferredMaintenanceWindow !== undefined && input.PreferredMaintenanceWindow !== null) {
     entries["PreferredMaintenanceWindow"] = input.PreferredMaintenanceWindow;
   }
-  if (input.AutoMinorVersionUpgrade != null) {
+  if (input.AutoMinorVersionUpgrade !== undefined && input.AutoMinorVersionUpgrade !== null) {
     entries["AutoMinorVersionUpgrade"] = input.AutoMinorVersionUpgrade;
   }
-  if (input.NewDBInstanceIdentifier != null) {
+  if (input.NewDBInstanceIdentifier !== undefined && input.NewDBInstanceIdentifier !== null) {
     entries["NewDBInstanceIdentifier"] = input.NewDBInstanceIdentifier;
   }
-  if (input.CACertificateIdentifier != null) {
+  if (input.CACertificateIdentifier !== undefined && input.CACertificateIdentifier !== null) {
     entries["CACertificateIdentifier"] = input.CACertificateIdentifier;
   }
-  if (input.CopyTagsToSnapshot != null) {
+  if (input.CopyTagsToSnapshot !== undefined && input.CopyTagsToSnapshot !== null) {
     entries["CopyTagsToSnapshot"] = input.CopyTagsToSnapshot;
   }
-  if (input.PromotionTier != null) {
+  if (input.PromotionTier !== undefined && input.PromotionTier !== null) {
     entries["PromotionTier"] = input.PromotionTier;
   }
-  if (input.EnablePerformanceInsights != null) {
+  if (input.EnablePerformanceInsights !== undefined && input.EnablePerformanceInsights !== null) {
     entries["EnablePerformanceInsights"] = input.EnablePerformanceInsights;
   }
-  if (input.PerformanceInsightsKMSKeyId != null) {
+  if (input.PerformanceInsightsKMSKeyId !== undefined && input.PerformanceInsightsKMSKeyId !== null) {
     entries["PerformanceInsightsKMSKeyId"] = input.PerformanceInsightsKMSKeyId;
   }
   return entries;
@@ -5755,13 +5937,13 @@ const serializeAws_queryModifyDBSubnetGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
-  if (input.DBSubnetGroupDescription != null) {
+  if (input.DBSubnetGroupDescription !== undefined && input.DBSubnetGroupDescription !== null) {
     entries["DBSubnetGroupDescription"] = input.DBSubnetGroupDescription;
   }
-  if (input.SubnetIds != null) {
+  if (input.SubnetIds !== undefined && input.SubnetIds !== null) {
     const memberEntries = serializeAws_querySubnetIdentifierList(input.SubnetIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `SubnetIds.${key}`;
@@ -5776,23 +5958,23 @@ const serializeAws_queryModifyEventSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.SnsTopicArn != null) {
+  if (input.SnsTopicArn !== undefined && input.SnsTopicArn !== null) {
     entries["SnsTopicArn"] = input.SnsTopicArn;
   }
-  if (input.SourceType != null) {
+  if (input.SourceType !== undefined && input.SourceType !== null) {
     entries["SourceType"] = input.SourceType;
   }
-  if (input.EventCategories != null) {
+  if (input.EventCategories !== undefined && input.EventCategories !== null) {
     const memberEntries = serializeAws_queryEventCategoriesList(input.EventCategories, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EventCategories.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Enabled != null) {
+  if (input.Enabled !== undefined && input.Enabled !== null) {
     entries["Enabled"] = input.Enabled;
   }
   return entries;
@@ -5803,13 +5985,13 @@ const serializeAws_queryModifyGlobalClusterMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.GlobalClusterIdentifier != null) {
+  if (input.GlobalClusterIdentifier !== undefined && input.GlobalClusterIdentifier !== null) {
     entries["GlobalClusterIdentifier"] = input.GlobalClusterIdentifier;
   }
-  if (input.NewGlobalClusterIdentifier != null) {
+  if (input.NewGlobalClusterIdentifier !== undefined && input.NewGlobalClusterIdentifier !== null) {
     entries["NewGlobalClusterIdentifier"] = input.NewGlobalClusterIdentifier;
   }
-  if (input.DeletionProtection != null) {
+  if (input.DeletionProtection !== undefined && input.DeletionProtection !== null) {
     entries["DeletionProtection"] = input.DeletionProtection;
   }
   return entries;
@@ -5817,34 +5999,34 @@ const serializeAws_queryModifyGlobalClusterMessage = (
 
 const serializeAws_queryParameter = (input: Parameter, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ParameterName != null) {
+  if (input.ParameterName !== undefined && input.ParameterName !== null) {
     entries["ParameterName"] = input.ParameterName;
   }
-  if (input.ParameterValue != null) {
+  if (input.ParameterValue !== undefined && input.ParameterValue !== null) {
     entries["ParameterValue"] = input.ParameterValue;
   }
-  if (input.Description != null) {
+  if (input.Description !== undefined && input.Description !== null) {
     entries["Description"] = input.Description;
   }
-  if (input.Source != null) {
+  if (input.Source !== undefined && input.Source !== null) {
     entries["Source"] = input.Source;
   }
-  if (input.ApplyType != null) {
+  if (input.ApplyType !== undefined && input.ApplyType !== null) {
     entries["ApplyType"] = input.ApplyType;
   }
-  if (input.DataType != null) {
+  if (input.DataType !== undefined && input.DataType !== null) {
     entries["DataType"] = input.DataType;
   }
-  if (input.AllowedValues != null) {
+  if (input.AllowedValues !== undefined && input.AllowedValues !== null) {
     entries["AllowedValues"] = input.AllowedValues;
   }
-  if (input.IsModifiable != null) {
+  if (input.IsModifiable !== undefined && input.IsModifiable !== null) {
     entries["IsModifiable"] = input.IsModifiable;
   }
-  if (input.MinimumEngineVersion != null) {
+  if (input.MinimumEngineVersion !== undefined && input.MinimumEngineVersion !== null) {
     entries["MinimumEngineVersion"] = input.MinimumEngineVersion;
   }
-  if (input.ApplyMethod != null) {
+  if (input.ApplyMethod !== undefined && input.ApplyMethod !== null) {
     entries["ApplyMethod"] = input.ApplyMethod;
   }
   return entries;
@@ -5868,10 +6050,10 @@ const serializeAws_queryParametersList = (input: Parameter[], context: __SerdeCo
 
 const serializeAws_queryRebootDBInstanceMessage = (input: RebootDBInstanceMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBInstanceIdentifier != null) {
+  if (input.DBInstanceIdentifier !== undefined && input.DBInstanceIdentifier !== null) {
     entries["DBInstanceIdentifier"] = input.DBInstanceIdentifier;
   }
-  if (input.ForceFailover != null) {
+  if (input.ForceFailover !== undefined && input.ForceFailover !== null) {
     entries["ForceFailover"] = input.ForceFailover;
   }
   return entries;
@@ -5882,10 +6064,10 @@ const serializeAws_queryRemoveFromGlobalClusterMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.GlobalClusterIdentifier != null) {
+  if (input.GlobalClusterIdentifier !== undefined && input.GlobalClusterIdentifier !== null) {
     entries["GlobalClusterIdentifier"] = input.GlobalClusterIdentifier;
   }
-  if (input.DbClusterIdentifier != null) {
+  if (input.DbClusterIdentifier !== undefined && input.DbClusterIdentifier !== null) {
     entries["DbClusterIdentifier"] = input.DbClusterIdentifier;
   }
   return entries;
@@ -5896,10 +6078,10 @@ const serializeAws_queryRemoveSourceIdentifierFromSubscriptionMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.SubscriptionName != null) {
+  if (input.SubscriptionName !== undefined && input.SubscriptionName !== null) {
     entries["SubscriptionName"] = input.SubscriptionName;
   }
-  if (input.SourceIdentifier != null) {
+  if (input.SourceIdentifier !== undefined && input.SourceIdentifier !== null) {
     entries["SourceIdentifier"] = input.SourceIdentifier;
   }
   return entries;
@@ -5910,10 +6092,10 @@ const serializeAws_queryRemoveTagsFromResourceMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.ResourceName != null) {
+  if (input.ResourceName !== undefined && input.ResourceName !== null) {
     entries["ResourceName"] = input.ResourceName;
   }
-  if (input.TagKeys != null) {
+  if (input.TagKeys !== undefined && input.TagKeys !== null) {
     const memberEntries = serializeAws_queryKeyList(input.TagKeys, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `TagKeys.${key}`;
@@ -5928,13 +6110,13 @@ const serializeAws_queryResetDBClusterParameterGroupMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterParameterGroupName != null) {
+  if (input.DBClusterParameterGroupName !== undefined && input.DBClusterParameterGroupName !== null) {
     entries["DBClusterParameterGroupName"] = input.DBClusterParameterGroupName;
   }
-  if (input.ResetAllParameters != null) {
+  if (input.ResetAllParameters !== undefined && input.ResetAllParameters !== null) {
     entries["ResetAllParameters"] = input.ResetAllParameters;
   }
-  if (input.Parameters != null) {
+  if (input.Parameters !== undefined && input.Parameters !== null) {
     const memberEntries = serializeAws_queryParametersList(input.Parameters, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Parameters.${key}`;
@@ -5949,56 +6131,56 @@ const serializeAws_queryRestoreDBClusterFromSnapshotMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.AvailabilityZones != null) {
+  if (input.AvailabilityZones !== undefined && input.AvailabilityZones !== null) {
     const memberEntries = serializeAws_queryAvailabilityZones(input.AvailabilityZones, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `AvailabilityZones.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.SnapshotIdentifier != null) {
+  if (input.SnapshotIdentifier !== undefined && input.SnapshotIdentifier !== null) {
     entries["SnapshotIdentifier"] = input.SnapshotIdentifier;
   }
-  if (input.Engine != null) {
+  if (input.Engine !== undefined && input.Engine !== null) {
     entries["Engine"] = input.Engine;
   }
-  if (input.EngineVersion != null) {
+  if (input.EngineVersion !== undefined && input.EngineVersion !== null) {
     entries["EngineVersion"] = input.EngineVersion;
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.EnableCloudwatchLogsExports != null) {
+  if (input.EnableCloudwatchLogsExports !== undefined && input.EnableCloudwatchLogsExports !== null) {
     const memberEntries = serializeAws_queryLogTypeList(input.EnableCloudwatchLogsExports, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EnableCloudwatchLogsExports.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DeletionProtection != null) {
+  if (input.DeletionProtection !== undefined && input.DeletionProtection !== null) {
     entries["DeletionProtection"] = input.DeletionProtection;
   }
   return entries;
@@ -6009,52 +6191,52 @@ const serializeAws_queryRestoreDBClusterToPointInTimeMessage = (
   context: __SerdeContext
 ): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
-  if (input.RestoreType != null) {
+  if (input.RestoreType !== undefined && input.RestoreType !== null) {
     entries["RestoreType"] = input.RestoreType;
   }
-  if (input.SourceDBClusterIdentifier != null) {
+  if (input.SourceDBClusterIdentifier !== undefined && input.SourceDBClusterIdentifier !== null) {
     entries["SourceDBClusterIdentifier"] = input.SourceDBClusterIdentifier;
   }
-  if (input.RestoreToTime != null) {
+  if (input.RestoreToTime !== undefined && input.RestoreToTime !== null) {
     entries["RestoreToTime"] = input.RestoreToTime.toISOString().split(".")[0] + "Z";
   }
-  if (input.UseLatestRestorableTime != null) {
+  if (input.UseLatestRestorableTime !== undefined && input.UseLatestRestorableTime !== null) {
     entries["UseLatestRestorableTime"] = input.UseLatestRestorableTime;
   }
-  if (input.Port != null) {
+  if (input.Port !== undefined && input.Port !== null) {
     entries["Port"] = input.Port;
   }
-  if (input.DBSubnetGroupName != null) {
+  if (input.DBSubnetGroupName !== undefined && input.DBSubnetGroupName !== null) {
     entries["DBSubnetGroupName"] = input.DBSubnetGroupName;
   }
-  if (input.VpcSecurityGroupIds != null) {
+  if (input.VpcSecurityGroupIds !== undefined && input.VpcSecurityGroupIds !== null) {
     const memberEntries = serializeAws_queryVpcSecurityGroupIdList(input.VpcSecurityGroupIds, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `VpcSecurityGroupIds.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.Tags != null) {
+  if (input.Tags !== undefined && input.Tags !== null) {
     const memberEntries = serializeAws_queryTagList(input.Tags, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Tags.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.KmsKeyId != null) {
+  if (input.KmsKeyId !== undefined && input.KmsKeyId !== null) {
     entries["KmsKeyId"] = input.KmsKeyId;
   }
-  if (input.EnableCloudwatchLogsExports != null) {
+  if (input.EnableCloudwatchLogsExports !== undefined && input.EnableCloudwatchLogsExports !== null) {
     const memberEntries = serializeAws_queryLogTypeList(input.EnableCloudwatchLogsExports, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `EnableCloudwatchLogsExports.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.DeletionProtection != null) {
+  if (input.DeletionProtection !== undefined && input.DeletionProtection !== null) {
     entries["DeletionProtection"] = input.DeletionProtection;
   }
   return entries;
@@ -6075,7 +6257,7 @@ const serializeAws_querySourceIdsList = (input: string[], context: __SerdeContex
 
 const serializeAws_queryStartDBClusterMessage = (input: StartDBClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
   return entries;
@@ -6083,7 +6265,7 @@ const serializeAws_queryStartDBClusterMessage = (input: StartDBClusterMessage, c
 
 const serializeAws_queryStopDBClusterMessage = (input: StopDBClusterMessage, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.DBClusterIdentifier != null) {
+  if (input.DBClusterIdentifier !== undefined && input.DBClusterIdentifier !== null) {
     entries["DBClusterIdentifier"] = input.DBClusterIdentifier;
   }
   return entries;
@@ -6104,10 +6286,10 @@ const serializeAws_querySubnetIdentifierList = (input: string[], context: __Serd
 
 const serializeAws_queryTag = (input: Tag, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Key != null) {
+  if (input.Key !== undefined && input.Key !== null) {
     entries["Key"] = input.Key;
   }
-  if (input.Value != null) {
+  if (input.Value !== undefined && input.Value !== null) {
     entries["Value"] = input.Value;
   }
   return entries;
@@ -6175,6 +6357,9 @@ const deserializeAws_queryAttributeValueList = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -6206,6 +6391,9 @@ const deserializeAws_queryAvailabilityZoneList = (output: any, context: __SerdeC
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryAvailabilityZone(entry, context);
     });
 };
@@ -6214,6 +6402,9 @@ const deserializeAws_queryAvailabilityZones = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -6252,6 +6443,9 @@ const deserializeAws_queryCertificateList = (output: any, context: __SerdeContex
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryCertificate(entry, context);
     });
 };
@@ -6598,6 +6792,9 @@ const deserializeAws_queryDBClusterList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBCluster(entry, context);
     });
 };
@@ -6628,6 +6825,9 @@ const deserializeAws_queryDBClusterMemberList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBClusterMember(entry, context);
     });
 };
@@ -6712,6 +6912,9 @@ const deserializeAws_queryDBClusterParameterGroupList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBClusterParameterGroup(entry, context);
     });
 };
@@ -6798,6 +7001,9 @@ const deserializeAws_queryDBClusterRoles = (output: any, context: __SerdeContext
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBClusterRole(entry, context);
     });
 };
@@ -6926,6 +7132,9 @@ const deserializeAws_queryDBClusterSnapshotAttributeList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBClusterSnapshotAttribute(entry, context);
     });
 };
@@ -6959,6 +7168,9 @@ const deserializeAws_queryDBClusterSnapshotList = (output: any, context: __Serde
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBClusterSnapshot(entry, context);
     });
 };
@@ -7056,6 +7268,9 @@ const deserializeAws_queryDBEngineVersionList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBEngineVersion(entry, context);
     });
 };
@@ -7234,6 +7449,9 @@ const deserializeAws_queryDBInstanceList = (output: any, context: __SerdeContext
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBInstance(entry, context);
     });
 };
@@ -7293,6 +7511,9 @@ const deserializeAws_queryDBInstanceStatusInfoList = (output: any, context: __Se
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBInstanceStatusInfo(entry, context);
     });
 };
@@ -7479,6 +7700,9 @@ const deserializeAws_queryDBSubnetGroups = (output: any, context: __SerdeContext
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryDBSubnetGroup(entry, context);
     });
 };
@@ -7677,6 +7901,9 @@ const deserializeAws_queryEventCategoriesList = (output: any, context: __SerdeCo
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -7704,6 +7931,9 @@ const deserializeAws_queryEventCategoriesMapList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEventCategoriesMap(entry, context);
     });
 };
@@ -7730,6 +7960,9 @@ const deserializeAws_queryEventList = (output: any, context: __SerdeContext): Ev
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEvent(entry, context);
     });
 };
@@ -7826,6 +8059,9 @@ const deserializeAws_queryEventSubscriptionsList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryEventSubscription(entry, context);
     });
 };
@@ -7936,6 +8172,9 @@ const deserializeAws_queryGlobalClusterList = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryGlobalCluster(entry, context);
     });
 };
@@ -7964,6 +8203,9 @@ const deserializeAws_queryGlobalClusterMemberList = (output: any, context: __Ser
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryGlobalClusterMember(entry, context);
     });
 };
@@ -8245,6 +8487,9 @@ const deserializeAws_queryLogTypeList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -8372,6 +8617,9 @@ const deserializeAws_queryOrderableDBInstanceOptionsList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryOrderableDBInstanceOption(entry, context);
     });
 };
@@ -8451,6 +8699,9 @@ const deserializeAws_queryParametersList = (output: any, context: __SerdeContext
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryParameter(entry, context);
     });
 };
@@ -8522,6 +8773,9 @@ const deserializeAws_queryPendingMaintenanceActionDetails = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryPendingMaintenanceAction(entry, context);
     });
 };
@@ -8533,6 +8787,9 @@ const deserializeAws_queryPendingMaintenanceActions = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryResourcePendingMaintenanceActions(entry, context);
     });
 };
@@ -8631,6 +8888,9 @@ const deserializeAws_queryReadersArnList = (output: any, context: __SerdeContext
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -8639,6 +8899,9 @@ const deserializeAws_queryReadReplicaIdentifierList = (output: any, context: __S
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -8803,6 +9066,9 @@ const deserializeAws_querySourceIdsList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -8895,6 +9161,9 @@ const deserializeAws_querySubnetList = (output: any, context: __SerdeContext): S
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_querySubnet(entry, context);
     });
 };
@@ -8956,6 +9225,9 @@ const deserializeAws_queryTagList = (output: any, context: __SerdeContext): Tag[
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryTag(entry, context);
     });
 };
@@ -9002,6 +9274,9 @@ const deserializeAws_queryValidUpgradeTargetList = (output: any, context: __Serd
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryUpgradeTarget(entry, context);
     });
 };
@@ -9030,6 +9305,9 @@ const deserializeAws_queryVpcSecurityGroupMembershipList = (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryVpcSecurityGroupMembership(entry, context);
     });
 };

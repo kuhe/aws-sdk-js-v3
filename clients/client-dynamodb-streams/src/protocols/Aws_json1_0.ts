@@ -9,7 +9,6 @@ import {
   expectString as __expectString,
   expectUnion as __expectUnion,
   parseEpochTimestamp as __parseEpochTimestamp,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -125,6 +124,7 @@ const deserializeAws_json1_0DescribeStreamCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerError":
@@ -135,12 +135,14 @@ const deserializeAws_json1_0DescribeStreamCommandError = async (
       throw await deserializeAws_json1_0ResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -169,6 +171,7 @@ const deserializeAws_json1_0GetRecordsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ExpiredIteratorException":
@@ -188,12 +191,14 @@ const deserializeAws_json1_0GetRecordsCommandError = async (
       throw await deserializeAws_json1_0TrimmedDataAccessExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -222,6 +227,7 @@ const deserializeAws_json1_0GetShardIteratorCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerError":
@@ -235,12 +241,14 @@ const deserializeAws_json1_0GetShardIteratorCommandError = async (
       throw await deserializeAws_json1_0TrimmedDataAccessExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -269,6 +277,7 @@ const deserializeAws_json1_0ListStreamsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InternalServerError":
@@ -279,12 +288,14 @@ const deserializeAws_json1_0ListStreamsCommandError = async (
       throw await deserializeAws_json1_0ResourceNotFoundExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -398,7 +409,7 @@ const deserializeAws_json1_0AttributeMap = (output: any, context: __SerdeContext
 };
 
 const deserializeAws_json1_0AttributeValue = (output: any, context: __SerdeContext): AttributeValue => {
-  if (output.B != null) {
+  if (output.B !== undefined && output.B !== null) {
     return {
       B: context.base64Decoder(output.B),
     };
@@ -406,17 +417,17 @@ const deserializeAws_json1_0AttributeValue = (output: any, context: __SerdeConte
   if (__expectBoolean(output.BOOL) !== undefined) {
     return { BOOL: __expectBoolean(output.BOOL) as any };
   }
-  if (output.BS != null) {
+  if (output.BS !== undefined && output.BS !== null) {
     return {
       BS: deserializeAws_json1_0BinarySetAttributeValue(output.BS, context),
     };
   }
-  if (output.L != null) {
+  if (output.L !== undefined && output.L !== null) {
     return {
       L: deserializeAws_json1_0ListAttributeValue(output.L, context),
     };
   }
-  if (output.M != null) {
+  if (output.M !== undefined && output.M !== null) {
     return {
       M: deserializeAws_json1_0MapAttributeValue(output.M, context),
     };
@@ -424,7 +435,7 @@ const deserializeAws_json1_0AttributeValue = (output: any, context: __SerdeConte
   if (__expectString(output.N) !== undefined) {
     return { N: __expectString(output.N) as any };
   }
-  if (output.NS != null) {
+  if (output.NS !== undefined && output.NS !== null) {
     return {
       NS: deserializeAws_json1_0NumberSetAttributeValue(output.NS, context),
     };
@@ -435,7 +446,7 @@ const deserializeAws_json1_0AttributeValue = (output: any, context: __SerdeConte
   if (__expectString(output.S) !== undefined) {
     return { S: __expectString(output.S) as any };
   }
-  if (output.SS != null) {
+  if (output.SS !== undefined && output.SS !== null) {
     return {
       SS: deserializeAws_json1_0StringSetAttributeValue(output.SS, context),
     };

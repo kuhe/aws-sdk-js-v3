@@ -10,10 +10,7 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
   parseEpochTimestamp as __parseEpochTimestamp,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -264,14 +261,15 @@ export const serializeAws_restJson1CreateBackupSelectionCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}/selections";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.BackupSelection != null && {
@@ -300,14 +298,15 @@ export const serializeAws_restJson1CreateBackupVaultCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-vaults/{BackupVaultName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.BackupVaultTags != null && {
@@ -402,14 +401,15 @@ export const serializeAws_restJson1DeleteBackupPlanCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -431,15 +431,24 @@ export const serializeAws_restJson1DeleteBackupSelectionCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup/plans/{BackupPlanId}/selections/{SelectionId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
-  resolvedPath = __resolvedPath(resolvedPath, input, "SelectionId", () => input.SelectionId!, "{SelectionId}", false);
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
+  if (input.SelectionId !== undefined) {
+    const labelValue: string = input.SelectionId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: SelectionId.");
+    }
+    resolvedPath = resolvedPath.replace("{SelectionId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: SelectionId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -460,14 +469,15 @@ export const serializeAws_restJson1DeleteBackupVaultCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-vaults/{BackupVaultName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -489,14 +499,15 @@ export const serializeAws_restJson1DeleteBackupVaultAccessPolicyCommand = async 
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/access-policy";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -518,14 +529,15 @@ export const serializeAws_restJson1DeleteBackupVaultLockConfigurationCommand = a
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/vault-lock";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -547,14 +559,15 @@ export const serializeAws_restJson1DeleteBackupVaultNotificationsCommand = async
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/notification-configuration";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -575,14 +588,15 @@ export const serializeAws_restJson1DeleteFrameworkCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/frameworks/{FrameworkName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "FrameworkName",
-    () => input.FrameworkName!,
-    "{FrameworkName}",
-    false
-  );
+  if (input.FrameworkName !== undefined) {
+    const labelValue: string = input.FrameworkName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: FrameworkName.");
+    }
+    resolvedPath = resolvedPath.replace("{FrameworkName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: FrameworkName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -604,22 +618,24 @@ export const serializeAws_restJson1DeleteRecoveryPointCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "RecoveryPointArn",
-    () => input.RecoveryPointArn!,
-    "{RecoveryPointArn}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
+  if (input.RecoveryPointArn !== undefined) {
+    const labelValue: string = input.RecoveryPointArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: RecoveryPointArn.");
+    }
+    resolvedPath = resolvedPath.replace("{RecoveryPointArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: RecoveryPointArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -640,14 +656,15 @@ export const serializeAws_restJson1DeleteReportPlanCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-plans/{ReportPlanName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "ReportPlanName",
-    () => input.ReportPlanName!,
-    "{ReportPlanName}",
-    false
-  );
+  if (input.ReportPlanName !== undefined) {
+    const labelValue: string = input.ReportPlanName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ReportPlanName.");
+    }
+    resolvedPath = resolvedPath.replace("{ReportPlanName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ReportPlanName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -668,7 +685,15 @@ export const serializeAws_restJson1DescribeBackupJobCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-jobs/{BackupJobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "BackupJobId", () => input.BackupJobId!, "{BackupJobId}", false);
+  if (input.BackupJobId !== undefined) {
+    const labelValue: string = input.BackupJobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupJobId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupJobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupJobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -689,14 +714,15 @@ export const serializeAws_restJson1DescribeBackupVaultCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-vaults/{BackupVaultName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -716,7 +742,15 @@ export const serializeAws_restJson1DescribeCopyJobCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/copy-jobs/{CopyJobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "CopyJobId", () => input.CopyJobId!, "{CopyJobId}", false);
+  if (input.CopyJobId !== undefined) {
+    const labelValue: string = input.CopyJobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: CopyJobId.");
+    }
+    resolvedPath = resolvedPath.replace("{CopyJobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: CopyJobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -737,14 +771,15 @@ export const serializeAws_restJson1DescribeFrameworkCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/frameworks/{FrameworkName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "FrameworkName",
-    () => input.FrameworkName!,
-    "{FrameworkName}",
-    false
-  );
+  if (input.FrameworkName !== undefined) {
+    const labelValue: string = input.FrameworkName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: FrameworkName.");
+    }
+    resolvedPath = resolvedPath.replace("{FrameworkName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: FrameworkName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -786,7 +821,15 @@ export const serializeAws_restJson1DescribeProtectedResourceCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/resources/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -808,22 +851,24 @@ export const serializeAws_restJson1DescribeRecoveryPointCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "RecoveryPointArn",
-    () => input.RecoveryPointArn!,
-    "{RecoveryPointArn}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
+  if (input.RecoveryPointArn !== undefined) {
+    const labelValue: string = input.RecoveryPointArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: RecoveryPointArn.");
+    }
+    resolvedPath = resolvedPath.replace("{RecoveryPointArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: RecoveryPointArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -866,7 +911,15 @@ export const serializeAws_restJson1DescribeReportJobCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-jobs/{ReportJobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ReportJobId", () => input.ReportJobId!, "{ReportJobId}", false);
+  if (input.ReportJobId !== undefined) {
+    const labelValue: string = input.ReportJobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ReportJobId.");
+    }
+    resolvedPath = resolvedPath.replace("{ReportJobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ReportJobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -887,14 +940,15 @@ export const serializeAws_restJson1DescribeReportPlanCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-plans/{ReportPlanName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "ReportPlanName",
-    () => input.ReportPlanName!,
-    "{ReportPlanName}",
-    false
-  );
+  if (input.ReportPlanName !== undefined) {
+    const labelValue: string = input.ReportPlanName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ReportPlanName.");
+    }
+    resolvedPath = resolvedPath.replace("{ReportPlanName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ReportPlanName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -915,14 +969,15 @@ export const serializeAws_restJson1DescribeRestoreJobCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/restore-jobs/{RestoreJobId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "RestoreJobId",
-    () => input.RestoreJobId!,
-    "{RestoreJobId}",
-    false
-  );
+  if (input.RestoreJobId !== undefined) {
+    const labelValue: string = input.RestoreJobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: RestoreJobId.");
+    }
+    resolvedPath = resolvedPath.replace("{RestoreJobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: RestoreJobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -944,22 +999,24 @@ export const serializeAws_restJson1DisassociateRecoveryPointCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/disassociate";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "RecoveryPointArn",
-    () => input.RecoveryPointArn!,
-    "{RecoveryPointArn}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
+  if (input.RecoveryPointArn !== undefined) {
+    const labelValue: string = input.RecoveryPointArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: RecoveryPointArn.");
+    }
+    resolvedPath = resolvedPath.replace("{RecoveryPointArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: RecoveryPointArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -980,14 +1037,15 @@ export const serializeAws_restJson1ExportBackupPlanTemplateCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}/toTemplate";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1008,17 +1066,18 @@ export const serializeAws_restJson1GetBackupPlanCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
-  const query: any = map({
-    versionId: [, input.VersionId!],
-  });
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
+  const query: any = {
+    ...(input.VersionId !== undefined && { versionId: input.VersionId }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1066,14 +1125,15 @@ export const serializeAws_restJson1GetBackupPlanFromTemplateCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup/template/plans/{BackupPlanTemplateId}/toPlan";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanTemplateId",
-    () => input.BackupPlanTemplateId!,
-    "{BackupPlanTemplateId}",
-    false
-  );
+  if (input.BackupPlanTemplateId !== undefined) {
+    const labelValue: string = input.BackupPlanTemplateId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanTemplateId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanTemplateId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanTemplateId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1095,15 +1155,24 @@ export const serializeAws_restJson1GetBackupSelectionCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup/plans/{BackupPlanId}/selections/{SelectionId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
-  resolvedPath = __resolvedPath(resolvedPath, input, "SelectionId", () => input.SelectionId!, "{SelectionId}", false);
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
+  if (input.SelectionId !== undefined) {
+    const labelValue: string = input.SelectionId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: SelectionId.");
+    }
+    resolvedPath = resolvedPath.replace("{SelectionId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: SelectionId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1125,14 +1194,15 @@ export const serializeAws_restJson1GetBackupVaultAccessPolicyCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/access-policy";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1154,14 +1224,15 @@ export const serializeAws_restJson1GetBackupVaultNotificationsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/notification-configuration";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1183,22 +1254,24 @@ export const serializeAws_restJson1GetRecoveryPointRestoreMetadataCommand = asyn
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/restore-metadata";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "RecoveryPointArn",
-    () => input.RecoveryPointArn!,
-    "{RecoveryPointArn}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
+  if (input.RecoveryPointArn !== undefined) {
+    const labelValue: string = input.RecoveryPointArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: RecoveryPointArn.");
+    }
+    resolvedPath = resolvedPath.replace("{RecoveryPointArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: RecoveryPointArn.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1241,31 +1314,27 @@ export const serializeAws_restJson1ListBackupJobsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-jobs";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    resourceArn: [, input.ByResourceArn!],
-    state: [, input.ByState!],
-    backupVaultName: [, input.ByBackupVaultName!],
-    createdBefore: [
-      () => input.ByCreatedBefore !== void 0,
-      () => (input.ByCreatedBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    createdAfter: [
-      () => input.ByCreatedAfter !== void 0,
-      () => (input.ByCreatedAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    resourceType: [, input.ByResourceType!],
-    accountId: [, input.ByAccountId!],
-    completeAfter: [
-      () => input.ByCompleteAfter !== void 0,
-      () => (input.ByCompleteAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    completeBefore: [
-      () => input.ByCompleteBefore !== void 0,
-      () => (input.ByCompleteBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.ByResourceArn !== undefined && { resourceArn: input.ByResourceArn }),
+    ...(input.ByState !== undefined && { state: input.ByState }),
+    ...(input.ByBackupVaultName !== undefined && { backupVaultName: input.ByBackupVaultName }),
+    ...(input.ByCreatedBefore !== undefined && {
+      createdBefore: (input.ByCreatedBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCreatedAfter !== undefined && {
+      createdAfter: (input.ByCreatedAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByResourceType !== undefined && { resourceType: input.ByResourceType }),
+    ...(input.ByAccountId !== undefined && { accountId: input.ByAccountId }),
+    ...(input.ByCompleteAfter !== undefined && {
+      completeAfter: (input.ByCompleteAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCompleteBefore !== undefined && {
+      completeBefore: (input.ByCompleteBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1286,11 +1355,11 @@ export const serializeAws_restJson1ListBackupPlansCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    includeDeleted: [() => input.IncludeDeleted !== void 0, () => input.IncludeDeleted!.toString()],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.IncludeDeleted !== undefined && { includeDeleted: input.IncludeDeleted.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1311,10 +1380,10 @@ export const serializeAws_restJson1ListBackupPlanTemplatesCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/template/plans";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1336,18 +1405,19 @@ export const serializeAws_restJson1ListBackupPlanVersionsCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}/versions";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1369,18 +1439,19 @@ export const serializeAws_restJson1ListBackupSelectionsCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}/selections";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1401,10 +1472,10 @@ export const serializeAws_restJson1ListBackupVaultsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-vaults";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1425,31 +1496,27 @@ export const serializeAws_restJson1ListCopyJobsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/copy-jobs";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    resourceArn: [, input.ByResourceArn!],
-    state: [, input.ByState!],
-    createdBefore: [
-      () => input.ByCreatedBefore !== void 0,
-      () => (input.ByCreatedBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    createdAfter: [
-      () => input.ByCreatedAfter !== void 0,
-      () => (input.ByCreatedAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    resourceType: [, input.ByResourceType!],
-    destinationVaultArn: [, input.ByDestinationVaultArn!],
-    accountId: [, input.ByAccountId!],
-    completeBefore: [
-      () => input.ByCompleteBefore !== void 0,
-      () => (input.ByCompleteBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    completeAfter: [
-      () => input.ByCompleteAfter !== void 0,
-      () => (input.ByCompleteAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.ByResourceArn !== undefined && { resourceArn: input.ByResourceArn }),
+    ...(input.ByState !== undefined && { state: input.ByState }),
+    ...(input.ByCreatedBefore !== undefined && {
+      createdBefore: (input.ByCreatedBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCreatedAfter !== undefined && {
+      createdAfter: (input.ByCreatedAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByResourceType !== undefined && { resourceType: input.ByResourceType }),
+    ...(input.ByDestinationVaultArn !== undefined && { destinationVaultArn: input.ByDestinationVaultArn }),
+    ...(input.ByAccountId !== undefined && { accountId: input.ByAccountId }),
+    ...(input.ByCompleteBefore !== undefined && {
+      completeBefore: (input.ByCompleteBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCompleteAfter !== undefined && {
+      completeAfter: (input.ByCompleteAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1470,10 +1537,10 @@ export const serializeAws_restJson1ListFrameworksCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/frameworks";
-  const query: any = map({
-    MaxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    NextToken: [, input.NextToken!],
-  });
+  const query: any = {
+    ...(input.MaxResults !== undefined && { MaxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1494,10 +1561,10 @@ export const serializeAws_restJson1ListProtectedResourcesCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/resources";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1520,29 +1587,28 @@ export const serializeAws_restJson1ListRecoveryPointsByBackupVaultCommand = asyn
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/recovery-points";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    resourceArn: [, input.ByResourceArn!],
-    resourceType: [, input.ByResourceType!],
-    backupPlanId: [, input.ByBackupPlanId!],
-    createdBefore: [
-      () => input.ByCreatedBefore !== void 0,
-      () => (input.ByCreatedBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    createdAfter: [
-      () => input.ByCreatedAfter !== void 0,
-      () => (input.ByCreatedAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-  });
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.ByResourceArn !== undefined && { resourceArn: input.ByResourceArn }),
+    ...(input.ByResourceType !== undefined && { resourceType: input.ByResourceType }),
+    ...(input.ByBackupPlanId !== undefined && { backupPlanId: input.ByBackupPlanId }),
+    ...(input.ByCreatedBefore !== undefined && {
+      createdBefore: (input.ByCreatedBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCreatedAfter !== undefined && {
+      createdAfter: (input.ByCreatedAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1564,11 +1630,19 @@ export const serializeAws_restJson1ListRecoveryPointsByResourceCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/resources/{ResourceArn}/recovery-points";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1589,20 +1663,18 @@ export const serializeAws_restJson1ListReportJobsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-jobs";
-  const query: any = map({
-    ReportPlanName: [, input.ByReportPlanName!],
-    CreationBefore: [
-      () => input.ByCreationBefore !== void 0,
-      () => (input.ByCreationBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    CreationAfter: [
-      () => input.ByCreationAfter !== void 0,
-      () => (input.ByCreationAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    Status: [, input.ByStatus!],
-    MaxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    NextToken: [, input.NextToken!],
-  });
+  const query: any = {
+    ...(input.ByReportPlanName !== undefined && { ReportPlanName: input.ByReportPlanName }),
+    ...(input.ByCreationBefore !== undefined && {
+      CreationBefore: (input.ByCreationBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCreationAfter !== undefined && {
+      CreationAfter: (input.ByCreationAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByStatus !== undefined && { Status: input.ByStatus }),
+    ...(input.MaxResults !== undefined && { MaxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1623,10 +1695,10 @@ export const serializeAws_restJson1ListReportPlansCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-plans";
-  const query: any = map({
-    MaxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    NextToken: [, input.NextToken!],
-  });
+  const query: any = {
+    ...(input.MaxResults !== undefined && { MaxResults: input.MaxResults.toString() }),
+    ...(input.NextToken !== undefined && { NextToken: input.NextToken }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1647,28 +1719,24 @@ export const serializeAws_restJson1ListRestoreJobsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/restore-jobs";
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-    accountId: [, input.ByAccountId!],
-    createdBefore: [
-      () => input.ByCreatedBefore !== void 0,
-      () => (input.ByCreatedBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    createdAfter: [
-      () => input.ByCreatedAfter !== void 0,
-      () => (input.ByCreatedAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    status: [, input.ByStatus!],
-    completeBefore: [
-      () => input.ByCompleteBefore !== void 0,
-      () => (input.ByCompleteBefore!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-    completeAfter: [
-      () => input.ByCompleteAfter !== void 0,
-      () => (input.ByCompleteAfter!.toISOString().split(".")[0] + "Z").toString(),
-    ],
-  });
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+    ...(input.ByAccountId !== undefined && { accountId: input.ByAccountId }),
+    ...(input.ByCreatedBefore !== undefined && {
+      createdBefore: (input.ByCreatedBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCreatedAfter !== undefined && {
+      createdAfter: (input.ByCreatedAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByStatus !== undefined && { status: input.ByStatus }),
+    ...(input.ByCompleteBefore !== undefined && {
+      completeBefore: (input.ByCompleteBefore.toISOString().split(".")[0] + "Z").toString(),
+    }),
+    ...(input.ByCompleteAfter !== undefined && {
+      completeAfter: (input.ByCompleteAfter.toISOString().split(".")[0] + "Z").toString(),
+    }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1689,11 +1757,19 @@ export const serializeAws_restJson1ListTagsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
-  const query: any = map({
-    nextToken: [, input.NextToken!],
-    maxResults: [() => input.MaxResults !== void 0, () => input.MaxResults!.toString()],
-  });
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
+  const query: any = {
+    ...(input.NextToken !== undefined && { nextToken: input.NextToken }),
+    ...(input.MaxResults !== undefined && { maxResults: input.MaxResults.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1718,14 +1794,15 @@ export const serializeAws_restJson1PutBackupVaultAccessPolicyCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/access-policy";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Policy != null && { Policy: input.Policy }),
@@ -1752,14 +1829,15 @@ export const serializeAws_restJson1PutBackupVaultLockConfigurationCommand = asyn
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/vault-lock";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.ChangeableForDays != null && { ChangeableForDays: input.ChangeableForDays }),
@@ -1788,14 +1866,15 @@ export const serializeAws_restJson1PutBackupVaultNotificationsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/notification-configuration";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.BackupVaultEvents != null && {
@@ -1889,14 +1968,15 @@ export const serializeAws_restJson1StartReportJobCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-jobs/{ReportPlanName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "ReportPlanName",
-    () => input.ReportPlanName!,
-    "{ReportPlanName}",
-    false
-  );
+  if (input.ReportPlanName !== undefined) {
+    const labelValue: string = input.ReportPlanName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ReportPlanName.");
+    }
+    resolvedPath = resolvedPath.replace("{ReportPlanName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ReportPlanName.");
+  }
   let body: any;
   body = JSON.stringify({
     IdempotencyToken: input.IdempotencyToken ?? generateIdempotencyToken(),
@@ -1948,7 +2028,15 @@ export const serializeAws_restJson1StopBackupJobCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup-jobs/{BackupJobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "BackupJobId", () => input.BackupJobId!, "{BackupJobId}", false);
+  if (input.BackupJobId !== undefined) {
+    const labelValue: string = input.BackupJobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupJobId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupJobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupJobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -1970,7 +2058,15 @@ export const serializeAws_restJson1TagResourceCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/tags/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Tags != null && { Tags: serializeAws_restJson1Tags(input.Tags, context) }),
@@ -1995,7 +2091,15 @@ export const serializeAws_restJson1UntagResourceCommand = async (
     "content-type": "application/json",
   };
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/untag/{ResourceArn}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "ResourceArn", () => input.ResourceArn!, "{ResourceArn}", false);
+  if (input.ResourceArn !== undefined) {
+    const labelValue: string = input.ResourceArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ResourceArn.");
+    }
+    resolvedPath = resolvedPath.replace("{ResourceArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ResourceArn.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.TagKeyList != null && { TagKeyList: serializeAws_restJson1TagKeyList(input.TagKeyList, context) }),
@@ -2021,14 +2125,15 @@ export const serializeAws_restJson1UpdateBackupPlanCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/backup/plans/{BackupPlanId}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupPlanId",
-    () => input.BackupPlanId!,
-    "{BackupPlanId}",
-    false
-  );
+  if (input.BackupPlanId !== undefined) {
+    const labelValue: string = input.BackupPlanId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupPlanId.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupPlanId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupPlanId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.BackupPlan != null && { BackupPlan: serializeAws_restJson1BackupPlanInput(input.BackupPlan, context) }),
@@ -2054,14 +2159,15 @@ export const serializeAws_restJson1UpdateFrameworkCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/frameworks/{FrameworkName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "FrameworkName",
-    () => input.FrameworkName!,
-    "{FrameworkName}",
-    false
-  );
+  if (input.FrameworkName !== undefined) {
+    const labelValue: string = input.FrameworkName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: FrameworkName.");
+    }
+    resolvedPath = resolvedPath.replace("{FrameworkName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: FrameworkName.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.FrameworkControls != null && {
@@ -2118,22 +2224,24 @@ export const serializeAws_restJson1UpdateRecoveryPointLifecycleCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "BackupVaultName",
-    () => input.BackupVaultName!,
-    "{BackupVaultName}",
-    false
-  );
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "RecoveryPointArn",
-    () => input.RecoveryPointArn!,
-    "{RecoveryPointArn}",
-    false
-  );
+  if (input.BackupVaultName !== undefined) {
+    const labelValue: string = input.BackupVaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: BackupVaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{BackupVaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: BackupVaultName.");
+  }
+  if (input.RecoveryPointArn !== undefined) {
+    const labelValue: string = input.RecoveryPointArn;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: RecoveryPointArn.");
+    }
+    resolvedPath = resolvedPath.replace("{RecoveryPointArn}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: RecoveryPointArn.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Lifecycle != null && { Lifecycle: serializeAws_restJson1Lifecycle(input.Lifecycle, context) }),
@@ -2194,14 +2302,15 @@ export const serializeAws_restJson1UpdateReportPlanCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/audit/report-plans/{ReportPlanName}";
-  resolvedPath = __resolvedPath(
-    resolvedPath,
-    input,
-    "ReportPlanName",
-    () => input.ReportPlanName!,
-    "{ReportPlanName}",
-    false
-  );
+  if (input.ReportPlanName !== undefined) {
+    const labelValue: string = input.ReportPlanName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: ReportPlanName.");
+    }
+    resolvedPath = resolvedPath.replace("{ReportPlanName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: ReportPlanName.");
+  }
   let body: any;
   body = JSON.stringify({
     IdempotencyToken: input.IdempotencyToken ?? generateIdempotencyToken(),
@@ -2231,29 +2340,34 @@ export const deserializeAws_restJson1CreateBackupPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateBackupPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateBackupPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    AdvancedBackupSettings: undefined,
+    BackupPlanArn: undefined,
+    BackupPlanId: undefined,
+    CreationDate: undefined,
+    VersionId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.AdvancedBackupSettings != null) {
+  if (data.AdvancedBackupSettings !== undefined && data.AdvancedBackupSettings !== null) {
     contents.AdvancedBackupSettings = deserializeAws_restJson1AdvancedBackupSettings(
       data.AdvancedBackupSettings,
       context
     );
   }
-  if (data.BackupPlanArn != null) {
+  if (data.BackupPlanArn !== undefined && data.BackupPlanArn !== null) {
     contents.BackupPlanArn = __expectString(data.BackupPlanArn);
   }
-  if (data.BackupPlanId != null) {
+  if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.VersionId != null) {
+  if (data.VersionId !== undefined && data.VersionId !== null) {
     contents.VersionId = __expectString(data.VersionId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateBackupPlanCommandError = async (
@@ -2264,6 +2378,7 @@ const deserializeAws_restJson1CreateBackupPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AlreadyExistsException":
@@ -2283,12 +2398,14 @@ const deserializeAws_restJson1CreateBackupPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2299,20 +2416,23 @@ export const deserializeAws_restJson1CreateBackupSelectionCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateBackupSelectionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateBackupSelectionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanId: undefined,
+    CreationDate: undefined,
+    SelectionId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanId != null) {
+  if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.SelectionId != null) {
+  if (data.SelectionId !== undefined && data.SelectionId !== null) {
     contents.SelectionId = __expectString(data.SelectionId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateBackupSelectionCommandError = async (
@@ -2323,6 +2443,7 @@ const deserializeAws_restJson1CreateBackupSelectionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AlreadyExistsException":
@@ -2342,12 +2463,14 @@ const deserializeAws_restJson1CreateBackupSelectionCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2358,20 +2481,23 @@ export const deserializeAws_restJson1CreateBackupVaultCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateBackupVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateBackupVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultArn: undefined,
+    BackupVaultName: undefined,
+    CreationDate: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.BackupVaultName != null) {
+  if (data.BackupVaultName !== undefined && data.BackupVaultName !== null) {
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateBackupVaultCommandError = async (
@@ -2382,6 +2508,7 @@ const deserializeAws_restJson1CreateBackupVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AlreadyExistsException":
@@ -2401,12 +2528,14 @@ const deserializeAws_restJson1CreateBackupVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2417,17 +2546,19 @@ export const deserializeAws_restJson1CreateFrameworkCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateFrameworkCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateFrameworkCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    FrameworkArn: undefined,
+    FrameworkName: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.FrameworkArn != null) {
+  if (data.FrameworkArn !== undefined && data.FrameworkArn !== null) {
     contents.FrameworkArn = __expectString(data.FrameworkArn);
   }
-  if (data.FrameworkName != null) {
+  if (data.FrameworkName !== undefined && data.FrameworkName !== null) {
     contents.FrameworkName = __expectString(data.FrameworkName);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateFrameworkCommandError = async (
@@ -2438,6 +2569,7 @@ const deserializeAws_restJson1CreateFrameworkCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AlreadyExistsException":
@@ -2457,12 +2589,14 @@ const deserializeAws_restJson1CreateFrameworkCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2473,20 +2607,23 @@ export const deserializeAws_restJson1CreateReportPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateReportPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateReportPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationTime: undefined,
+    ReportPlanArn: undefined,
+    ReportPlanName: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationTime != null) {
+  if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationTime)));
   }
-  if (data.ReportPlanArn != null) {
+  if (data.ReportPlanArn !== undefined && data.ReportPlanArn !== null) {
     contents.ReportPlanArn = __expectString(data.ReportPlanArn);
   }
-  if (data.ReportPlanName != null) {
+  if (data.ReportPlanName !== undefined && data.ReportPlanName !== null) {
     contents.ReportPlanName = __expectString(data.ReportPlanName);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateReportPlanCommandError = async (
@@ -2497,6 +2634,7 @@ const deserializeAws_restJson1CreateReportPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AlreadyExistsException":
@@ -2516,12 +2654,14 @@ const deserializeAws_restJson1CreateReportPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2532,23 +2672,27 @@ export const deserializeAws_restJson1DeleteBackupPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteBackupPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteBackupPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanArn: undefined,
+    BackupPlanId: undefined,
+    DeletionDate: undefined,
+    VersionId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanArn != null) {
+  if (data.BackupPlanArn !== undefined && data.BackupPlanArn !== null) {
     contents.BackupPlanArn = __expectString(data.BackupPlanArn);
   }
-  if (data.BackupPlanId != null) {
+  if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
-  if (data.DeletionDate != null) {
+  if (data.DeletionDate !== undefined && data.DeletionDate !== null) {
     contents.DeletionDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.DeletionDate)));
   }
-  if (data.VersionId != null) {
+  if (data.VersionId !== undefined && data.VersionId !== null) {
     contents.VersionId = __expectString(data.VersionId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteBackupPlanCommandError = async (
@@ -2559,6 +2703,7 @@ const deserializeAws_restJson1DeleteBackupPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2578,12 +2723,14 @@ const deserializeAws_restJson1DeleteBackupPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2594,11 +2741,11 @@ export const deserializeAws_restJson1DeleteBackupSelectionCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteBackupSelectionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteBackupSelectionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteBackupSelectionCommandError = async (
@@ -2609,6 +2756,7 @@ const deserializeAws_restJson1DeleteBackupSelectionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2625,12 +2773,14 @@ const deserializeAws_restJson1DeleteBackupSelectionCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2641,11 +2791,11 @@ export const deserializeAws_restJson1DeleteBackupVaultCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteBackupVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteBackupVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteBackupVaultCommandError = async (
@@ -2656,6 +2806,7 @@ const deserializeAws_restJson1DeleteBackupVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2675,12 +2826,14 @@ const deserializeAws_restJson1DeleteBackupVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2691,11 +2844,11 @@ export const deserializeAws_restJson1DeleteBackupVaultAccessPolicyCommand = asyn
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteBackupVaultAccessPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteBackupVaultAccessPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteBackupVaultAccessPolicyCommandError = async (
@@ -2706,6 +2859,7 @@ const deserializeAws_restJson1DeleteBackupVaultAccessPolicyCommandError = async 
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2722,12 +2876,14 @@ const deserializeAws_restJson1DeleteBackupVaultAccessPolicyCommandError = async 
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2738,11 +2894,11 @@ export const deserializeAws_restJson1DeleteBackupVaultLockConfigurationCommand =
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteBackupVaultLockConfigurationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteBackupVaultLockConfigurationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteBackupVaultLockConfigurationCommandError = async (
@@ -2753,6 +2909,7 @@ const deserializeAws_restJson1DeleteBackupVaultLockConfigurationCommandError = a
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2772,12 +2929,14 @@ const deserializeAws_restJson1DeleteBackupVaultLockConfigurationCommandError = a
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2788,11 +2947,11 @@ export const deserializeAws_restJson1DeleteBackupVaultNotificationsCommand = asy
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteBackupVaultNotificationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteBackupVaultNotificationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteBackupVaultNotificationsCommandError = async (
@@ -2803,6 +2962,7 @@ const deserializeAws_restJson1DeleteBackupVaultNotificationsCommandError = async
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2819,12 +2979,14 @@ const deserializeAws_restJson1DeleteBackupVaultNotificationsCommandError = async
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2835,11 +2997,11 @@ export const deserializeAws_restJson1DeleteFrameworkCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteFrameworkCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteFrameworkCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteFrameworkCommandError = async (
@@ -2850,6 +3012,7 @@ const deserializeAws_restJson1DeleteFrameworkCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConflictException":
@@ -2869,12 +3032,14 @@ const deserializeAws_restJson1DeleteFrameworkCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2885,11 +3050,11 @@ export const deserializeAws_restJson1DeleteRecoveryPointCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteRecoveryPointCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteRecoveryPointCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteRecoveryPointCommandError = async (
@@ -2900,6 +3065,7 @@ const deserializeAws_restJson1DeleteRecoveryPointCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2922,12 +3088,14 @@ const deserializeAws_restJson1DeleteRecoveryPointCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2938,11 +3106,11 @@ export const deserializeAws_restJson1DeleteReportPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteReportPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteReportPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteReportPlanCommandError = async (
@@ -2953,6 +3121,7 @@ const deserializeAws_restJson1DeleteReportPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConflictException":
@@ -2972,12 +3141,14 @@ const deserializeAws_restJson1DeleteReportPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2988,73 +3159,93 @@ export const deserializeAws_restJson1DescribeBackupJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeBackupJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeBackupJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    AccountId: undefined,
+    BackupJobId: undefined,
+    BackupOptions: undefined,
+    BackupSizeInBytes: undefined,
+    BackupType: undefined,
+    BackupVaultArn: undefined,
+    BackupVaultName: undefined,
+    BytesTransferred: undefined,
+    CompletionDate: undefined,
+    CreatedBy: undefined,
+    CreationDate: undefined,
+    ExpectedCompletionDate: undefined,
+    IamRoleArn: undefined,
+    PercentDone: undefined,
+    RecoveryPointArn: undefined,
+    ResourceArn: undefined,
+    ResourceType: undefined,
+    StartBy: undefined,
+    State: undefined,
+    StatusMessage: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.AccountId != null) {
+  if (data.AccountId !== undefined && data.AccountId !== null) {
     contents.AccountId = __expectString(data.AccountId);
   }
-  if (data.BackupJobId != null) {
+  if (data.BackupJobId !== undefined && data.BackupJobId !== null) {
     contents.BackupJobId = __expectString(data.BackupJobId);
   }
-  if (data.BackupOptions != null) {
+  if (data.BackupOptions !== undefined && data.BackupOptions !== null) {
     contents.BackupOptions = deserializeAws_restJson1BackupOptions(data.BackupOptions, context);
   }
-  if (data.BackupSizeInBytes != null) {
+  if (data.BackupSizeInBytes !== undefined && data.BackupSizeInBytes !== null) {
     contents.BackupSizeInBytes = __expectLong(data.BackupSizeInBytes);
   }
-  if (data.BackupType != null) {
+  if (data.BackupType !== undefined && data.BackupType !== null) {
     contents.BackupType = __expectString(data.BackupType);
   }
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.BackupVaultName != null) {
+  if (data.BackupVaultName !== undefined && data.BackupVaultName !== null) {
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
-  if (data.BytesTransferred != null) {
+  if (data.BytesTransferred !== undefined && data.BytesTransferred !== null) {
     contents.BytesTransferred = __expectLong(data.BytesTransferred);
   }
-  if (data.CompletionDate != null) {
+  if (data.CompletionDate !== undefined && data.CompletionDate !== null) {
     contents.CompletionDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CompletionDate)));
   }
-  if (data.CreatedBy != null) {
+  if (data.CreatedBy !== undefined && data.CreatedBy !== null) {
     contents.CreatedBy = deserializeAws_restJson1RecoveryPointCreator(data.CreatedBy, context);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.ExpectedCompletionDate != null) {
+  if (data.ExpectedCompletionDate !== undefined && data.ExpectedCompletionDate !== null) {
     contents.ExpectedCompletionDate = __expectNonNull(
       __parseEpochTimestamp(__expectNumber(data.ExpectedCompletionDate))
     );
   }
-  if (data.IamRoleArn != null) {
+  if (data.IamRoleArn !== undefined && data.IamRoleArn !== null) {
     contents.IamRoleArn = __expectString(data.IamRoleArn);
   }
-  if (data.PercentDone != null) {
+  if (data.PercentDone !== undefined && data.PercentDone !== null) {
     contents.PercentDone = __expectString(data.PercentDone);
   }
-  if (data.RecoveryPointArn != null) {
+  if (data.RecoveryPointArn !== undefined && data.RecoveryPointArn !== null) {
     contents.RecoveryPointArn = __expectString(data.RecoveryPointArn);
   }
-  if (data.ResourceArn != null) {
+  if (data.ResourceArn !== undefined && data.ResourceArn !== null) {
     contents.ResourceArn = __expectString(data.ResourceArn);
   }
-  if (data.ResourceType != null) {
+  if (data.ResourceType !== undefined && data.ResourceType !== null) {
     contents.ResourceType = __expectString(data.ResourceType);
   }
-  if (data.StartBy != null) {
+  if (data.StartBy !== undefined && data.StartBy !== null) {
     contents.StartBy = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.StartBy)));
   }
-  if (data.State != null) {
+  if (data.State !== undefined && data.State !== null) {
     contents.State = __expectString(data.State);
   }
-  if (data.StatusMessage != null) {
+  if (data.StatusMessage !== undefined && data.StatusMessage !== null) {
     contents.StatusMessage = __expectString(data.StatusMessage);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeBackupJobCommandError = async (
@@ -3065,6 +3256,7 @@ const deserializeAws_restJson1DescribeBackupJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependencyFailureException":
@@ -3084,12 +3276,14 @@ const deserializeAws_restJson1DescribeBackupJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3100,41 +3294,51 @@ export const deserializeAws_restJson1DescribeBackupVaultCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeBackupVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeBackupVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultArn: undefined,
+    BackupVaultName: undefined,
+    CreationDate: undefined,
+    CreatorRequestId: undefined,
+    EncryptionKeyArn: undefined,
+    LockDate: undefined,
+    Locked: undefined,
+    MaxRetentionDays: undefined,
+    MinRetentionDays: undefined,
+    NumberOfRecoveryPoints: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.BackupVaultName != null) {
+  if (data.BackupVaultName !== undefined && data.BackupVaultName !== null) {
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.CreatorRequestId != null) {
+  if (data.CreatorRequestId !== undefined && data.CreatorRequestId !== null) {
     contents.CreatorRequestId = __expectString(data.CreatorRequestId);
   }
-  if (data.EncryptionKeyArn != null) {
+  if (data.EncryptionKeyArn !== undefined && data.EncryptionKeyArn !== null) {
     contents.EncryptionKeyArn = __expectString(data.EncryptionKeyArn);
   }
-  if (data.LockDate != null) {
+  if (data.LockDate !== undefined && data.LockDate !== null) {
     contents.LockDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.LockDate)));
   }
-  if (data.Locked != null) {
+  if (data.Locked !== undefined && data.Locked !== null) {
     contents.Locked = __expectBoolean(data.Locked);
   }
-  if (data.MaxRetentionDays != null) {
+  if (data.MaxRetentionDays !== undefined && data.MaxRetentionDays !== null) {
     contents.MaxRetentionDays = __expectLong(data.MaxRetentionDays);
   }
-  if (data.MinRetentionDays != null) {
+  if (data.MinRetentionDays !== undefined && data.MinRetentionDays !== null) {
     contents.MinRetentionDays = __expectLong(data.MinRetentionDays);
   }
-  if (data.NumberOfRecoveryPoints != null) {
+  if (data.NumberOfRecoveryPoints !== undefined && data.NumberOfRecoveryPoints !== null) {
     contents.NumberOfRecoveryPoints = __expectLong(data.NumberOfRecoveryPoints);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeBackupVaultCommandError = async (
@@ -3145,6 +3349,7 @@ const deserializeAws_restJson1DescribeBackupVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3161,12 +3366,14 @@ const deserializeAws_restJson1DescribeBackupVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3177,14 +3384,15 @@ export const deserializeAws_restJson1DescribeCopyJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeCopyJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeCopyJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CopyJob: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CopyJob != null) {
+  if (data.CopyJob !== undefined && data.CopyJob !== null) {
     contents.CopyJob = deserializeAws_restJson1CopyJob(data.CopyJob, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeCopyJobCommandError = async (
@@ -3195,6 +3403,7 @@ const deserializeAws_restJson1DescribeCopyJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3211,12 +3420,14 @@ const deserializeAws_restJson1DescribeCopyJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3227,35 +3438,43 @@ export const deserializeAws_restJson1DescribeFrameworkCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeFrameworkCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeFrameworkCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationTime: undefined,
+    DeploymentStatus: undefined,
+    FrameworkArn: undefined,
+    FrameworkControls: undefined,
+    FrameworkDescription: undefined,
+    FrameworkName: undefined,
+    FrameworkStatus: undefined,
+    IdempotencyToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationTime != null) {
+  if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationTime)));
   }
-  if (data.DeploymentStatus != null) {
+  if (data.DeploymentStatus !== undefined && data.DeploymentStatus !== null) {
     contents.DeploymentStatus = __expectString(data.DeploymentStatus);
   }
-  if (data.FrameworkArn != null) {
+  if (data.FrameworkArn !== undefined && data.FrameworkArn !== null) {
     contents.FrameworkArn = __expectString(data.FrameworkArn);
   }
-  if (data.FrameworkControls != null) {
+  if (data.FrameworkControls !== undefined && data.FrameworkControls !== null) {
     contents.FrameworkControls = deserializeAws_restJson1FrameworkControls(data.FrameworkControls, context);
   }
-  if (data.FrameworkDescription != null) {
+  if (data.FrameworkDescription !== undefined && data.FrameworkDescription !== null) {
     contents.FrameworkDescription = __expectString(data.FrameworkDescription);
   }
-  if (data.FrameworkName != null) {
+  if (data.FrameworkName !== undefined && data.FrameworkName !== null) {
     contents.FrameworkName = __expectString(data.FrameworkName);
   }
-  if (data.FrameworkStatus != null) {
+  if (data.FrameworkStatus !== undefined && data.FrameworkStatus !== null) {
     contents.FrameworkStatus = __expectString(data.FrameworkStatus);
   }
-  if (data.IdempotencyToken != null) {
+  if (data.IdempotencyToken !== undefined && data.IdempotencyToken !== null) {
     contents.IdempotencyToken = __expectString(data.IdempotencyToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeFrameworkCommandError = async (
@@ -3266,6 +3485,7 @@ const deserializeAws_restJson1DescribeFrameworkCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3282,12 +3502,14 @@ const deserializeAws_restJson1DescribeFrameworkCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3298,17 +3520,19 @@ export const deserializeAws_restJson1DescribeGlobalSettingsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeGlobalSettingsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeGlobalSettingsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    GlobalSettings: undefined,
+    LastUpdateTime: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.GlobalSettings != null) {
+  if (data.GlobalSettings !== undefined && data.GlobalSettings !== null) {
     contents.GlobalSettings = deserializeAws_restJson1GlobalSettings(data.GlobalSettings, context);
   }
-  if (data.LastUpdateTime != null) {
+  if (data.LastUpdateTime !== undefined && data.LastUpdateTime !== null) {
     contents.LastUpdateTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.LastUpdateTime)));
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeGlobalSettingsCommandError = async (
@@ -3319,6 +3543,7 @@ const deserializeAws_restJson1DescribeGlobalSettingsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidRequestException":
@@ -3329,12 +3554,14 @@ const deserializeAws_restJson1DescribeGlobalSettingsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3345,20 +3572,23 @@ export const deserializeAws_restJson1DescribeProtectedResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeProtectedResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeProtectedResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    LastBackupTime: undefined,
+    ResourceArn: undefined,
+    ResourceType: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.LastBackupTime != null) {
+  if (data.LastBackupTime !== undefined && data.LastBackupTime !== null) {
     contents.LastBackupTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.LastBackupTime)));
   }
-  if (data.ResourceArn != null) {
+  if (data.ResourceArn !== undefined && data.ResourceArn !== null) {
     contents.ResourceArn = __expectString(data.ResourceArn);
   }
-  if (data.ResourceType != null) {
+  if (data.ResourceType !== undefined && data.ResourceType !== null) {
     contents.ResourceType = __expectString(data.ResourceType);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeProtectedResourceCommandError = async (
@@ -3369,6 +3599,7 @@ const deserializeAws_restJson1DescribeProtectedResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3385,12 +3616,14 @@ const deserializeAws_restJson1DescribeProtectedResourceCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3401,68 +3634,87 @@ export const deserializeAws_restJson1DescribeRecoveryPointCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeRecoveryPointCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeRecoveryPointCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupSizeInBytes: undefined,
+    BackupVaultArn: undefined,
+    BackupVaultName: undefined,
+    CalculatedLifecycle: undefined,
+    CompletionDate: undefined,
+    CreatedBy: undefined,
+    CreationDate: undefined,
+    EncryptionKeyArn: undefined,
+    IamRoleArn: undefined,
+    IsEncrypted: undefined,
+    LastRestoreTime: undefined,
+    Lifecycle: undefined,
+    RecoveryPointArn: undefined,
+    ResourceArn: undefined,
+    ResourceType: undefined,
+    SourceBackupVaultArn: undefined,
+    Status: undefined,
+    StatusMessage: undefined,
+    StorageClass: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupSizeInBytes != null) {
+  if (data.BackupSizeInBytes !== undefined && data.BackupSizeInBytes !== null) {
     contents.BackupSizeInBytes = __expectLong(data.BackupSizeInBytes);
   }
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.BackupVaultName != null) {
+  if (data.BackupVaultName !== undefined && data.BackupVaultName !== null) {
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
-  if (data.CalculatedLifecycle != null) {
+  if (data.CalculatedLifecycle !== undefined && data.CalculatedLifecycle !== null) {
     contents.CalculatedLifecycle = deserializeAws_restJson1CalculatedLifecycle(data.CalculatedLifecycle, context);
   }
-  if (data.CompletionDate != null) {
+  if (data.CompletionDate !== undefined && data.CompletionDate !== null) {
     contents.CompletionDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CompletionDate)));
   }
-  if (data.CreatedBy != null) {
+  if (data.CreatedBy !== undefined && data.CreatedBy !== null) {
     contents.CreatedBy = deserializeAws_restJson1RecoveryPointCreator(data.CreatedBy, context);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.EncryptionKeyArn != null) {
+  if (data.EncryptionKeyArn !== undefined && data.EncryptionKeyArn !== null) {
     contents.EncryptionKeyArn = __expectString(data.EncryptionKeyArn);
   }
-  if (data.IamRoleArn != null) {
+  if (data.IamRoleArn !== undefined && data.IamRoleArn !== null) {
     contents.IamRoleArn = __expectString(data.IamRoleArn);
   }
-  if (data.IsEncrypted != null) {
+  if (data.IsEncrypted !== undefined && data.IsEncrypted !== null) {
     contents.IsEncrypted = __expectBoolean(data.IsEncrypted);
   }
-  if (data.LastRestoreTime != null) {
+  if (data.LastRestoreTime !== undefined && data.LastRestoreTime !== null) {
     contents.LastRestoreTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.LastRestoreTime)));
   }
-  if (data.Lifecycle != null) {
+  if (data.Lifecycle !== undefined && data.Lifecycle !== null) {
     contents.Lifecycle = deserializeAws_restJson1Lifecycle(data.Lifecycle, context);
   }
-  if (data.RecoveryPointArn != null) {
+  if (data.RecoveryPointArn !== undefined && data.RecoveryPointArn !== null) {
     contents.RecoveryPointArn = __expectString(data.RecoveryPointArn);
   }
-  if (data.ResourceArn != null) {
+  if (data.ResourceArn !== undefined && data.ResourceArn !== null) {
     contents.ResourceArn = __expectString(data.ResourceArn);
   }
-  if (data.ResourceType != null) {
+  if (data.ResourceType !== undefined && data.ResourceType !== null) {
     contents.ResourceType = __expectString(data.ResourceType);
   }
-  if (data.SourceBackupVaultArn != null) {
+  if (data.SourceBackupVaultArn !== undefined && data.SourceBackupVaultArn !== null) {
     contents.SourceBackupVaultArn = __expectString(data.SourceBackupVaultArn);
   }
-  if (data.Status != null) {
+  if (data.Status !== undefined && data.Status !== null) {
     contents.Status = __expectString(data.Status);
   }
-  if (data.StatusMessage != null) {
+  if (data.StatusMessage !== undefined && data.StatusMessage !== null) {
     contents.StatusMessage = __expectString(data.StatusMessage);
   }
-  if (data.StorageClass != null) {
+  if (data.StorageClass !== undefined && data.StorageClass !== null) {
     contents.StorageClass = __expectString(data.StorageClass);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeRecoveryPointCommandError = async (
@@ -3473,6 +3725,7 @@ const deserializeAws_restJson1DescribeRecoveryPointCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3489,12 +3742,14 @@ const deserializeAws_restJson1DescribeRecoveryPointCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3505,23 +3760,25 @@ export const deserializeAws_restJson1DescribeRegionSettingsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeRegionSettingsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeRegionSettingsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ResourceTypeManagementPreference: undefined,
+    ResourceTypeOptInPreference: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ResourceTypeManagementPreference != null) {
+  if (data.ResourceTypeManagementPreference !== undefined && data.ResourceTypeManagementPreference !== null) {
     contents.ResourceTypeManagementPreference = deserializeAws_restJson1ResourceTypeManagementPreference(
       data.ResourceTypeManagementPreference,
       context
     );
   }
-  if (data.ResourceTypeOptInPreference != null) {
+  if (data.ResourceTypeOptInPreference !== undefined && data.ResourceTypeOptInPreference !== null) {
     contents.ResourceTypeOptInPreference = deserializeAws_restJson1ResourceTypeOptInPreference(
       data.ResourceTypeOptInPreference,
       context
     );
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeRegionSettingsCommandError = async (
@@ -3532,6 +3789,7 @@ const deserializeAws_restJson1DescribeRegionSettingsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ServiceUnavailableException":
@@ -3539,12 +3797,14 @@ const deserializeAws_restJson1DescribeRegionSettingsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3555,14 +3815,15 @@ export const deserializeAws_restJson1DescribeReportJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeReportJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeReportJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ReportJob: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ReportJob != null) {
+  if (data.ReportJob !== undefined && data.ReportJob !== null) {
     contents.ReportJob = deserializeAws_restJson1ReportJob(data.ReportJob, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeReportJobCommandError = async (
@@ -3573,6 +3834,7 @@ const deserializeAws_restJson1DescribeReportJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "MissingParameterValueException":
@@ -3586,12 +3848,14 @@ const deserializeAws_restJson1DescribeReportJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3602,14 +3866,15 @@ export const deserializeAws_restJson1DescribeReportPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeReportPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeReportPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ReportPlan: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ReportPlan != null) {
+  if (data.ReportPlan !== undefined && data.ReportPlan !== null) {
     contents.ReportPlan = deserializeAws_restJson1ReportPlan(data.ReportPlan, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeReportPlanCommandError = async (
@@ -3620,6 +3885,7 @@ const deserializeAws_restJson1DescribeReportPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3636,12 +3902,14 @@ const deserializeAws_restJson1DescribeReportPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3652,50 +3920,63 @@ export const deserializeAws_restJson1DescribeRestoreJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeRestoreJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeRestoreJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    AccountId: undefined,
+    BackupSizeInBytes: undefined,
+    CompletionDate: undefined,
+    CreatedResourceArn: undefined,
+    CreationDate: undefined,
+    ExpectedCompletionTimeMinutes: undefined,
+    IamRoleArn: undefined,
+    PercentDone: undefined,
+    RecoveryPointArn: undefined,
+    ResourceType: undefined,
+    RestoreJobId: undefined,
+    Status: undefined,
+    StatusMessage: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.AccountId != null) {
+  if (data.AccountId !== undefined && data.AccountId !== null) {
     contents.AccountId = __expectString(data.AccountId);
   }
-  if (data.BackupSizeInBytes != null) {
+  if (data.BackupSizeInBytes !== undefined && data.BackupSizeInBytes !== null) {
     contents.BackupSizeInBytes = __expectLong(data.BackupSizeInBytes);
   }
-  if (data.CompletionDate != null) {
+  if (data.CompletionDate !== undefined && data.CompletionDate !== null) {
     contents.CompletionDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CompletionDate)));
   }
-  if (data.CreatedResourceArn != null) {
+  if (data.CreatedResourceArn !== undefined && data.CreatedResourceArn !== null) {
     contents.CreatedResourceArn = __expectString(data.CreatedResourceArn);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.ExpectedCompletionTimeMinutes != null) {
+  if (data.ExpectedCompletionTimeMinutes !== undefined && data.ExpectedCompletionTimeMinutes !== null) {
     contents.ExpectedCompletionTimeMinutes = __expectLong(data.ExpectedCompletionTimeMinutes);
   }
-  if (data.IamRoleArn != null) {
+  if (data.IamRoleArn !== undefined && data.IamRoleArn !== null) {
     contents.IamRoleArn = __expectString(data.IamRoleArn);
   }
-  if (data.PercentDone != null) {
+  if (data.PercentDone !== undefined && data.PercentDone !== null) {
     contents.PercentDone = __expectString(data.PercentDone);
   }
-  if (data.RecoveryPointArn != null) {
+  if (data.RecoveryPointArn !== undefined && data.RecoveryPointArn !== null) {
     contents.RecoveryPointArn = __expectString(data.RecoveryPointArn);
   }
-  if (data.ResourceType != null) {
+  if (data.ResourceType !== undefined && data.ResourceType !== null) {
     contents.ResourceType = __expectString(data.ResourceType);
   }
-  if (data.RestoreJobId != null) {
+  if (data.RestoreJobId !== undefined && data.RestoreJobId !== null) {
     contents.RestoreJobId = __expectString(data.RestoreJobId);
   }
-  if (data.Status != null) {
+  if (data.Status !== undefined && data.Status !== null) {
     contents.Status = __expectString(data.Status);
   }
-  if (data.StatusMessage != null) {
+  if (data.StatusMessage !== undefined && data.StatusMessage !== null) {
     contents.StatusMessage = __expectString(data.StatusMessage);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeRestoreJobCommandError = async (
@@ -3706,6 +3987,7 @@ const deserializeAws_restJson1DescribeRestoreJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "DependencyFailureException":
@@ -3725,12 +4007,14 @@ const deserializeAws_restJson1DescribeRestoreJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3741,11 +4025,11 @@ export const deserializeAws_restJson1DisassociateRecoveryPointCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DisassociateRecoveryPointCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DisassociateRecoveryPointCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DisassociateRecoveryPointCommandError = async (
@@ -3756,6 +4040,7 @@ const deserializeAws_restJson1DisassociateRecoveryPointCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3778,12 +4063,14 @@ const deserializeAws_restJson1DisassociateRecoveryPointCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3794,14 +4081,15 @@ export const deserializeAws_restJson1ExportBackupPlanTemplateCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ExportBackupPlanTemplateCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ExportBackupPlanTemplateCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanTemplateJson: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanTemplateJson != null) {
+  if (data.BackupPlanTemplateJson !== undefined && data.BackupPlanTemplateJson !== null) {
     contents.BackupPlanTemplateJson = __expectString(data.BackupPlanTemplateJson);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ExportBackupPlanTemplateCommandError = async (
@@ -3812,6 +4100,7 @@ const deserializeAws_restJson1ExportBackupPlanTemplateCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3828,12 +4117,14 @@ const deserializeAws_restJson1ExportBackupPlanTemplateCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3844,41 +4135,50 @@ export const deserializeAws_restJson1GetBackupPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetBackupPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetBackupPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    AdvancedBackupSettings: undefined,
+    BackupPlan: undefined,
+    BackupPlanArn: undefined,
+    BackupPlanId: undefined,
+    CreationDate: undefined,
+    CreatorRequestId: undefined,
+    DeletionDate: undefined,
+    LastExecutionDate: undefined,
+    VersionId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.AdvancedBackupSettings != null) {
+  if (data.AdvancedBackupSettings !== undefined && data.AdvancedBackupSettings !== null) {
     contents.AdvancedBackupSettings = deserializeAws_restJson1AdvancedBackupSettings(
       data.AdvancedBackupSettings,
       context
     );
   }
-  if (data.BackupPlan != null) {
+  if (data.BackupPlan !== undefined && data.BackupPlan !== null) {
     contents.BackupPlan = deserializeAws_restJson1BackupPlan(data.BackupPlan, context);
   }
-  if (data.BackupPlanArn != null) {
+  if (data.BackupPlanArn !== undefined && data.BackupPlanArn !== null) {
     contents.BackupPlanArn = __expectString(data.BackupPlanArn);
   }
-  if (data.BackupPlanId != null) {
+  if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.CreatorRequestId != null) {
+  if (data.CreatorRequestId !== undefined && data.CreatorRequestId !== null) {
     contents.CreatorRequestId = __expectString(data.CreatorRequestId);
   }
-  if (data.DeletionDate != null) {
+  if (data.DeletionDate !== undefined && data.DeletionDate !== null) {
     contents.DeletionDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.DeletionDate)));
   }
-  if (data.LastExecutionDate != null) {
+  if (data.LastExecutionDate !== undefined && data.LastExecutionDate !== null) {
     contents.LastExecutionDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.LastExecutionDate)));
   }
-  if (data.VersionId != null) {
+  if (data.VersionId !== undefined && data.VersionId !== null) {
     contents.VersionId = __expectString(data.VersionId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetBackupPlanCommandError = async (
@@ -3889,6 +4189,7 @@ const deserializeAws_restJson1GetBackupPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3905,12 +4206,14 @@ const deserializeAws_restJson1GetBackupPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3921,14 +4224,15 @@ export const deserializeAws_restJson1GetBackupPlanFromJSONCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetBackupPlanFromJSONCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetBackupPlanFromJSONCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlan: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlan != null) {
+  if (data.BackupPlan !== undefined && data.BackupPlan !== null) {
     contents.BackupPlan = deserializeAws_restJson1BackupPlan(data.BackupPlan, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetBackupPlanFromJSONCommandError = async (
@@ -3939,6 +4243,7 @@ const deserializeAws_restJson1GetBackupPlanFromJSONCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -3958,12 +4263,14 @@ const deserializeAws_restJson1GetBackupPlanFromJSONCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -3974,14 +4281,15 @@ export const deserializeAws_restJson1GetBackupPlanFromTemplateCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetBackupPlanFromTemplateCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetBackupPlanFromTemplateCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanDocument: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanDocument != null) {
+  if (data.BackupPlanDocument !== undefined && data.BackupPlanDocument !== null) {
     contents.BackupPlanDocument = deserializeAws_restJson1BackupPlan(data.BackupPlanDocument, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetBackupPlanFromTemplateCommandError = async (
@@ -3992,6 +4300,7 @@ const deserializeAws_restJson1GetBackupPlanFromTemplateCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4008,12 +4317,14 @@ const deserializeAws_restJson1GetBackupPlanFromTemplateCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4024,26 +4335,31 @@ export const deserializeAws_restJson1GetBackupSelectionCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetBackupSelectionCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetBackupSelectionCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanId: undefined,
+    BackupSelection: undefined,
+    CreationDate: undefined,
+    CreatorRequestId: undefined,
+    SelectionId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanId != null) {
+  if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
-  if (data.BackupSelection != null) {
+  if (data.BackupSelection !== undefined && data.BackupSelection !== null) {
     contents.BackupSelection = deserializeAws_restJson1BackupSelection(data.BackupSelection, context);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.CreatorRequestId != null) {
+  if (data.CreatorRequestId !== undefined && data.CreatorRequestId !== null) {
     contents.CreatorRequestId = __expectString(data.CreatorRequestId);
   }
-  if (data.SelectionId != null) {
+  if (data.SelectionId !== undefined && data.SelectionId !== null) {
     contents.SelectionId = __expectString(data.SelectionId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetBackupSelectionCommandError = async (
@@ -4054,6 +4370,7 @@ const deserializeAws_restJson1GetBackupSelectionCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4070,12 +4387,14 @@ const deserializeAws_restJson1GetBackupSelectionCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4086,20 +4405,23 @@ export const deserializeAws_restJson1GetBackupVaultAccessPolicyCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetBackupVaultAccessPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetBackupVaultAccessPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultArn: undefined,
+    BackupVaultName: undefined,
+    Policy: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.BackupVaultName != null) {
+  if (data.BackupVaultName !== undefined && data.BackupVaultName !== null) {
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
-  if (data.Policy != null) {
+  if (data.Policy !== undefined && data.Policy !== null) {
     contents.Policy = __expectString(data.Policy);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetBackupVaultAccessPolicyCommandError = async (
@@ -4110,6 +4432,7 @@ const deserializeAws_restJson1GetBackupVaultAccessPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4126,12 +4449,14 @@ const deserializeAws_restJson1GetBackupVaultAccessPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4142,23 +4467,27 @@ export const deserializeAws_restJson1GetBackupVaultNotificationsCommand = async 
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetBackupVaultNotificationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetBackupVaultNotificationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultArn: undefined,
+    BackupVaultEvents: undefined,
+    BackupVaultName: undefined,
+    SNSTopicArn: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.BackupVaultEvents != null) {
+  if (data.BackupVaultEvents !== undefined && data.BackupVaultEvents !== null) {
     contents.BackupVaultEvents = deserializeAws_restJson1BackupVaultEvents(data.BackupVaultEvents, context);
   }
-  if (data.BackupVaultName != null) {
+  if (data.BackupVaultName !== undefined && data.BackupVaultName !== null) {
     contents.BackupVaultName = __expectString(data.BackupVaultName);
   }
-  if (data.SNSTopicArn != null) {
+  if (data.SNSTopicArn !== undefined && data.SNSTopicArn !== null) {
     contents.SNSTopicArn = __expectString(data.SNSTopicArn);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetBackupVaultNotificationsCommandError = async (
@@ -4169,6 +4498,7 @@ const deserializeAws_restJson1GetBackupVaultNotificationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4185,12 +4515,14 @@ const deserializeAws_restJson1GetBackupVaultNotificationsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4201,20 +4533,23 @@ export const deserializeAws_restJson1GetRecoveryPointRestoreMetadataCommand = as
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetRecoveryPointRestoreMetadataCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetRecoveryPointRestoreMetadataCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultArn: undefined,
+    RecoveryPointArn: undefined,
+    RestoreMetadata: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.RecoveryPointArn != null) {
+  if (data.RecoveryPointArn !== undefined && data.RecoveryPointArn !== null) {
     contents.RecoveryPointArn = __expectString(data.RecoveryPointArn);
   }
-  if (data.RestoreMetadata != null) {
+  if (data.RestoreMetadata !== undefined && data.RestoreMetadata !== null) {
     contents.RestoreMetadata = deserializeAws_restJson1Metadata(data.RestoreMetadata, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetRecoveryPointRestoreMetadataCommandError = async (
@@ -4225,6 +4560,7 @@ const deserializeAws_restJson1GetRecoveryPointRestoreMetadataCommandError = asyn
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4241,12 +4577,14 @@ const deserializeAws_restJson1GetRecoveryPointRestoreMetadataCommandError = asyn
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4257,14 +4595,15 @@ export const deserializeAws_restJson1GetSupportedResourceTypesCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetSupportedResourceTypesCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetSupportedResourceTypesCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ResourceTypes: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ResourceTypes != null) {
+  if (data.ResourceTypes !== undefined && data.ResourceTypes !== null) {
     contents.ResourceTypes = deserializeAws_restJson1ResourceTypes(data.ResourceTypes, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetSupportedResourceTypesCommandError = async (
@@ -4275,6 +4614,7 @@ const deserializeAws_restJson1GetSupportedResourceTypesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ServiceUnavailableException":
@@ -4282,12 +4622,14 @@ const deserializeAws_restJson1GetSupportedResourceTypesCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4298,17 +4640,19 @@ export const deserializeAws_restJson1ListBackupJobsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListBackupJobsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListBackupJobsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupJobs: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupJobs != null) {
+  if (data.BackupJobs !== undefined && data.BackupJobs !== null) {
     contents.BackupJobs = deserializeAws_restJson1BackupJobsList(data.BackupJobs, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListBackupJobsCommandError = async (
@@ -4319,6 +4663,7 @@ const deserializeAws_restJson1ListBackupJobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4329,12 +4674,14 @@ const deserializeAws_restJson1ListBackupJobsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4345,17 +4692,19 @@ export const deserializeAws_restJson1ListBackupPlansCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListBackupPlansCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListBackupPlansCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlansList: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlansList != null) {
+  if (data.BackupPlansList !== undefined && data.BackupPlansList !== null) {
     contents.BackupPlansList = deserializeAws_restJson1BackupPlansList(data.BackupPlansList, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListBackupPlansCommandError = async (
@@ -4366,6 +4715,7 @@ const deserializeAws_restJson1ListBackupPlansCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4382,12 +4732,14 @@ const deserializeAws_restJson1ListBackupPlansCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4398,20 +4750,22 @@ export const deserializeAws_restJson1ListBackupPlanTemplatesCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListBackupPlanTemplatesCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListBackupPlanTemplatesCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanTemplatesList: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanTemplatesList != null) {
+  if (data.BackupPlanTemplatesList !== undefined && data.BackupPlanTemplatesList !== null) {
     contents.BackupPlanTemplatesList = deserializeAws_restJson1BackupPlanTemplatesList(
       data.BackupPlanTemplatesList,
       context
     );
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListBackupPlanTemplatesCommandError = async (
@@ -4422,6 +4776,7 @@ const deserializeAws_restJson1ListBackupPlanTemplatesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4438,12 +4793,14 @@ const deserializeAws_restJson1ListBackupPlanTemplatesCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4454,20 +4811,22 @@ export const deserializeAws_restJson1ListBackupPlanVersionsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListBackupPlanVersionsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListBackupPlanVersionsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupPlanVersionsList: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupPlanVersionsList != null) {
+  if (data.BackupPlanVersionsList !== undefined && data.BackupPlanVersionsList !== null) {
     contents.BackupPlanVersionsList = deserializeAws_restJson1BackupPlanVersionsList(
       data.BackupPlanVersionsList,
       context
     );
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListBackupPlanVersionsCommandError = async (
@@ -4478,6 +4837,7 @@ const deserializeAws_restJson1ListBackupPlanVersionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4494,12 +4854,14 @@ const deserializeAws_restJson1ListBackupPlanVersionsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4510,17 +4872,19 @@ export const deserializeAws_restJson1ListBackupSelectionsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListBackupSelectionsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListBackupSelectionsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupSelectionsList: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupSelectionsList != null) {
+  if (data.BackupSelectionsList !== undefined && data.BackupSelectionsList !== null) {
     contents.BackupSelectionsList = deserializeAws_restJson1BackupSelectionsList(data.BackupSelectionsList, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListBackupSelectionsCommandError = async (
@@ -4531,6 +4895,7 @@ const deserializeAws_restJson1ListBackupSelectionsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4547,12 +4912,14 @@ const deserializeAws_restJson1ListBackupSelectionsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4563,17 +4930,19 @@ export const deserializeAws_restJson1ListBackupVaultsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListBackupVaultsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListBackupVaultsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultList: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultList != null) {
+  if (data.BackupVaultList !== undefined && data.BackupVaultList !== null) {
     contents.BackupVaultList = deserializeAws_restJson1BackupVaultList(data.BackupVaultList, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListBackupVaultsCommandError = async (
@@ -4584,6 +4953,7 @@ const deserializeAws_restJson1ListBackupVaultsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4600,12 +4970,14 @@ const deserializeAws_restJson1ListBackupVaultsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4616,17 +4988,19 @@ export const deserializeAws_restJson1ListCopyJobsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListCopyJobsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListCopyJobsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CopyJobs: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CopyJobs != null) {
+  if (data.CopyJobs !== undefined && data.CopyJobs !== null) {
     contents.CopyJobs = deserializeAws_restJson1CopyJobsList(data.CopyJobs, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListCopyJobsCommandError = async (
@@ -4637,6 +5011,7 @@ const deserializeAws_restJson1ListCopyJobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4647,12 +5022,14 @@ const deserializeAws_restJson1ListCopyJobsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4663,17 +5040,19 @@ export const deserializeAws_restJson1ListFrameworksCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListFrameworksCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListFrameworksCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Frameworks: undefined,
+    NextToken: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Frameworks != null) {
+  if (data.Frameworks !== undefined && data.Frameworks !== null) {
     contents.Frameworks = deserializeAws_restJson1FrameworkList(data.Frameworks, context);
   }
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListFrameworksCommandError = async (
@@ -4684,6 +5063,7 @@ const deserializeAws_restJson1ListFrameworksCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4694,12 +5074,14 @@ const deserializeAws_restJson1ListFrameworksCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4710,17 +5092,19 @@ export const deserializeAws_restJson1ListProtectedResourcesCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListProtectedResourcesCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListProtectedResourcesCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    Results: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.Results != null) {
+  if (data.Results !== undefined && data.Results !== null) {
     contents.Results = deserializeAws_restJson1ProtectedResourcesList(data.Results, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListProtectedResourcesCommandError = async (
@@ -4731,6 +5115,7 @@ const deserializeAws_restJson1ListProtectedResourcesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4741,12 +5126,14 @@ const deserializeAws_restJson1ListProtectedResourcesCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4757,17 +5144,19 @@ export const deserializeAws_restJson1ListRecoveryPointsByBackupVaultCommand = as
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListRecoveryPointsByBackupVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListRecoveryPointsByBackupVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    RecoveryPoints: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.RecoveryPoints != null) {
+  if (data.RecoveryPoints !== undefined && data.RecoveryPoints !== null) {
     contents.RecoveryPoints = deserializeAws_restJson1RecoveryPointByBackupVaultList(data.RecoveryPoints, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListRecoveryPointsByBackupVaultCommandError = async (
@@ -4778,6 +5167,7 @@ const deserializeAws_restJson1ListRecoveryPointsByBackupVaultCommandError = asyn
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4794,12 +5184,14 @@ const deserializeAws_restJson1ListRecoveryPointsByBackupVaultCommandError = asyn
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4810,17 +5202,19 @@ export const deserializeAws_restJson1ListRecoveryPointsByResourceCommand = async
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListRecoveryPointsByResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListRecoveryPointsByResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    RecoveryPoints: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.RecoveryPoints != null) {
+  if (data.RecoveryPoints !== undefined && data.RecoveryPoints !== null) {
     contents.RecoveryPoints = deserializeAws_restJson1RecoveryPointByResourceList(data.RecoveryPoints, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListRecoveryPointsByResourceCommandError = async (
@@ -4831,6 +5225,7 @@ const deserializeAws_restJson1ListRecoveryPointsByResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4847,12 +5242,14 @@ const deserializeAws_restJson1ListRecoveryPointsByResourceCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4863,17 +5260,19 @@ export const deserializeAws_restJson1ListReportJobsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListReportJobsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListReportJobsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    ReportJobs: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.ReportJobs != null) {
+  if (data.ReportJobs !== undefined && data.ReportJobs !== null) {
     contents.ReportJobs = deserializeAws_restJson1ReportJobList(data.ReportJobs, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListReportJobsCommandError = async (
@@ -4884,6 +5283,7 @@ const deserializeAws_restJson1ListReportJobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4894,12 +5294,14 @@ const deserializeAws_restJson1ListReportJobsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4910,17 +5312,19 @@ export const deserializeAws_restJson1ListReportPlansCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListReportPlansCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListReportPlansCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    ReportPlans: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.ReportPlans != null) {
+  if (data.ReportPlans !== undefined && data.ReportPlans !== null) {
     contents.ReportPlans = deserializeAws_restJson1ReportPlanList(data.ReportPlans, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListReportPlansCommandError = async (
@@ -4931,6 +5335,7 @@ const deserializeAws_restJson1ListReportPlansCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4941,12 +5346,14 @@ const deserializeAws_restJson1ListReportPlansCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -4957,17 +5364,19 @@ export const deserializeAws_restJson1ListRestoreJobsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListRestoreJobsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListRestoreJobsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    RestoreJobs: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.RestoreJobs != null) {
+  if (data.RestoreJobs !== undefined && data.RestoreJobs !== null) {
     contents.RestoreJobs = deserializeAws_restJson1RestoreJobsList(data.RestoreJobs, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListRestoreJobsCommandError = async (
@@ -4978,6 +5387,7 @@ const deserializeAws_restJson1ListRestoreJobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -4994,12 +5404,14 @@ const deserializeAws_restJson1ListRestoreJobsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5010,17 +5422,19 @@ export const deserializeAws_restJson1ListTagsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTagsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTagsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    NextToken: undefined,
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.NextToken != null) {
+  if (data.NextToken !== undefined && data.NextToken !== null) {
     contents.NextToken = __expectString(data.NextToken);
   }
-  if (data.Tags != null) {
+  if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1Tags(data.Tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTagsCommandError = async (
@@ -5031,6 +5445,7 @@ const deserializeAws_restJson1ListTagsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5047,12 +5462,14 @@ const deserializeAws_restJson1ListTagsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5063,11 +5480,11 @@ export const deserializeAws_restJson1PutBackupVaultAccessPolicyCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1PutBackupVaultAccessPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: PutBackupVaultAccessPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1PutBackupVaultAccessPolicyCommandError = async (
@@ -5078,6 +5495,7 @@ const deserializeAws_restJson1PutBackupVaultAccessPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5094,12 +5512,14 @@ const deserializeAws_restJson1PutBackupVaultAccessPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5110,11 +5530,11 @@ export const deserializeAws_restJson1PutBackupVaultLockConfigurationCommand = as
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1PutBackupVaultLockConfigurationCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: PutBackupVaultLockConfigurationCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1PutBackupVaultLockConfigurationCommandError = async (
@@ -5125,6 +5545,7 @@ const deserializeAws_restJson1PutBackupVaultLockConfigurationCommandError = asyn
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5144,12 +5565,14 @@ const deserializeAws_restJson1PutBackupVaultLockConfigurationCommandError = asyn
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5160,11 +5583,11 @@ export const deserializeAws_restJson1PutBackupVaultNotificationsCommand = async 
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1PutBackupVaultNotificationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: PutBackupVaultNotificationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1PutBackupVaultNotificationsCommandError = async (
@@ -5175,6 +5598,7 @@ const deserializeAws_restJson1PutBackupVaultNotificationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5191,12 +5615,14 @@ const deserializeAws_restJson1PutBackupVaultNotificationsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5207,20 +5633,23 @@ export const deserializeAws_restJson1StartBackupJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartBackupJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartBackupJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupJobId: undefined,
+    CreationDate: undefined,
+    RecoveryPointArn: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupJobId != null) {
+  if (data.BackupJobId !== undefined && data.BackupJobId !== null) {
     contents.BackupJobId = __expectString(data.BackupJobId);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.RecoveryPointArn != null) {
+  if (data.RecoveryPointArn !== undefined && data.RecoveryPointArn !== null) {
     contents.RecoveryPointArn = __expectString(data.RecoveryPointArn);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartBackupJobCommandError = async (
@@ -5231,6 +5660,7 @@ const deserializeAws_restJson1StartBackupJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5253,12 +5683,14 @@ const deserializeAws_restJson1StartBackupJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5269,17 +5701,19 @@ export const deserializeAws_restJson1StartCopyJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartCopyJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartCopyJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CopyJobId: undefined,
+    CreationDate: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CopyJobId != null) {
+  if (data.CopyJobId !== undefined && data.CopyJobId !== null) {
     contents.CopyJobId = __expectString(data.CopyJobId);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartCopyJobCommandError = async (
@@ -5290,6 +5724,7 @@ const deserializeAws_restJson1StartCopyJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5312,12 +5747,14 @@ const deserializeAws_restJson1StartCopyJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5328,14 +5765,15 @@ export const deserializeAws_restJson1StartReportJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartReportJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartReportJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ReportJobId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ReportJobId != null) {
+  if (data.ReportJobId !== undefined && data.ReportJobId !== null) {
     contents.ReportJobId = __expectString(data.ReportJobId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartReportJobCommandError = async (
@@ -5346,6 +5784,7 @@ const deserializeAws_restJson1StartReportJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5362,12 +5801,14 @@ const deserializeAws_restJson1StartReportJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5378,14 +5819,15 @@ export const deserializeAws_restJson1StartRestoreJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StartRestoreJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StartRestoreJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    RestoreJobId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.RestoreJobId != null) {
+  if (data.RestoreJobId !== undefined && data.RestoreJobId !== null) {
     contents.RestoreJobId = __expectString(data.RestoreJobId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StartRestoreJobCommandError = async (
@@ -5396,6 +5838,7 @@ const deserializeAws_restJson1StartRestoreJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5412,12 +5855,14 @@ const deserializeAws_restJson1StartRestoreJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5428,11 +5873,11 @@ export const deserializeAws_restJson1StopBackupJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1StopBackupJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: StopBackupJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1StopBackupJobCommandError = async (
@@ -5443,6 +5888,7 @@ const deserializeAws_restJson1StopBackupJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5462,12 +5908,14 @@ const deserializeAws_restJson1StopBackupJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5478,11 +5926,11 @@ export const deserializeAws_restJson1TagResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1TagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: TagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1TagResourceCommandError = async (
@@ -5493,6 +5941,7 @@ const deserializeAws_restJson1TagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5512,12 +5961,14 @@ const deserializeAws_restJson1TagResourceCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5528,11 +5979,11 @@ export const deserializeAws_restJson1UntagResourceCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UntagResourceCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UntagResourceCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UntagResourceCommandError = async (
@@ -5543,6 +5994,7 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5559,12 +6011,14 @@ const deserializeAws_restJson1UntagResourceCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5575,29 +6029,34 @@ export const deserializeAws_restJson1UpdateBackupPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateBackupPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateBackupPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    AdvancedBackupSettings: undefined,
+    BackupPlanArn: undefined,
+    BackupPlanId: undefined,
+    CreationDate: undefined,
+    VersionId: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.AdvancedBackupSettings != null) {
+  if (data.AdvancedBackupSettings !== undefined && data.AdvancedBackupSettings !== null) {
     contents.AdvancedBackupSettings = deserializeAws_restJson1AdvancedBackupSettings(
       data.AdvancedBackupSettings,
       context
     );
   }
-  if (data.BackupPlanArn != null) {
+  if (data.BackupPlanArn !== undefined && data.BackupPlanArn !== null) {
     contents.BackupPlanArn = __expectString(data.BackupPlanArn);
   }
-  if (data.BackupPlanId != null) {
+  if (data.BackupPlanId !== undefined && data.BackupPlanId !== null) {
     contents.BackupPlanId = __expectString(data.BackupPlanId);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationDate)));
   }
-  if (data.VersionId != null) {
+  if (data.VersionId !== undefined && data.VersionId !== null) {
     contents.VersionId = __expectString(data.VersionId);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateBackupPlanCommandError = async (
@@ -5608,6 +6067,7 @@ const deserializeAws_restJson1UpdateBackupPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5624,12 +6084,14 @@ const deserializeAws_restJson1UpdateBackupPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5640,20 +6102,23 @@ export const deserializeAws_restJson1UpdateFrameworkCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateFrameworkCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateFrameworkCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationTime: undefined,
+    FrameworkArn: undefined,
+    FrameworkName: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationTime != null) {
+  if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationTime)));
   }
-  if (data.FrameworkArn != null) {
+  if (data.FrameworkArn !== undefined && data.FrameworkArn !== null) {
     contents.FrameworkArn = __expectString(data.FrameworkArn);
   }
-  if (data.FrameworkName != null) {
+  if (data.FrameworkName !== undefined && data.FrameworkName !== null) {
     contents.FrameworkName = __expectString(data.FrameworkName);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateFrameworkCommandError = async (
@@ -5664,6 +6129,7 @@ const deserializeAws_restJson1UpdateFrameworkCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "AlreadyExistsException":
@@ -5689,12 +6155,14 @@ const deserializeAws_restJson1UpdateFrameworkCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5705,11 +6173,11 @@ export const deserializeAws_restJson1UpdateGlobalSettingsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateGlobalSettingsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateGlobalSettingsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateGlobalSettingsCommandError = async (
@@ -5720,6 +6188,7 @@ const deserializeAws_restJson1UpdateGlobalSettingsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5736,12 +6205,14 @@ const deserializeAws_restJson1UpdateGlobalSettingsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5752,23 +6223,27 @@ export const deserializeAws_restJson1UpdateRecoveryPointLifecycleCommand = async
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateRecoveryPointLifecycleCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateRecoveryPointLifecycleCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    BackupVaultArn: undefined,
+    CalculatedLifecycle: undefined,
+    Lifecycle: undefined,
+    RecoveryPointArn: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.BackupVaultArn != null) {
+  if (data.BackupVaultArn !== undefined && data.BackupVaultArn !== null) {
     contents.BackupVaultArn = __expectString(data.BackupVaultArn);
   }
-  if (data.CalculatedLifecycle != null) {
+  if (data.CalculatedLifecycle !== undefined && data.CalculatedLifecycle !== null) {
     contents.CalculatedLifecycle = deserializeAws_restJson1CalculatedLifecycle(data.CalculatedLifecycle, context);
   }
-  if (data.Lifecycle != null) {
+  if (data.Lifecycle !== undefined && data.Lifecycle !== null) {
     contents.Lifecycle = deserializeAws_restJson1Lifecycle(data.Lifecycle, context);
   }
-  if (data.RecoveryPointArn != null) {
+  if (data.RecoveryPointArn !== undefined && data.RecoveryPointArn !== null) {
     contents.RecoveryPointArn = __expectString(data.RecoveryPointArn);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateRecoveryPointLifecycleCommandError = async (
@@ -5779,6 +6254,7 @@ const deserializeAws_restJson1UpdateRecoveryPointLifecycleCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5798,12 +6274,14 @@ const deserializeAws_restJson1UpdateRecoveryPointLifecycleCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5814,11 +6292,11 @@ export const deserializeAws_restJson1UpdateRegionSettingsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateRegionSettingsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateRegionSettingsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateRegionSettingsCommandError = async (
@@ -5829,6 +6307,7 @@ const deserializeAws_restJson1UpdateRegionSettingsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -5842,12 +6321,14 @@ const deserializeAws_restJson1UpdateRegionSettingsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -5858,20 +6339,23 @@ export const deserializeAws_restJson1UpdateReportPlanCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1UpdateReportPlanCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UpdateReportPlanCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationTime: undefined,
+    ReportPlanArn: undefined,
+    ReportPlanName: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationTime != null) {
+  if (data.CreationTime !== undefined && data.CreationTime !== null) {
     contents.CreationTime = __expectNonNull(__parseEpochTimestamp(__expectNumber(data.CreationTime)));
   }
-  if (data.ReportPlanArn != null) {
+  if (data.ReportPlanArn !== undefined && data.ReportPlanArn !== null) {
     contents.ReportPlanArn = __expectString(data.ReportPlanArn);
   }
-  if (data.ReportPlanName != null) {
+  if (data.ReportPlanName !== undefined && data.ReportPlanName !== null) {
     contents.ReportPlanName = __expectString(data.ReportPlanName);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UpdateReportPlanCommandError = async (
@@ -5882,6 +6366,7 @@ const deserializeAws_restJson1UpdateReportPlanCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ConflictException":
@@ -5901,38 +6386,39 @@ const deserializeAws_restJson1UpdateReportPlanCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1AlreadyExistsExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<AlreadyExistsException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Arn != null) {
+  if (data.Arn !== undefined && data.Arn !== null) {
     contents.Arn = __expectString(data.Arn);
   }
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.CreatorRequestId != null) {
+  if (data.CreatorRequestId !== undefined && data.CreatorRequestId !== null) {
     contents.CreatorRequestId = __expectString(data.CreatorRequestId);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new AlreadyExistsException({
@@ -5946,18 +6432,18 @@ const deserializeAws_restJson1ConflictExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ConflictException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new ConflictException({
@@ -5971,18 +6457,18 @@ const deserializeAws_restJson1DependencyFailureExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<DependencyFailureException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new DependencyFailureException({
@@ -5996,18 +6482,18 @@ const deserializeAws_restJson1InvalidParameterValueExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidParameterValueException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new InvalidParameterValueException({
@@ -6021,18 +6507,18 @@ const deserializeAws_restJson1InvalidRequestExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidRequestException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new InvalidRequestException({
@@ -6046,18 +6532,18 @@ const deserializeAws_restJson1InvalidResourceStateExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidResourceStateException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new InvalidResourceStateException({
@@ -6071,18 +6557,18 @@ const deserializeAws_restJson1LimitExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<LimitExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new LimitExceededException({
@@ -6096,18 +6582,18 @@ const deserializeAws_restJson1MissingParameterValueExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<MissingParameterValueException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new MissingParameterValueException({
@@ -6121,18 +6607,18 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new ResourceNotFoundException({
@@ -6146,18 +6632,18 @@ const deserializeAws_restJson1ServiceUnavailableExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceUnavailableException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.Code != null) {
+  if (data.Code !== undefined && data.Code !== null) {
     contents.Code = __expectString(data.Code);
   }
-  if (data.Context != null) {
+  if (data.Context !== undefined && data.Context !== null) {
     contents.Context = __expectString(data.Context);
   }
-  if (data.Message != null) {
+  if (data.Message !== undefined && data.Message !== null) {
     contents.Message = __expectString(data.Message);
   }
-  if (data.Type != null) {
+  if (data.Type !== undefined && data.Type !== null) {
     contents.Type = __expectString(data.Type);
   }
   const exception = new ServiceUnavailableException({
@@ -6180,6 +6666,9 @@ const serializeAws_restJson1AdvancedBackupSettings = (input: AdvancedBackupSetti
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1AdvancedBackupSetting(entry, context);
     });
 };
@@ -6226,6 +6715,9 @@ const serializeAws_restJson1BackupRulesInput = (input: BackupRuleInput[], contex
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1BackupRuleInput(entry, context);
     });
 };
@@ -6250,6 +6742,9 @@ const serializeAws_restJson1BackupVaultEvents = (
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -6258,6 +6753,9 @@ const serializeAws_restJson1ComplianceResourceIdList = (input: string[], context
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -6281,6 +6779,9 @@ const serializeAws_restJson1ConditionParameters = (input: ConditionParameter[], 
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1ConditionParameter(entry, context);
     });
 };
@@ -6313,6 +6814,9 @@ const serializeAws_restJson1ControlInputParameters = (input: ControlInputParamet
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1ControlInputParameter(entry, context);
     });
 };
@@ -6340,6 +6844,9 @@ const serializeAws_restJson1CopyActions = (input: CopyAction[], context: __Serde
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1CopyAction(entry, context);
     });
 };
@@ -6348,6 +6855,9 @@ const serializeAws_restJson1FormatList = (input: string[], context: __SerdeConte
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -6368,6 +6878,9 @@ const serializeAws_restJson1FrameworkControls = (input: FrameworkControl[], cont
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1FrameworkControl(entry, context);
     });
 };
@@ -6395,6 +6908,9 @@ const serializeAws_restJson1ListOfTags = (input: Condition[], context: __SerdeCo
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1Condition(entry, context);
     });
 };
@@ -6433,6 +6949,9 @@ const serializeAws_restJson1ResourceArns = (input: string[], context: __SerdeCon
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -6441,6 +6960,9 @@ const serializeAws_restJson1ResourceTypeList = (input: string[], context: __Serd
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -6479,6 +7001,9 @@ const serializeAws_restJson1stringList = (input: string[], context: __SerdeConte
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -6499,6 +7024,9 @@ const serializeAws_restJson1TagKeyList = (input: string[], context: __SerdeConte
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };

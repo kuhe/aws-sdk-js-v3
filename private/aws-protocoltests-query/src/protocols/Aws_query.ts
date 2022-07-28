@@ -21,7 +21,6 @@ import {
   strictParseInt32 as __strictParseInt32,
   strictParseLong as __strictParseLong,
   strictParseShort as __strictParseShort,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -595,14 +594,20 @@ const deserializeAws_queryEmptyInputAndEmptyOutputCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryEndpointOperationCommand = async (
@@ -627,14 +632,20 @@ const deserializeAws_queryEndpointOperationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryEndpointWithHostLabelOperationCommand = async (
@@ -659,14 +670,20 @@ const deserializeAws_queryEndpointWithHostLabelOperationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryFlattenedXmlMapCommand = async (
@@ -694,14 +711,20 @@ const deserializeAws_queryFlattenedXmlMapCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryFlattenedXmlMapWithXmlNameCommand = async (
@@ -729,14 +752,20 @@ const deserializeAws_queryFlattenedXmlMapWithXmlNameCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryFlattenedXmlMapWithXmlNamespaceCommand = async (
@@ -767,14 +796,20 @@ const deserializeAws_queryFlattenedXmlMapWithXmlNamespaceCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryGreetingWithErrorsCommand = async (
@@ -802,6 +837,7 @@ const deserializeAws_queryGreetingWithErrorsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "ComplexError":
@@ -815,12 +851,14 @@ const deserializeAws_queryGreetingWithErrorsCommandError = async (
       throw await deserializeAws_queryInvalidGreetingResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody: parsedBody.Error,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody.Error);
   }
 };
 
@@ -846,14 +884,20 @@ const deserializeAws_queryHostWithPathOperationCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryIgnoresWrappingXmlNameCommand = async (
@@ -881,14 +925,20 @@ const deserializeAws_queryIgnoresWrappingXmlNameCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryNestedStructuresCommand = async (
@@ -913,14 +963,20 @@ const deserializeAws_queryNestedStructuresCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryNoInputAndNoOutputCommand = async (
@@ -945,14 +1001,20 @@ const deserializeAws_queryNoInputAndNoOutputCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryNoInputAndOutputCommand = async (
@@ -980,14 +1042,20 @@ const deserializeAws_queryNoInputAndOutputCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryQueryIdempotencyTokenAutoFillCommand = async (
@@ -1012,14 +1080,20 @@ const deserializeAws_queryQueryIdempotencyTokenAutoFillCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryQueryListsCommand = async (
@@ -1044,14 +1118,20 @@ const deserializeAws_queryQueryListsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryQueryMapsCommand = async (
@@ -1076,14 +1156,20 @@ const deserializeAws_queryQueryMapsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryQueryTimestampsCommand = async (
@@ -1108,14 +1194,20 @@ const deserializeAws_queryQueryTimestampsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryRecursiveXmlShapesCommand = async (
@@ -1143,14 +1235,20 @@ const deserializeAws_queryRecursiveXmlShapesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_querySimpleInputParamsCommand = async (
@@ -1175,14 +1273,20 @@ const deserializeAws_querySimpleInputParamsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_querySimpleScalarXmlPropertiesCommand = async (
@@ -1210,14 +1314,20 @@ const deserializeAws_querySimpleScalarXmlPropertiesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlBlobsCommand = async (
@@ -1245,14 +1355,20 @@ const deserializeAws_queryXmlBlobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlEmptyBlobsCommand = async (
@@ -1280,14 +1396,20 @@ const deserializeAws_queryXmlEmptyBlobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlEmptyListsCommand = async (
@@ -1315,14 +1437,20 @@ const deserializeAws_queryXmlEmptyListsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlEmptyMapsCommand = async (
@@ -1350,14 +1478,20 @@ const deserializeAws_queryXmlEmptyMapsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlEnumsCommand = async (
@@ -1385,14 +1519,20 @@ const deserializeAws_queryXmlEnumsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlListsCommand = async (
@@ -1420,14 +1560,20 @@ const deserializeAws_queryXmlListsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlMapsCommand = async (
@@ -1455,14 +1601,20 @@ const deserializeAws_queryXmlMapsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlMapsXmlNameCommand = async (
@@ -1490,14 +1642,20 @@ const deserializeAws_queryXmlMapsXmlNameCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlNamespacesCommand = async (
@@ -1525,14 +1683,20 @@ const deserializeAws_queryXmlNamespacesCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 export const deserializeAws_queryXmlTimestampsCommand = async (
@@ -1560,14 +1724,20 @@ const deserializeAws_queryXmlTimestampsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadQueryErrorCode(output, parsedOutput.body);
-  const parsedBody = parsedOutput.body;
-  throwDefaultError({
-    output,
-    parsedBody: parsedBody.Error,
-    exceptionCtor: __BaseException,
-    errorCode,
-  });
+  switch (errorCode) {
+    default:
+      const parsedBody = parsedOutput.body;
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
+      });
+      throw __decorateServiceException(response, parsedBody.Error);
+  }
 };
 
 const deserializeAws_queryComplexErrorResponse = async (
@@ -1635,7 +1805,7 @@ const serializeAws_queryEmptyInputAndEmptyOutputInput = (
 
 const serializeAws_queryHostLabelInput = (input: HostLabelInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.label != null) {
+  if (input.label !== undefined && input.label !== null) {
     entries["label"] = input.label;
   }
   return entries;
@@ -1685,7 +1855,7 @@ const serializeAws_queryMapWithXmlName = (input: Record<string, string>, context
 
 const serializeAws_queryNestedStructuresInput = (input: NestedStructuresInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Nested != null) {
+  if (input.Nested !== undefined && input.Nested !== null) {
     const memberEntries = serializeAws_queryStructArg(input.Nested, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Nested.${key}`;
@@ -1697,7 +1867,7 @@ const serializeAws_queryNestedStructuresInput = (input: NestedStructuresInput, c
 
 const serializeAws_queryNestedStructWithList = (input: NestedStructWithList, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ListArg != null) {
+  if (input.ListArg !== undefined && input.ListArg !== null) {
     const memberEntries = serializeAws_queryStringList(input.ListArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ListArg.${key}`;
@@ -1709,7 +1879,7 @@ const serializeAws_queryNestedStructWithList = (input: NestedStructWithList, con
 
 const serializeAws_queryNestedStructWithMap = (input: NestedStructWithMap, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.MapArg != null) {
+  if (input.MapArg !== undefined && input.MapArg !== null) {
     const memberEntries = serializeAws_queryStringMap(input.MapArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MapArg.${key}`;
@@ -1732,7 +1902,7 @@ const serializeAws_queryQueryIdempotencyTokenAutoFillInput = (
   if (input.token === undefined) {
     input.token = generateIdempotencyToken();
   }
-  if (input.token != null) {
+  if (input.token !== undefined && input.token !== null) {
     entries["token"] = input.token;
   }
   return entries;
@@ -1740,42 +1910,42 @@ const serializeAws_queryQueryIdempotencyTokenAutoFillInput = (
 
 const serializeAws_queryQueryListsInput = (input: QueryListsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.ListArg != null) {
+  if (input.ListArg !== undefined && input.ListArg !== null) {
     const memberEntries = serializeAws_queryStringList(input.ListArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ListArg.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ComplexListArg != null) {
+  if (input.ComplexListArg !== undefined && input.ComplexListArg !== null) {
     const memberEntries = serializeAws_queryGreetingList(input.ComplexListArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ComplexListArg.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.FlattenedListArg != null) {
+  if (input.FlattenedListArg !== undefined && input.FlattenedListArg !== null) {
     const memberEntries = serializeAws_queryStringList(input.FlattenedListArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `FlattenedListArg.${key.substring(key.indexOf(".") + 1)}`;
       entries[loc] = value;
     });
   }
-  if (input.ListArgWithXmlNameMember != null) {
+  if (input.ListArgWithXmlNameMember !== undefined && input.ListArgWithXmlNameMember !== null) {
     const memberEntries = serializeAws_queryListWithXmlName(input.ListArgWithXmlNameMember, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ListArgWithXmlNameMember.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.FlattenedListArgWithXmlName != null) {
+  if (input.FlattenedListArgWithXmlName !== undefined && input.FlattenedListArgWithXmlName !== null) {
     const memberEntries = serializeAws_queryListWithXmlName(input.FlattenedListArgWithXmlName, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Hi.${key.substring(key.indexOf(".") + 1)}`;
       entries[loc] = value;
     });
   }
-  if (input.NestedWithList != null) {
+  if (input.NestedWithList !== undefined && input.NestedWithList !== null) {
     const memberEntries = serializeAws_queryNestedStructWithList(input.NestedWithList, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `NestedWithList.${key}`;
@@ -1787,56 +1957,56 @@ const serializeAws_queryQueryListsInput = (input: QueryListsInput, context: __Se
 
 const serializeAws_queryQueryMapsInput = (input: QueryMapsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.MapArg != null) {
+  if (input.MapArg !== undefined && input.MapArg !== null) {
     const memberEntries = serializeAws_queryStringMap(input.MapArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MapArg.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.RenamedMapArg != null) {
+  if (input.RenamedMapArg !== undefined && input.RenamedMapArg !== null) {
     const memberEntries = serializeAws_queryStringMap(input.RenamedMapArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Foo.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.ComplexMapArg != null) {
+  if (input.ComplexMapArg !== undefined && input.ComplexMapArg !== null) {
     const memberEntries = serializeAws_queryComplexMap(input.ComplexMapArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `ComplexMapArg.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.MapWithXmlMemberName != null) {
+  if (input.MapWithXmlMemberName !== undefined && input.MapWithXmlMemberName !== null) {
     const memberEntries = serializeAws_queryMapWithXmlName(input.MapWithXmlMemberName, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MapWithXmlMemberName.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.FlattenedMap != null) {
+  if (input.FlattenedMap !== undefined && input.FlattenedMap !== null) {
     const memberEntries = serializeAws_queryStringMap(input.FlattenedMap, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `FlattenedMap.${key.substring(key.indexOf(".") + 1)}`;
       entries[loc] = value;
     });
   }
-  if (input.FlattenedMapWithXmlName != null) {
+  if (input.FlattenedMapWithXmlName !== undefined && input.FlattenedMapWithXmlName !== null) {
     const memberEntries = serializeAws_queryMapWithXmlName(input.FlattenedMapWithXmlName, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `Hi.${key.substring(key.indexOf(".") + 1)}`;
       entries[loc] = value;
     });
   }
-  if (input.MapOfLists != null) {
+  if (input.MapOfLists !== undefined && input.MapOfLists !== null) {
     const memberEntries = serializeAws_queryMapOfLists(input.MapOfLists, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `MapOfLists.${key}`;
       entries[loc] = value;
     });
   }
-  if (input.NestedStructWithMap != null) {
+  if (input.NestedStructWithMap !== undefined && input.NestedStructWithMap !== null) {
     const memberEntries = serializeAws_queryNestedStructWithMap(input.NestedStructWithMap, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `NestedStructWithMap.${key}`;
@@ -1848,13 +2018,13 @@ const serializeAws_queryQueryMapsInput = (input: QueryMapsInput, context: __Serd
 
 const serializeAws_queryQueryTimestampsInput = (input: QueryTimestampsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.normalFormat != null) {
+  if (input.normalFormat !== undefined && input.normalFormat !== null) {
     entries["normalFormat"] = input.normalFormat.toISOString().split(".")[0] + "Z";
   }
-  if (input.epochMember != null) {
+  if (input.epochMember !== undefined && input.epochMember !== null) {
     entries["epochMember"] = Math.round(input.epochMember.getTime() / 1000);
   }
-  if (input.epochTarget != null) {
+  if (input.epochTarget !== undefined && input.epochTarget !== null) {
     entries["epochTarget"] = Math.round(input.epochTarget.getTime() / 1000);
   }
   return entries;
@@ -1862,28 +2032,28 @@ const serializeAws_queryQueryTimestampsInput = (input: QueryTimestampsInput, con
 
 const serializeAws_querySimpleInputParamsInput = (input: SimpleInputParamsInput, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.Foo != null) {
+  if (input.Foo !== undefined && input.Foo !== null) {
     entries["Foo"] = input.Foo;
   }
-  if (input.Bar != null) {
+  if (input.Bar !== undefined && input.Bar !== null) {
     entries["Bar"] = input.Bar;
   }
-  if (input.Baz != null) {
+  if (input.Baz !== undefined && input.Baz !== null) {
     entries["Baz"] = input.Baz;
   }
-  if (input.Bam != null) {
+  if (input.Bam !== undefined && input.Bam !== null) {
     entries["Bam"] = input.Bam;
   }
-  if (input.FloatValue != null) {
+  if (input.FloatValue !== undefined && input.FloatValue !== null) {
     entries["FloatValue"] = __serializeFloat(input.FloatValue);
   }
-  if (input.Boo != null) {
+  if (input.Boo !== undefined && input.Boo !== null) {
     entries["Boo"] = __serializeFloat(input.Boo);
   }
-  if (input.Qux != null) {
+  if (input.Qux !== undefined && input.Qux !== null) {
     entries["Qux"] = context.base64Encoder(input.Qux);
   }
-  if (input.FooEnum != null) {
+  if (input.FooEnum !== undefined && input.FooEnum !== null) {
     entries["FooEnum"] = input.FooEnum;
   }
   return entries;
@@ -1891,13 +2061,13 @@ const serializeAws_querySimpleInputParamsInput = (input: SimpleInputParamsInput,
 
 const serializeAws_queryStructArg = (input: StructArg, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.StringArg != null) {
+  if (input.StringArg !== undefined && input.StringArg !== null) {
     entries["StringArg"] = input.StringArg;
   }
-  if (input.OtherArg != null) {
+  if (input.OtherArg !== undefined && input.OtherArg !== null) {
     entries["OtherArg"] = input.OtherArg;
   }
-  if (input.RecursiveArg != null) {
+  if (input.RecursiveArg !== undefined && input.RecursiveArg !== null) {
     const memberEntries = serializeAws_queryStructArg(input.RecursiveArg, context);
     Object.entries(memberEntries).forEach(([key, value]) => {
       const loc = `RecursiveArg.${key}`;
@@ -1925,7 +2095,7 @@ const serializeAws_queryGreetingList = (input: GreetingStruct[], context: __Serd
 
 const serializeAws_queryGreetingStruct = (input: GreetingStruct, context: __SerdeContext): any => {
   const entries: any = {};
-  if (input.hi != null) {
+  if (input.hi !== undefined && input.hi !== null) {
     entries["hi"] = input.hi;
   }
   return entries;
@@ -2117,6 +2287,9 @@ const deserializeAws_queryListWithMemberNamespace = (output: any, context: __Ser
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2125,6 +2298,9 @@ const deserializeAws_queryListWithNamespace = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2185,6 +2361,9 @@ const deserializeAws_queryRenamedListMembers = (output: any, context: __SerdeCon
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2242,6 +2421,9 @@ const deserializeAws_queryStructureList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryStructureListMember(entry, context);
     });
 };
@@ -2490,6 +2672,9 @@ const deserializeAws_queryXmlNamespacedList = (output: any, context: __SerdeCont
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2549,6 +2734,9 @@ const deserializeAws_queryBooleanList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __parseBoolean(entry);
     });
 };
@@ -2557,6 +2745,9 @@ const deserializeAws_queryFooEnumList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2577,6 +2768,9 @@ const deserializeAws_queryFooEnumSet = (output: any, context: __SerdeContext): (
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2595,6 +2789,9 @@ const deserializeAws_queryIntegerList = (output: any, context: __SerdeContext): 
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __strictParseInt32(entry) as number;
     });
 };
@@ -2603,6 +2800,9 @@ const deserializeAws_queryNestedStringList = (output: any, context: __SerdeConte
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return deserializeAws_queryStringList(__getArrayIfSingleItem(entry["member"]), context);
     });
 };
@@ -2611,6 +2811,9 @@ const deserializeAws_queryStringList = (output: any, context: __SerdeContext): s
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2619,6 +2822,9 @@ const deserializeAws_queryStringSet = (output: any, context: __SerdeContext): st
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectString(entry) as any;
     });
 };
@@ -2627,6 +2833,9 @@ const deserializeAws_queryTimestampList = (output: any, context: __SerdeContext)
   return (output || [])
     .filter((e: any) => e != null)
     .map((entry: any) => {
+      if (entry === null) {
+        return null as any;
+      }
       return __expectNonNull(__parseRfc3339DateTime(entry));
     });
 };

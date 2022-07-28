@@ -8,9 +8,6 @@ import {
   expectObject as __expectObject,
   expectString as __expectString,
   extendedEncodeURIComponent as __extendedEncodeURIComponent,
-  map as __map,
-  resolvedPath as __resolvedPath,
-  throwDefaultError,
 } from "@aws-sdk/smithy-client";
 import {
   Endpoint as __Endpoint,
@@ -143,9 +140,33 @@ export const serializeAws_restJson1AbortMultipartUploadCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "uploadId", () => input.uploadId!, "{uploadId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.uploadId !== undefined) {
+    const labelValue: string = input.uploadId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: uploadId.");
+    }
+    resolvedPath = resolvedPath.replace("{uploadId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: uploadId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -167,8 +188,24 @@ export const serializeAws_restJson1AbortVaultLockCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/lock-policy";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -191,11 +228,27 @@ export const serializeAws_restJson1AddTagsToVaultCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}/tags";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  const query: any = map({
-    operation: [, "add"],
-  });
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  const query: any = {
+    operation: "add",
+  };
   let body: any;
   body = JSON.stringify({
     ...(input.Tags != null && { Tags: serializeAws_restJson1TagMap(input.Tags, context) }),
@@ -217,16 +270,40 @@ export const serializeAws_restJson1CompleteMultipartUploadCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
-    "x-amz-archive-size": input.archiveSize!,
-    "x-amz-sha256-tree-hash": input.checksum!,
-  });
+  const headers: any = {
+    ...(isSerializableHeaderValue(input.archiveSize) && { "x-amz-archive-size": input.archiveSize! }),
+    ...(isSerializableHeaderValue(input.checksum) && { "x-amz-sha256-tree-hash": input.checksum! }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "uploadId", () => input.uploadId!, "{uploadId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.uploadId !== undefined) {
+    const labelValue: string = input.uploadId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: uploadId.");
+    }
+    resolvedPath = resolvedPath.replace("{uploadId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: uploadId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -248,9 +325,33 @@ export const serializeAws_restJson1CompleteVaultLockCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "lockId", () => input.lockId!, "{lockId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.lockId !== undefined) {
+    const labelValue: string = input.lockId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: lockId.");
+    }
+    resolvedPath = resolvedPath.replace("{lockId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: lockId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -271,8 +372,24 @@ export const serializeAws_restJson1CreateVaultCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -294,9 +411,33 @@ export const serializeAws_restJson1DeleteArchiveCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/archives/{archiveId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "archiveId", () => input.archiveId!, "{archiveId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.archiveId !== undefined) {
+    const labelValue: string = input.archiveId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: archiveId.");
+    }
+    resolvedPath = resolvedPath.replace("{archiveId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: archiveId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -317,8 +458,24 @@ export const serializeAws_restJson1DeleteVaultCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -340,8 +497,24 @@ export const serializeAws_restJson1DeleteVaultAccessPolicyCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/access-policy";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -363,8 +536,24 @@ export const serializeAws_restJson1DeleteVaultNotificationsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/notification-configuration";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -386,9 +575,33 @@ export const serializeAws_restJson1DescribeJobCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/jobs/{jobId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobId", () => input.jobId!, "{jobId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.jobId !== undefined) {
+    const labelValue: string = input.jobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -409,8 +622,24 @@ export const serializeAws_restJson1DescribeVaultCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -431,7 +660,15 @@ export const serializeAws_restJson1GetDataRetrievalPolicyCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/policies/data-retrieval";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -449,15 +686,39 @@ export const serializeAws_restJson1GetJobOutputCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
-    range: input.range!,
-  });
+  const headers: any = {
+    ...(isSerializableHeaderValue(input.range) && { range: input.range! }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/jobs/{jobId}/output";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "jobId", () => input.jobId!, "{jobId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.jobId !== undefined) {
+    const labelValue: string = input.jobId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: jobId.");
+    }
+    resolvedPath = resolvedPath.replace("{jobId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: jobId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -479,8 +740,24 @@ export const serializeAws_restJson1GetVaultAccessPolicyCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/access-policy";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -502,8 +779,24 @@ export const serializeAws_restJson1GetVaultLockCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/lock-policy";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -525,8 +818,24 @@ export const serializeAws_restJson1GetVaultNotificationsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/notification-configuration";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -549,8 +858,24 @@ export const serializeAws_restJson1InitiateJobCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}/jobs";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   if (input.jobParameters !== undefined) {
     body = serializeAws_restJson1JobParameters(input.jobParameters, context);
@@ -575,15 +900,33 @@ export const serializeAws_restJson1InitiateMultipartUploadCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
-    "x-amz-archive-description": input.archiveDescription!,
-    "x-amz-part-size": input.partSize!,
-  });
+  const headers: any = {
+    ...(isSerializableHeaderValue(input.archiveDescription) && {
+      "x-amz-archive-description": input.archiveDescription!,
+    }),
+    ...(isSerializableHeaderValue(input.partSize) && { "x-amz-part-size": input.partSize! }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/multipart-uploads";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -607,8 +950,24 @@ export const serializeAws_restJson1InitiateVaultLockCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/lock-policy";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   if (input.policy !== undefined) {
     body = serializeAws_restJson1VaultLockPolicy(input.policy, context);
@@ -636,14 +995,30 @@ export const serializeAws_restJson1ListJobsCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}/jobs";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  const query: any = map({
-    limit: [() => input.limit !== void 0, () => input.limit!.toString()],
-    marker: [, input.marker!],
-    statuscode: [, input.statuscode!],
-    completed: [, input.completed!],
-  });
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  const query: any = {
+    ...(input.limit !== undefined && { limit: input.limit.toString() }),
+    ...(input.marker !== undefined && { marker: input.marker }),
+    ...(input.statuscode !== undefined && { statuscode: input.statuscode }),
+    ...(input.completed !== undefined && { completed: input.completed }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -666,12 +1041,28 @@ export const serializeAws_restJson1ListMultipartUploadsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/multipart-uploads";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  const query: any = map({
-    limit: [() => input.limit !== void 0, () => input.limit!.toString()],
-    marker: [, input.marker!],
-  });
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  const query: any = {
+    ...(input.limit !== undefined && { limit: input.limit.toString() }),
+    ...(input.marker !== undefined && { marker: input.marker }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -694,13 +1085,37 @@ export const serializeAws_restJson1ListPartsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "uploadId", () => input.uploadId!, "{uploadId}", false);
-  const query: any = map({
-    marker: [, input.marker!],
-    limit: [() => input.limit !== void 0, () => input.limit!.toString()],
-  });
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.uploadId !== undefined) {
+    const labelValue: string = input.uploadId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: uploadId.");
+    }
+    resolvedPath = resolvedPath.replace("{uploadId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: uploadId.");
+  }
+  const query: any = {
+    ...(input.marker !== undefined && { marker: input.marker }),
+    ...(input.limit !== undefined && { limit: input.limit.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -722,7 +1137,15 @@ export const serializeAws_restJson1ListProvisionedCapacityCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/provisioned-capacity";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -743,8 +1166,24 @@ export const serializeAws_restJson1ListTagsForVaultCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}/tags";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -764,11 +1203,19 @@ export const serializeAws_restJson1ListVaultsCommand = async (
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
   const headers: any = {};
   let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  const query: any = map({
-    marker: [, input.marker!],
-    limit: [() => input.limit !== void 0, () => input.limit!.toString()],
-  });
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  const query: any = {
+    ...(input.marker !== undefined && { marker: input.marker }),
+    ...(input.limit !== undefined && { limit: input.limit.toString() }),
+  };
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -790,7 +1237,15 @@ export const serializeAws_restJson1PurchaseProvisionedCapacityCommand = async (
   const headers: any = {};
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/provisioned-capacity";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
   let body: any;
   return new __HttpRequest({
     protocol,
@@ -813,11 +1268,27 @@ export const serializeAws_restJson1RemoveTagsFromVaultCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}/tags";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  const query: any = map({
-    operation: [, "remove"],
-  });
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  const query: any = {
+    operation: "remove",
+  };
   let body: any;
   body = JSON.stringify({
     ...(input.TagKeys != null && { TagKeys: serializeAws_restJson1TagKeyList(input.TagKeys, context) }),
@@ -844,7 +1315,15 @@ export const serializeAws_restJson1SetDataRetrievalPolicyCommand = async (
   };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/policies/data-retrieval";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
   let body: any;
   body = JSON.stringify({
     ...(input.Policy != null && { Policy: serializeAws_restJson1DataRetrievalPolicy(input.Policy, context) }),
@@ -871,8 +1350,24 @@ export const serializeAws_restJson1SetVaultAccessPolicyCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/access-policy";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   if (input.policy !== undefined) {
     body = serializeAws_restJson1VaultAccessPolicy(input.policy, context);
@@ -903,8 +1398,24 @@ export const serializeAws_restJson1SetVaultNotificationsCommand = async (
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/notification-configuration";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
   let body: any;
   if (input.vaultNotificationConfig !== undefined) {
     body = serializeAws_restJson1VaultNotificationConfig(input.vaultNotificationConfig, context);
@@ -929,15 +1440,33 @@ export const serializeAws_restJson1UploadArchiveCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
+  const headers: any = {
     "content-type": "application/octet-stream",
-    "x-amz-archive-description": input.archiveDescription!,
-    "x-amz-sha256-tree-hash": input.checksum!,
-  });
+    ...(isSerializableHeaderValue(input.archiveDescription) && {
+      "x-amz-archive-description": input.archiveDescription!,
+    }),
+    ...(isSerializableHeaderValue(input.checksum) && { "x-amz-sha256-tree-hash": input.checksum! }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/{accountId}/vaults/{vaultName}/archives";
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
   let body: any;
   if (input.body !== undefined) {
     body = input.body;
@@ -958,17 +1487,41 @@ export const serializeAws_restJson1UploadMultipartPartCommand = async (
   context: __SerdeContext
 ): Promise<__HttpRequest> => {
   const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-  const headers: any = map({}, isSerializableHeaderValue, {
+  const headers: any = {
     "content-type": "application/octet-stream",
-    "x-amz-sha256-tree-hash": input.checksum!,
-    "content-range": input.range!,
-  });
+    ...(isSerializableHeaderValue(input.checksum) && { "x-amz-sha256-tree-hash": input.checksum! }),
+    ...(isSerializableHeaderValue(input.range) && { "content-range": input.range! }),
+  };
   let resolvedPath =
     `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
     "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}";
-  resolvedPath = __resolvedPath(resolvedPath, input, "accountId", () => input.accountId!, "{accountId}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "vaultName", () => input.vaultName!, "{vaultName}", false);
-  resolvedPath = __resolvedPath(resolvedPath, input, "uploadId", () => input.uploadId!, "{uploadId}", false);
+  if (input.accountId !== undefined) {
+    const labelValue: string = input.accountId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: accountId.");
+    }
+    resolvedPath = resolvedPath.replace("{accountId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: accountId.");
+  }
+  if (input.vaultName !== undefined) {
+    const labelValue: string = input.vaultName;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: vaultName.");
+    }
+    resolvedPath = resolvedPath.replace("{vaultName}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: vaultName.");
+  }
+  if (input.uploadId !== undefined) {
+    const labelValue: string = input.uploadId;
+    if (labelValue.length <= 0) {
+      throw new Error("Empty value provided for input HTTP label: uploadId.");
+    }
+    resolvedPath = resolvedPath.replace("{uploadId}", __extendedEncodeURIComponent(labelValue));
+  } else {
+    throw new Error("No value provided for input HTTP label: uploadId.");
+  }
   let body: any;
   if (input.body !== undefined) {
     body = input.body;
@@ -991,11 +1544,11 @@ export const deserializeAws_restJson1AbortMultipartUploadCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1AbortMultipartUploadCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: AbortMultipartUploadCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1AbortMultipartUploadCommandError = async (
@@ -1006,6 +1559,7 @@ const deserializeAws_restJson1AbortMultipartUploadCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1022,12 +1576,14 @@ const deserializeAws_restJson1AbortMultipartUploadCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1038,11 +1594,11 @@ export const deserializeAws_restJson1AbortVaultLockCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1AbortVaultLockCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: AbortVaultLockCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1AbortVaultLockCommandError = async (
@@ -1053,6 +1609,7 @@ const deserializeAws_restJson1AbortVaultLockCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1069,12 +1626,14 @@ const deserializeAws_restJson1AbortVaultLockCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1085,11 +1644,11 @@ export const deserializeAws_restJson1AddTagsToVaultCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1AddTagsToVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: AddTagsToVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1AddTagsToVaultCommandError = async (
@@ -1100,6 +1659,7 @@ const deserializeAws_restJson1AddTagsToVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1119,12 +1679,14 @@ const deserializeAws_restJson1AddTagsToVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1135,14 +1697,23 @@ export const deserializeAws_restJson1CompleteMultipartUploadCommand = async (
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1CompleteMultipartUploadCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CompleteMultipartUploadCommandOutput = {
     $metadata: deserializeMetadata(output),
-    location: [, output.headers["location"]],
-    checksum: [, output.headers["x-amz-sha256-tree-hash"]],
-    archiveId: [, output.headers["x-amz-archive-id"]],
-  });
+    archiveId: undefined,
+    checksum: undefined,
+    location: undefined,
+  };
+  if (output.headers["location"] !== undefined) {
+    contents.location = output.headers["location"];
+  }
+  if (output.headers["x-amz-sha256-tree-hash"] !== undefined) {
+    contents.checksum = output.headers["x-amz-sha256-tree-hash"];
+  }
+  if (output.headers["x-amz-archive-id"] !== undefined) {
+    contents.archiveId = output.headers["x-amz-archive-id"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CompleteMultipartUploadCommandError = async (
@@ -1153,6 +1724,7 @@ const deserializeAws_restJson1CompleteMultipartUploadCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1169,12 +1741,14 @@ const deserializeAws_restJson1CompleteMultipartUploadCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1185,11 +1759,11 @@ export const deserializeAws_restJson1CompleteVaultLockCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1CompleteVaultLockCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CompleteVaultLockCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CompleteVaultLockCommandError = async (
@@ -1200,6 +1774,7 @@ const deserializeAws_restJson1CompleteVaultLockCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1216,12 +1791,14 @@ const deserializeAws_restJson1CompleteVaultLockCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1232,12 +1809,15 @@ export const deserializeAws_restJson1CreateVaultCommand = async (
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1CreateVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: CreateVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-    location: [, output.headers["location"]],
-  });
+    location: undefined,
+  };
+  if (output.headers["location"] !== undefined) {
+    contents.location = output.headers["location"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1CreateVaultCommandError = async (
@@ -1248,6 +1828,7 @@ const deserializeAws_restJson1CreateVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1264,12 +1845,14 @@ const deserializeAws_restJson1CreateVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1280,11 +1863,11 @@ export const deserializeAws_restJson1DeleteArchiveCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteArchiveCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteArchiveCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteArchiveCommandError = async (
@@ -1295,6 +1878,7 @@ const deserializeAws_restJson1DeleteArchiveCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1311,12 +1895,14 @@ const deserializeAws_restJson1DeleteArchiveCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1327,11 +1913,11 @@ export const deserializeAws_restJson1DeleteVaultCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteVaultCommandError = async (
@@ -1342,6 +1928,7 @@ const deserializeAws_restJson1DeleteVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1358,12 +1945,14 @@ const deserializeAws_restJson1DeleteVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1374,11 +1963,11 @@ export const deserializeAws_restJson1DeleteVaultAccessPolicyCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteVaultAccessPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteVaultAccessPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteVaultAccessPolicyCommandError = async (
@@ -1389,6 +1978,7 @@ const deserializeAws_restJson1DeleteVaultAccessPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1405,12 +1995,14 @@ const deserializeAws_restJson1DeleteVaultAccessPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1421,11 +2013,11 @@ export const deserializeAws_restJson1DeleteVaultNotificationsCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1DeleteVaultNotificationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DeleteVaultNotificationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DeleteVaultNotificationsCommandError = async (
@@ -1436,6 +2028,7 @@ const deserializeAws_restJson1DeleteVaultNotificationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1452,12 +2045,14 @@ const deserializeAws_restJson1DeleteVaultNotificationsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1468,77 +2063,98 @@ export const deserializeAws_restJson1DescribeJobCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Action: undefined,
+    ArchiveId: undefined,
+    ArchiveSHA256TreeHash: undefined,
+    ArchiveSizeInBytes: undefined,
+    Completed: undefined,
+    CompletionDate: undefined,
+    CreationDate: undefined,
+    InventoryRetrievalParameters: undefined,
+    InventorySizeInBytes: undefined,
+    JobDescription: undefined,
+    JobId: undefined,
+    JobOutputPath: undefined,
+    OutputLocation: undefined,
+    RetrievalByteRange: undefined,
+    SHA256TreeHash: undefined,
+    SNSTopic: undefined,
+    SelectParameters: undefined,
+    StatusCode: undefined,
+    StatusMessage: undefined,
+    Tier: undefined,
+    VaultARN: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Action != null) {
+  if (data.Action !== undefined && data.Action !== null) {
     contents.Action = __expectString(data.Action);
   }
-  if (data.ArchiveId != null) {
+  if (data.ArchiveId !== undefined && data.ArchiveId !== null) {
     contents.ArchiveId = __expectString(data.ArchiveId);
   }
-  if (data.ArchiveSHA256TreeHash != null) {
+  if (data.ArchiveSHA256TreeHash !== undefined && data.ArchiveSHA256TreeHash !== null) {
     contents.ArchiveSHA256TreeHash = __expectString(data.ArchiveSHA256TreeHash);
   }
-  if (data.ArchiveSizeInBytes != null) {
+  if (data.ArchiveSizeInBytes !== undefined && data.ArchiveSizeInBytes !== null) {
     contents.ArchiveSizeInBytes = __expectLong(data.ArchiveSizeInBytes);
   }
-  if (data.Completed != null) {
+  if (data.Completed !== undefined && data.Completed !== null) {
     contents.Completed = __expectBoolean(data.Completed);
   }
-  if (data.CompletionDate != null) {
+  if (data.CompletionDate !== undefined && data.CompletionDate !== null) {
     contents.CompletionDate = __expectString(data.CompletionDate);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectString(data.CreationDate);
   }
-  if (data.InventoryRetrievalParameters != null) {
+  if (data.InventoryRetrievalParameters !== undefined && data.InventoryRetrievalParameters !== null) {
     contents.InventoryRetrievalParameters = deserializeAws_restJson1InventoryRetrievalJobDescription(
       data.InventoryRetrievalParameters,
       context
     );
   }
-  if (data.InventorySizeInBytes != null) {
+  if (data.InventorySizeInBytes !== undefined && data.InventorySizeInBytes !== null) {
     contents.InventorySizeInBytes = __expectLong(data.InventorySizeInBytes);
   }
-  if (data.JobDescription != null) {
+  if (data.JobDescription !== undefined && data.JobDescription !== null) {
     contents.JobDescription = __expectString(data.JobDescription);
   }
-  if (data.JobId != null) {
+  if (data.JobId !== undefined && data.JobId !== null) {
     contents.JobId = __expectString(data.JobId);
   }
-  if (data.JobOutputPath != null) {
+  if (data.JobOutputPath !== undefined && data.JobOutputPath !== null) {
     contents.JobOutputPath = __expectString(data.JobOutputPath);
   }
-  if (data.OutputLocation != null) {
+  if (data.OutputLocation !== undefined && data.OutputLocation !== null) {
     contents.OutputLocation = deserializeAws_restJson1OutputLocation(data.OutputLocation, context);
   }
-  if (data.RetrievalByteRange != null) {
+  if (data.RetrievalByteRange !== undefined && data.RetrievalByteRange !== null) {
     contents.RetrievalByteRange = __expectString(data.RetrievalByteRange);
   }
-  if (data.SHA256TreeHash != null) {
+  if (data.SHA256TreeHash !== undefined && data.SHA256TreeHash !== null) {
     contents.SHA256TreeHash = __expectString(data.SHA256TreeHash);
   }
-  if (data.SNSTopic != null) {
+  if (data.SNSTopic !== undefined && data.SNSTopic !== null) {
     contents.SNSTopic = __expectString(data.SNSTopic);
   }
-  if (data.SelectParameters != null) {
+  if (data.SelectParameters !== undefined && data.SelectParameters !== null) {
     contents.SelectParameters = deserializeAws_restJson1SelectParameters(data.SelectParameters, context);
   }
-  if (data.StatusCode != null) {
+  if (data.StatusCode !== undefined && data.StatusCode !== null) {
     contents.StatusCode = __expectString(data.StatusCode);
   }
-  if (data.StatusMessage != null) {
+  if (data.StatusMessage !== undefined && data.StatusMessage !== null) {
     contents.StatusMessage = __expectString(data.StatusMessage);
   }
-  if (data.Tier != null) {
+  if (data.Tier !== undefined && data.Tier !== null) {
     contents.Tier = __expectString(data.Tier);
   }
-  if (data.VaultARN != null) {
+  if (data.VaultARN !== undefined && data.VaultARN !== null) {
     contents.VaultARN = __expectString(data.VaultARN);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeJobCommandError = async (
@@ -1549,6 +2165,7 @@ const deserializeAws_restJson1DescribeJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1565,12 +2182,14 @@ const deserializeAws_restJson1DescribeJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1581,29 +2200,35 @@ export const deserializeAws_restJson1DescribeVaultCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1DescribeVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: DescribeVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationDate: undefined,
+    LastInventoryDate: undefined,
+    NumberOfArchives: undefined,
+    SizeInBytes: undefined,
+    VaultARN: undefined,
+    VaultName: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectString(data.CreationDate);
   }
-  if (data.LastInventoryDate != null) {
+  if (data.LastInventoryDate !== undefined && data.LastInventoryDate !== null) {
     contents.LastInventoryDate = __expectString(data.LastInventoryDate);
   }
-  if (data.NumberOfArchives != null) {
+  if (data.NumberOfArchives !== undefined && data.NumberOfArchives !== null) {
     contents.NumberOfArchives = __expectLong(data.NumberOfArchives);
   }
-  if (data.SizeInBytes != null) {
+  if (data.SizeInBytes !== undefined && data.SizeInBytes !== null) {
     contents.SizeInBytes = __expectLong(data.SizeInBytes);
   }
-  if (data.VaultARN != null) {
+  if (data.VaultARN !== undefined && data.VaultARN !== null) {
     contents.VaultARN = __expectString(data.VaultARN);
   }
-  if (data.VaultName != null) {
+  if (data.VaultName !== undefined && data.VaultName !== null) {
     contents.VaultName = __expectString(data.VaultName);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1DescribeVaultCommandError = async (
@@ -1614,6 +2239,7 @@ const deserializeAws_restJson1DescribeVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1630,12 +2256,14 @@ const deserializeAws_restJson1DescribeVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1646,14 +2274,15 @@ export const deserializeAws_restJson1GetDataRetrievalPolicyCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetDataRetrievalPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetDataRetrievalPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Policy: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Policy != null) {
+  if (data.Policy !== undefined && data.Policy !== null) {
     contents.Policy = deserializeAws_restJson1DataRetrievalPolicy(data.Policy, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetDataRetrievalPolicyCommandError = async (
@@ -1664,6 +2293,7 @@ const deserializeAws_restJson1GetDataRetrievalPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1677,12 +2307,14 @@ const deserializeAws_restJson1GetDataRetrievalPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1693,20 +2325,37 @@ export const deserializeAws_restJson1GetJobOutputCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetJobOutputCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetJobOutputCommandOutput = {
     $metadata: deserializeMetadata(output),
-    checksum: [, output.headers["x-amz-sha256-tree-hash"]],
-    contentRange: [, output.headers["content-range"]],
-    acceptRanges: [, output.headers["accept-ranges"]],
-    contentType: [, output.headers["content-type"]],
-    archiveDescription: [, output.headers["x-amz-archive-description"]],
-  });
+    acceptRanges: undefined,
+    archiveDescription: undefined,
+    body: undefined,
+    checksum: undefined,
+    contentRange: undefined,
+    contentType: undefined,
+    status: undefined,
+  };
+  if (output.headers["x-amz-sha256-tree-hash"] !== undefined) {
+    contents.checksum = output.headers["x-amz-sha256-tree-hash"];
+  }
+  if (output.headers["content-range"] !== undefined) {
+    contents.contentRange = output.headers["content-range"];
+  }
+  if (output.headers["accept-ranges"] !== undefined) {
+    contents.acceptRanges = output.headers["accept-ranges"];
+  }
+  if (output.headers["content-type"] !== undefined) {
+    contents.contentType = output.headers["content-type"];
+  }
+  if (output.headers["x-amz-archive-description"] !== undefined) {
+    contents.archiveDescription = output.headers["x-amz-archive-description"];
+  }
   const data: any = output.body;
   contents.body = data;
-  map(contents, {
-    status: [, output.statusCode],
-  });
-  return contents;
+  if (contents.status === undefined) {
+    contents.status = output.statusCode;
+  }
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetJobOutputCommandError = async (
@@ -1717,6 +2366,7 @@ const deserializeAws_restJson1GetJobOutputCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1733,12 +2383,14 @@ const deserializeAws_restJson1GetJobOutputCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1749,12 +2401,13 @@ export const deserializeAws_restJson1GetVaultAccessPolicyCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetVaultAccessPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetVaultAccessPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    policy: undefined,
+  };
   const data: Record<string, any> | undefined = __expectObject(await parseBody(output.body, context));
   contents.policy = deserializeAws_restJson1VaultAccessPolicy(data, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetVaultAccessPolicyCommandError = async (
@@ -1765,6 +2418,7 @@ const deserializeAws_restJson1GetVaultAccessPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1781,12 +2435,14 @@ const deserializeAws_restJson1GetVaultAccessPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1797,23 +2453,27 @@ export const deserializeAws_restJson1GetVaultLockCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetVaultLockCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetVaultLockCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    CreationDate: undefined,
+    ExpirationDate: undefined,
+    Policy: undefined,
+    State: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectString(data.CreationDate);
   }
-  if (data.ExpirationDate != null) {
+  if (data.ExpirationDate !== undefined && data.ExpirationDate !== null) {
     contents.ExpirationDate = __expectString(data.ExpirationDate);
   }
-  if (data.Policy != null) {
+  if (data.Policy !== undefined && data.Policy !== null) {
     contents.Policy = __expectString(data.Policy);
   }
-  if (data.State != null) {
+  if (data.State !== undefined && data.State !== null) {
     contents.State = __expectString(data.State);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetVaultLockCommandError = async (
@@ -1824,6 +2484,7 @@ const deserializeAws_restJson1GetVaultLockCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1840,12 +2501,14 @@ const deserializeAws_restJson1GetVaultLockCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1856,12 +2519,13 @@ export const deserializeAws_restJson1GetVaultNotificationsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1GetVaultNotificationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: GetVaultNotificationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    vaultNotificationConfig: undefined,
+  };
   const data: Record<string, any> | undefined = __expectObject(await parseBody(output.body, context));
   contents.vaultNotificationConfig = deserializeAws_restJson1VaultNotificationConfig(data, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1GetVaultNotificationsCommandError = async (
@@ -1872,6 +2536,7 @@ const deserializeAws_restJson1GetVaultNotificationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1888,12 +2553,14 @@ const deserializeAws_restJson1GetVaultNotificationsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1904,14 +2571,23 @@ export const deserializeAws_restJson1InitiateJobCommand = async (
   if (output.statusCode !== 202 && output.statusCode >= 300) {
     return deserializeAws_restJson1InitiateJobCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: InitiateJobCommandOutput = {
     $metadata: deserializeMetadata(output),
-    location: [, output.headers["location"]],
-    jobId: [, output.headers["x-amz-job-id"]],
-    jobOutputPath: [, output.headers["x-amz-job-output-path"]],
-  });
+    jobId: undefined,
+    jobOutputPath: undefined,
+    location: undefined,
+  };
+  if (output.headers["location"] !== undefined) {
+    contents.location = output.headers["location"];
+  }
+  if (output.headers["x-amz-job-id"] !== undefined) {
+    contents.jobId = output.headers["x-amz-job-id"];
+  }
+  if (output.headers["x-amz-job-output-path"] !== undefined) {
+    contents.jobOutputPath = output.headers["x-amz-job-output-path"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1InitiateJobCommandError = async (
@@ -1922,6 +2598,7 @@ const deserializeAws_restJson1InitiateJobCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InsufficientCapacityException":
@@ -1944,12 +2621,14 @@ const deserializeAws_restJson1InitiateJobCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -1960,13 +2639,19 @@ export const deserializeAws_restJson1InitiateMultipartUploadCommand = async (
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1InitiateMultipartUploadCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: InitiateMultipartUploadCommandOutput = {
     $metadata: deserializeMetadata(output),
-    location: [, output.headers["location"]],
-    uploadId: [, output.headers["x-amz-multipart-upload-id"]],
-  });
+    location: undefined,
+    uploadId: undefined,
+  };
+  if (output.headers["location"] !== undefined) {
+    contents.location = output.headers["location"];
+  }
+  if (output.headers["x-amz-multipart-upload-id"] !== undefined) {
+    contents.uploadId = output.headers["x-amz-multipart-upload-id"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1InitiateMultipartUploadCommandError = async (
@@ -1977,6 +2662,7 @@ const deserializeAws_restJson1InitiateMultipartUploadCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -1993,12 +2679,14 @@ const deserializeAws_restJson1InitiateMultipartUploadCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2009,12 +2697,15 @@ export const deserializeAws_restJson1InitiateVaultLockCommand = async (
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1InitiateVaultLockCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: InitiateVaultLockCommandOutput = {
     $metadata: deserializeMetadata(output),
-    lockId: [, output.headers["x-amz-lock-id"]],
-  });
+    lockId: undefined,
+  };
+  if (output.headers["x-amz-lock-id"] !== undefined) {
+    contents.lockId = output.headers["x-amz-lock-id"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1InitiateVaultLockCommandError = async (
@@ -2025,6 +2716,7 @@ const deserializeAws_restJson1InitiateVaultLockCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2041,12 +2733,14 @@ const deserializeAws_restJson1InitiateVaultLockCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2057,17 +2751,19 @@ export const deserializeAws_restJson1ListJobsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListJobsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListJobsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    JobList: undefined,
+    Marker: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.JobList != null) {
+  if (data.JobList !== undefined && data.JobList !== null) {
     contents.JobList = deserializeAws_restJson1JobList(data.JobList, context);
   }
-  if (data.Marker != null) {
+  if (data.Marker !== undefined && data.Marker !== null) {
     contents.Marker = __expectString(data.Marker);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListJobsCommandError = async (
@@ -2078,6 +2774,7 @@ const deserializeAws_restJson1ListJobsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2094,12 +2791,14 @@ const deserializeAws_restJson1ListJobsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2110,17 +2809,19 @@ export const deserializeAws_restJson1ListMultipartUploadsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListMultipartUploadsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListMultipartUploadsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Marker: undefined,
+    UploadsList: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Marker != null) {
+  if (data.Marker !== undefined && data.Marker !== null) {
     contents.Marker = __expectString(data.Marker);
   }
-  if (data.UploadsList != null) {
+  if (data.UploadsList !== undefined && data.UploadsList !== null) {
     contents.UploadsList = deserializeAws_restJson1UploadsList(data.UploadsList, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListMultipartUploadsCommandError = async (
@@ -2131,6 +2832,7 @@ const deserializeAws_restJson1ListMultipartUploadsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2147,12 +2849,14 @@ const deserializeAws_restJson1ListMultipartUploadsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2163,32 +2867,39 @@ export const deserializeAws_restJson1ListPartsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListPartsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListPartsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ArchiveDescription: undefined,
+    CreationDate: undefined,
+    Marker: undefined,
+    MultipartUploadId: undefined,
+    PartSizeInBytes: undefined,
+    Parts: undefined,
+    VaultARN: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ArchiveDescription != null) {
+  if (data.ArchiveDescription !== undefined && data.ArchiveDescription !== null) {
     contents.ArchiveDescription = __expectString(data.ArchiveDescription);
   }
-  if (data.CreationDate != null) {
+  if (data.CreationDate !== undefined && data.CreationDate !== null) {
     contents.CreationDate = __expectString(data.CreationDate);
   }
-  if (data.Marker != null) {
+  if (data.Marker !== undefined && data.Marker !== null) {
     contents.Marker = __expectString(data.Marker);
   }
-  if (data.MultipartUploadId != null) {
+  if (data.MultipartUploadId !== undefined && data.MultipartUploadId !== null) {
     contents.MultipartUploadId = __expectString(data.MultipartUploadId);
   }
-  if (data.PartSizeInBytes != null) {
+  if (data.PartSizeInBytes !== undefined && data.PartSizeInBytes !== null) {
     contents.PartSizeInBytes = __expectLong(data.PartSizeInBytes);
   }
-  if (data.Parts != null) {
+  if (data.Parts !== undefined && data.Parts !== null) {
     contents.Parts = deserializeAws_restJson1PartList(data.Parts, context);
   }
-  if (data.VaultARN != null) {
+  if (data.VaultARN !== undefined && data.VaultARN !== null) {
     contents.VaultARN = __expectString(data.VaultARN);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListPartsCommandError = async (
@@ -2199,6 +2910,7 @@ const deserializeAws_restJson1ListPartsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2215,12 +2927,14 @@ const deserializeAws_restJson1ListPartsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2231,17 +2945,18 @@ export const deserializeAws_restJson1ListProvisionedCapacityCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListProvisionedCapacityCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListProvisionedCapacityCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    ProvisionedCapacityList: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.ProvisionedCapacityList != null) {
+  if (data.ProvisionedCapacityList !== undefined && data.ProvisionedCapacityList !== null) {
     contents.ProvisionedCapacityList = deserializeAws_restJson1ProvisionedCapacityList(
       data.ProvisionedCapacityList,
       context
     );
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListProvisionedCapacityCommandError = async (
@@ -2252,6 +2967,7 @@ const deserializeAws_restJson1ListProvisionedCapacityCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2265,12 +2981,14 @@ const deserializeAws_restJson1ListProvisionedCapacityCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2281,14 +2999,15 @@ export const deserializeAws_restJson1ListTagsForVaultCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListTagsForVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListTagsForVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Tags: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Tags != null) {
+  if (data.Tags !== undefined && data.Tags !== null) {
     contents.Tags = deserializeAws_restJson1TagMap(data.Tags, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListTagsForVaultCommandError = async (
@@ -2299,6 +3018,7 @@ const deserializeAws_restJson1ListTagsForVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2315,12 +3035,14 @@ const deserializeAws_restJson1ListTagsForVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2331,17 +3053,19 @@ export const deserializeAws_restJson1ListVaultsCommand = async (
   if (output.statusCode !== 200 && output.statusCode >= 300) {
     return deserializeAws_restJson1ListVaultsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: ListVaultsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+    Marker: undefined,
+    VaultList: undefined,
+  };
   const data: Record<string, any> = __expectNonNull(__expectObject(await parseBody(output.body, context)), "body");
-  if (data.Marker != null) {
+  if (data.Marker !== undefined && data.Marker !== null) {
     contents.Marker = __expectString(data.Marker);
   }
-  if (data.VaultList != null) {
+  if (data.VaultList !== undefined && data.VaultList !== null) {
     contents.VaultList = deserializeAws_restJson1VaultList(data.VaultList, context);
   }
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1ListVaultsCommandError = async (
@@ -2352,6 +3076,7 @@ const deserializeAws_restJson1ListVaultsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2368,12 +3093,14 @@ const deserializeAws_restJson1ListVaultsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2384,12 +3111,15 @@ export const deserializeAws_restJson1PurchaseProvisionedCapacityCommand = async 
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1PurchaseProvisionedCapacityCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: PurchaseProvisionedCapacityCommandOutput = {
     $metadata: deserializeMetadata(output),
-    capacityId: [, output.headers["x-amz-capacity-id"]],
-  });
+    capacityId: undefined,
+  };
+  if (output.headers["x-amz-capacity-id"] !== undefined) {
+    contents.capacityId = output.headers["x-amz-capacity-id"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1PurchaseProvisionedCapacityCommandError = async (
@@ -2400,6 +3130,7 @@ const deserializeAws_restJson1PurchaseProvisionedCapacityCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2416,12 +3147,14 @@ const deserializeAws_restJson1PurchaseProvisionedCapacityCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2432,11 +3165,11 @@ export const deserializeAws_restJson1RemoveTagsFromVaultCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1RemoveTagsFromVaultCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: RemoveTagsFromVaultCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1RemoveTagsFromVaultCommandError = async (
@@ -2447,6 +3180,7 @@ const deserializeAws_restJson1RemoveTagsFromVaultCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2463,12 +3197,14 @@ const deserializeAws_restJson1RemoveTagsFromVaultCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2479,11 +3215,11 @@ export const deserializeAws_restJson1SetDataRetrievalPolicyCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1SetDataRetrievalPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: SetDataRetrievalPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1SetDataRetrievalPolicyCommandError = async (
@@ -2494,6 +3230,7 @@ const deserializeAws_restJson1SetDataRetrievalPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2507,12 +3244,14 @@ const deserializeAws_restJson1SetDataRetrievalPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2523,11 +3262,11 @@ export const deserializeAws_restJson1SetVaultAccessPolicyCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1SetVaultAccessPolicyCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: SetVaultAccessPolicyCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1SetVaultAccessPolicyCommandError = async (
@@ -2538,6 +3277,7 @@ const deserializeAws_restJson1SetVaultAccessPolicyCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2554,12 +3294,14 @@ const deserializeAws_restJson1SetVaultAccessPolicyCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2570,11 +3312,11 @@ export const deserializeAws_restJson1SetVaultNotificationsCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1SetVaultNotificationsCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: SetVaultNotificationsCommandOutput = {
     $metadata: deserializeMetadata(output),
-  });
+  };
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1SetVaultNotificationsCommandError = async (
@@ -2585,6 +3327,7 @@ const deserializeAws_restJson1SetVaultNotificationsCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2601,12 +3344,14 @@ const deserializeAws_restJson1SetVaultNotificationsCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2617,14 +3362,23 @@ export const deserializeAws_restJson1UploadArchiveCommand = async (
   if (output.statusCode !== 201 && output.statusCode >= 300) {
     return deserializeAws_restJson1UploadArchiveCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UploadArchiveCommandOutput = {
     $metadata: deserializeMetadata(output),
-    location: [, output.headers["location"]],
-    checksum: [, output.headers["x-amz-sha256-tree-hash"]],
-    archiveId: [, output.headers["x-amz-archive-id"]],
-  });
+    archiveId: undefined,
+    checksum: undefined,
+    location: undefined,
+  };
+  if (output.headers["location"] !== undefined) {
+    contents.location = output.headers["location"];
+  }
+  if (output.headers["x-amz-sha256-tree-hash"] !== undefined) {
+    contents.checksum = output.headers["x-amz-sha256-tree-hash"];
+  }
+  if (output.headers["x-amz-archive-id"] !== undefined) {
+    contents.archiveId = output.headers["x-amz-archive-id"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UploadArchiveCommandError = async (
@@ -2635,6 +3389,7 @@ const deserializeAws_restJson1UploadArchiveCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2654,12 +3409,14 @@ const deserializeAws_restJson1UploadArchiveCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
@@ -2670,12 +3427,15 @@ export const deserializeAws_restJson1UploadMultipartPartCommand = async (
   if (output.statusCode !== 204 && output.statusCode >= 300) {
     return deserializeAws_restJson1UploadMultipartPartCommandError(output, context);
   }
-  const contents: any = map({
+  const contents: UploadMultipartPartCommandOutput = {
     $metadata: deserializeMetadata(output),
-    checksum: [, output.headers["x-amz-sha256-tree-hash"]],
-  });
+    checksum: undefined,
+  };
+  if (output.headers["x-amz-sha256-tree-hash"] !== undefined) {
+    contents.checksum = output.headers["x-amz-sha256-tree-hash"];
+  }
   await collectBody(output.body, context);
-  return contents;
+  return Promise.resolve(contents);
 };
 
 const deserializeAws_restJson1UploadMultipartPartCommandError = async (
@@ -2686,6 +3446,7 @@ const deserializeAws_restJson1UploadMultipartPartCommandError = async (
     ...output,
     body: await parseBody(output.body, context),
   };
+  let response: __BaseException;
   const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
   switch (errorCode) {
     case "InvalidParameterValueException":
@@ -2705,29 +3466,30 @@ const deserializeAws_restJson1UploadMultipartPartCommandError = async (
       throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
     default:
       const parsedBody = parsedOutput.body;
-      throwDefaultError({
-        output,
-        parsedBody,
-        exceptionCtor: __BaseException,
-        errorCode,
+      const $metadata = deserializeMetadata(output);
+      const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
+      response = new __BaseException({
+        name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
+        $fault: "client",
+        $metadata,
       });
+      throw __decorateServiceException(response, parsedBody);
   }
 };
 
-const map = __map;
 const deserializeAws_restJson1InsufficientCapacityExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InsufficientCapacityException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new InsufficientCapacityException({
@@ -2741,15 +3503,15 @@ const deserializeAws_restJson1InvalidParameterValueExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<InvalidParameterValueException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new InvalidParameterValueException({
@@ -2763,15 +3525,15 @@ const deserializeAws_restJson1LimitExceededExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<LimitExceededException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new LimitExceededException({
@@ -2785,15 +3547,15 @@ const deserializeAws_restJson1MissingParameterValueExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<MissingParameterValueException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new MissingParameterValueException({
@@ -2807,15 +3569,15 @@ const deserializeAws_restJson1PolicyEnforcedExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<PolicyEnforcedException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new PolicyEnforcedException({
@@ -2829,15 +3591,15 @@ const deserializeAws_restJson1RequestTimeoutExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<RequestTimeoutException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new RequestTimeoutException({
@@ -2851,15 +3613,15 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ResourceNotFoundException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new ResourceNotFoundException({
@@ -2873,15 +3635,15 @@ const deserializeAws_restJson1ServiceUnavailableExceptionResponse = async (
   parsedOutput: any,
   context: __SerdeContext
 ): Promise<ServiceUnavailableException> => {
-  const contents: any = map({});
+  const contents: any = {};
   const data: any = parsedOutput.body;
-  if (data.code != null) {
+  if (data.code !== undefined && data.code !== null) {
     contents.code = __expectString(data.code);
   }
-  if (data.message != null) {
+  if (data.message !== undefined && data.message !== null) {
     contents.message = __expectString(data.message);
   }
-  if (data.type != null) {
+  if (data.type !== undefined && data.type !== null) {
     contents.type = __expectString(data.type);
   }
   const exception = new ServiceUnavailableException({
@@ -2895,6 +3657,9 @@ const serializeAws_restJson1AccessControlPolicyList = (input: Grant[], context: 
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1Grant(entry, context);
     });
 };
@@ -2937,6 +3702,9 @@ const serializeAws_restJson1DataRetrievalRulesList = (input: DataRetrievalRule[]
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return serializeAws_restJson1DataRetrievalRule(entry, context);
     });
 };
@@ -3024,6 +3792,9 @@ const serializeAws_restJson1NotificationEventList = (input: string[], context: _
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
@@ -3072,6 +3843,9 @@ const serializeAws_restJson1TagKeyList = (input: string[], context: __SerdeConte
   return input
     .filter((e: any) => e != null)
     .map((entry) => {
+      if (entry === null) {
+        return null as any;
+      }
       return entry;
     });
 };
