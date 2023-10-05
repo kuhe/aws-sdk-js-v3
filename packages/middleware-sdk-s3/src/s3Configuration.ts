@@ -1,6 +1,6 @@
 /**
  * @public
- * 
+ *
  * All endpoint parameters with built-in bindings of AWS::S3::*
  */
 export interface S3InputConfig {
@@ -17,6 +17,8 @@ export interface S3InputConfig {
    * Whether multi-region access points (MRAP) should be disabled.
    */
   disableMultiregionAccessPoints?: boolean;
+
+  // bucketEndpoint boolean
 }
 
 export interface S3ResolvedConfig {
