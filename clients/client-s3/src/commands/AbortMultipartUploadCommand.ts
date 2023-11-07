@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -121,7 +121,6 @@ export interface AbortMultipartUploadCommandOutput extends AbortMultipartUploadO
  * await client.send(command);
  * // example id: to-abort-a-multipart-upload-1481853354987
  * ```
- *
  */
 export class AbortMultipartUploadCommand extends $Command<
   AbortMultipartUploadCommandInput,

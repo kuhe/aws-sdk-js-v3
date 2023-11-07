@@ -12,7 +12,7 @@ const { expect } = chai;
 
 describe("endpoint", () => {
   it("users can override endpoint from client.", async () => {
-    //use s3 here but all the clients are generated similarly
+    // use s3 here but all the clients are generated similarly
     const endpointValidator: SerializeMiddleware<any, any> = (next) => (args) => {
       // middleware intercept the request and return it early
       const request = args.request as HttpRequest;
@@ -95,7 +95,7 @@ describe("Endpoints from ARN", () => {
         Body: "body",
       });
       expect(result.request.hostname).to.eql(`abc-111-${AccountId}.${OutpostId}.s3-outposts.us-west-2.amazonaws.com`);
-      const date = new Date().toISOString().slice(0, 10).replace(/-/g, ""); //20201029
+      const date = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // 20201029
       expect(result.request.headers["authorization"]).contains(
         `Credential=${credentials.accessKeyId}/${date}/${region}/s3-outposts/aws4_request`
       );
@@ -113,7 +113,7 @@ describe("Endpoints from ARN", () => {
         Key: "key",
         Body: "body",
       });
-      const date = new Date().toISOString().slice(0, 10).replace(/-/g, ""); //20201029
+      const date = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // 20201029
       expect(result.request.hostname).to.eql("mybanner-123456789012.s3-object-lambda.us-east-1.amazonaws.com");
       expect(result.request.headers["authorization"]).contains(
         `Credential=${credentials.accessKeyId}/${date}/${region}/s3-object-lambda/aws4_request`
@@ -131,7 +131,7 @@ describe("Endpoints from ARN", () => {
         RequestToken: "token",
         Body: new Readable(),
       });
-      const date = new Date().toISOString().slice(0, 10).replace(/-/g, ""); //20201029
+      const date = new Date().toISOString().slice(0, 10).replace(/-/g, ""); // 20201029
       expect(result.request.hostname).to.eql(`${requestRoute}.s3-object-lambda.us-east-1.amazonaws.com`);
       expect(result.request.headers["authorization"]).contains(
         `Credential=${credentials.accessKeyId}/${date}/${region}/s3-object-lambda/aws4_request`

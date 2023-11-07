@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -96,7 +96,6 @@ export interface DeleteBucketWebsiteCommandOutput extends __MetadataBearer {}
  * await client.send(command);
  * // example id: to-delete-bucket-website-configuration-1483043937825
  * ```
- *
  */
 export class DeleteBucketWebsiteCommand extends $Command<
   DeleteBucketWebsiteCommandInput,

@@ -27,7 +27,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -263,7 +263,6 @@ export interface HeadObjectCommandOutput extends HeadObjectOutput, __MetadataBea
  * *\/
  * // example id: to-retrieve-metadata-of-an-object-without-returning-the-object-itself-1481834820480
  * ```
- *
  */
 export class HeadObjectCommand extends $Command<
   HeadObjectCommandInput,

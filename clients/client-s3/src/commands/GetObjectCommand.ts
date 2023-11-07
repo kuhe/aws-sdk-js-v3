@@ -30,7 +30,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -359,7 +359,6 @@ export interface GetObjectCommandOutput extends Omit<GetObjectOutput, "Body">, _
  * *\/
  * // example id: to-retrieve-an-object-1481827837012
  * ```
- *
  */
 export class GetObjectCommand extends $Command<GetObjectCommandInput, GetObjectCommandOutput, S3ClientResolvedConfig> {
   // Start section: command_properties

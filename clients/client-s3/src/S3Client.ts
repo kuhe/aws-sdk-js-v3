@@ -57,8 +57,8 @@ import {
   HashConstructor as __HashConstructor,
   HttpHandlerOptions as __HttpHandlerOptions,
   Logger as __Logger,
-  Provider as __Provider,
   Provider,
+  Provider as __Provider,
   SdkStreamMixinInjector as __SdkStreamMixinInjector,
   StreamCollector as __StreamCollector,
   StreamHasher as __StreamHasher,
@@ -670,7 +670,6 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
   /**
    * Specifies which retry algorithm to use.
    * @see https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-smithy-util-retry/Enum/RETRY_MODES/
-   *
    */
   retryMode?: string | __Provider<string>;
 
@@ -704,17 +703,18 @@ export interface ClientDefaults extends Partial<__SmithyResolvedConfiguration<__
 /**
  * @public
  */
-export type S3ClientConfigType = Partial<__SmithyConfiguration<__HttpHandlerOptions>> &
-  ClientDefaults &
-  RegionInputConfig &
-  EndpointInputConfig<EndpointParameters> &
-  RetryInputConfig &
-  HostHeaderInputConfig &
-  AwsAuthInputConfig &
-  S3InputConfig &
-  UserAgentInputConfig &
-  EventStreamSerdeInputConfig &
-  ClientInputEndpointParameters;
+export type S3ClientConfigType =
+  & Partial<__SmithyConfiguration<__HttpHandlerOptions>>
+  & ClientDefaults
+  & RegionInputConfig
+  & EndpointInputConfig<EndpointParameters>
+  & RetryInputConfig
+  & HostHeaderInputConfig
+  & AwsAuthInputConfig
+  & S3InputConfig
+  & UserAgentInputConfig
+  & EventStreamSerdeInputConfig
+  & ClientInputEndpointParameters;
 /**
  * @public
  *
@@ -725,18 +725,19 @@ export interface S3ClientConfig extends S3ClientConfigType {}
 /**
  * @public
  */
-export type S3ClientResolvedConfigType = __SmithyResolvedConfiguration<__HttpHandlerOptions> &
-  Required<ClientDefaults> &
-  RuntimeExtensionsConfig &
-  RegionResolvedConfig &
-  EndpointResolvedConfig<EndpointParameters> &
-  RetryResolvedConfig &
-  HostHeaderResolvedConfig &
-  AwsAuthResolvedConfig &
-  S3ResolvedConfig &
-  UserAgentResolvedConfig &
-  EventStreamSerdeResolvedConfig &
-  ClientResolvedEndpointParameters;
+export type S3ClientResolvedConfigType =
+  & __SmithyResolvedConfiguration<__HttpHandlerOptions>
+  & Required<ClientDefaults>
+  & RuntimeExtensionsConfig
+  & RegionResolvedConfig
+  & EndpointResolvedConfig<EndpointParameters>
+  & RetryResolvedConfig
+  & HostHeaderResolvedConfig
+  & AwsAuthResolvedConfig
+  & S3ResolvedConfig
+  & UserAgentResolvedConfig
+  & EventStreamSerdeResolvedConfig
+  & ClientResolvedEndpointParameters;
 /**
  * @public
  *

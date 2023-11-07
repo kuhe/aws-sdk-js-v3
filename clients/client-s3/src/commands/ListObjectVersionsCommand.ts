@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -203,7 +203,6 @@ export interface ListObjectVersionsCommandOutput extends ListObjectVersionsOutpu
  * *\/
  * // example id: to-list-object-versions-1481910996058
  * ```
- *
  */
 export class ListObjectVersionsCommand extends $Command<
   ListObjectVersionsCommandInput,

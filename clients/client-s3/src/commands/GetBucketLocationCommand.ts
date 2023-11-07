@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -105,7 +105,6 @@ export interface GetBucketLocationCommandOutput extends GetBucketLocationOutput,
  * *\/
  * // example id: to-get-bucket-location-1481594573609
  * ```
- *
  */
 export class GetBucketLocationCommand extends $Command<
   GetBucketLocationCommandInput,

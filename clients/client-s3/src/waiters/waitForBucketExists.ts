@@ -19,7 +19,6 @@ const checkState = async (client: S3Client, input: HeadBucketCommandInput): Prom
   return { state: WaiterState.RETRY, reason };
 };
 /**
- *
  *  @deprecated Use waitUntilBucketExists instead. waitForBucketExists does not throw error in non-success cases.
  */
 export const waitForBucketExists = async (
@@ -30,7 +29,6 @@ export const waitForBucketExists = async (
   return createWaiter({ ...serviceDefaults, ...params }, input, checkState);
 };
 /**
- *
  *  @param params - Waiter configuration options.
  *  @param input - The input to HeadBucketCommand for polling.
  */

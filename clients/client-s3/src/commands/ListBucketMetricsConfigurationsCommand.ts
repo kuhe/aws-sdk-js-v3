@@ -24,7 +24,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -37,8 +37,8 @@ export interface ListBucketMetricsConfigurationsCommandInput extends ListBucketM
  * The output of {@link ListBucketMetricsConfigurationsCommand}.
  */
 export interface ListBucketMetricsConfigurationsCommandOutput
-  extends ListBucketMetricsConfigurationsOutput,
-    __MetadataBearer {}
+  extends ListBucketMetricsConfigurationsOutput, __MetadataBearer
+{}
 
 /**
  * @public
@@ -130,7 +130,6 @@ export interface ListBucketMetricsConfigurationsCommandOutput
  *
  * @throws {@link S3ServiceException}
  * <p>Base exception class for all service exceptions from S3 service.</p>
- *
  */
 export class ListBucketMetricsConfigurationsCommand extends $Command<
   ListBucketMetricsConfigurationsCommandInput,

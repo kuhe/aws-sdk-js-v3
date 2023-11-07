@@ -156,7 +156,7 @@ let Key = `${Date.now()}`;
     });
 
     it("should successfully create, upload list and complete", async () => {
-      //create multipart upload
+      // create multipart upload
       const createResult = await client.createMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -165,7 +165,7 @@ let Key = `${Date.now()}`;
       expect(typeof createResult.UploadId).to.equal("string");
       UploadId = createResult.UploadId as string;
 
-      //upload part
+      // upload part
       const uploadResult = await client.uploadPart({
         Bucket,
         Key: multipartObjectKey,
@@ -177,7 +177,7 @@ let Key = `${Date.now()}`;
       expect(typeof uploadResult.ETag).to.equal("string");
       Etag = uploadResult.ETag as string;
 
-      //list parts
+      // list parts
       const listPartsResult = await client.listParts({
         Bucket,
         Key: multipartObjectKey,
@@ -187,7 +187,7 @@ let Key = `${Date.now()}`;
       expect(listPartsResult.Parts?.length).to.equal(1);
       expect(listPartsResult.Parts?.[0].ETag).to.equal(Etag);
 
-      //complete multipart upload
+      // complete multipart upload
       const completeResult = await client.completeMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -196,7 +196,7 @@ let Key = `${Date.now()}`;
       });
       expect(completeResult.$metadata.httpStatusCode).to.equal(200);
 
-      //validate the object is uploaded
+      // validate the object is uploaded
       const headResult = await client.headObject({
         Bucket,
         Key: multipartObjectKey,
@@ -205,7 +205,7 @@ let Key = `${Date.now()}`;
     });
 
     it("should successfully create, abort, and list upload", async () => {
-      //create multipart upload
+      // create multipart upload
       const createResult = await client.createMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -214,7 +214,7 @@ let Key = `${Date.now()}`;
       const toAbort = createResult.UploadId;
       expect(typeof toAbort).to.equal("string");
 
-      //abort multipart upload
+      // abort multipart upload
       const abortResult = await client.abortMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -222,7 +222,7 @@ let Key = `${Date.now()}`;
       });
       expect(abortResult.$metadata.httpStatusCode).to.equal(204);
 
-      //validate multipart upload is aborted
+      // validate multipart upload is aborted
       const listUploadsResult = await client.listMultipartUploads({
         Bucket,
       });

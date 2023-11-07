@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -152,7 +152,6 @@ export interface GetObjectTaggingCommandOutput extends GetObjectTaggingOutput, _
  * *\/
  * // example id: to-retrieve-tag-set-of-a-specific-object-version-1483400283663
  * ```
- *
  */
 export class GetObjectTaggingCommand extends $Command<
   GetObjectTaggingCommandInput,

@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -123,7 +123,6 @@ export interface GetBucketTaggingCommandOutput extends GetBucketTaggingOutput, _
  * *\/
  * // example id: to-get-tag-set-associated-with-a-bucket-1481593232107
  * ```
- *
  */
 export class GetBucketTaggingCommand extends $Command<
   GetBucketTaggingCommandInput,

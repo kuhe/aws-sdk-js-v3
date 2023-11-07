@@ -24,7 +24,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -37,8 +37,8 @@ export interface GetBucketLifecycleConfigurationCommandInput extends GetBucketLi
  * The output of {@link GetBucketLifecycleConfigurationCommand}.
  */
 export interface GetBucketLifecycleConfigurationCommandOutput
-  extends GetBucketLifecycleConfigurationOutput,
-    __MetadataBearer {}
+  extends GetBucketLifecycleConfigurationOutput, __MetadataBearer
+{}
 
 /**
  * @public
@@ -202,7 +202,6 @@ export interface GetBucketLifecycleConfigurationCommandOutput
  * *\/
  * // example id: to-get-lifecycle-configuration-on-a-bucket-1481666063200
  * ```
- *
  */
 export class GetBucketLifecycleConfigurationCommand extends $Command<
   GetBucketLifecycleConfigurationCommandInput,

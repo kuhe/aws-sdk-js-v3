@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -183,7 +183,6 @@ export interface PutBucketCorsCommandOutput extends __MetadataBearer {}
  * await client.send(command);
  * // example id: to-set-cors-configuration-on-a-bucket-1483037818805
  * ```
- *
  */
 export class PutBucketCorsCommand extends $Command<
   PutBucketCorsCommandInput,

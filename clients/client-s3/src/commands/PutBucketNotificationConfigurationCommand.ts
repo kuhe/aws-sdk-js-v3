@@ -24,7 +24,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -198,7 +198,6 @@ export interface PutBucketNotificationConfigurationCommandOutput extends __Metad
  * await client.send(command);
  * // example id: set-notification-configuration-for-a-bucket-1482270296426
  * ```
- *
  */
 export class PutBucketNotificationConfigurationCommand extends $Command<
   PutBucketNotificationConfigurationCommandInput,

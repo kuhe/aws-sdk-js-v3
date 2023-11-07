@@ -24,14 +24,15 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
  * The input for {@link DeleteBucketIntelligentTieringConfigurationCommand}.
  */
 export interface DeleteBucketIntelligentTieringConfigurationCommandInput
-  extends DeleteBucketIntelligentTieringConfigurationRequest {}
+  extends DeleteBucketIntelligentTieringConfigurationRequest
+{}
 /**
  * @public
  *
@@ -87,7 +88,6 @@ export interface DeleteBucketIntelligentTieringConfigurationCommandOutput extend
  *
  * @throws {@link S3ServiceException}
  * <p>Base exception class for all service exceptions from S3 service.</p>
- *
  */
 export class DeleteBucketIntelligentTieringConfigurationCommand extends $Command<
   DeleteBucketIntelligentTieringConfigurationCommandInput,

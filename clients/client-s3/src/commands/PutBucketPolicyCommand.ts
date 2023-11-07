@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -110,7 +110,6 @@ export interface PutBucketPolicyCommandOutput extends __MetadataBearer {}
  * await client.send(command);
  * // example id: set-bucket-policy-1482448903302
  * ```
- *
  */
 export class PutBucketPolicyCommand extends $Command<
   PutBucketPolicyCommandInput,

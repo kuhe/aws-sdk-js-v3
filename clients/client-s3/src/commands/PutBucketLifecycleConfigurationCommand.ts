@@ -25,7 +25,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -246,7 +246,6 @@ export interface PutBucketLifecycleConfigurationCommandOutput extends __Metadata
  * await client.send(command);
  * // example id: put-bucket-lifecycle-1482264533092
  * ```
- *
  */
 export class PutBucketLifecycleConfigurationCommand extends $Command<
   PutBucketLifecycleConfigurationCommandInput,

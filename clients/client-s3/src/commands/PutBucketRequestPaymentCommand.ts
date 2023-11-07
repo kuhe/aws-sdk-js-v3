@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -99,7 +99,6 @@ export interface PutBucketRequestPaymentCommandOutput extends __MetadataBearer {
  * await client.send(command);
  * // example id: set-request-payment-configuration-on-a-bucket-1482343596680
  * ```
- *
  */
 export class PutBucketRequestPaymentCommand extends $Command<
   PutBucketRequestPaymentCommandInput,

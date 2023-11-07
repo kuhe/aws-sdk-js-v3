@@ -27,22 +27,23 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
  * The input for {@link GetBucketIntelligentTieringConfigurationCommand}.
  */
 export interface GetBucketIntelligentTieringConfigurationCommandInput
-  extends GetBucketIntelligentTieringConfigurationRequest {}
+  extends GetBucketIntelligentTieringConfigurationRequest
+{}
 /**
  * @public
  *
  * The output of {@link GetBucketIntelligentTieringConfigurationCommand}.
  */
 export interface GetBucketIntelligentTieringConfigurationCommandOutput
-  extends GetBucketIntelligentTieringConfigurationOutput,
-    __MetadataBearer {}
+  extends GetBucketIntelligentTieringConfigurationOutput, __MetadataBearer
+{}
 
 /**
  * @public
@@ -119,7 +120,6 @@ export interface GetBucketIntelligentTieringConfigurationCommandOutput
  *
  * @throws {@link S3ServiceException}
  * <p>Base exception class for all service exceptions from S3 service.</p>
- *
  */
 export class GetBucketIntelligentTieringConfigurationCommand extends $Command<
   GetBucketIntelligentTieringConfigurationCommandInput,

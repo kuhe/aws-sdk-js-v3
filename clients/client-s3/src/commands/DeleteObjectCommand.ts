@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -120,7 +120,6 @@ export interface DeleteObjectCommandOutput extends DeleteObjectOutput, __Metadat
  * await client.send(command);
  * // example id: to-delete-an-object-1472850136595
  * ```
- *
  */
 export class DeleteObjectCommand extends $Command<
   DeleteObjectCommandInput,

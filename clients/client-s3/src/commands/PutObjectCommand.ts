@@ -30,7 +30,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -361,7 +361,6 @@ export interface PutObjectCommandOutput extends PutObjectOutput, __MetadataBeare
  * *\/
  * // example id: to-upload-an-object-1481760101010
  * ```
- *
  */
 export class PutObjectCommand extends $Command<PutObjectCommandInput, PutObjectCommandOutput, S3ClientResolvedConfig> {
   // Start section: command_properties

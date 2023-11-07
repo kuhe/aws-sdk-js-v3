@@ -18,7 +18,6 @@ const checkState = async (client: S3Client, input: HeadObjectCommandInput): Prom
   return { state: WaiterState.RETRY, reason };
 };
 /**
- *
  *  @deprecated Use waitUntilObjectNotExists instead. waitForObjectNotExists does not throw error in non-success cases.
  */
 export const waitForObjectNotExists = async (
@@ -29,7 +28,6 @@ export const waitForObjectNotExists = async (
   return createWaiter({ ...serviceDefaults, ...params }, input, checkState);
 };
 /**
- *
  *  @param params - Waiter configuration options.
  *  @param input - The input to HeadObjectCommand for polling.
  */

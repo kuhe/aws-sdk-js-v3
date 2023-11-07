@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -159,7 +159,6 @@ export interface PutObjectTaggingCommandOutput extends PutObjectTaggingOutput, _
  * *\/
  * // example id: to-add-tags-to-an-existing-object-1481764668793
  * ```
- *
  */
 export class PutObjectTaggingCommand extends $Command<
   PutObjectTaggingCommandInput,

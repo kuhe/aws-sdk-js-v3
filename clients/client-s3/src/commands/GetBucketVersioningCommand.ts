@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -104,7 +104,6 @@ export interface GetBucketVersioningCommandOutput extends GetBucketVersioningOut
  * *\/
  * // example id: to-get-bucket-versioning-configuration-1483037183929
  * ```
- *
  */
 export class GetBucketVersioningCommand extends $Command<
   GetBucketVersioningCommandInput,

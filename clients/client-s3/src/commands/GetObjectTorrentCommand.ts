@@ -27,7 +27,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -103,7 +103,6 @@ export interface GetObjectTorrentCommandOutput extends Omit<GetObjectTorrentOutp
  * await client.send(command);
  * // example id: to-retrieve-torrent-files-for-an-object-1481834115959
  * ```
- *
  */
 export class GetObjectTorrentCommand extends $Command<
   GetObjectTorrentCommandInput,

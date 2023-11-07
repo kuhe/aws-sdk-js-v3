@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -432,7 +432,6 @@ export interface RestoreObjectCommandOutput extends RestoreObjectOutput, __Metad
  * await client.send(command);
  * // example id: to-restore-an-archived-object-1483049329953
  * ```
- *
  */
 export class RestoreObjectCommand extends $Command<
   RestoreObjectCommandInput,

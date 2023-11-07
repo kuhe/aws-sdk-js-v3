@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -134,7 +134,6 @@ export interface GetBucketCorsCommandOutput extends GetBucketCorsOutput, __Metad
  * *\/
  * // example id: to-get-cors-configuration-set-on-a-bucket-1481596855475
  * ```
- *
  */
 export class GetBucketCorsCommand extends $Command<
   GetBucketCorsCommandInput,

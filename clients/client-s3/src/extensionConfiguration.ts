@@ -7,6 +7,5 @@ import { DefaultExtensionConfiguration } from "@smithy/types";
  * @internal
  */
 export interface S3ExtensionConfiguration
-  extends HttpHandlerExtensionConfiguration,
-    DefaultExtensionConfiguration,
-    AwsRegionExtensionConfiguration {}
+  extends HttpHandlerExtensionConfiguration, DefaultExtensionConfiguration, AwsRegionExtensionConfiguration
+{}

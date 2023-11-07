@@ -24,7 +24,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -37,8 +37,8 @@ export interface GetBucketAnalyticsConfigurationCommandInput extends GetBucketAn
  * The output of {@link GetBucketAnalyticsConfigurationCommand}.
  */
 export interface GetBucketAnalyticsConfigurationCommandOutput
-  extends GetBucketAnalyticsConfigurationOutput,
-    __MetadataBearer {}
+  extends GetBucketAnalyticsConfigurationOutput, __MetadataBearer
+{}
 
 /**
  * @public
@@ -129,7 +129,6 @@ export interface GetBucketAnalyticsConfigurationCommandOutput
  *
  * @throws {@link S3ServiceException}
  * <p>Base exception class for all service exceptions from S3 service.</p>
- *
  */
 export class GetBucketAnalyticsConfigurationCommand extends $Command<
   GetBucketAnalyticsConfigurationCommandInput,

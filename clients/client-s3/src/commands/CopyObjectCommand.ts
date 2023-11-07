@@ -28,7 +28,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -383,7 +383,6 @@ export interface CopyObjectCommandOutput extends CopyObjectOutput, __MetadataBea
  * *\/
  * // example id: to-copy-an-object-1481823186878
  * ```
- *
  */
 export class CopyObjectCommand extends $Command<
   CopyObjectCommandInput,

@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -230,7 +230,6 @@ export interface CreateBucketCommandOutput extends CreateBucketOutput, __Metadat
  * *\/
  * // example id: to-create-a-bucket-in-a-specific-region-1483399072992
  * ```
- *
  */
 export class CreateBucketCommand extends $Command<
   CreateBucketCommandInput,

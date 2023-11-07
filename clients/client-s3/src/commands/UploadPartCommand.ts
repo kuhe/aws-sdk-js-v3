@@ -29,7 +29,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -243,7 +243,6 @@ export interface UploadPartCommandOutput extends UploadPartOutput, __MetadataBea
  * *\/
  * // example id: to-upload-a-part-1481847914943
  * ```
- *
  */
 export class UploadPartCommand extends $Command<
   UploadPartCommandInput,

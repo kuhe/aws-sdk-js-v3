@@ -33,7 +33,7 @@ describe("@aws-sdk/client-s3", () => {
       const inputStream = new Readable({
         read() {
           if (sizeLeft <= 0) {
-            this.push(null); //end stream;
+            this.push(null); // end stream;
             return;
           }
           let chunk = "";
@@ -131,7 +131,7 @@ describe("@aws-sdk/client-s3", () => {
     });
 
     it("should successfully create, upload list and complete", async () => {
-      //create multipart upload
+      // create multipart upload
       const createResult = await client.createMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -140,7 +140,7 @@ describe("@aws-sdk/client-s3", () => {
       expect(typeof createResult.UploadId).toEqual("string");
       UploadId = createResult.UploadId as string;
 
-      //upload part
+      // upload part
       const uploadResult = await client.uploadPart({
         Bucket,
         Key: multipartObjectKey,
@@ -152,7 +152,7 @@ describe("@aws-sdk/client-s3", () => {
       expect(typeof uploadResult.ETag).toEqual("string");
       Etag = uploadResult.ETag as string;
 
-      //list parts
+      // list parts
       const listPartsResult = await client.listParts({
         Bucket,
         Key: multipartObjectKey,
@@ -162,7 +162,7 @@ describe("@aws-sdk/client-s3", () => {
       expect(listPartsResult.Parts?.length).toEqual(1);
       expect(listPartsResult.Parts?.[0].ETag).toEqual(Etag);
 
-      //complete multipart upload
+      // complete multipart upload
       const completeResult = await client.completeMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -171,7 +171,7 @@ describe("@aws-sdk/client-s3", () => {
       });
       expect(completeResult.$metadata.httpStatusCode).toEqual(200);
 
-      //validate the object is uploaded
+      // validate the object is uploaded
       const headResult = await client.headObject({
         Bucket,
         Key: multipartObjectKey,
@@ -180,7 +180,7 @@ describe("@aws-sdk/client-s3", () => {
     });
 
     it("should successfully create, abort, and list upload", async () => {
-      //create multipart upload
+      // create multipart upload
       const createResult = await client.createMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -189,7 +189,7 @@ describe("@aws-sdk/client-s3", () => {
       const toAbort = createResult.UploadId;
       expect(typeof toAbort).toEqual("string");
 
-      //abort multipart upload
+      // abort multipart upload
       const abortResult = await client.abortMultipartUpload({
         Bucket,
         Key: multipartObjectKey,
@@ -197,7 +197,7 @@ describe("@aws-sdk/client-s3", () => {
       });
       expect(abortResult.$metadata.httpStatusCode).toEqual(204);
 
-      //validate multipart upload is aborted
+      // validate multipart upload is aborted
       const listUploadsResult = await client.listMultipartUploads({
         Bucket,
       });

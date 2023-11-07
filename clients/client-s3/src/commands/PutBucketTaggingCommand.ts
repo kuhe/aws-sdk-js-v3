@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -153,7 +153,6 @@ export interface PutBucketTaggingCommandOutput extends __MetadataBearer {}
  * await client.send(command);
  * // example id: set-tags-on-a-bucket-1482346269066
  * ```
- *
  */
 export class PutBucketTaggingCommand extends $Command<
   PutBucketTaggingCommandInput,

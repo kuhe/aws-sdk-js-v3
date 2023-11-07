@@ -11,12 +11,12 @@ import { FetchHttpHandler as RequestHandler, streamCollector } from "@smithy/fet
 import { blobHasher as streamHasher } from "@smithy/hash-blob-browser";
 import { invalidProvider } from "@smithy/invalid-dependency";
 import { Md5 } from "@smithy/md5-js";
-import { calculateBodyLength } from "@smithy/util-body-length-browser";
-import { DEFAULT_MAX_ATTEMPTS, DEFAULT_RETRY_MODE } from "@smithy/util-retry";
-import { S3ClientConfig } from "./S3Client";
-import { getRuntimeConfig as getSharedRuntimeConfig } from "./runtimeConfig.shared";
 import { loadConfigsForDefaultMode } from "@smithy/smithy-client";
+import { calculateBodyLength } from "@smithy/util-body-length-browser";
 import { resolveDefaultsModeConfig } from "@smithy/util-defaults-mode-browser";
+import { DEFAULT_MAX_ATTEMPTS, DEFAULT_RETRY_MODE } from "@smithy/util-retry";
+import { getRuntimeConfig as getSharedRuntimeConfig } from "./runtimeConfig.shared";
+import { S3ClientConfig } from "./S3Client";
 
 /**
  * @internal
@@ -31,10 +31,9 @@ export const getRuntimeConfig = (config: S3ClientConfig) => {
     runtime: "browser",
     defaultsMode,
     bodyLengthChecker: config?.bodyLengthChecker ?? calculateBodyLength,
-    credentialDefaultProvider:
-      config?.credentialDefaultProvider ?? ((_: unknown) => () => Promise.reject(new Error("Credential is missing"))),
-    defaultUserAgentProvider:
-      config?.defaultUserAgentProvider ??
+    credentialDefaultProvider: config?.credentialDefaultProvider ??
+      ((_: unknown) => () => Promise.reject(new Error("Credential is missing"))),
+    defaultUserAgentProvider: config?.defaultUserAgentProvider ??
       defaultUserAgent({ serviceId: clientSharedValues.serviceId, clientVersion: packageInfo.version }),
     eventStreamSerdeProvider: config?.eventStreamSerdeProvider ?? eventStreamSerdeProvider,
     maxAttempts: config?.maxAttempts ?? DEFAULT_MAX_ATTEMPTS,

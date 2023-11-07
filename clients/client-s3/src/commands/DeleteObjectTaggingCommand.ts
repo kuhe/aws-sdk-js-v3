@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -120,7 +120,6 @@ export interface DeleteObjectTaggingCommandOutput extends DeleteObjectTaggingOut
  * *\/
  * // example id: to-remove-tag-set-from-an-object-1483145342862
  * ```
- *
  */
 export class DeleteObjectTaggingCommand extends $Command<
   DeleteObjectTaggingCommandInput,

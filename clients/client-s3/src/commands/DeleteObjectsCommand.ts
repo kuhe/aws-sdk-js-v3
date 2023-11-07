@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -221,7 +221,6 @@ export interface DeleteObjectsCommandOutput extends DeleteObjectsOutput, __Metad
  * *\/
  * // example id: to-delete-multiple-objects-from-a-versioned-bucket-1483146248805
  * ```
- *
  */
 export class DeleteObjectsCommand extends $Command<
   DeleteObjectsCommandInput,

@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -96,7 +96,6 @@ export interface HeadBucketCommandOutput extends __MetadataBearer {}
  * await client.send(command);
  * // example id: to-determine-if-bucket-exists-1473110292262
  * ```
- *
  */
 export class HeadBucketCommand extends $Command<
   HeadBucketCommandInput,

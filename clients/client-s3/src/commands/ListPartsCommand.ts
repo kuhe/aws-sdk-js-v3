@@ -22,7 +22,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -192,7 +192,6 @@ export interface ListPartsCommandOutput extends ListPartsOutput, __MetadataBeare
  * *\/
  * // example id: to-list-parts-of-a-multipart-upload-1481852006923
  * ```
- *
  */
 export class ListPartsCommand extends $Command<ListPartsCommandInput, ListPartsCommandOutput, S3ClientResolvedConfig> {
   // Start section: command_properties

@@ -21,7 +21,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -184,7 +184,6 @@ export interface GetBucketReplicationCommandOutput extends GetBucketReplicationO
  * *\/
  * // example id: to-get-replication-configuration-set-on-a-bucket-1481593597175
  * ```
- *
  */
 export class GetBucketReplicationCommand extends $Command<
   GetBucketReplicationCommandInput,

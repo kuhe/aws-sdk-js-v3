@@ -3959,8 +3959,8 @@ export const se_WriteGetObjectResponseCommand = async (
         return acc;
       }, {})),
   });
-  const resolvedPath =
-    `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/WriteGetObjectResponse";
+  const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` +
+    "/WriteGetObjectResponse";
   const query: any = map({
     "x-id": [, "WriteGetObjectResponse"],
   });
@@ -12950,8 +12950,8 @@ const de_TransitionList = (output: any, context: __SerdeContext): Transition[] =
 
 const deserializeMetadata = (output: __HttpResponse): __ResponseMetadata => ({
   httpStatusCode: output.statusCode,
-  requestId:
-    output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
+  requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ??
+    output.headers["x-amz-request-id"],
   extendedRequestId: output.headers["x-amz-id-2"],
   cfId: output.headers["x-amz-cf-id"],
 });

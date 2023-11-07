@@ -20,13 +20,13 @@ import { readableStreamHasher as streamHasher } from "@smithy/hash-stream-node";
 import { NODE_MAX_ATTEMPT_CONFIG_OPTIONS, NODE_RETRY_MODE_CONFIG_OPTIONS } from "@smithy/middleware-retry";
 import { loadConfig as loadNodeConfig } from "@smithy/node-config-provider";
 import { NodeHttpHandler as RequestHandler, streamCollector } from "@smithy/node-http-handler";
-import { calculateBodyLength } from "@smithy/util-body-length-node";
-import { DEFAULT_RETRY_MODE } from "@smithy/util-retry";
-import { S3ClientConfig } from "./S3Client";
-import { getRuntimeConfig as getSharedRuntimeConfig } from "./runtimeConfig.shared";
 import { loadConfigsForDefaultMode } from "@smithy/smithy-client";
-import { resolveDefaultsModeConfig } from "@smithy/util-defaults-mode-node";
 import { emitWarningIfUnsupportedVersion } from "@smithy/smithy-client";
+import { calculateBodyLength } from "@smithy/util-body-length-node";
+import { resolveDefaultsModeConfig } from "@smithy/util-defaults-mode-node";
+import { DEFAULT_RETRY_MODE } from "@smithy/util-retry";
+import { getRuntimeConfig as getSharedRuntimeConfig } from "./runtimeConfig.shared";
+import { S3ClientConfig } from "./S3Client";
 
 /**
  * @internal
@@ -43,18 +43,16 @@ export const getRuntimeConfig = (config: S3ClientConfig) => {
     runtime: "node",
     defaultsMode,
     bodyLengthChecker: config?.bodyLengthChecker ?? calculateBodyLength,
-    credentialDefaultProvider:
-      config?.credentialDefaultProvider ?? decorateDefaultCredentialProvider(credentialDefaultProvider),
-    defaultUserAgentProvider:
-      config?.defaultUserAgentProvider ??
+    credentialDefaultProvider: config?.credentialDefaultProvider ??
+      decorateDefaultCredentialProvider(credentialDefaultProvider),
+    defaultUserAgentProvider: config?.defaultUserAgentProvider ??
       defaultUserAgent({ serviceId: clientSharedValues.serviceId, clientVersion: packageInfo.version }),
     eventStreamSerdeProvider: config?.eventStreamSerdeProvider ?? eventStreamSerdeProvider,
     maxAttempts: config?.maxAttempts ?? loadNodeConfig(NODE_MAX_ATTEMPT_CONFIG_OPTIONS),
     md5: config?.md5 ?? Hash.bind(null, "md5"),
     region: config?.region ?? loadNodeConfig(NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS),
     requestHandler: config?.requestHandler ?? new RequestHandler(defaultConfigProvider),
-    retryMode:
-      config?.retryMode ??
+    retryMode: config?.retryMode ??
       loadNodeConfig({
         ...NODE_RETRY_MODE_CONFIG_OPTIONS,
         default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,

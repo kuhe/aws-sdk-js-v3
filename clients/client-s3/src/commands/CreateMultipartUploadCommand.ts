@@ -27,7 +27,7 @@ import { S3ClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from ".
 /**
  * @public
  */
-export { __MetadataBearer, $Command };
+export { $Command, __MetadataBearer };
 /**
  * @public
  *
@@ -425,7 +425,6 @@ export interface CreateMultipartUploadCommandOutput extends CreateMultipartUploa
  * *\/
  * // example id: to-initiate-a-multipart-upload-1481836794513
  * ```
- *
  */
 export class CreateMultipartUploadCommand extends $Command<
   CreateMultipartUploadCommandInput,

@@ -5,15 +5,15 @@
  *
  * @packageDocumentation
  */
-export * from "./S3Client";
-export * from "./S3";
-export { ClientInputEndpointParameters } from "./endpoint/EndpointParameters";
-export { RuntimeExtension } from "./runtimeExtensions";
-export { S3ExtensionConfiguration } from "./extensionConfiguration";
 export * from "./commands";
-export * from "./pagination";
-export * from "./waiters";
+export { ClientInputEndpointParameters } from "./endpoint/EndpointParameters";
+export { S3ExtensionConfiguration } from "./extensionConfiguration";
 export * from "./models";
+export * from "./pagination";
+export { RuntimeExtension } from "./runtimeExtensions";
+export * from "./S3";
+export * from "./S3Client";
+export * from "./waiters";
 
 import "@aws-sdk/util-endpoints";
 
