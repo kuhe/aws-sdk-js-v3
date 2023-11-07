@@ -4,9 +4,7 @@ import { FinalizeRequestMiddleware, RelativeMiddlewareOptions } from "@smithy/ty
 import { EventStreamResolvedConfig } from "./eventStreamConfiguration";
 
 export const eventStreamHandlingMiddleware =
-  (options: EventStreamResolvedConfig): FinalizeRequestMiddleware<any, any> =>
-  (next, context) =>
-  async (args) => {
+  (options: EventStreamResolvedConfig): FinalizeRequestMiddleware<any, any> => (next, context) => async (args) => {
     const { request } = args;
     if (!HttpRequest.isInstance(request)) return next(args);
     return options.eventStreamPayloadHandler.handle(next, args, context);

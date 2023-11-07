@@ -34,28 +34,28 @@ describe("SignatureV4MultiRegion", () => {
   it("should sign with SigV4 signer", async () => {
     const signer = new SignatureV4MultiRegion(params);
     await signer.sign(minimalRequest);
-    //@ts-ignore
+    // @ts-ignore
     expect(SignatureV4.mock.instances[0].sign).toBeCalledTimes(1);
   });
 
   it("should presign with SigV4 signer", async () => {
     const signer = new SignatureV4MultiRegion(params);
     await signer.presign(minimalRequest);
-    //@ts-ignore
+    // @ts-ignore
     expect(SignatureV4.mock.instances[0].presign).toBeCalledTimes(1);
   });
 
   it("should sign with SigV4a signer if mult_region option is set", async () => {
     const signer = new SignatureV4MultiRegion(params);
     await signer.presign(minimalRequest, { signingRegion: "*" });
-    //@ts-ignore
+    // @ts-ignore
     expect(CrtSignerV4.mock.instances[0].presign).toBeCalledTimes(1);
   });
 
   it("should presign with SigV4 signer", async () => {
     const signer = new SignatureV4MultiRegion(params);
     await signer.presign(minimalRequest, { signingRegion: "*" });
-    //@ts-ignore
+    // @ts-ignore
     expect(CrtSignerV4.mock.instances[0].presign).toBeCalledTimes(1);
   });
 

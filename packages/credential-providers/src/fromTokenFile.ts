@@ -41,6 +41,6 @@ export interface FromTokenFileInit extends _FromTokenFileInit {
 export const fromTokenFile = (init: FromTokenFileInit = {}): AwsCredentialIdentityProvider =>
   _fromTokenFile({
     ...init,
-    roleAssumerWithWebIdentity:
-      init.roleAssumerWithWebIdentity ?? getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
+    roleAssumerWithWebIdentity: init.roleAssumerWithWebIdentity ??
+      getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
   });

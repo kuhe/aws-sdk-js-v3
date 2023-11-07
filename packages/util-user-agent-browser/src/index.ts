@@ -10,12 +10,10 @@ import { DefaultUserAgentOptions } from "./configurations";
  * the device information. It uses bowser library to detect the browser and version
  */
 export const defaultUserAgent =
-  ({ serviceId, clientVersion }: DefaultUserAgentOptions): Provider<UserAgent> =>
-  async () => {
-    const parsedUA =
-      typeof window !== "undefined" && window?.navigator?.userAgent
-        ? bowser.parse(window.navigator.userAgent)
-        : undefined;
+  ({ serviceId, clientVersion }: DefaultUserAgentOptions): Provider<UserAgent> => async () => {
+    const parsedUA = typeof window !== "undefined" && window?.navigator?.userAgent
+      ? bowser.parse(window.navigator.userAgent)
+      : undefined;
     const sections: UserAgent = [
       // sdk-metadata
       ["aws-sdk-js", clientVersion],

@@ -36,98 +36,99 @@ const version = "2016-11-15";
 // a serialize middleware to add PresignUrl to input
 export function copySnapshotPresignedUrlMiddleware(options: PreviouslyResolved): SerializeMiddleware<any, any> {
   return <Output extends MetadataBearer>(
-      next: SerializeHandler<any, Output>,
-      context: HandlerExecutionContext
-    ): SerializeHandler<any, Output> =>
-    async (args: SerializeHandlerArguments<any>): Promise<SerializeHandlerOutput<Output>> => {
-      const { input } = args;
+    next: SerializeHandler<any, Output>,
+    context: HandlerExecutionContext
+  ): SerializeHandler<any, Output> =>
+  async (args: SerializeHandlerArguments<any>): Promise<SerializeHandlerOutput<Output>> => {
+    const { input } = args;
 
-      if (!input.PresignedUrl) {
-        const destinationRegion = await options.region();
+    if (!input.PresignedUrl) {
+      const destinationRegion = await options.region();
 
-        // using the source region as an override,
-        // use the V2 endpoint resolution to get the source region's endpoint.
-        const endpoint = await getEndpointFromInstructions(
-          input,
-          {
-            /**
-             * Replication of {@link CopySnapshotCommand} in EC2.
-             * Not imported due to circular dependency.
-             */
-            getEndpointParameterInstructions() {
-              return {
-                UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-                Endpoint: { type: "builtInParams", name: "endpoint" },
-                Region: { type: "builtInParams", name: "region" },
-                UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
-              };
-            },
+      // using the source region as an override,
+      // use the V2 endpoint resolution to get the source region's endpoint.
+      const endpoint = await getEndpointFromInstructions(
+        input,
+        {
+          /**
+           * Replication of {@link CopySnapshotCommand} in EC2.
+           * Not imported due to circular dependency.
+           */
+          getEndpointParameterInstructions() {
+            return {
+              UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+              Endpoint: { type: "builtInParams", name: "endpoint" },
+              Region: { type: "builtInParams", name: "region" },
+              UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
+            };
           },
-          {
-            ...options,
-            region: input.SourceRegion,
-          }
-        );
-
-        // TODO: it doesn't make sense to accept any custom endpoint,
-        // TODO: because it would override both the source endpoint and the target endpoint.
-        const resolvedEndpoint =
-          typeof options.endpoint === "function" ? await options.endpoint() : toEndpointV1(endpoint);
-
-        const requestToSign = new HttpRequest({
-          ...resolvedEndpoint,
-          protocol: "https",
-          headers: {
-            host: resolvedEndpoint.hostname,
-          },
-          query: {
-            // Values must be string instead of e.g. boolean
-            // because we need to sign the serialized form.
-            ...Object.entries(input).reduce((acc, [k, v]) => {
-              acc[k] = String(v ?? "");
-              return acc;
-            }, {} as Record<string, string>),
-            Action: "CopySnapshot",
-            Version: version,
-            DestinationRegion: destinationRegion,
-          },
-        });
-
-        const signer = new SignatureV4({
-          credentials: options.credentials,
+        },
+        {
+          ...options,
           region: input.SourceRegion,
-          service: "ec2",
-          sha256: options.sha256,
-          uriEscapePath: options.signingEscapePath,
-        });
-        const presignedRequest = await signer.presign(requestToSign, {
-          expiresIn: 3600,
-        });
+        }
+      );
 
-        args = {
-          ...args,
-          input: {
-            ...args.input,
-            DestinationRegion: destinationRegion,
-            PresignedUrl: formatUrl(presignedRequest),
-          },
-        };
+      // TODO: it doesn't make sense to accept any custom endpoint,
+      // TODO: because it would override both the source endpoint and the target endpoint.
+      const resolvedEndpoint = typeof options.endpoint === "function"
+        ? await options.endpoint()
+        : toEndpointV1(endpoint);
 
-        // we also double-check the work of the serialzier here
-        // because this middleware may be placed after the regular serialzier.
-        if (HttpRequest.isInstance(args.request)) {
-          const { request } = args;
-          if (!(request.body ?? "").includes("DestinationRegion=")) {
-            request.body += `&DestinationRegion=${destinationRegion}`;
-          }
-          if (!(request.body ?? "").includes("PresignedUrl=")) {
-            request.body += `&PresignedUrl=${extendedEncodeURIComponent(args.input.PresignedUrl)}`;
-          }
+      const requestToSign = new HttpRequest({
+        ...resolvedEndpoint,
+        protocol: "https",
+        headers: {
+          host: resolvedEndpoint.hostname,
+        },
+        query: {
+          // Values must be string instead of e.g. boolean
+          // because we need to sign the serialized form.
+          ...Object.entries(input).reduce((acc, [k, v]) => {
+            acc[k] = String(v ?? "");
+            return acc;
+          }, {} as Record<string, string>),
+          Action: "CopySnapshot",
+          Version: version,
+          DestinationRegion: destinationRegion,
+        },
+      });
+
+      const signer = new SignatureV4({
+        credentials: options.credentials,
+        region: input.SourceRegion,
+        service: "ec2",
+        sha256: options.sha256,
+        uriEscapePath: options.signingEscapePath,
+      });
+      const presignedRequest = await signer.presign(requestToSign, {
+        expiresIn: 3600,
+      });
+
+      args = {
+        ...args,
+        input: {
+          ...args.input,
+          DestinationRegion: destinationRegion,
+          PresignedUrl: formatUrl(presignedRequest),
+        },
+      };
+
+      // we also double-check the work of the serialzier here
+      // because this middleware may be placed after the regular serialzier.
+      if (HttpRequest.isInstance(args.request)) {
+        const { request } = args;
+        if (!(request.body ?? "").includes("DestinationRegion=")) {
+          request.body += `&DestinationRegion=${destinationRegion}`;
+        }
+        if (!(request.body ?? "").includes("PresignedUrl=")) {
+          request.body += `&PresignedUrl=${extendedEncodeURIComponent(args.input.PresignedUrl)}`;
         }
       }
+    }
 
-      return next(args);
-    };
+    return next(args);
+  };
 }
 
 export const copySnapshotPresignedUrlMiddlewareOptions: SerializeHandlerOptions & RelativeMiddlewareOptions = {

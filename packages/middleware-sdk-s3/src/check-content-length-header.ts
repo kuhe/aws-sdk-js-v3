@@ -21,25 +21,26 @@ const CONTENT_LENGTH_HEADER = "content-length";
  */
 export function checkContentLengthHeader(): FinalizeRequestMiddleware<any, any> {
   return <Output extends MetadataBearer>(
-      next: FinalizeHandler<any, Output>,
-      context: HandlerExecutionContext
-    ): FinalizeHandler<any, Output> =>
-    async (args: FinalizeHandlerArguments<any>): Promise<FinalizeHandlerOutput<Output>> => {
-      const { request } = args;
+    next: FinalizeHandler<any, Output>,
+    context: HandlerExecutionContext
+  ): FinalizeHandler<any, Output> =>
+  async (args: FinalizeHandlerArguments<any>): Promise<FinalizeHandlerOutput<Output>> => {
+    const { request } = args;
 
-      if (HttpRequest.isInstance(request)) {
-        if (!request.headers[CONTENT_LENGTH_HEADER]) {
-          const message = `Are you using a Stream of unknown length as the Body of a PutObject request? Consider using Upload instead from @aws-sdk/lib-storage.`;
-          if (typeof context?.logger?.warn === "function" && !(context.logger instanceof NoOpLogger)) {
-            context.logger.warn(message);
-          } else {
-            console.warn(message);
-          }
+    if (HttpRequest.isInstance(request)) {
+      if (!request.headers[CONTENT_LENGTH_HEADER]) {
+        const message =
+          `Are you using a Stream of unknown length as the Body of a PutObject request? Consider using Upload instead from @aws-sdk/lib-storage.`;
+        if (typeof context?.logger?.warn === "function" && !(context.logger instanceof NoOpLogger)) {
+          context.logger.warn(message);
+        } else {
+          console.warn(message);
         }
       }
+    }
 
-      return next({ ...args });
-    };
+    return next({ ...args });
+  };
 }
 
 /**

@@ -27,7 +27,7 @@ export type EventStreamResolvedConfig = {
 interface PreviouslyResolved {
   utf8Encoder: Encoder;
   utf8Decoder: Decoder;
-  signer: any; //Should be Provider<EventSigner>; But this would unblock the client
+  signer: any; // Should be Provider<EventSigner>; But this would unblock the client
   eventStreamPayloadHandlerProvider: EventStreamPayloadHandlerProvider;
 }
 

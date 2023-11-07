@@ -34,10 +34,10 @@ export interface BucketHostname {
 export const bucketHostname = (options: BucketHostnameParams | ArnHostnameParams): BucketHostname => {
   validateCustomEndpoint(options);
   return isBucketNameOptions(options)
-    ? // Construct endpoint when bucketName is a string referring to a bucket name
-      getEndpointFromBucketName(options)
-    : // Construct endpoint when bucketName is an ARN referring to an S3 resource like Access Point
-      getEndpointFromArn(options);
+    // Construct endpoint when bucketName is a string referring to a bucket name
+    ? getEndpointFromBucketName(options)
+    // Construct endpoint when bucketName is an ARN referring to an S3 resource like Access Point
+    : getEndpointFromArn(options);
 };
 
 const getEndpointFromBucketName = ({

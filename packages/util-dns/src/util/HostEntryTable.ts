@@ -12,7 +12,7 @@ export class HostEntryTable implements DnsCache {
   /**
    * Internal map as the host name level cache
    */
-  private map: Map<string /* hostName */, HostEntry>;
+  private map: Map<string, /* hostName */ HostEntry>;
 
   constructor() {
     this.map = new Map<string, HostEntry>();

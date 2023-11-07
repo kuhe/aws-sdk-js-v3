@@ -46,64 +46,63 @@ interface PreviouslyResolved {
  */
 export function crossRegionPresignedUrlMiddleware(options: PreviouslyResolved): InitializeMiddleware<any, any> {
   return <Output extends MetadataBearer>(
-      next: InitializeHandler<any, Output>,
-      context: HandlerExecutionContext
-    ): InitializeHandler<any, Output> =>
-    async (args: InitializeHandlerArguments<any>): Promise<InitializeHandlerOutput<Output>> => {
-      const { input } = args;
-      const region = await options.region();
-      const sourceIdKey = Object.keys(sourceIdToCommandKeyMap).filter((sourceKeyId) =>
-        input.hasOwnProperty(sourceKeyId)
-      )[0];
-      // Source id is optional.
-      if (!sourceIdKey) return next(args);
+    next: InitializeHandler<any, Output>,
+    context: HandlerExecutionContext
+  ): InitializeHandler<any, Output> =>
+  async (args: InitializeHandlerArguments<any>): Promise<InitializeHandlerOutput<Output>> => {
+    const { input } = args;
+    const region = await options.region();
+    const sourceIdKey =
+      Object.keys(sourceIdToCommandKeyMap).filter((sourceKeyId) => input.hasOwnProperty(sourceKeyId))[0];
+    // Source id is optional.
+    if (!sourceIdKey) return next(args);
 
-      const command = sourceIdToCommandKeyMap[sourceIdKey];
-      if (!input.PreSignedUrl && isARN(input[sourceIdKey]) && region !== getEndpointFromARN(input[sourceIdKey])) {
-        const sourceRegion = getEndpointFromARN(input[sourceIdKey]);
+    const command = sourceIdToCommandKeyMap[sourceIdKey];
+    if (!input.PreSignedUrl && isARN(input[sourceIdKey]) && region !== getEndpointFromARN(input[sourceIdKey])) {
+      const sourceRegion = getEndpointFromARN(input[sourceIdKey]);
 
-        let resolvedEndpoint: Endpoint;
-        if (typeof options.endpoint === "function") {
-          resolvedEndpoint = await options.endpoint();
-        } else {
-          resolvedEndpoint = toEndpointV1(context.endpointV2!);
-        }
-
-        resolvedEndpoint.hostname = `rds.${sourceRegion}.amazonaws.com`;
-        const request = new HttpRequest({
-          ...resolvedEndpoint,
-          protocol: "https",
-          headers: {
-            host: resolvedEndpoint.hostname,
-          },
-          query: {
-            Action: command,
-            Version: version,
-            KmsKeyId: input.KmsKeyId,
-            DestinationRegion: region,
-            [sourceIdKey]: input[sourceIdKey],
-          },
-        });
-        const signer = new SignatureV4({
-          credentials: options.credentials,
-          region: sourceRegion,
-          service: "rds",
-          sha256: options.sha256,
-          uriEscapePath: options.signingEscapePath,
-        });
-        const presignedRequest = await signer.presign(request, {
-          expiresIn: 3600,
-        });
-        args = {
-          ...args,
-          input: {
-            ...args.input,
-            PreSignedUrl: formatUrl(presignedRequest),
-          },
-        };
+      let resolvedEndpoint: Endpoint;
+      if (typeof options.endpoint === "function") {
+        resolvedEndpoint = await options.endpoint();
+      } else {
+        resolvedEndpoint = toEndpointV1(context.endpointV2!);
       }
-      return next(args);
-    };
+
+      resolvedEndpoint.hostname = `rds.${sourceRegion}.amazonaws.com`;
+      const request = new HttpRequest({
+        ...resolvedEndpoint,
+        protocol: "https",
+        headers: {
+          host: resolvedEndpoint.hostname,
+        },
+        query: {
+          Action: command,
+          Version: version,
+          KmsKeyId: input.KmsKeyId,
+          DestinationRegion: region,
+          [sourceIdKey]: input[sourceIdKey],
+        },
+      });
+      const signer = new SignatureV4({
+        credentials: options.credentials,
+        region: sourceRegion,
+        service: "rds",
+        sha256: options.sha256,
+        uriEscapePath: options.signingEscapePath,
+      });
+      const presignedRequest = await signer.presign(request, {
+        expiresIn: 3600,
+      });
+      args = {
+        ...args,
+        input: {
+          ...args.input,
+          PreSignedUrl: formatUrl(presignedRequest),
+        },
+      };
+    }
+    return next(args);
+  };
 }
 
 export const crossRegionPresignedUrlMiddlewareOptions: SerializeHandlerOptions & RelativeMiddlewareOptions = {

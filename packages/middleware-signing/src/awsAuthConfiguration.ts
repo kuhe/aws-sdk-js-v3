@@ -57,7 +57,7 @@ export interface AwsAuthInputConfig {
    *
    * @internal
    */
-  signerConstructor?: new (options: SignatureV4Init & SignatureV4CryptoInit) => RequestSigner;
+  signerConstructor?: new(options: SignatureV4Init & SignatureV4CryptoInit) => RequestSigner;
 }
 
 /**

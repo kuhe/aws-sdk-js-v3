@@ -1,12 +1,10 @@
 /**
- *
  * This script builds a minimal bundle of the code
  * in SSOOIDCClient and its CreateTokenCommand, with everything else
  * left external.
  *
  * This is to break a cyclical dependency with the credential providers
  * and certain services used by those providers.
- *
  */
 
 const fs = require("fs");

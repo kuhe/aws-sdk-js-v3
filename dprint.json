@@ -2,7 +2,7 @@
   "$schema": "https://dprint.dev/schemas/v0.json",
   "projectType": "commercialDidNotSponsor",
   "incremental": true,
-  "includes": ["{lib,packages,clients,private}/**/*.{ts,tsx,js,jsx,json}"],
+  "includes": ["{packages}/**/*.{ts,tsx,js,jsx,json}"],
   "excludes": ["**/node_modules", "**/*-lock.json", "**/endpoint/ruleset.ts"],
   "plugins": ["https://plugins.dprint.dev/typescript-0.88.3.wasm"],
   "typescript": {

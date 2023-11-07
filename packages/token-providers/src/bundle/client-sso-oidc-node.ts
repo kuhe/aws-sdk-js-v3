@@ -198,8 +198,8 @@ var getRuntimeConfig = (config) => ({
 
 // ../../clients/client-sso-oidc/src/runtimeConfig.ts
 import { loadConfigsForDefaultMode } from "@smithy/smithy-client";
-import { resolveDefaultsModeConfig } from "@smithy/util-defaults-mode-node";
 import { emitWarningIfUnsupportedVersion } from "@smithy/smithy-client";
+import { resolveDefaultsModeConfig } from "@smithy/util-defaults-mode-node";
 var getRuntimeConfig2 = (config) => {
   emitWarningIfUnsupportedVersion(process.version);
   const defaultsMode = resolveDefaultsModeConfig(config);
@@ -211,14 +211,12 @@ var getRuntimeConfig2 = (config) => {
     runtime: "node",
     defaultsMode,
     bodyLengthChecker: config?.bodyLengthChecker ?? calculateBodyLength,
-    defaultUserAgentProvider:
-      config?.defaultUserAgentProvider ??
+    defaultUserAgentProvider: config?.defaultUserAgentProvider ??
       defaultUserAgent({ serviceId: clientSharedValues.serviceId, clientVersion: package_default.version }),
     maxAttempts: config?.maxAttempts ?? loadNodeConfig(NODE_MAX_ATTEMPT_CONFIG_OPTIONS),
     region: config?.region ?? loadNodeConfig(NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS),
     requestHandler: config?.requestHandler ?? new RequestHandler(defaultConfigProvider),
-    retryMode:
-      config?.retryMode ??
+    retryMode: config?.retryMode ??
       loadNodeConfig({
         ...NODE_RETRY_MODE_CONFIG_OPTIONS,
         default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
@@ -942,8 +940,8 @@ var de_UnsupportedGrantTypeExceptionRes = async (parsedOutput, context) => {
 };
 var deserializeMetadata = (output) => ({
   httpStatusCode: output.statusCode,
-  requestId:
-    output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
+  requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ??
+    output.headers["x-amz-request-id"],
   extendedRequestId: output.headers["x-amz-id-2"],
   cfId: output.headers["x-amz-cf-id"],
 });
@@ -1197,8 +1195,8 @@ export {
   InvalidClientException,
   InvalidRequestException,
   InvalidScopeException,
-  SSOOIDCClient,
   SlowDownException,
+  SSOOIDCClient,
   UnauthorizedClientException,
   UnsupportedGrantTypeException,
 };

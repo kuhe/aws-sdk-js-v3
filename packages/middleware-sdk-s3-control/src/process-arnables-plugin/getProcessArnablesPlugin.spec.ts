@@ -137,7 +137,8 @@ describe("getProcessArnablesMiddleware", () => {
       try {
         await handler({
           input: {
-            Name: "arn:aws-cn:s3-outposts:cn-north-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+            Name:
+              "arn:aws-cn:s3-outposts:cn-north-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
           },
         });
       } catch (e) {
@@ -160,7 +161,8 @@ describe("getProcessArnablesMiddleware", () => {
         output: { request, context, input },
       } = (await handler({
         input: {
-          Name: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+          Name:
+            "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
         },
       })) as any;
       expect(request.hostname).toBe("s3-outposts.us-gov-east-1.amazonaws.com");
@@ -185,7 +187,8 @@ describe("getProcessArnablesMiddleware", () => {
         output: { request, context, input },
       } = (await handler({
         input: {
-          Name: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+          Name:
+            "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
         },
       })) as any;
       expect(request.hostname).toBe("s3-outposts-fips.us-gov-east-1.amazonaws.com");
@@ -251,7 +254,7 @@ describe("getProcessArnablesMiddleware", () => {
         input: { Name: "myaccesspoint" },
       })) as any;
       expect(request.hostname).toBe(hostname);
-      expect(context["signing_service"]).toBe(undefined); //signed by 's3'
+      expect(context["signing_service"]).toBe(undefined); // signed by 's3'
     });
 
     it("should throw when Account ID mismatches", async () => {

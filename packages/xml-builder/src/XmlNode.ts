@@ -4,7 +4,7 @@ import { XmlText } from "./XmlText";
 
 /**
  * @internal
- * 
+ *
  * Represents an XML node.
  */
 export class XmlNode {

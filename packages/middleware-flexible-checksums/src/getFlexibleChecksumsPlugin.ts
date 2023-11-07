@@ -13,8 +13,8 @@ import {
 } from "./flexibleChecksumsResponseMiddleware";
 
 export interface FlexibleChecksumsMiddlewareConfig
-  extends FlexibleChecksumsRequestMiddlewareConfig,
-    FlexibleChecksumsResponseMiddlewareConfig {}
+  extends FlexibleChecksumsRequestMiddlewareConfig, FlexibleChecksumsResponseMiddlewareConfig
+{}
 
 export const getFlexibleChecksumsPlugin = (
   config: PreviouslyResolved,

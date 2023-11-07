@@ -4,7 +4,7 @@ import { EndpointDiscoveryResolvedConfig, PreviouslyResolved } from "./resolveEn
 export interface UpdateDiscoveredEndpointInCacheOptions extends EndpointDiscoveryMiddlewareConfig {
   cacheKey: string;
   commandName: string;
-  endpointDiscoveryCommandCtor: new (comandConfig: any) => any;
+  endpointDiscoveryCommandCtor: new(comandConfig: any) => any;
 }
 
 const requestQueue: Record<string, { resolve: Function; reject: Function }[]> = {};
@@ -68,7 +68,7 @@ export const updateDiscoveredEndpointInCache = async (
             { reason: error }
           );
 
-          //fail all the pending requests in batch
+          // fail all the pending requests in batch
           if (requestQueue[cacheKey]) {
             requestQueue[cacheKey].forEach(({ reject }) => {
               reject(errorToThrow);

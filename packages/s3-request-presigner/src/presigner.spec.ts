@@ -102,8 +102,9 @@ describe("s3 presigner", () => {
       "x-amz-server-side-encryption": "kms",
     });
     const signedHeadersHeader = signed.query?.["X-Amz-SignedHeaders"];
-    const signedHeaders =
-      typeof signedHeadersHeader === "string" ? signedHeadersHeader.split(";") : signedHeadersHeader;
+    const signedHeaders = typeof signedHeadersHeader === "string"
+      ? signedHeadersHeader.split(";")
+      : signedHeadersHeader;
     expect(signedHeaders).toContain("x-amz-server-side-encryption");
     expect(signedHeaders).toContain("x-amz-server-side-encryption-customer-algorithm");
   });

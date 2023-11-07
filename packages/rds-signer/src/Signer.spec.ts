@@ -44,11 +44,11 @@ describe("rds-signer", () => {
     (fromNodeProviderChain as jest.Mock).mockReturnValue(async () => credentials);
     const signer = new Signer(minimalParams);
     await signer.getAuthToken();
-    //@ts-ignore
+    // @ts-ignore
     expect(SignatureV4.mock.calls[0][0].service).toEqual("rds-db");
-    //@ts-ignore
+    // @ts-ignore
     expect(await SignatureV4.mock.calls[0][0].region()).toEqual("us-foo-1");
-    //@ts-ignore
+    // @ts-ignore
     expect(await SignatureV4.mock.calls[0][0].credentials()).toEqual(credentials);
   });
 
@@ -61,7 +61,7 @@ describe("rds-signer", () => {
       },
     });
     await signer.getAuthToken();
-    //@ts-ignore
+    // @ts-ignore
     expect(SignatureV4.mock.calls[0][0].credentials).toEqual({
       accessKeyId: "123",
       secretAccessKey: "xyz",

@@ -196,11 +196,11 @@ const getIterator = (stream: any): AsyncIterable<any> => {
   }
 
   if (isReadableStream(stream)) {
-    //If stream is a ReadableStream, transfer the ReadableStream to async iterable.
+    // If stream is a ReadableStream, transfer the ReadableStream to async iterable.
     return readableStreamtoIterable(stream);
   }
 
-  //For other types, just wrap them with an async iterable.
+  // For other types, just wrap them with an async iterable.
   return {
     [Symbol.asyncIterator]: async function* () {
       yield stream;

@@ -20,13 +20,13 @@ import { deduplicateHostPrefix } from "./deduplicateHostPrefix";
  */
 export const hostPrefixDeduplicationMiddleware = (): SerializeMiddleware<any, any> => {
   return (next: SerializeHandler<any, any>, context: HandlerExecutionContext): SerializeHandler<any, any> =>
-    async (args: SerializeHandlerArguments<any>): Promise<SerializeHandlerOutput<any>> => {
-      const httpRequest: HttpRequest = (args.request ?? {}) as HttpRequest;
-      if (httpRequest?.hostname) {
-        httpRequest.hostname = deduplicateHostPrefix(httpRequest.hostname);
-      }
-      return next(args);
-    };
+  async (args: SerializeHandlerArguments<any>): Promise<SerializeHandlerOutput<any>> => {
+    const httpRequest: HttpRequest = (args.request ?? {}) as HttpRequest;
+    if (httpRequest?.hostname) {
+      httpRequest.hostname = deduplicateHostPrefix(httpRequest.hostname);
+    }
+    return next(args);
+  };
 };
 
 /**

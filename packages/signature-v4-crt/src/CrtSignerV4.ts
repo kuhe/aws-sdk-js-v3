@@ -118,10 +118,9 @@ export class CrtSignerV4 implements RequestPresigner, RequestSigner {
       use_double_uri_encode: this.uriEscapePath,
       /* Always set the body value by the result from SDK */
       signed_body_value: payloadHash,
-      signed_body_header:
-        this.applyChecksum && viaHeader
-          ? crtAuth.AwsSignedBodyHeaderType.XAmzContentSha256
-          : crtAuth.AwsSignedBodyHeaderType.None,
+      signed_body_header: this.applyChecksum && viaHeader
+        ? crtAuth.AwsSignedBodyHeaderType.XAmzContentSha256
+        : crtAuth.AwsSignedBodyHeaderType.None,
       expiration_in_seconds: expiresIn,
     };
   }
@@ -138,7 +137,7 @@ export class CrtSignerV4 implements RequestPresigner, RequestSigner {
       request,
       await this.options2crtConfigure(
         options,
-        false /* viaHeader */,
+        false, /* viaHeader */
         await getPayloadHash(originalRequest, this.sha256),
         options.expiresIn ? options.expiresIn : 3600
       )
@@ -151,7 +150,7 @@ export class CrtSignerV4 implements RequestPresigner, RequestSigner {
     const request = prepareRequest(toSign);
     const crtSignedRequest = await this.signRequest(
       request,
-      await this.options2crtConfigure(options, true /* viaHeader */, await getPayloadHash(toSign, this.sha256))
+      await this.options2crtConfigure(options, true, /* viaHeader */ await getPayloadHash(toSign, this.sha256))
     );
     request.headers = crtSignedRequest.headers._flatten().reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
     return request;
@@ -211,7 +210,7 @@ export class CrtSignerV4 implements RequestPresigner, RequestSigner {
     const sdkRequest = prepareRequest(request);
     const crtRequest = sdkHttpRequest2crtHttpRequest(sdkRequest);
     const payloadHash = await getPayloadHash(request, this.sha256);
-    const crtConfig = await this.options2crtConfigure(options, true /* viaHeader */, payloadHash);
+    const crtConfig = await this.options2crtConfigure(options, true, /* viaHeader */ payloadHash);
     return crtAuth.aws_verify_sigv4a_signing(
       crtRequest,
       crtConfig,
@@ -238,7 +237,7 @@ export class CrtSignerV4 implements RequestPresigner, RequestSigner {
     const crtRequest = sdkHttpRequest2crtHttpRequest(sdkRequest);
     const crtConfig = await this.options2crtConfigure(
       options,
-      false /* viaHeader */,
+      false, /* viaHeader */
       await getPayloadHash(request, this.sha256),
       options.expiresIn ? options.expiresIn : 3600
     );
@@ -269,7 +268,7 @@ function getHeadersUnsignable(unsignableHeaders?: Set<string>, signableHeaders?:
     return [...unsignableHeaders];
   }
   const result = new Set([...unsignableHeaders]);
-  for (let it = signableHeaders.values(), val = null; (val = it.next().value); ) {
+  for (let it = signableHeaders.values(), val = null; (val = it.next().value);) {
     if (result.has(val)) {
       result.delete(val);
     }

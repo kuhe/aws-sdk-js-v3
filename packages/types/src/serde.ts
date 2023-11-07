@@ -1,14 +1,14 @@
 export {
   EndpointBearer,
-  StreamCollector,
-  SerdeContext,
-  ResponseDeserializer,
   RequestSerializer,
-  SdkStreamMixin,
+  ResponseDeserializer,
   SdkStream,
-  WithSdkStreamMixin,
+  SdkStreamMixin,
   SdkStreamMixinInjector,
   SdkStreamSerdeContext,
+  SerdeContext,
+  StreamCollector,
+  WithSdkStreamMixin,
 } from "@smithy/types";
 
 /**

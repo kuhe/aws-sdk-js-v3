@@ -20,20 +20,20 @@ const IDENTIFIER_PARAMETERS: Array<keyof IdentifierBearer> = ["DelegationSetId",
 
 export function idNormalizerMiddleware(): InitializeMiddleware<any, any> {
   return <Output extends MetadataBearer>(next: InitializeHandler<any, Output>): InitializeHandler<any, Output> =>
-    async (args: InitializeHandlerArguments<any>): Promise<InitializeHandlerOutput<Output>> => {
-      const input = { ...(args.input as any) };
-      for (const paramName of IDENTIFIER_PARAMETERS) {
-        const param = input[paramName];
-        if (param) {
-          input[paramName] = param.replace(IDENTIFIER_PREFIX_PATTERN, "");
-        }
+  async (args: InitializeHandlerArguments<any>): Promise<InitializeHandlerOutput<Output>> => {
+    const input = { ...(args.input as any) };
+    for (const paramName of IDENTIFIER_PARAMETERS) {
+      const param = input[paramName];
+      if (param) {
+        input[paramName] = param.replace(IDENTIFIER_PREFIX_PATTERN, "");
       }
+    }
 
-      return next({
-        ...args,
-        input,
-      });
-    };
+    return next({
+      ...args,
+      input,
+    });
+  };
 }
 
 export const idNormalizerMiddlewareOptions: InitializeHandlerOptions = {

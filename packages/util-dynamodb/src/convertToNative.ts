@@ -49,8 +49,8 @@ const convertNumber = (numString: string, options?: unmarshallOptions): number |
 
   const num = Number(numString);
   const infinityValues = [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY];
-  const isLargeFiniteNumber =
-    (num > Number.MAX_SAFE_INTEGER || num < Number.MIN_SAFE_INTEGER) && !infinityValues.includes(num);
+  const isLargeFiniteNumber = (num > Number.MAX_SAFE_INTEGER || num < Number.MIN_SAFE_INTEGER) &&
+    !infinityValues.includes(num);
 
   if (isLargeFiniteNumber) {
     if (typeof BigInt === "function") {

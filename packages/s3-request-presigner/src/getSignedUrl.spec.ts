@@ -5,7 +5,7 @@ const mockV4 = jest.fn().mockReturnValue({
   sign: mockV4Sign,
 });
 jest.mock("@aws-sdk/signature-v4-multi-region", () => ({
-  //@ts-ignore
+  // @ts-ignore
   ...jest.requireActual("@aws-sdk/signature-v4-multi-region"),
   SignatureV4MultiRegion: mockV4,
 }));

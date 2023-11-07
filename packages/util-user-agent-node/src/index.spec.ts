@@ -70,12 +70,12 @@ describe("defaultUserAgent", () => {
   });
 
   it("should add AWS_EXECUTION_ENV", async () => {
-    //@ts-ignore mock environmental variables
+    // @ts-ignore mock environmental variables
     mockEnv.AWS_EXECUTION_ENV = "lambda";
     const userAgent = await defaultUserAgent({ serviceId: "s3", clientVersion: "0.1.0" })();
     const expectedUserAgent: UserAgent = [...basicUserAgent, ["exec-env/lambda"]];
     validateUserAgent(userAgent, expectedUserAgent);
-    //@ts-ignore mock environmental variables
+    // @ts-ignore mock environmental variables
     delete mockEnv.AWS_EXECUTION_ENV;
   });
 

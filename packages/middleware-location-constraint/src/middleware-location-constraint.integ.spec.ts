@@ -8,7 +8,8 @@ describe("middleware-location-constraint", () => {
       const client = new S3({ region: "us-west-2" });
 
       requireRequestsFrom(client).toMatch({
-        body: /<CreateBucketConfiguration (.*)?><LocationConstraint>us-west-2<\/LocationConstraint><\/CreateBucketConfiguration>/,
+        body:
+          /<CreateBucketConfiguration (.*)?><LocationConstraint>us-west-2<\/LocationConstraint><\/CreateBucketConfiguration>/,
       });
 
       await client.createBucket({

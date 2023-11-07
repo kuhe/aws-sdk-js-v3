@@ -509,9 +509,11 @@ describe("convertToAttr", () => {
         expect(() => {
           convertToAttr(data);
         }).toThrowError(
-          `Unsupported type passed: ${String(
-            data
-          )}. Pass options.convertClassInstanceToMap=true to marshall typeof object as map attribute.`
+          `Unsupported type passed: ${
+            String(
+              data
+            )
+          }. Pass options.convertClassInstanceToMap=true to marshall typeof object as map attribute.`
         );
       });
     });

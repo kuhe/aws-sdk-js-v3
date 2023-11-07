@@ -1,1 +1,1 @@
-export { Hash, HashConstructor, StreamHasher, randomValues, SourceData } from "@smithy/types";
+export { Hash, HashConstructor, randomValues, SourceData, StreamHasher } from "@smithy/types";

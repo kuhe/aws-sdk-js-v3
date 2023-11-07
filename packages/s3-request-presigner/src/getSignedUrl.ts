@@ -9,7 +9,7 @@ import { S3RequestPresigner } from "./presigner";
 export const getSignedUrl = async <
   InputTypesUnion extends object,
   InputType extends InputTypesUnion,
-  OutputType extends MetadataBearer = MetadataBearer
+  OutputType extends MetadataBearer = MetadataBearer,
 >(
   client: Client<any, InputTypesUnion, MetadataBearer, any>,
   command: Command<InputType, OutputType, any, InputTypesUnion, MetadataBearer>,
@@ -70,7 +70,7 @@ export const getSignedUrl = async <
 
   const handler = command.resolveMiddleware(clientStack, client.config, {});
   const { output } = await handler({ input: command.input });
-  //@ts-ignore the output is faked, so it's not actually OutputType
+  // @ts-ignore the output is faked, so it's not actually OutputType
   const { presigned } = output;
 
   return formatUrl(presigned);

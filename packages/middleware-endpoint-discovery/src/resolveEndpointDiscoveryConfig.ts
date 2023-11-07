@@ -37,7 +37,7 @@ export interface EndpointDiscoveryResolvedConfig {
    * The constructor of the Command used for discovering endpoints.
    * @internal
    */
-  endpointDiscoveryCommandCtor: new (comandConfig: any) => any;
+  endpointDiscoveryCommandCtor: new(comandConfig: any) => any;
 
   /**
    * Resolved value for input config {@link EndpointDiscoveryInputConfig.endpointDiscoveryEnabled}.
@@ -56,7 +56,7 @@ export interface EndpointDiscoveryConfigOptions {
   /**
    * The constructor of the Command used for discovering endpoints.
    */
-  endpointDiscoveryCommandCtor: new (comandConfig: any) => any;
+  endpointDiscoveryCommandCtor: new(comandConfig: any) => any;
 }
 
 export const resolveEndpointDiscoveryConfig = <T>(
@@ -66,9 +66,8 @@ export const resolveEndpointDiscoveryConfig = <T>(
   ...input,
   endpointDiscoveryCommandCtor,
   endpointCache: new EndpointCache(input.endpointCacheSize ?? 1000),
-  endpointDiscoveryEnabled:
-    input.endpointDiscoveryEnabled !== undefined
-      ? () => Promise.resolve(input.endpointDiscoveryEnabled)
-      : input.endpointDiscoveryEnabledProvider,
+  endpointDiscoveryEnabled: input.endpointDiscoveryEnabled !== undefined
+    ? () => Promise.resolve(input.endpointDiscoveryEnabled)
+    : input.endpointDiscoveryEnabledProvider,
   isClientEndpointDiscoveryEnabled: input.endpointDiscoveryEnabled !== undefined,
 });

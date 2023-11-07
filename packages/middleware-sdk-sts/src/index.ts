@@ -29,14 +29,14 @@ export interface StsAuthResolvedConfig extends AwsAuthResolvedConfig {
    * Reference to STSClient class constructor.
    * @internal
    */
-  stsClientCtor: new (clientConfig: any) => Client<any, any, any>;
+  stsClientCtor: new(clientConfig: any) => Client<any, any, any>;
 }
 
 export interface StsAuthConfigOptions {
   /**
    * Reference to STSClient class constructor.
    */
-  stsClientCtor: new (clientConfig: any) => Client<any, any, any>;
+  stsClientCtor: new(clientConfig: any) => Client<any, any, any>;
 }
 
 /**

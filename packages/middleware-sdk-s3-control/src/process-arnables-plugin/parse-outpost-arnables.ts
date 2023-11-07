@@ -25,13 +25,14 @@ type ArnableInput = {
  * region.
  */
 export const parseOutpostArnablesMiddleaware =
-  (options: S3ControlResolvedConfig): InitializeMiddleware<ArnableInput, any> =>
-  (next, context) =>
-  async (args) => {
+  (options: S3ControlResolvedConfig): InitializeMiddleware<ArnableInput, any> => (next, context) => async (args) => {
     const { input } = args;
 
-    const parameter: "Name" | "Bucket" | undefined =
-      input.Name && validateArn(input.Name) ? "Name" : input.Bucket && validateArn(input.Bucket) ? "Bucket" : undefined;
+    const parameter: "Name" | "Bucket" | undefined = input.Name && validateArn(input.Name)
+      ? "Name"
+      : input.Bucket && validateArn(input.Bucket)
+      ? "Bucket"
+      : undefined;
     if (!parameter) return next(args);
 
     const clientRegion = await options.region();

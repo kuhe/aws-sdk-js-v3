@@ -12,9 +12,7 @@ type PreviouslyResolved = {
  * @internal
  */
 export const throw200ExceptionsMiddleware =
-  (config: PreviouslyResolved): DeserializeMiddleware<any, any> =>
-  (next) =>
-  async (args) => {
+  (config: PreviouslyResolved): DeserializeMiddleware<any, any> => (next) => async (args) => {
     const result = await next(args);
     const { response } = result;
     if (!HttpResponse.isInstance(response)) return result;
@@ -64,7 +62,6 @@ export const throw200ExceptionsMiddlewareOptions: RelativeMiddlewareOptions = {
 };
 
 /**
- *
  * @internal
  */
 export const getThrow200ExceptionsPlugin = (config: PreviouslyResolved): Pluggable<any, any> => ({

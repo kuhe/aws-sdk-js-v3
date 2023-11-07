@@ -1,6 +1,6 @@
 export {
-  EndpointObjectProperties,
-  EndpointObjectHeaders,
   EndpointObject,
+  EndpointObjectHeaders,
+  EndpointObjectProperties,
   EndpointRuleObject,
 } from "@smithy/util-endpoints";

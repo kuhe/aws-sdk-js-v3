@@ -36,6 +36,6 @@ export const fromNodeProviderChain = (init: fromNodeProviderChainInit = {}): Aws
   defaultProvider({
     ...init,
     roleAssumer: init.roleAssumer ?? getDefaultRoleAssumer(init.clientConfig, init.clientPlugins),
-    roleAssumerWithWebIdentity:
-      init.roleAssumerWithWebIdentity ?? getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
+    roleAssumerWithWebIdentity: init.roleAssumerWithWebIdentity ??
+      getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
   });

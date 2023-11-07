@@ -14,17 +14,17 @@ import {
  */
 export function validateBucketNameMiddleware(): InitializeMiddleware<any, any> {
   return <Output extends MetadataBearer>(next: InitializeHandler<any, Output>): InitializeHandler<any, Output> =>
-    async (args: InitializeHandlerArguments<any>): Promise<InitializeHandlerOutput<Output>> => {
-      const {
-        input: { Bucket },
-      } = args;
-      if (typeof Bucket === "string" && !validateArn(Bucket) && Bucket.indexOf("/") >= 0) {
-        const err = new Error(`Bucket name shouldn't contain '/', received '${Bucket}'`);
-        err.name = "InvalidBucketName";
-        throw err;
-      }
-      return next({ ...args });
-    };
+  async (args: InitializeHandlerArguments<any>): Promise<InitializeHandlerOutput<Output>> => {
+    const {
+      input: { Bucket },
+    } = args;
+    if (typeof Bucket === "string" && !validateArn(Bucket) && Bucket.indexOf("/") >= 0) {
+      const err = new Error(`Bucket name shouldn't contain '/', received '${Bucket}'`);
+      err.name = "InvalidBucketName";
+      throw err;
+    }
+    return next({ ...args });
+  };
 }
 
 /**

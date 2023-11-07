@@ -44,9 +44,7 @@ export interface FromIniInit extends SourceProfileInit {
  * Creates a credential provider that will read from ini files and supports
  * role assumption and multi-factor authentication.
  */
-export const fromIni =
-  (init: FromIniInit = {}): AwsCredentialIdentityProvider =>
-  async () => {
-    const profiles = await parseKnownFiles(init);
-    return resolveProfileData(getProfileName(init), profiles, init);
-  };
+export const fromIni = (init: FromIniInit = {}): AwsCredentialIdentityProvider => async () => {
+  const profiles = await parseKnownFiles(init);
+  return resolveProfileData(getProfileName(init), profiles, init);
+};

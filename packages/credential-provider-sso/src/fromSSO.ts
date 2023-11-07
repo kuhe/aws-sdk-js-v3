@@ -77,8 +77,7 @@ export interface FromSSOInit extends SourceProfileInit {
  * ```
  */
 export const fromSSO =
-  (init: FromSSOInit & Partial<SsoCredentialsParameters> = {}): AwsCredentialIdentityProvider =>
-  async () => {
+  (init: FromSSOInit & Partial<SsoCredentialsParameters> = {}): AwsCredentialIdentityProvider => async () => {
     const { ssoStartUrl, ssoAccountId, ssoRegion, ssoRoleName, ssoClient, ssoSession } = init;
     const profileName = getProfileName(init);
 

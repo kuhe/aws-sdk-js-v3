@@ -203,8 +203,7 @@ var getRuntimeConfig2 = (config) => {
     runtime: "browser",
     defaultsMode,
     bodyLengthChecker: config?.bodyLengthChecker ?? calculateBodyLength,
-    defaultUserAgentProvider:
-      config?.defaultUserAgentProvider ??
+    defaultUserAgentProvider: config?.defaultUserAgentProvider ??
       defaultUserAgent({ serviceId: clientSharedValues.serviceId, clientVersion: package_default.version }),
     maxAttempts: config?.maxAttempts ?? DEFAULT_MAX_ATTEMPTS,
     region: config?.region ?? invalidProvider("Region is missing"),
@@ -929,8 +928,8 @@ var de_UnsupportedGrantTypeExceptionRes = async (parsedOutput, context) => {
 };
 var deserializeMetadata = (output) => ({
   httpStatusCode: output.statusCode,
-  requestId:
-    output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
+  requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ??
+    output.headers["x-amz-request-id"],
   extendedRequestId: output.headers["x-amz-id-2"],
   cfId: output.headers["x-amz-cf-id"],
 });
@@ -1184,8 +1183,8 @@ export {
   InvalidClientException,
   InvalidRequestException,
   InvalidScopeException,
-  SSOOIDCClient,
   SlowDownException,
+  SSOOIDCClient,
   UnauthorizedClientException,
   UnsupportedGrantTypeException,
 };

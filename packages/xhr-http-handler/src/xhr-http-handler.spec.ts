@@ -14,11 +14,9 @@ class XhrMock {
   public static captures: any[] = [];
   public static DONE = 4;
 
-  private captureArgs =
-    (caller: string) =>
-    (...args) => {
-      XhrMock.captures.push([caller, ...args]);
-    };
+  private captureArgs = (caller: string) => (...args) => {
+    XhrMock.captures.push([caller, ...args]);
+  };
 
   public upload = {
     addEventListener: this.captureArgs("upload.addEventListener"),

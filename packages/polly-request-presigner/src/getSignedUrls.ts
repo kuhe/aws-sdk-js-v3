@@ -60,7 +60,7 @@ export const getSignedUrl = async (
   let presigned: HttpRequest;
   try {
     const output = await client.send(command);
-    //@ts-ignore the output is faked, so it's not actually OutputType
+    // @ts-ignore the output is faked, so it's not actually OutputType
     presigned = output.presigned;
   } finally {
     client.middlewareStack.remove("presignInterceptMiddleware");

@@ -74,10 +74,10 @@ export const createPresignedPost = async (
     conditionsSet.add(stringifiedCondition);
   }
 
-  for (const [k,v] of Object.entries(fields)) {
-    conditionsSet.add(JSON.stringify({ [k]: v }))
-  }  
-  
+  for (const [k, v] of Object.entries(fields)) {
+    conditionsSet.add(JSON.stringify({ [k]: v }));
+  }
+
   if (Key.endsWith("${filename}")) {
     conditionsSet.add(JSON.stringify(["starts-with", "$key", Key.substring(0, Key.lastIndexOf("${filename}"))]));
   } else {

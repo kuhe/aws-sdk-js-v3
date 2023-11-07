@@ -11,11 +11,10 @@ import { ChecksumAlgorithm } from "./constants";
 export const selectChecksumAlgorithmFunction = (
   checksumAlgorithm: ChecksumAlgorithm,
   config: PreviouslyResolved
-): ChecksumConstructor | HashConstructor =>
-  ({
-    [ChecksumAlgorithm.MD5]: config.md5,
-    [ChecksumAlgorithm.CRC32]: AwsCrc32,
-    [ChecksumAlgorithm.CRC32C]: AwsCrc32c,
-    [ChecksumAlgorithm.SHA1]: config.sha1,
-    [ChecksumAlgorithm.SHA256]: config.sha256,
-  }[checksumAlgorithm]);
+): ChecksumConstructor | HashConstructor => ({
+  [ChecksumAlgorithm.MD5]: config.md5,
+  [ChecksumAlgorithm.CRC32]: AwsCrc32,
+  [ChecksumAlgorithm.CRC32C]: AwsCrc32c,
+  [ChecksumAlgorithm.SHA1]: config.sha1,
+  [ChecksumAlgorithm.SHA256]: config.sha256,
+}[checksumAlgorithm]);

@@ -16,8 +16,8 @@ export type PartitionsInfo = {
     regions: Record<
       string,
       | {
-          description?: string;
-        }
+        description?: string;
+      }
       | undefined
     >;
   }>;

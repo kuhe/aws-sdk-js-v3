@@ -146,7 +146,6 @@ export const validateRegion = (
 };
 
 /**
- *
  * @param region
  */
 export const validateRegionalClient = (region: string) => {
@@ -235,8 +234,9 @@ export const getArnResources = (
  * @internal
  */
 export const validateNoDualstack = (dualstackEndpoint?: boolean) => {
-  if (dualstackEndpoint)
+  if (dualstackEndpoint) {
     throw new Error("Dualstack endpoint is not supported with Outpost or Multi-region Access Point ARN.");
+  }
 };
 
 /**

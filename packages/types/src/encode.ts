@@ -1,1 +1,1 @@
-export { MessageDecoder, MessageEncoder, AvailableMessage, AvailableMessages } from "@smithy/types";
+export { AvailableMessage, AvailableMessages, MessageDecoder, MessageEncoder } from "@smithy/types";

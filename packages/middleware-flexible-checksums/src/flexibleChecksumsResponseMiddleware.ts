@@ -48,58 +48,56 @@ export const flexibleChecksumsResponseMiddlewareOptions: RelativeMiddlewareOptio
  *
  * The validation counterpart to the flexibleChecksumsMiddleware.
  */
-export const flexibleChecksumsResponseMiddleware =
-  (
-    config: PreviouslyResolved,
-    middlewareConfig: FlexibleChecksumsResponseMiddlewareConfig
-  ): DeserializeMiddleware<any, any> =>
-  <Output extends MetadataBearer>(
-    next: DeserializeHandler<any, Output>,
-    context: HandlerExecutionContext
-  ): DeserializeHandler<any, Output> =>
-  async (args: DeserializeHandlerArguments<any>): Promise<DeserializeHandlerOutput<Output>> => {
-    if (!HttpRequest.isInstance(args.request)) {
-      return next(args);
-    }
+export const flexibleChecksumsResponseMiddleware = (
+  config: PreviouslyResolved,
+  middlewareConfig: FlexibleChecksumsResponseMiddlewareConfig
+): DeserializeMiddleware<any, any> =>
+<Output extends MetadataBearer>(
+  next: DeserializeHandler<any, Output>,
+  context: HandlerExecutionContext
+): DeserializeHandler<any, Output> =>
+async (args: DeserializeHandlerArguments<any>): Promise<DeserializeHandlerOutput<Output>> => {
+  if (!HttpRequest.isInstance(args.request)) {
+    return next(args);
+  }
 
-    const input = args.input;
-    const result = await next(args);
+  const input = args.input;
+  const result = await next(args);
 
-    const response = result.response as HttpResponse;
-    let collectedStream: Uint8Array | undefined = undefined;
+  const response = result.response as HttpResponse;
+  let collectedStream: Uint8Array | undefined = undefined;
 
-    const { requestValidationModeMember, responseAlgorithms } = middlewareConfig;
-    // @ts-ignore Element implicitly has an 'any' type for input[requestValidationModeMember]
-    if (requestValidationModeMember && input[requestValidationModeMember] === "ENABLED") {
-      const { clientName, commandName } = context;
-      const isS3WholeObjectMultipartGetResponseChecksum =
-        clientName === "S3Client" &&
-        commandName === "GetObjectCommand" &&
-        getChecksumAlgorithmListForResponse(responseAlgorithms).every((algorithm: ChecksumAlgorithm) => {
-          const responseHeader = getChecksumLocationName(algorithm);
-          const checksumFromResponse = response.headers[responseHeader];
-          return !checksumFromResponse || isChecksumWithPartNumber(checksumFromResponse);
-        });
-      if (isS3WholeObjectMultipartGetResponseChecksum) {
-        return result;
-      }
-
-      const isStreamingBody = isStreaming(response.body);
-
-      if (isStreamingBody) {
-        collectedStream = await config.streamCollector(response.body);
-        response.body = createReadStreamOnBuffer(collectedStream);
-      }
-
-      await validateChecksumFromResponse(result.response as HttpResponse, {
-        config,
-        responseAlgorithms,
+  const { requestValidationModeMember, responseAlgorithms } = middlewareConfig;
+  // @ts-ignore Element implicitly has an 'any' type for input[requestValidationModeMember]
+  if (requestValidationModeMember && input[requestValidationModeMember] === "ENABLED") {
+    const { clientName, commandName } = context;
+    const isS3WholeObjectMultipartGetResponseChecksum = clientName === "S3Client" &&
+      commandName === "GetObjectCommand" &&
+      getChecksumAlgorithmListForResponse(responseAlgorithms).every((algorithm: ChecksumAlgorithm) => {
+        const responseHeader = getChecksumLocationName(algorithm);
+        const checksumFromResponse = response.headers[responseHeader];
+        return !checksumFromResponse || isChecksumWithPartNumber(checksumFromResponse);
       });
-
-      if (isStreamingBody && collectedStream) {
-        response.body = createReadStreamOnBuffer(collectedStream);
-      }
+    if (isS3WholeObjectMultipartGetResponseChecksum) {
+      return result;
     }
 
-    return result;
-  };
+    const isStreamingBody = isStreaming(response.body);
+
+    if (isStreamingBody) {
+      collectedStream = await config.streamCollector(response.body);
+      response.body = createReadStreamOnBuffer(collectedStream);
+    }
+
+    await validateChecksumFromResponse(result.response as HttpResponse, {
+      config,
+      responseAlgorithms,
+    });
+
+    if (isStreamingBody && collectedStream) {
+      response.body = createReadStreamOnBuffer(collectedStream);
+    }
+  }
+
+  return result;
+};

@@ -50,6 +50,6 @@ export const fromIni = (init: FromIniInit = {}): AwsCredentialIdentityProvider =
   _fromIni({
     ...init,
     roleAssumer: init.roleAssumer ?? getDefaultRoleAssumer(init.clientConfig, init.clientPlugins),
-    roleAssumerWithWebIdentity:
-      init.roleAssumerWithWebIdentity ?? getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
+    roleAssumerWithWebIdentity: init.roleAssumerWithWebIdentity ??
+      getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
   });

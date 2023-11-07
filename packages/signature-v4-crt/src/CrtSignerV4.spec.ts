@@ -39,8 +39,7 @@ describe("SignatureV4A", () => {
     Y: "865ed22a7eadc9c5cb9d2cbaca1b3699139fedc5043dc6661864218330c8e518",
   };
 
-  const SIGV4ATEST_EXPECTED_CANONICAL_REQUEST: string =
-    "GET" +
+  const SIGV4ATEST_EXPECTED_CANONICAL_REQUEST: string = "GET" +
     "\n" +
     "/" +
     "\n" +
@@ -57,8 +56,7 @@ describe("SignatureV4A", () => {
     "\n" +
     "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
-  const SIGV4ATEST_EXPECTED_CANONICAL_PRESIGNED_REQUEST: string =
-    "GET" +
+  const SIGV4ATEST_EXPECTED_CANONICAL_PRESIGNED_REQUEST: string = "GET" +
     "\n" +
     "/" +
     "\n" +

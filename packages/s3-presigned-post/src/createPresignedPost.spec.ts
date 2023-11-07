@@ -39,12 +39,12 @@ const mockHashUpdate = jest.fn();
 const mockHashCtor = jest.fn();
 const sha256 = function (secret: SourceData) {
   mockHashCtor(secret);
-  //@ts-ignore mock constructor
+  // @ts-ignore mock constructor
   this.update = function (data) {
     mockHashUpdate(data);
     return this;
   };
-  //@ts-ignore mock constructor
+  // @ts-ignore mock constructor
   this.digest = () => Buffer.from("mock_sha256_hash");
 };
 const mockS3Client = {
@@ -64,7 +64,7 @@ const mockS3Client = {
 describe("createPresignedPost", () => {
   const Bucket = "bucket";
   const Key = "key";
-  //Mock Date.now() to be 2020-10-28T22:56:49.535Z
+  // Mock Date.now() to be 2020-10-28T22:56:49.535Z
   const dateNowMock = jest.spyOn(Date, "now").mockImplementation(() => 1603925809535);
 
   beforeEach(() => {
@@ -76,7 +76,7 @@ describe("createPresignedPost", () => {
   });
 
   it("should correctly generate url and fields", async () => {
-    //@ts-ignore mock s3 client
+    // @ts-ignore mock s3 client
     const { url, fields } = await createPresignedPost(mockS3Client, {
       Bucket,
       Key,
@@ -98,7 +98,7 @@ describe("createPresignedPost", () => {
   });
 
   it("should generate presigned post with filename", async () => {
-    //@ts-ignore mock s3 client
+    // @ts-ignore mock s3 client
     await createPresignedPost(mockS3Client, {
       Bucket,
       Key: "path/to/${filename}",
@@ -108,7 +108,7 @@ describe("createPresignedPost", () => {
   });
 
   it("should default expiration at 3600 seconds later", async () => {
-    //@ts-ignore mock s3 client
+    // @ts-ignore mock s3 client
     await createPresignedPost(mockS3Client, {
       Bucket,
       Key,
@@ -120,7 +120,7 @@ describe("createPresignedPost", () => {
   });
 
   it("should set expiration if set in parameters", async () => {
-    //@ts-ignore mock s3 client
+    // @ts-ignore mock s3 client
     await createPresignedPost(mockS3Client, {
       Bucket,
       Key,
@@ -132,7 +132,7 @@ describe("createPresignedPost", () => {
   });
 
   it("should generate policies with prefilled fields", async () => {
-    //@ts-ignore mock s3 client
+    // @ts-ignore mock s3 client
     const { fields } = await createPresignedPost(mockS3Client, {
       Bucket,
       Key,

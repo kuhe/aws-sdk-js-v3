@@ -11,19 +11,19 @@ import {
 
 export function acceptHeaderMiddleware(): BuildMiddleware<any, any> {
   return <Output extends MetadataBearer>(next: BuildHandler<any, Output>): BuildHandler<any, Output> =>
-    async (args: BuildHandlerArguments<any>): Promise<BuildHandlerOutput<Output>> => {
-      const { request } = args;
-      if (HttpRequest.isInstance(request)) {
-        request.headers = {
-          ...request.headers,
-          accept: "application/json",
-        };
-      }
-      return next({
-        ...args,
-        request,
-      });
-    };
+  async (args: BuildHandlerArguments<any>): Promise<BuildHandlerOutput<Output>> => {
+    const { request } = args;
+    if (HttpRequest.isInstance(request)) {
+      request.headers = {
+        ...request.headers,
+        accept: "application/json",
+      };
+    }
+    return next({
+      ...args,
+      request,
+    });
+  };
 }
 
 export const acceptHeaderMiddlewareOptions: BuildHandlerOptions = {

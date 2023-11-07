@@ -17,9 +17,7 @@ export interface UpdateArnablesRequestMiddlewareConfig {
  * `x-amz-outpost-id` headers.
  */
 export const updateArnablesRequestMiddleware =
-  (config: UpdateArnablesRequestMiddlewareConfig): BuildMiddleware<any, any> =>
-  (next, context) =>
-  async (args) => {
+  (config: UpdateArnablesRequestMiddlewareConfig): BuildMiddleware<any, any> => (next, context) => async (args) => {
     const { request } = args;
     if (!HttpRequest.isInstance(request)) return next(args);
     if (context[CONTEXT_ACCOUNT_ID]) request.headers[ACCOUNT_ID_HEADER] = context[CONTEXT_ACCOUNT_ID];

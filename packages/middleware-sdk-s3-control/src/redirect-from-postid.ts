@@ -19,9 +19,7 @@ export interface RedirectFromPostIdMiddlewareConfig {
  * Applied to S3Control.CreateBucket and S3Control.ListRegionalBuckets
  */
 export const redirectFromPostIdMiddleware =
-  (config: RedirectFromPostIdMiddlewareConfig): BuildMiddleware<InputType, any> =>
-  (next, context) =>
-  async (args) => {
+  (config: RedirectFromPostIdMiddlewareConfig): BuildMiddleware<InputType, any> => (next, context) => async (args) => {
     const { input, request } = args;
     if (!HttpRequest.isInstance(request)) return next(args);
     if (input.OutpostId) {

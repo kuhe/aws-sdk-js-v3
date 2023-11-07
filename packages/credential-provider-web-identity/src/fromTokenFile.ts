@@ -23,21 +23,19 @@ export interface FromTokenFileInit extends Partial<Omit<FromWebTokenInit, "webId
  *
  * Represents OIDC credentials from a file on disk.
  */
-export const fromTokenFile =
-  (init: FromTokenFileInit = {}): AwsCredentialIdentityProvider =>
-  async () => {
-    const webIdentityTokenFile = init?.webIdentityTokenFile ?? process.env[ENV_TOKEN_FILE];
-    const roleArn = init?.roleArn ?? process.env[ENV_ROLE_ARN];
-    const roleSessionName = init?.roleSessionName ?? process.env[ENV_ROLE_SESSION_NAME];
+export const fromTokenFile = (init: FromTokenFileInit = {}): AwsCredentialIdentityProvider => async () => {
+  const webIdentityTokenFile = init?.webIdentityTokenFile ?? process.env[ENV_TOKEN_FILE];
+  const roleArn = init?.roleArn ?? process.env[ENV_ROLE_ARN];
+  const roleSessionName = init?.roleSessionName ?? process.env[ENV_ROLE_SESSION_NAME];
 
-    if (!webIdentityTokenFile || !roleArn) {
-      throw new CredentialsProviderError("Web identity configuration not specified");
-    }
+  if (!webIdentityTokenFile || !roleArn) {
+    throw new CredentialsProviderError("Web identity configuration not specified");
+  }
 
-    return fromWebToken({
-      ...init,
-      webIdentityToken: readFileSync(webIdentityTokenFile, { encoding: "ascii" }),
-      roleArn,
-      roleSessionName,
-    })();
-  };
+  return fromWebToken({
+    ...init,
+    webIdentityToken: readFileSync(webIdentityTokenFile, { encoding: "ascii" }),
+    roleArn,
+    roleSessionName,
+  })();
+};

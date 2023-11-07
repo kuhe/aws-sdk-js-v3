@@ -61,10 +61,12 @@ describe("create-request", () => {
       (next) => (args) => {
         const request = (args as any).request || httpRequest;
         request.body += "1";
-        return next(<SerializeHandlerArguments<OperationInput>>{
-          ...args,
-          request,
-        });
+        return next(
+          <SerializeHandlerArguments<OperationInput>> {
+            ...args,
+            request,
+          }
+        );
       },
       {
         step: "initialize",
@@ -108,10 +110,12 @@ describe("create-request", () => {
       (next) => (args) => {
         const request = (args as any).request || httpRequest;
         request.body += "A";
-        return next(<SerializeHandlerArguments<OperationInput>>{
-          ...args,
-          request,
-        });
+        return next(
+          <SerializeHandlerArguments<OperationInput>> {
+            ...args,
+            request,
+          }
+        );
       },
       {
         step: "initialize",

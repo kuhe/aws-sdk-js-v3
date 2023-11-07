@@ -67,7 +67,8 @@ describe(EventStreamPayloadHandler.name, () => {
 
   it("should call event signer with request signature from signing middleware", async () => {
     const priorSignature = "1234567890";
-    const authorization = `AWS4-HMAC-SHA256 Credential=AKID/20200510/us-west-2/foo/aws4_request, SignedHeaders=host, Signature=${priorSignature}`;
+    const authorization =
+      `AWS4-HMAC-SHA256 Credential=AKID/20200510/us-west-2/foo/aws4_request, SignedHeaders=host, Signature=${priorSignature}`;
 
     const mockRequest = {
       body: new PassThrough(),
@@ -95,7 +96,8 @@ describe(EventStreamPayloadHandler.name, () => {
 
   it("should call event signer with request signature from query string if no signature headers are found", async () => {
     const priorSignature = "1234567890";
-    const authorization = `AWS4-HMAC-SHA256 Credential=AKID/20200510/us-west-2/foo/aws4_request, SignedHeaders=host, Signature=`;
+    const authorization =
+      `AWS4-HMAC-SHA256 Credential=AKID/20200510/us-west-2/foo/aws4_request, SignedHeaders=host, Signature=`;
 
     const mockRequest = {
       body: new PassThrough(),

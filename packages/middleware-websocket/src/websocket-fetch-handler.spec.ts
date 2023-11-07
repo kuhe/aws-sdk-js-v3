@@ -87,7 +87,7 @@ describe(WebSocketFetchHandler.name, () => {
     it("should throw in output stream if input stream throws", async () => {
       expect.assertions(3);
       const handler = new WebSocketFetchHandler();
-      //Using Node stream is fine because they are also async iterables.
+      // Using Node stream is fine because they are also async iterables.
       const payload = new PassThrough();
       const server = new WS(mockUrl);
       const {
@@ -120,7 +120,7 @@ describe(WebSocketFetchHandler.name, () => {
       (global as any).setTimeout = jest.fn().mockImplementation(setTimeout);
       const connectionTimeout = 1000;
       const handler = new WebSocketFetchHandler(async () => ({ connectionTimeout }));
-      //Using Node stream is fine because they are also async iterables.
+      // Using Node stream is fine because they are also async iterables.
       const payload = new PassThrough();
       const mockInvalidHostname = "localhost:9876";
       const mockInvalidUrl = `ws://${mockInvalidHostname}/`;
@@ -129,7 +129,7 @@ describe(WebSocketFetchHandler.name, () => {
         await handler.handle(
           new HttpRequest({
             body: payload,
-            hostname: mockInvalidHostname, //invalid websocket endpoint
+            hostname: mockInvalidHostname, // invalid websocket endpoint
             protocol: "ws:",
           })
         );
@@ -139,7 +139,7 @@ describe(WebSocketFetchHandler.name, () => {
         expect(err.$metadata.httpStatusCode >= 500).toBe(true);
         expect(
           ((global as any).setTimeout as jest.Mock).mock.calls.filter((args) => {
-            //find the 'setTimeout' call from the websocket handler
+            // find the 'setTimeout' call from the websocket handler
             return args[0].toString().indexOf("$metadata") >= 0;
           })[0][1]
         ).toBe(connectionTimeout);
@@ -163,7 +163,7 @@ describe(WebSocketFetchHandler.name, () => {
       try {
         await handler.handle(request);
       } catch (e) {}
-      //@ts-ignore
+      // @ts-ignore
       expect(httpHandler.__proto__.handle).toHaveBeenCalledWith(request);
     });
   });

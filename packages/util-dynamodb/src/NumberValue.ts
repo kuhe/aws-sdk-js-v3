@@ -1,7 +1,6 @@
 import { NumberValue as INumberValue } from "./models";
 
 /**
- *
  * Class for storing DynamoDB numbers that exceed the scale of
  * JavaScript's MAX_SAFE_INTEGER and MIN_SAFE_INTEGER, or the
  * decimal precision limit.
@@ -11,7 +10,6 @@ import { NumberValue as INumberValue } from "./models";
  * large number implementation to perform mathematical operations.
  *
  * @public
- *
  */
 export class NumberValue implements INumberValue {
   public value: string;
@@ -29,8 +27,7 @@ export class NumberValue implements INumberValue {
     }
 
     const valueOf = typeof value.valueOf() === "number" ? (value.valueOf() as number) : 0;
-    const imprecise =
-      valueOf > Number.MAX_SAFE_INTEGER ||
+    const imprecise = valueOf > Number.MAX_SAFE_INTEGER ||
       valueOf < Number.MIN_SAFE_INTEGER ||
       Math.abs(valueOf) === Infinity ||
       Number.isNaN(valueOf);

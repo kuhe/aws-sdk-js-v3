@@ -25,38 +25,37 @@ import { ApiKeyResolvedConfig } from "./apiKeyConfiguration";
  * @param middlewareConfig the plugin options (location of the parameter, name, and optional scheme)
  * @returns a function that processes the HTTP request and passes it on to the next handler
  */
-export const apiKeyMiddleware =
-  <Input extends object, Output extends object>(
-    pluginConfig: ApiKeyResolvedConfig,
-    middlewareConfig: HttpAuthDefinition
-  ): FinalizeRequestMiddleware<Input, Output> =>
-  (next: FinalizeHandler<Input, Output>, context: HandlerExecutionContext): FinalizeHandler<Input, Output> =>
-    async function (args: FinalizeHandlerArguments<Input>): Promise<FinalizeHandlerOutput<Output>> {
-      if (!HttpRequest.isInstance(args.request) || context.currentAuthConfig) return next(args);
+export const apiKeyMiddleware = <Input extends object, Output extends object>(
+  pluginConfig: ApiKeyResolvedConfig,
+  middlewareConfig: HttpAuthDefinition
+): FinalizeRequestMiddleware<Input, Output> =>
+(next: FinalizeHandler<Input, Output>, context: HandlerExecutionContext): FinalizeHandler<Input, Output> =>
+  async function (args: FinalizeHandlerArguments<Input>): Promise<FinalizeHandlerOutput<Output>> {
+    if (!HttpRequest.isInstance(args.request) || context.currentAuthConfig) return next(args);
 
-      const apiKey = pluginConfig.apiKey && (await pluginConfig.apiKey());
+    const apiKey = pluginConfig.apiKey && (await pluginConfig.apiKey());
 
-      // This middleware will not be injected if the operation has the @optionalAuth trait.
-      // We don't know if we're the only auth middleware, so let the service deal with the
-      // absence of the API key (or let other middleware do its job).
-      if (!apiKey) {
-        context.currentAuthConfig = undefined;
-        return next(args);
-      }
-      context.currentAuthConfig = middlewareConfig;
-
-      if (middlewareConfig.in === "header") {
-        // Set the header, even if it's already been set.
-        args.request.headers[middlewareConfig.name.toLowerCase()] = middlewareConfig.scheme
-          ? `${middlewareConfig.scheme} ${apiKey}`
-          : apiKey;
-      } else if (middlewareConfig.in === "query") {
-        // Set the query parameter, even if it's already been set.
-        args.request.query[middlewareConfig.name] = apiKey;
-      }
-
+    // This middleware will not be injected if the operation has the @optionalAuth trait.
+    // We don't know if we're the only auth middleware, so let the service deal with the
+    // absence of the API key (or let other middleware do its job).
+    if (!apiKey) {
+      context.currentAuthConfig = undefined;
       return next(args);
-    };
+    }
+    context.currentAuthConfig = middlewareConfig;
+
+    if (middlewareConfig.in === "header") {
+      // Set the header, even if it's already been set.
+      args.request.headers[middlewareConfig.name.toLowerCase()] = middlewareConfig.scheme
+        ? `${middlewareConfig.scheme} ${apiKey}`
+        : apiKey;
+    } else if (middlewareConfig.in === "query") {
+      // Set the query parameter, even if it's already been set.
+      args.request.query[middlewareConfig.name] = apiKey;
+    }
+
+    return next(args);
+  };
 
 export const apiKeyMiddlewareOptions: RelativeMiddlewareOptions = {
   name: "apiKeyMiddleware",

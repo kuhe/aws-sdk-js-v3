@@ -42,14 +42,14 @@ describe("EventSigningStream", () => {
     ];
     const mockMessageSigner = jest
       .fn()
-      .mockReturnValueOnce({ message: message1, signature: "7369676e617475726531" } as SignedMessage) //'signature1'
-      .mockReturnValueOnce({ message: message2, signature: "7369676e617475726532" } as SignedMessage); //'signature2'
+      .mockReturnValueOnce({ message: message1, signature: "7369676e617475726531" } as SignedMessage) // 'signature1'
+      .mockReturnValueOnce({ message: message2, signature: "7369676e617475726532" } as SignedMessage); // 'signature2'
     // mock 'new Date()'
     let mockDateCount = 0;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mockDate = jest
       .spyOn(global, "Date")
-      //@ts-ignore: https://stackoverflow.com/questions/60912023/jest-typescript-mock-date-constructor/60918716#60918716
+      // @ts-ignore: https://stackoverflow.com/questions/60912023/jest-typescript-mock-date-constructor/60918716#60918716
       .mockImplementation((input) => {
         if (input) return new originalDate(input);
         mockDateCount += 1;

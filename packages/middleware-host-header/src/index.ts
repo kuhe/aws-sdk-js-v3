@@ -29,12 +29,12 @@ export const hostHeaderMiddleware =
     if (!HttpRequest.isInstance(args.request)) return next(args);
     const { request } = args;
     const { handlerProtocol = "" } = options.requestHandler.metadata || {};
-    //For H2 request, remove 'host' header and use ':authority' header instead
-    //reference: https://nodejs.org/dist/latest-v13.x/docs/api/errors.html#ERR_HTTP2_INVALID_CONNECTION_HEADERS
+    // For H2 request, remove 'host' header and use ':authority' header instead
+    // reference: https://nodejs.org/dist/latest-v13.x/docs/api/errors.html#ERR_HTTP2_INVALID_CONNECTION_HEADERS
     if (handlerProtocol.indexOf("h2") >= 0 && !request.headers[":authority"]) {
       delete request.headers["host"];
       request.headers[":authority"] = request.hostname + (request.port ? ":" + request.port : "");
-      //non-H2 request and 'host' header is not set, set the 'host' header to request's hostname.
+      // non-H2 request and 'host' header is not set, set the 'host' header to request's hostname.
     } else if (!request.headers["host"]) {
       let host = request.hostname;
       if (request.port != null) host += `:${request.port}`;

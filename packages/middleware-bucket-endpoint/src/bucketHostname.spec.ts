@@ -61,23 +61,25 @@ describe("bucketHostname", () => {
           expect(hostname).toBe(`foo.bar.${baseHostname}`);
         });
 
-        for (const nonDnsCompliantBucketName of [
-          // too short
-          "fo",
-          // too long
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          new Array(64).map((_) => "a").join(""),
-          // leading period
-          ".myawsbucket",
-          // trailing period
-          "myawsbucket.",
-          // sequential periods
-          "my..examplebucket",
-          // capital letters
-          "MyAWSBucket",
-          // IP address
-          "192.168.5.4",
-        ]) {
+        for (
+          const nonDnsCompliantBucketName of [
+            // too short
+            "fo",
+            // too long
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            new Array(64).map((_) => "a").join(""),
+            // leading period
+            ".myawsbucket",
+            // trailing period
+            "myawsbucket.",
+            // sequential periods
+            "my..examplebucket",
+            // capital letters
+            "MyAWSBucket",
+            // IP address
+            "192.168.5.4",
+          ]
+        ) {
           it(`should use a path-style endpoint for the non-DNS-compliant bucket name of ${nonDnsCompliantBucketName}`, () => {
             const { bucketEndpoint, hostname } = bucketHostname({
               bucketName: nonDnsCompliantBucketName,
@@ -108,12 +110,14 @@ describe("bucketHostname", () => {
       expect(hostname).toBe(baseHostname);
     });
 
-    for (const [baseHostname, dualstackHostname] of [
-      ["s3.amazonaws.com", "s3.dualstack.us-east-1.amazonaws.com"],
-      ["s3-external-1.amazonaws.com", "s3.dualstack.us-east-1.amazonaws.com"],
-      ["s3.us-east-1.amazonaws.com", "s3.dualstack.us-east-1.amazonaws.com"],
-      ["s3-sa-east-1.amazonaws.com", "s3.dualstack.sa-east-1.amazonaws.com"],
-    ]) {
+    for (
+      const [baseHostname, dualstackHostname] of [
+        ["s3.amazonaws.com", "s3.dualstack.us-east-1.amazonaws.com"],
+        ["s3-external-1.amazonaws.com", "s3.dualstack.us-east-1.amazonaws.com"],
+        ["s3.us-east-1.amazonaws.com", "s3.dualstack.us-east-1.amazonaws.com"],
+        ["s3-sa-east-1.amazonaws.com", "s3.dualstack.sa-east-1.amazonaws.com"],
+      ]
+    ) {
       it(`should derive a virtual-hosted-style accelerate hostname of s3-accelerate.amazonaws.com for the base hostname of ${baseHostname}`, () => {
         const { bucketEndpoint, hostname } = bucketHostname({
           bucketName: "foo",
@@ -937,7 +941,7 @@ describe("bucketHostname", () => {
           clientRegion: string,
           useArnRegion: boolean,
           expectedEndpoint: string,
-          clientPartition?: string
+          clientPartition?: string,
         ][] = [
           [
             "arn:aws:s3-object-lambda:us-west-2:1123456789012:accesspoint/mybanner",
@@ -993,7 +997,7 @@ describe("bucketHostname", () => {
           clientRegion: string,
           useArnRegion: boolean,
           expectedError: string,
-          clientPartition?: string
+          clientPartition?: string,
         ][] = [
           [
             "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/mybanner",

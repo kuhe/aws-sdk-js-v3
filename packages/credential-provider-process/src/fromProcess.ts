@@ -14,9 +14,7 @@ export interface FromProcessInit extends SourceProfileInit {}
  * Creates a credential provider that will read from a credential_process specified
  * in ini files.
  */
-export const fromProcess =
-  (init: FromProcessInit = {}): AwsCredentialIdentityProvider =>
-  async () => {
-    const profiles = await parseKnownFiles(init);
-    return resolveProcessCredentials(getProfileName(init), profiles);
-  };
+export const fromProcess = (init: FromProcessInit = {}): AwsCredentialIdentityProvider => async () => {
+  const profiles = await parseKnownFiles(init);
+  return resolveProcessCredentials(getProfileName(init), profiles);
+};

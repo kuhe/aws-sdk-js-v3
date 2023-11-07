@@ -99,9 +99,8 @@ export function resolveBucketEndpointConfig<T>(
     forcePathStyle,
     useAccelerateEndpoint,
     useArnRegion: typeof useArnRegion === "function" ? useArnRegion : () => Promise.resolve(useArnRegion),
-    disableMultiregionAccessPoints:
-      typeof disableMultiregionAccessPoints === "function"
-        ? disableMultiregionAccessPoints
-        : () => Promise.resolve(disableMultiregionAccessPoints),
+    disableMultiregionAccessPoints: typeof disableMultiregionAccessPoints === "function"
+      ? disableMultiregionAccessPoints
+      : () => Promise.resolve(disableMultiregionAccessPoints),
   };
 }

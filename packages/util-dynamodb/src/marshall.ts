@@ -34,7 +34,6 @@ export interface marshallOptions {
  *
  * @param data - The data to convert to a DynamoDB record
  * @param options - An optional configuration object for `marshall`
- *
  */
 export function marshall(data: Set<string>, options?: marshallOptions): AttributeValue.SSMember;
 export function marshall(data: Set<number>, options?: marshallOptions): AttributeValue.NSMember;

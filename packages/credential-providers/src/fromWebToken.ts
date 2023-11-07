@@ -50,6 +50,6 @@ export interface FromWebTokenInit extends _FromWebTokenInit {
 export const fromWebToken = (init: FromWebTokenInit): AwsCredentialIdentityProvider =>
   _fromWebToken({
     ...init,
-    roleAssumerWithWebIdentity:
-      init.roleAssumerWithWebIdentity ?? getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
+    roleAssumerWithWebIdentity: init.roleAssumerWithWebIdentity ??
+      getDefaultRoleAssumerWithWebIdentity(init.clientConfig, init.clientPlugins),
   });

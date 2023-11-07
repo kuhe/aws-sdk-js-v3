@@ -1,12 +1,12 @@
 export {
-  ReferenceObject,
-  FunctionObject,
-  FunctionArgv,
-  FunctionReturn,
   ConditionObject,
-  Expression,
   EndpointParams,
   EndpointResolverOptions,
-  ReferenceRecord,
   EvaluateOptions,
+  Expression,
+  FunctionArgv,
+  FunctionObject,
+  FunctionReturn,
+  ReferenceObject,
+  ReferenceRecord,
 } from "@smithy/util-endpoints";

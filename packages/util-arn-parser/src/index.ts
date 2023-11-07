@@ -19,7 +19,7 @@ export const parse = (arn: string): ARN => {
   if (segments.length < 6 || segments[0] !== "arn") throw new Error("Malformed ARN");
   const [
     ,
-    //Skip "arn" literal
+    // Skip "arn" literal
     partition,
     service,
     region,
