@@ -281,6 +281,43 @@ module.exports = class Inliner {
   }
 
   /**
+   * Step 5.6, turn everything into lazy load.
+   */
+  async superLazy() {
+    if (this.bailout) {
+      return this;
+    }
+    const requireAssignments = this.indexContents.matchAll(/var import_([a-z_0-9]+) = require\("([@a-z\/-0-9]+)"\);/g);
+
+    for (const requireAssignment of requireAssignments) {
+      const variableSuffix = requireAssignment[1];
+      const packageName = requireAssignment[2];
+
+      const variableSymbol = `import_${variableSuffix}`;
+      const requireExpression = `require("${packageName}")`;
+
+      const originalImportAssignment = new RegExp(
+        `var ${variableSymbol} = require\\(\"${packageName.replace("/", "\\/")}\"\\);`
+      );
+
+      const originalIsPresent = this.indexContents.match(originalImportAssignment);
+
+      if (originalIsPresent) {
+        this.indexContents = this.indexContents.replace(originalImportAssignment, `/** ${originalImportAssignment} */`);
+        this.indexContents = this.indexContents.replaceAll(
+          new RegExp(variableSymbol + "\\.", "g"),
+          requireExpression + "."
+        );
+      }
+    }
+
+    this.indexContents = this.indexContents.replace(/new require\("(.*?)"\).(.*?)\(/g, `new (require("$1").$2)(`);
+
+    fs.writeFileSync(this.outfile, this.indexContents, "utf-8");
+    return this;
+  }
+
+  /**
    * Step 6: "Annotate the CommonJS export names for ESM import in node",
    * except, correctly.
    */
