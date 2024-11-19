@@ -5,10 +5,12 @@ namespace smithy.sdk.example
 use aws.api#service
 use aws.auth#sigv4
 use aws.protocols#restJson1
+use smithy.protocols#rpcv2Cbor
 
 @title("Echo Service")
 @service(sdkId: "Echo")
 @sigv4(name: "echoservice")
+@rpcv2Cbor
 service EchoService {
     version: "2020-07-02"
     operations: [EchoOperation]
