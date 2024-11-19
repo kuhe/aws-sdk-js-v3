@@ -1,5 +1,7 @@
 import { CloudWatch } from "@aws-sdk/client-cloudwatch";
+import { CloudWatch as CloudWatchCbor } from "@aws-sdk/client-cloudwatch-cbor";
 import { SecretsManager } from "@aws-sdk/client-secrets-manager";
+import { SecretsManager as SecretsManagerCbor } from "@aws-sdk/client-secrets-manager-cbor";
 import { HttpRequest, HttpResponse } from "@smithy/types";
 import * as crypto from "node:crypto";
 import { Readable } from "node:stream";
@@ -94,10 +96,16 @@ describe("cbor benchmark", () => {
     region,
     requestHandler: echoJsonHandler,
   });
-  const cw = new CloudWatch({
+  const cwQuery = new CloudWatch({
     region,
   });
-  const sm = new SecretsManager({
+  const cwCbor = new CloudWatchCbor({
+    region,
+  });
+  const smJson = new SecretsManager({
+    region,
+  });
+  const smCbor = new SecretsManagerCbor({
     region,
   });
 
@@ -301,18 +309,33 @@ describe("cbor benchmark", () => {
     });
   }
 
-  describe("SecretsManager", () => {
-    it("placeholder", async () => {
-      sm;
+  for (const { client, protocol } of [
+    { client: smJson, protocol: "awsJson" as const },
+    { client: smCbor, protocol: "cbor" as const },
+  ]) {
+    describe(`SecretsManager (${protocol})`, () => {
+      afterAll(async () => {
+        // delete secrets.
+      });
+      it("placeholder", async () => {
+        client;
+        protocol;
+      });
     });
-  });
+  }
 
-  describe("CloudWatch", () => {
-    it("placeholder", async () => {
-      cw;
+  for (const { client, protocol } of [
+    { client: cwQuery, protocol: "awsQuery" as const },
+    { client: cwCbor, protocol: "cbor" as const },
+  ]) {
+    describe(`CloudWatch (${protocol})`, () => {
+      it("placeholder", async () => {
+        client;
+        protocol;
+      });
     });
-  });
-}, 600_000);
+  }
+});
 
 function p50(values: number[]) {
   return values[(values.length * 0.5) | 0];
