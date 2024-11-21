@@ -25,7 +25,7 @@ const recordedData = {
 
 const reportingData = [];
 const sizes = [64, 512, 4096, 8192, 45056];
-const metricCounts = [16, 64, 256, 1000];
+const metricCounts = [16, 64, 256 /*, 1000 */];
 
 const region = "us-west-2";
 const echoCborHandler = {
@@ -67,9 +67,11 @@ const echoJson = new EchoJson({
 });
 const cwQuery = new CloudWatch({
   region,
+  disableRequestCompression: true,
 });
 const cwCbor = new CloudWatchCbor({
   region,
+  disableRequestCompression: true,
 });
 const smJson = new SecretsManager({
   region,
@@ -103,6 +105,9 @@ function record(scenario, service, protocol, metric, dimensionValue, _data) {
   return recording;
 }
 async function errorBody(e) {
+  if (!e?.$response) {
+    throw e;
+  }
   e.$response.body = toUtf8(await headStream(e.$response.body, Infinity));
   console.log(e.$response);
   throw e;
@@ -612,10 +617,10 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
   ]) {
     for (const metricCount of metricCounts) {
       let Namespace;
-      let MetricData;
       let suiteId = crypto.randomBytes(8).toString("hex") + "-" + ((Date.now() / 1000) | 0);
       let baseTime = new Date(Date.now() - 2 * 60 * 60 * 1000);
       {
+        let MetricData;
         await runIterations(
           client,
           "Put metric data",
