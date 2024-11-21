@@ -2,6 +2,8 @@ const { CloudWatch } = require("@aws-sdk/client-cloudwatch");
 const { CloudWatch: CloudWatchCbor } = require("@aws-sdk/client-cloudwatch-cbor");
 const { SecretsManager } = require("@aws-sdk/client-secrets-manager");
 const { SecretsManager: SecretsManagerCbor } = require("@aws-sdk/client-secrets-manager-cbor");
+const { headStream, splitStream } = require("@smithy/util-stream");
+const { toUtf8 } = require("@smithy/util-utf8");
 const crypto = require("node:crypto");
 const { Readable } = require("node:stream");
 const osu = require("node-os-utils");
@@ -23,6 +25,7 @@ const recordedData = {
 
 const reportingData = [];
 const sizes = [64, 512, 4096, 8192, 45056];
+const metricCounts = [16, 64, 256, 1000];
 
 const region = "us-west-2";
 const echoCborHandler = {
@@ -99,7 +102,11 @@ function record(scenario, service, protocol, metric, dimensionValue, _data) {
   reportingData.push(recording);
   return recording;
 }
-
+async function errorBody(e) {
+  e.$response.body = toUtf8(await headStream(e.$response.body, Infinity));
+  console.log(e.$response);
+  throw e;
+}
 function recordScenario(scenario, service, protocol, dimensionValue) {
   try {
     record(
@@ -603,8 +610,105 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
     { client: cwQuery, protocol: "awsQuery" },
     { client: cwCbor, protocol: "cbor" },
   ]) {
-    client;
-    protocol;
+    for (const metricCount of metricCounts) {
+      let Namespace;
+      let MetricData;
+      let suiteId = crypto.randomBytes(8).toString("hex") + "-" + ((Date.now() / 1000) | 0);
+      let baseTime = new Date(Date.now() - 2 * 60 * 60 * 1000);
+      {
+        await runIterations(
+          client,
+          "Put metric data",
+          protocol,
+          () => {
+            Namespace = "TestNamespace";
+            MetricData = Array.from({ length: metricCount }).map((el, i) => {
+              return {
+                MetricName: "TestMetric",
+                Dimensions: [
+                  {
+                    Name: "TestNamespace",
+                    Value: `${suiteId}-${metricCount}`,
+                  },
+                ],
+                Value: Math.random(),
+                Unit: "None",
+                Timestamp: new Date(baseTime.getTime() + 2000 * (i + 1)),
+              };
+            });
+          },
+          async (cw) => {
+            await cw
+              .putMetricData({
+                Namespace,
+                MetricData,
+              })
+              .catch(errorBody);
+          },
+          "PutMetricDataCommand",
+          metricCount
+        );
+      }
+      {
+        let MetricDataQueries;
+        await runIterations(
+          client,
+          "Get metric data",
+          protocol,
+          () => {
+            MetricDataQueries = [
+              {
+                Id: "m0",
+                ReturnData: true,
+                MetricStat: {
+                  Unit: "None",
+                  Stat: "Sum",
+                  Metric: {
+                    Namespace: "TestNamespace",
+                    MetricName: "TestMetric",
+                    Dimensions: [
+                      {
+                        Name: "TestDimension",
+                        Value: `${suiteId}-${metricCount}`,
+                      },
+                    ],
+                  },
+                  Period: 60,
+                },
+              },
+            ];
+          },
+          async (cw) => {
+            await cw
+              .getMetricData({
+                StartTime: baseTime,
+                EndTime: new Date(baseTime.getTime() + 60 * 60 * 1000),
+                MetricDataQueries,
+              })
+              .catch(errorBody);
+          },
+          "GetMetricDataCommand",
+          metricCount
+        );
+      }
+      {
+        await runIterations(
+          client,
+          "List metrics",
+          protocol,
+          () => {},
+          async (cw) => {
+            await cw
+              .listMetrics({
+                Namespace,
+              })
+              .catch(errorBody);
+          },
+          "ListMetricsCommand",
+          metricCount
+        );
+      }
+    }
   }
 
   for (const protocol of ["cbor", "awsJson"]) {
@@ -623,6 +727,14 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
       recordScenario("Get binary secret", "SecretsManager", protocol, size);
       recordScenario("Describe secret", "SecretsManager", protocol, size);
       recordScenario("List secrets", "SecretsManager", protocol, size);
+    }
+  }
+
+  for (const protocol of ["cbor", "awsQuery"]) {
+    for (const metricCount of metricCounts) {
+      recordScenario("Put metric data", "SecreCloudwatchtsManager", protocol, metricCount);
+      recordScenario("Get metric data", "Cloudwatch", protocol, metricCount);
+      recordScenario("List metrics", "Cloudwatch", protocol, metricCount);
     }
   }
 
