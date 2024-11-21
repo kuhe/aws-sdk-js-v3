@@ -18,9 +18,9 @@ const {
 } = require("../../codegen/generic-client-test-codegen/build/smithyprojections/generic-client-test-codegen/aws-json-echo-service/typescript-codegen");
 
 const recordedData = {
-  cbor: {},
-  awsJson: {},
-  awsQuery: {},
+  CBOR: {},
+  JSON: {},
+  Query: {},
 };
 
 const reportingData = [];
@@ -294,8 +294,8 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
 
 (async () => {
   for (const { client, protocol } of [
-    { client: echoCbor, protocol: "cbor" },
-    { client: echoJson, protocol: "awsJson" },
+    { client: echoCbor, protocol: "CBOR" },
+    { client: echoJson, protocol: "JSON" },
   ]) {
     {
       let data;
@@ -476,8 +476,8 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
   }
 
   for (const { client, protocol } of [
-    { client: smJson, protocol: "awsJson" },
-    { client: smCbor, protocol: "cbor" },
+    { client: smJson, protocol: "JSON" },
+    { client: smCbor, protocol: "CBOR" },
   ]) {
     let secretName = `TestSecret_0_0`;
     let binarySecretName = `TestBinarySecret_0_0`;
@@ -612,8 +612,8 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
   }
 
   for (const { client, protocol } of [
-    { client: cwQuery, protocol: "awsQuery" },
-    { client: cwCbor, protocol: "cbor" },
+    { client: cwQuery, protocol: "Query" },
+    { client: cwCbor, protocol: "CBOR" },
   ]) {
     for (const metricCount of metricCounts) {
       let Namespace;
@@ -716,7 +716,7 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
     }
   }
 
-  for (const protocol of ["cbor", "awsJson"]) {
+  for (const protocol of ["CBOR", "JSON"]) {
     recordScenario("All types", "Echo", protocol, 0);
     recordScenario("Long list of strings", "Echo", protocol, 0);
     recordScenario("Complex object", "Echo", protocol, 0);
@@ -724,7 +724,7 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
     recordScenario("Very large blob", "Echo", protocol, 0);
   }
 
-  for (const protocol of ["cbor", "awsJson"]) {
+  for (const protocol of ["CBOR", "JSON"]) {
     for (const size of sizes) {
       recordScenario("Put string secret", "SecretsManager", protocol, size);
       recordScenario("Put binary secret", "SecretsManager", protocol, size);
@@ -735,9 +735,9 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
     }
   }
 
-  for (const protocol of ["cbor", "awsQuery"]) {
+  for (const protocol of ["CBOR", "Query"]) {
     for (const metricCount of metricCounts) {
-      recordScenario("Put metric data", "SecreCloudwatchtsManager", protocol, metricCount);
+      recordScenario("Put metric data", "Cloudwatch", protocol, metricCount);
       recordScenario("Get metric data", "Cloudwatch", protocol, metricCount);
       recordScenario("List metrics", "Cloudwatch", protocol, metricCount);
     }
