@@ -5,6 +5,8 @@ const { SecretsManager: SecretsManagerCbor } = require("@aws-sdk/client-secrets-
 const crypto = require("node:crypto");
 const { Readable } = require("node:stream");
 const osu = require("node-os-utils");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const {
   Echo,
@@ -20,6 +22,7 @@ const recordedData = {
 };
 
 const reportingData = [];
+const sizes = [64, 512, 4096, 8192, 45056];
 
 const region = "us-west-2";
 const echoCborHandler = {
@@ -81,13 +84,13 @@ function p90(values) {
 function max(values) {
   return values[values.length - 1];
 }
-function record(scenario, service, protocol, metric, _data) {
+function record(scenario, service, protocol, metric, dimensionValue, _data) {
   const data = _data.slice().sort();
   const recording = {
     service,
     test_case: scenario,
     protocol: protocol,
-    dimension_value: 0,
+    dimension_value: dimensionValue,
     metric,
     p50: Number(p50(data).toFixed(3)),
     p90: Number(p90(data).toFixed(3)),
@@ -97,40 +100,69 @@ function record(scenario, service, protocol, metric, _data) {
   return recording;
 }
 
-function recordScenario(scenario, service, protocol) {
-  record(scenario, service, protocol, "Total request time (ms)", recordedData[protocol][scenario].totalRequest.timings);
+function recordScenario(scenario, service, protocol, dimensionValue) {
+  try {
+    record(
+      scenario,
+      service,
+      protocol,
+      "Total request time (ms)",
+      dimensionValue,
+      recordedData[protocol][scenario][dimensionValue].totalRequest.timings
+    );
+  } catch (e) {
+    console.log(
+      JSON.stringify(
+        {
+          context:
+            recordedData[protocol]?.[scenario]?.[dimensionValue] ??
+            recordedData[protocol]?.[scenario] ??
+            recordedData[protocol],
+        },
+        null,
+        2
+      )
+    );
+    throw new Error(`Could not read recordedData[${protocol}][${scenario}][${dimensionValue}].totalRequest.timings.`);
+  }
+
   record(
     scenario,
     service,
     protocol,
     "Serialization time (ms)",
-    recordedData[protocol][scenario].serialization.timings
+    dimensionValue,
+    recordedData[protocol][scenario][dimensionValue].serialization.timings
   );
   record(
     scenario,
     service,
     protocol,
     "Deserialization time (ms)",
-    recordedData[protocol][scenario].deserialization.timings
+    dimensionValue,
+    recordedData[protocol][scenario][dimensionValue].deserialization.timings
   );
   record(
     scenario,
     service,
     protocol,
     "Request payload size (bytes)",
-    recordedData[protocol][scenario].requestPayloadSize.byteMeasures
+    dimensionValue,
+    recordedData[protocol][scenario][dimensionValue].requestPayloadSize.byteMeasures
   );
   record(
     scenario,
     service,
     protocol,
     "Response payload size (bytes)",
-    recordedData[protocol][scenario].responsePayloadSize.byteMeasures
+    dimensionValue,
+    recordedData[protocol][scenario][dimensionValue].responsePayloadSize.byteMeasures
   );
 }
 
-async function runIterations(client, scenario, protocol, setup, fn, iterations = 500) {
-  recordedData[protocol][scenario] = {
+async function runIterations(client, scenario, protocol, setup, fn, extract, dimensionValue = 0, iterations = 1) {
+  recordedData[protocol][scenario] = recordedData[protocol][scenario] ?? {};
+  recordedData[protocol][scenario][dimensionValue] = {
     totalRequest: {
       timings: [],
     },
@@ -153,6 +185,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
       percentageMeasures: [],
     },
   };
+  const stats = {};
   client.middlewareStack.addRelativeTo(
     (next, context) => async (args) => {
       context.beforeSerializerMiddleware = performance.now();
@@ -182,6 +215,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
   client.middlewareStack.addRelativeTo(
     (next, context) => async (args) => {
       const result = await next(args);
+      // timestamp before returning to the deser middleware.
       context.afterDeserializerMiddleware = performance.now();
       return result;
     },
@@ -190,22 +224,24 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
       relation: "after",
       override: true,
       name: "afterDeserializerMiddleware",
+      priority: "high",
     }
   );
   client.middlewareStack.addRelativeTo(
     (next, context) => async (args) => {
-      context.beforeDeserializerMiddleware = performance.now();
       const result = await next(args);
-      recordedData[protocol][scenario].serialization.timings.push(
+      // timestamp of exiting the deser middleware.
+      context.beforeDeserializerMiddleware = performance.now();
+      recordedData[protocol][scenario][dimensionValue].serialization.timings.push(
         context.afterSerializerMiddleware - context.beforeSerializerMiddleware
       );
-      recordedData[protocol][scenario].deserialization.timings.push(
+      recordedData[protocol][scenario][dimensionValue].deserialization.timings.push(
         Math.abs(context.beforeDeserializerMiddleware - context.afterDeserializerMiddleware)
       );
-      recordedData[protocol][scenario].requestPayloadSize.byteMeasures.push(
+      recordedData[protocol][scenario][dimensionValue].requestPayloadSize.byteMeasures.push(
         args.request.body.byteLength ?? Buffer.from(args.request.body ?? "").byteLength
       );
-      recordedData[protocol][scenario].responsePayloadSize.byteMeasures.push(
+      recordedData[protocol][scenario][dimensionValue].responsePayloadSize.byteMeasures.push(
         Number(result.response.headers["content-length"])
       );
       return result;
@@ -215,18 +251,33 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
       relation: "before",
       override: true,
       name: "beforeDeserializerMiddleware",
+      priority: "high",
+    }
+  );
+  client.middlewareStack.add(
+    (next, context) => async (args) => {
+      const A = performance.now();
+      const result = await next(args);
+      stats[context.commandName] = stats[context.commandName] ?? [];
+      const B = performance.now();
+      stats[context.commandName].push(B - A);
+      return result;
+    },
+    {
+      step: "build",
+      priority: "high",
+      override: true,
+      name: "statsMiddleware",
     }
   );
   for (let iteration = 0; iteration < iterations; ++iteration) {
-    const totalRequestTimeStart = performance.now();
     await setup();
     await fn(client);
-    const totalRequestTimeEnd = performance.now();
-    recordedData[protocol][scenario].totalRequest.timings.push(totalRequestTimeEnd - totalRequestTimeStart);
-    // data[protocol][scenario].cpuUtilziation.percentageMeasures.push(await osu.cpu.usage());
-    // data[protocol][scenario].memoryUtilization.byteMeasures.push((await osu.mem.used()).usedMemMb);
+    // data[protocol][scenario][dimensionValue].cpuUtilziation.percentageMeasures.push(await osu.cpu.usage());
+    // data[protocol][scenario][dimensionValue].memoryUtilization.byteMeasures.push((await osu.mem.used()).usedMemMb);
     process.stdout.write(".");
   }
+  recordedData[protocol][scenario][dimensionValue].totalRequest.timings.push(...stats[extract]);
 }
 
 (async () => {
@@ -281,7 +332,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
         async (echo) => {
           await echo.echoOperation(data);
         },
-        10
+        "EchoOperationCommand"
       );
     }
 
@@ -301,7 +352,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
         async (echo) => {
           await echo.echoOperation(data);
         },
-        10
+        "EchoOperationCommand"
       );
     }
 
@@ -353,7 +404,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
         async (echo) => {
           await echo.echoOperation(data);
         },
-        10
+        "EchoOperationCommand"
       );
     }
 
@@ -389,7 +440,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
         async (echo) => {
           await echo.echoOperation(data);
         },
-        50
+        "EchoOperationCommand"
       );
     }
 
@@ -407,7 +458,7 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
         async (echo) => {
           await echo.echoOperation(data);
         },
-        10
+        "EchoOperationCommand"
       );
     }
   }
@@ -416,9 +467,136 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
     { client: smJson, protocol: "awsJson" },
     { client: smCbor, protocol: "cbor" },
   ]) {
-    client;
-    protocol;
-    // delete secrets.
+    let secretName = `TestSecret_0_0`;
+    let binarySecretName = `TestBinarySecret_0_0`;
+
+    await client
+      .createSecret({
+        Name: secretName,
+        SecretString: "0",
+        Tags: [
+          { Key: "Stage", Value: "Production" },
+          { Key: "Iteration", Value: "0" },
+        ],
+      })
+      .catch(() => {});
+    await client
+      .createSecret({
+        Name: binarySecretName,
+        SecretBinary: new Uint8Array([0]),
+        Tags: [
+          { Key: "Stage", Value: "Production" },
+          { Key: "Iteration", Value: "0" },
+        ],
+      })
+      .catch(() => {});
+
+    for (const size of sizes) {
+      {
+        let stringValue;
+        await runIterations(
+          client,
+          "Put string secret",
+          protocol,
+          async () => {
+            stringValue = crypto.randomBytes(size / 2).toString("hex");
+          },
+          async (sm) => {
+            await sm.putSecretValue({
+              SecretId: secretName,
+              SecretString: stringValue,
+            });
+          },
+          "PutSecretValueCommand",
+          size
+        );
+        await runIterations(
+          client,
+          "Get string secret",
+          protocol,
+          async () => {},
+          async (sm) => {
+            await sm.getSecretValue({
+              SecretId: secretName,
+            });
+          },
+          "GetSecretValueCommand",
+          size
+        );
+      }
+      {
+        let binaryValue;
+        await runIterations(
+          client,
+          "Put binary secret",
+          protocol,
+          async () => {
+            binaryValue = crypto.randomBytes(size);
+          },
+          async (sm) => {
+            await sm.putSecretValue({
+              SecretId: binarySecretName,
+              SecretBinary: binaryValue,
+            });
+          },
+          "PutSecretValueCommand",
+          size
+        );
+        await runIterations(
+          client,
+          "Get binary secret",
+          protocol,
+          async () => {},
+          async (sm) => {
+            await sm.getSecretValue({
+              SecretId: binarySecretName,
+            });
+          },
+          "GetSecretValueCommand",
+          size
+        );
+      }
+
+      {
+        await runIterations(
+          client,
+          "Describe secret",
+          protocol,
+          () => {},
+          async (sm) => {
+            await sm.describeSecret({
+              SecretId: secretName,
+            });
+          },
+          "DescribeSecretCommand",
+          size
+        );
+      }
+      {
+        await runIterations(
+          client,
+          "List secrets",
+          protocol,
+          () => {},
+          async (sm) => {
+            await sm.listSecrets({
+              Filters: [
+                {
+                  Key: "tag-key",
+                  Values: ["Iteration"],
+                },
+                {
+                  Key: "tag-value",
+                  Values: ["0"],
+                },
+              ],
+            });
+          },
+          "ListSecretsCommand",
+          size
+        );
+      }
+    }
   }
 
   for (const { client, protocol } of [
@@ -429,17 +607,34 @@ async function runIterations(client, scenario, protocol, setup, fn, iterations =
     protocol;
   }
 
-  recordScenario("All types", "Echo", "cbor");
-  recordScenario("Long list of strings", "Echo", "cbor");
-  recordScenario("Complex object", "Echo", "cbor");
-  recordScenario("List of complex objects", "Echo", "cbor");
-  recordScenario("Very large blob", "Echo", "cbor");
+  for (const protocol of ["cbor", "awsJson"]) {
+    recordScenario("All types", "Echo", protocol, 0);
+    recordScenario("Long list of strings", "Echo", protocol, 0);
+    recordScenario("Complex object", "Echo", protocol, 0);
+    recordScenario("List of complex objects", "Echo", protocol, 0);
+    recordScenario("Very large blob", "Echo", protocol, 0);
+  }
 
-  recordScenario("All types", "Echo", "awsJson");
-  recordScenario("Long list of strings", "Echo", "awsJson");
-  recordScenario("Complex object", "Echo", "awsJson");
-  recordScenario("List of complex objects", "Echo", "awsJson");
-  recordScenario("Very large blob", "Echo", "awsJson");
+  for (const protocol of ["cbor", "awsJson"]) {
+    for (const size of sizes) {
+      recordScenario("Put string secret", "SecretsManager", protocol, size);
+      recordScenario("Put binary secret", "SecretsManager", protocol, size);
+      recordScenario("Get string secret", "SecretsManager", protocol, size);
+      recordScenario("Get binary secret", "SecretsManager", protocol, size);
+      recordScenario("Describe secret", "SecretsManager", protocol, size);
+      recordScenario("List secrets", "SecretsManager", protocol, size);
+    }
+  }
+
+  fs.writeFileSync(path.join(__dirname, "data.json"), JSON.stringify(reportingData, null, 2));
+
+  reportingData.sort((a, b) => {
+    if (a.metric === b.metric) {
+      return a.p90 - b.p90;
+    }
+    return a.metric < b.metric ? -1 : 1;
+  });
+  fs.writeFileSync(path.join(__dirname, "data-sorted.json"), JSON.stringify(reportingData, null, 2));
 
   console.table(reportingData);
 })();
