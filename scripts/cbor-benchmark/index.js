@@ -23,7 +23,7 @@ const recordedData = {
   Query: {},
 };
 
-const iterations = 4;
+const iterations = 500;
 const reportingData = [];
 const sizes = [64, 512, 4096, 8192, 45056];
 const metricCounts = [16, 64, 256, 1000];
