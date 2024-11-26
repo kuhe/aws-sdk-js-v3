@@ -23,9 +23,10 @@ const recordedData = {
   Query: {},
 };
 
+const iterations = 4;
 const reportingData = [];
 const sizes = [64, 512, 4096, 8192, 45056];
-const metricCounts = [16, 64, 256 /*, 1000 */];
+const metricCounts = [16, 64, 256, 1000];
 
 const region = "us-west-2";
 const echoCborHandler = {
@@ -60,24 +61,30 @@ const echoJsonHandler = {
 const echoCbor = new Echo({
   region,
   requestHandler: echoCborHandler,
+  maxAttempts: 1,
 });
 const echoJson = new EchoJson({
   region,
   requestHandler: echoJsonHandler,
+  maxAttempts: 1,
 });
 const cwQuery = new CloudWatch({
   region,
   disableRequestCompression: true,
+  maxAttempts: 1,
 });
 const cwCbor = new CloudWatchCbor({
   region,
   disableRequestCompression: true,
+  maxAttempts: 1,
 });
 const smJson = new SecretsManager({
   region,
+  maxAttempts: 1,
 });
 const smCbor = new SecretsManagerCbor({
   region,
+  maxAttempts: 1,
 });
 
 function p50(values) {
@@ -172,7 +179,16 @@ function recordScenario(scenario, service, protocol, dimensionValue) {
   );
 }
 
-async function runIterations(client, scenario, protocol, setup, fn, extract, dimensionValue = 0, iterations = 1) {
+async function runIterations(
+  client,
+  scenario,
+  protocol,
+  setup,
+  fn,
+  extract,
+  dimensionValue = 0,
+  _iterations = iterations
+) {
   recordedData[protocol][scenario] = recordedData[protocol][scenario] ?? {};
   recordedData[protocol][scenario][dimensionValue] = {
     totalRequest: {
@@ -282,7 +298,7 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
       name: "statsMiddleware",
     }
   );
-  for (let iteration = 0; iteration < iterations; ++iteration) {
+  for (let iteration = 0; iteration < _iterations; ++iteration) {
     await setup();
     await fn(client);
     // data[protocol][scenario][dimensionValue].cpuUtilziation.percentageMeasures.push(await osu.cpu.usage());
@@ -479,38 +495,51 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
     { client: smJson, protocol: "JSON" },
     { client: smCbor, protocol: "CBOR" },
   ]) {
-    let secretName = `TestSecret_0_0`;
-    let binarySecretName = `TestBinarySecret_0_0`;
+    let secretName = `TestSecret_0_000`;
+    let binarySecretName = `TestBinarySecret_0_000`;
+    let timestamp = (Date.now() / 1000) | 0;
+    let iteration = 0;
+    let iterationString = "000";
+    function reset() {
+      iteration = 0;
+    }
+    function setup() {
+      iteration += 1;
+      iterationString = String("00" + iteration).slice(-3);
+      secretName = `TestSecret_${timestamp}_${iterationString}`;
+      binarySecretName = `TestBinarySecret_${timestamp}_${iterationString}`;
+    }
 
-    await client
-      .createSecret({
+    for (let i = 0; i < iterations; ++i) {
+      setup();
+      await client.createSecret({
         Name: secretName,
         SecretString: "0",
         Tags: [
           { Key: "Stage", Value: "Production" },
-          { Key: "Iteration", Value: "0" },
+          { Key: "Iteration", Value: iterationString },
         ],
-      })
-      .catch(() => {});
-    await client
-      .createSecret({
+      });
+      await client.createSecret({
         Name: binarySecretName,
         SecretBinary: new Uint8Array([0]),
         Tags: [
           { Key: "Stage", Value: "Production" },
-          { Key: "Iteration", Value: "0" },
+          { Key: "Iteration", Value: iterationString },
         ],
-      })
-      .catch(() => {});
+      });
+    }
 
     for (const size of sizes) {
       {
         let stringValue;
+        reset();
         await runIterations(
           client,
           "Put string secret",
           protocol,
           async () => {
+            setup();
             stringValue = crypto.randomBytes(size / 2).toString("hex");
           },
           async (sm) => {
@@ -522,11 +551,14 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
           "PutSecretValueCommand",
           size
         );
+        reset();
         await runIterations(
           client,
           "Get string secret",
           protocol,
-          async () => {},
+          async () => {
+            setup();
+          },
           async (sm) => {
             await sm.getSecretValue({
               SecretId: secretName,
@@ -538,11 +570,13 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
       }
       {
         let binaryValue;
+        reset();
         await runIterations(
           client,
           "Put binary secret",
           protocol,
           async () => {
+            setup();
             binaryValue = crypto.randomBytes(size);
           },
           async (sm) => {
@@ -554,11 +588,14 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
           "PutSecretValueCommand",
           size
         );
+        reset();
         await runIterations(
           client,
           "Get binary secret",
           protocol,
-          async () => {},
+          async () => {
+            setup();
+          },
           async (sm) => {
             await sm.getSecretValue({
               SecretId: binarySecretName,
@@ -570,11 +607,14 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
       }
 
       {
+        reset();
         await runIterations(
           client,
           "Describe secret",
           protocol,
-          () => {},
+          () => {
+            setup();
+          },
           async (sm) => {
             await sm.describeSecret({
               SecretId: secretName,
@@ -585,11 +625,14 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
         );
       }
       {
+        reset();
         await runIterations(
           client,
           "List secrets",
           protocol,
-          () => {},
+          () => {
+            setup();
+          },
           async (sm) => {
             await sm.listSecrets({
               Filters: [
@@ -599,7 +642,7 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
                 },
                 {
                   Key: "tag-value",
-                  Values: ["0"],
+                  Values: [iterationString],
                 },
               ],
             });
@@ -608,6 +651,18 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
           size
         );
       }
+    }
+
+    for (let i = 0; i < iterations; ++i) {
+      setup();
+      await client.deleteSecret({
+        SecretId: secretName,
+        ForceDeleteWithoutRecovery: true,
+      });
+      await client.deleteSecret({
+        SecretId: binarySecretName,
+        ForceDeleteWithoutRecovery: true,
+      });
     }
   }
 
@@ -625,7 +680,8 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
           client,
           "Put metric data",
           protocol,
-          () => {
+          async () => {
+            await new Promise((r) => setTimeout(r, 250));
             Namespace = "TestNamespace";
             MetricData = Array.from({ length: metricCount }).map((el, i) => {
               return {
@@ -660,7 +716,8 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
           client,
           "Get metric data",
           protocol,
-          () => {
+          async () => {
+            await new Promise((r) => setTimeout(r, 250));
             MetricDataQueries = [
               {
                 Id: "m0",
@@ -701,7 +758,9 @@ async function runIterations(client, scenario, protocol, setup, fn, extract, dim
           client,
           "List metrics",
           protocol,
-          () => {},
+          async () => {
+            await new Promise((r) => setTimeout(r, 250));
+          },
           async (cw) => {
             await cw
               .listMetrics({
