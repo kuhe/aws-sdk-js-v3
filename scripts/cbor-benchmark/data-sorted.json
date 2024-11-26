@@ -5,169 +5,129 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.021,
-    "p90": 0.023,
-    "max": 0.028
+    "p50": 0.028,
+    "p90": 0.059,
+    "max": 0.059
   },
   {
     "service": "Echo",
     "test_case": "Complex object",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.058,
-    "p90": 0.089,
-    "max": 0.146
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.066,
-    "p90": 0.095,
-    "max": 1.597
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.061,
-    "p90": 0.103,
-    "max": 3.946
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.089,
-    "p90": 0.115,
-    "max": 0.119
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.091,
-    "p90": 0.129,
-    "max": 0.15
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.108,
-    "p90": 0.15,
-    "max": 0.166
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
     "p50": 0.1,
-    "p90": 0.169,
-    "max": 0.813
+    "p90": 0.125,
+    "max": 0.125
   },
   {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
     "protocol": "CBOR",
-    "dimension_value": 45056,
+    "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.163,
-    "p90": 0.171,
-    "max": 0.172
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.144,
-    "p90": 0.173,
-    "max": 0.176
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.155,
-    "p90": 0.173,
-    "max": 0.203
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.171,
-    "p90": 0.184,
-    "max": 0.184
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.161,
-    "p90": 0.188,
-    "max": 0.205
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.181,
-    "p90": 0.191,
-    "max": 0.194
+    "p50": 0.122,
+    "p90": 0.128,
+    "max": 0.128
   },
   {
     "service": "Echo",
-    "test_case": "All types",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.102,
+    "p90": 0.13,
+    "max": 0.13
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.107,
+    "p90": 0.15,
+    "max": 0.15
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.138,
-    "p90": 0.193,
-    "max": 1.465
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.16,
-    "p90": 0.193,
-    "max": 0.222
+    "p50": 0.114,
+    "p90": 0.161,
+    "max": 0.161
   },
   {
     "service": "SecretsManager",
     "test_case": "Put binary secret",
     "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.177,
+    "p90": 0.183,
+    "max": 0.183
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.186,
+    "p90": 0.193,
+    "max": 0.193
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.193,
+    "p90": 0.196,
+    "max": 0.196
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.164,
+    "p90": 0.198,
+    "max": 0.198
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.172,
-    "p90": 0.198,
-    "max": 0.218
+    "p50": 0.191,
+    "p90": 0.199,
+    "max": 0.199
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.121,
+    "p90": 0.203,
+    "max": 0.203
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.171,
+    "p90": 0.203,
+    "max": 0.203
   },
   {
     "service": "Cloudwatch",
@@ -175,99 +135,19 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 0.14,
-    "p90": 0.198,
-    "max": 0.291
+    "p50": 0.176,
+    "p90": 0.213,
+    "max": 0.213
   },
   {
     "service": "SecretsManager",
-    "test_case": "Put string secret",
+    "test_case": "Put binary secret",
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
     "p50": 0.188,
-    "p90": 0.2,
-    "max": 0.222
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 16,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.107,
-    "p90": 0.201,
-    "max": 0.246
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.175,
-    "p90": 0.204,
-    "max": 0.358
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.183,
-    "p90": 0.206,
-    "max": 0.21
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.194,
-    "p90": 0.208,
-    "max": 0.276
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.141,
-    "p90": 0.208,
-    "max": 0.314
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.201,
-    "p90": 0.21,
-    "max": 0.241
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.186,
-    "p90": 0.211,
-    "max": 0.242
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.195,
-    "p90": 0.214,
-    "max": 0.226
+    "p90": 0.217,
+    "max": 0.217
   },
   {
     "service": "Cloudwatch",
@@ -275,19 +155,39 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.177,
-    "p90": 0.215,
-    "max": 0.286
+    "p50": 0.198,
+    "p90": 0.218,
+    "max": 0.218
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.201,
+    "p90": 0.219,
+    "max": 0.219
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.194,
+    "p90": 0.221,
+    "max": 0.221
   },
   {
     "service": "SecretsManager",
     "test_case": "Put binary secret",
     "protocol": "JSON",
-    "dimension_value": 8192,
+    "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.189,
-    "p90": 0.218,
-    "max": 0.231
+    "p50": 0.185,
+    "p90": 0.222,
+    "max": 0.222
   },
   {
     "service": "SecretsManager",
@@ -295,39 +195,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.215,
-    "p90": 0.223,
-    "max": 0.239
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.177,
-    "p90": 0.224,
-    "max": 0.227
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.182,
-    "p90": 0.226,
-    "max": 0.344
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.21,
-    "p90": 0.226,
-    "max": 0.24
+    "p50": 0.209,
+    "p90": 0.222,
+    "max": 0.222
   },
   {
     "service": "SecretsManager",
@@ -335,239 +205,169 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.149,
-    "p90": 0.231,
-    "max": 0.258
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.198,
-    "p90": 0.239,
-    "max": 0.377
+    "p50": 0.225,
+    "p90": 0.228,
+    "max": 0.228
   },
   {
     "service": "SecretsManager",
     "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.213,
+    "p90": 0.232,
+    "max": 0.232
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
     "protocol": "CBOR",
-    "dimension_value": 512,
+    "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.194,
-    "p90": 0.241,
-    "max": 0.26
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.192,
-    "p90": 0.242,
-    "max": 0.299
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.214,
+    "p50": 0.202,
     "p90": 0.243,
-    "max": 0.26
+    "max": 0.243
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get string secret",
+    "test_case": "Get binary secret",
     "protocol": "CBOR",
-    "dimension_value": 8192,
+    "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.198,
-    "p90": 0.246,
-    "max": 0.247
+    "p50": 0.218,
+    "p90": 0.251,
+    "max": 0.251
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.166,
+    "p90": 0.251,
+    "max": 0.251
   },
   {
     "service": "SecretsManager",
     "test_case": "Describe secret",
     "protocol": "JSON",
-    "dimension_value": 8192,
+    "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.232,
-    "p90": 0.246,
+    "p50": 0.205,
+    "p90": 0.252,
     "max": 0.252
   },
   {
     "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.249,
+    "p90": 0.259,
+    "max": 0.259
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.205,
+    "p90": 0.262,
+    "max": 0.262
+  },
+  {
+    "service": "SecretsManager",
     "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.254,
+    "p90": 0.262,
+    "max": 0.262
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.23,
+    "p90": 0.279,
+    "max": 0.279
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.233,
+    "p90": 0.281,
+    "max": 0.281
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.277,
+    "p90": 0.282,
+    "max": 0.282
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
     "p50": 0.241,
-    "p90": 0.247,
-    "max": 0.268
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.201,
-    "p90": 0.248,
-    "max": 0.297
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.205,
-    "p90": 0.251,
-    "max": 0.269
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.198,
-    "p90": 0.256,
-    "max": 0.264
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.227,
-    "p90": 0.262,
-    "max": 0.283
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.209,
-    "p90": 0.263,
-    "max": 0.303
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.222,
-    "p90": 0.27,
-    "max": 0.275
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.218,
-    "p90": 0.27,
-    "max": 0.298
+    "p90": 0.284,
+    "max": 0.284
   },
   {
     "service": "SecretsManager",
     "test_case": "Put binary secret",
     "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.209,
+    "p90": 0.288,
+    "max": 0.288
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.215,
+    "p90": 0.294,
+    "max": 0.294
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.178,
-    "p90": 0.275,
-    "max": 0.302
+    "p50": 0.257,
+    "p90": 0.297,
+    "max": 0.297
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
     "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.247,
-    "p90": 0.275,
-    "max": 0.282
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.248,
-    "p90": 0.285,
-    "max": 0.286
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.259,
-    "p90": 0.288,
-    "max": 0.299
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 16,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.175,
-    "p90": 0.295,
-    "max": 0.518
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.157,
-    "p90": 0.297,
-    "max": 0.303
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.216,
-    "p90": 0.299,
-    "max": 0.336
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.19,
-    "p90": 0.3,
-    "max": 0.326
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 16,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.192,
-    "p90": 0.318,
-    "max": 0.384
+    "p50": 0.267,
+    "p90": 0.301,
+    "max": 0.301
   },
   {
     "service": "SecretsManager",
@@ -575,9 +375,69 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.294,
+    "p50": 0.24,
+    "p90": 0.305,
+    "max": 0.305
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.235,
+    "p90": 0.312,
+    "max": 0.312
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.302,
+    "p90": 0.314,
+    "max": 0.314
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.311,
+    "p90": 0.316,
+    "max": 0.316
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.276,
+    "p90": 0.318,
+    "max": 0.318
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 16,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.142,
+    "p90": 0.318,
+    "max": 0.318
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.245,
     "p90": 0.319,
-    "max": 0.322
+    "max": 0.319
   },
   {
     "service": "Echo",
@@ -585,69 +445,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.204,
+    "p50": 0.258,
     "p90": 0.321,
-    "max": 0.358
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.23,
-    "p90": 0.321,
-    "max": 0.322
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.272,
-    "p90": 0.328,
-    "max": 0.368
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.266,
-    "p90": 0.33,
-    "max": 0.333
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.173,
-    "p90": 0.339,
-    "max": 0.363
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.317,
-    "p90": 0.339,
-    "max": 0.355
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.263,
-    "p90": 0.344,
-    "max": 0.395
+    "max": 0.321
   },
   {
     "service": "SecretsManager",
@@ -655,49 +455,29 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.306,
-    "p90": 0.351,
-    "max": 0.36
+    "p50": 0.236,
+    "p90": 0.321,
+    "max": 0.321
   },
   {
     "service": "SecretsManager",
     "test_case": "Get string secret",
     "protocol": "CBOR",
-    "dimension_value": 64,
+    "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.3,
-    "p90": 0.361,
-    "max": 0.496
+    "p50": 0.275,
+    "p90": 0.322,
+    "max": 0.322
   },
   {
     "service": "SecretsManager",
-    "test_case": "Put binary secret",
+    "test_case": "List secrets",
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.258,
-    "p90": 0.372,
-    "max": 0.59
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.243,
-    "p90": 0.373,
-    "max": 0.404
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.364,
-    "p90": 0.382,
-    "max": 0.441
+    "p50": 0.301,
+    "p90": 0.337,
+    "max": 0.337
   },
   {
     "service": "SecretsManager",
@@ -705,59 +485,169 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.364,
-    "p90": 0.386,
-    "max": 0.389
+    "p50": 0.248,
+    "p90": 0.342,
+    "max": 0.342
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get string secret",
+    "test_case": "List secrets",
     "protocol": "JSON",
-    "dimension_value": 64,
+    "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.342,
-    "p90": 0.398,
-    "max": 0.6
+    "p50": 0.32,
+    "p90": 0.344,
+    "max": 0.344
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get binary secret",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.227,
+    "p90": 0.346,
+    "max": 0.346
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.37,
-    "p90": 0.443,
-    "max": 0.488
+    "p50": 0.305,
+    "p90": 0.349,
+    "max": 0.349
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.29,
+    "p90": 0.358,
+    "max": 0.358
   },
   {
     "service": "Cloudwatch",
     "test_case": "Get metric data",
-    "protocol": "Query",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.31,
+    "p90": 0.363,
+    "max": 0.363
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "CBOR",
+    "dimension_value": 16,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.098,
+    "p90": 0.368,
+    "max": 0.368
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.353,
-    "p90": 0.448,
-    "max": 0.461
+    "p50": 0.244,
+    "p90": 0.378,
+    "max": 0.378
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.313,
+    "p90": 0.379,
+    "max": 0.379
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.333,
+    "p90": 0.388,
+    "max": 0.388
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.249,
+    "p90": 0.389,
+    "max": 0.389
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.33,
+    "p90": 0.392,
+    "max": 0.392
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
     "protocol": "CBOR",
-    "dimension_value": 64,
+    "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.313,
-    "p90": 0.469,
-    "max": 0.685
+    "p50": 0.391,
+    "p90": 0.4,
+    "max": 0.4
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.297,
+    "p90": 0.405,
+    "max": 0.405
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.335,
+    "p90": 0.415,
+    "max": 0.415
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.389,
-    "p90": 0.471,
-    "max": 0.638
+    "p50": 0.254,
+    "p90": 0.421,
+    "max": 0.421
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.279,
+    "p90": 0.434,
+    "max": 0.434
   },
   {
     "service": "Cloudwatch",
@@ -765,19 +655,29 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.36,
-    "p90": 0.485,
-    "max": 0.52
+    "p50": 0.377,
+    "p90": 0.434,
+    "max": 0.434
   },
   {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 256,
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.356,
-    "p90": 0.489,
-    "max": 0.515
+    "p50": 0.348,
+    "p90": 0.438,
+    "max": 0.438
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.354,
+    "p90": 0.456,
+    "max": 0.456
   },
   {
     "service": "SecretsManager",
@@ -785,9 +685,89 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.375,
-    "p90": 0.58,
-    "max": 0.805
+    "p50": 0.276,
+    "p90": 0.459,
+    "max": 0.459
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 16,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.207,
+    "p90": 0.476,
+    "max": 0.476
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.264,
+    "p90": 0.49,
+    "max": 0.49
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.295,
+    "p90": 0.53,
+    "max": 0.53
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 256,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.374,
+    "p90": 0.541,
+    "max": 0.541
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.386,
+    "p90": 0.55,
+    "max": 0.55
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.345,
+    "p90": 0.555,
+    "max": 0.555
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.324,
+    "p90": 0.623,
+    "max": 0.623
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.146,
+    "p90": 0.8,
+    "max": 0.8
   },
   {
     "service": "SecretsManager",
@@ -795,39 +775,29 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.616,
-    "p90": 0.686,
-    "max": 1.074
+    "p50": 0.658,
+    "p90": 0.857,
+    "max": 0.857
   },
   {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.62,
-    "p90": 0.692,
-    "max": 64.772
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
+    "service": "Echo",
+    "test_case": "List of complex objects",
     "protocol": "JSON",
-    "dimension_value": 45056,
+    "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.701,
-    "p90": 0.8,
-    "max": 61.841
+    "p50": 0.383,
+    "p90": 0.877,
+    "max": 0.877
   },
   {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 16,
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "CBOR",
+    "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.589,
-    "p90": 0.973,
-    "max": 4.265
+    "p50": 0.133,
+    "p90": 1.323,
+    "max": 1.323
   },
   {
     "service": "Echo",
@@ -835,9 +805,19 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.609,
-    "p90": 3.849,
-    "max": 4.367
+    "p50": 0.986,
+    "p90": 3.802,
+    "max": 3.802
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 16,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.555,
+    "p90": 4.051,
+    "max": 4.051
   },
   {
     "service": "Echo",
@@ -845,9 +825,49 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 3.502,
-    "p90": 4.06,
-    "max": 6
+    "p50": 3.862,
+    "p90": 4.103,
+    "max": 4.103
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.872,
+    "p90": 65.408,
+    "max": 65.408
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Deserialization time (ms)",
+    "p50": 3.127,
+    "p90": 65.868,
+    "max": 65.868
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 2.98,
+    "p90": 65.877,
+    "max": 65.877
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.62,
+    "p90": 66.105,
+    "max": 66.105
   },
   {
     "service": "SecretsManager",
@@ -855,19 +875,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 1.406,
-    "p90": 62.1,
-    "max": 62.12
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 65.417,
-    "p90": 65.838,
-    "max": 66.137
+    "p50": 66.309,
+    "p90": 66.391,
+    "max": 66.391
   },
   {
     "service": "Cloudwatch",
@@ -875,9 +885,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 65.156,
-    "p90": 67.154,
-    "max": 67.525
+    "p50": 2.34,
+    "p90": 66.772,
+    "max": 66.772
   },
   {
     "service": "Cloudwatch",
@@ -885,29 +895,19 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 64.212,
-    "p90": 67.275,
-    "max": 67.339
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Deserialization time (ms)",
-    "p50": 66.727,
-    "p90": 68.718,
-    "max": 68.783
+    "p50": 2.678,
+    "p90": 68.602,
+    "max": 68.602
   },
   {
     "service": "Cloudwatch",
     "test_case": "List metrics",
     "protocol": "Query",
-    "dimension_value": 256,
+    "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 90.647,
-    "p90": 91.964,
-    "max": 91.971
+    "p50": 29.118,
+    "p90": 92.271,
+    "max": 92.271
   },
   {
     "service": "Cloudwatch",
@@ -915,9 +915,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 89.931,
-    "p90": 92.366,
-    "max": 92.392
+    "p50": 30.893,
+    "p90": 94.197,
+    "max": 94.197
   },
   {
     "service": "Cloudwatch",
@@ -925,19 +925,19 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 89.803,
-    "p90": 92.929,
-    "max": 93.236
+    "p50": 32.067,
+    "p90": 94.629,
+    "max": 94.629
   },
   {
     "service": "Cloudwatch",
     "test_case": "List metrics",
     "protocol": "Query",
-    "dimension_value": 1000,
+    "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 350.422,
-    "p90": 739.751,
-    "max": 764.635
+    "p50": 28.846,
+    "p90": 95.483,
+    "max": 95.483
   },
   {
     "service": "Cloudwatch",
@@ -1366,8 +1366,8 @@
     "dimension_value": 45056,
     "metric": "Request payload size (bytes)",
     "p50": 68,
-    "p90": 72,
-    "max": 72
+    "p90": 68,
+    "max": 68
   },
   {
     "service": "SecretsManager",
@@ -1415,7 +1415,7 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Request payload size (bytes)",
-    "p50": 80,
+    "p50": 91,
     "p90": 91,
     "max": 91
   },
@@ -1606,8 +1606,8 @@
     "dimension_value": 0,
     "metric": "Request payload size (bytes)",
     "p50": 1699,
-    "p90": 1701,
-    "max": 1701
+    "p90": 1700,
+    "max": 1700
   },
   {
     "service": "Echo",
@@ -1615,9 +1615,9 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Request payload size (bytes)",
-    "p50": 1708,
-    "p90": 1709,
-    "max": 1710
+    "p50": 1706,
+    "p90": 1708,
+    "max": 1708
   },
   {
     "service": "Cloudwatch",
@@ -1665,9 +1665,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Request payload size (bytes)",
-    "p50": 5100,
-    "p90": 5105,
-    "max": 5108
+    "p50": 5102,
+    "p90": 5106,
+    "max": 5106
   },
   {
     "service": "SecretsManager",
@@ -1755,9 +1755,9 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Request payload size (bytes)",
-    "p50": 20379,
-    "p90": 20386,
-    "max": 20392
+    "p50": 20375,
+    "p90": 20378,
+    "max": 20378
   },
   {
     "service": "Echo",
@@ -1775,9 +1775,9 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Request payload size (bytes)",
-    "p50": 29943,
+    "p50": 29933,
     "p90": 29950,
-    "max": 29951
+    "max": 29950
   },
   {
     "service": "Cloudwatch",
@@ -1835,9 +1835,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Request payload size (bytes)",
-    "p50": 82688,
-    "p90": 82701,
-    "max": 82706
+    "p50": 82685,
+    "p90": 82697,
+    "max": 82697
   },
   {
     "service": "Cloudwatch",
@@ -1865,9 +1865,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Request payload size (bytes)",
-    "p50": 325698,
-    "p90": 325718,
-    "max": 325721
+    "p50": 325670,
+    "p90": 325710,
+    "max": 325710
   },
   {
     "service": "Echo",
@@ -1958,16 +1958,6 @@
     "p50": 100,
     "p90": 100,
     "max": 100
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Response payload size (bytes)",
-    "p50": 1599,
-    "p90": 160,
-    "max": 160
   },
   {
     "service": "SecretsManager",
@@ -2422,52 +2412,52 @@
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
-    "protocol": "JSON",
+    "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Response payload size (bytes)",
-    "p50": 916,
-    "p90": 916,
-    "max": 916
+    "p50": 807,
+    "p90": 807,
+    "max": 807
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
-    "protocol": "JSON",
+    "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Response payload size (bytes)",
-    "p50": 916,
-    "p90": 916,
-    "max": 916
+    "p50": 807,
+    "p90": 807,
+    "max": 807
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
-    "protocol": "JSON",
+    "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Response payload size (bytes)",
-    "p50": 916,
-    "p90": 916,
-    "max": 916
+    "p50": 807,
+    "p90": 807,
+    "max": 807
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
-    "protocol": "JSON",
+    "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Response payload size (bytes)",
-    "p50": 916,
-    "p90": 916,
-    "max": 916
+    "p50": 807,
+    "p90": 807,
+    "max": 807
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
-    "protocol": "JSON",
+    "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Response payload size (bytes)",
-    "p50": 174,
-    "p90": 916,
-    "max": 916
+    "p50": 807,
+    "p90": 807,
+    "max": 807
   },
   {
     "service": "SecretsManager",
@@ -2500,54 +2490,14 @@
     "max": 1565
   },
   {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Response payload size (bytes)",
-    "p50": 1599,
-    "p90": 1599,
-    "max": 1599
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Response payload size (bytes)",
-    "p50": 1599,
-    "p90": 1599,
-    "max": 1599
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Response payload size (bytes)",
-    "p50": 1599,
-    "p90": 1599,
-    "max": 1599
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Response payload size (bytes)",
-    "p50": 1599,
-    "p90": 1599,
-    "max": 1599
-  },
-  {
     "service": "Echo",
     "test_case": "Complex object",
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Response payload size (bytes)",
     "p50": 1699,
-    "p90": 1701,
-    "max": 1701
+    "p90": 1700,
+    "max": 1700
   },
   {
     "service": "Echo",
@@ -2555,9 +2505,59 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Response payload size (bytes)",
-    "p50": 1708,
-    "p90": 1709,
-    "max": 1710
+    "p50": 1706,
+    "p90": 1708,
+    "max": 1708
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Response payload size (bytes)",
+    "p50": 1814,
+    "p90": 1815,
+    "max": 1815
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Response payload size (bytes)",
+    "p50": 1815,
+    "p90": 1816,
+    "max": 1816
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Response payload size (bytes)",
+    "p50": 1816,
+    "p90": 1816,
+    "max": 1816
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Response payload size (bytes)",
+    "p50": 1816,
+    "p90": 1816,
+    "max": 1816
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Response payload size (bytes)",
+    "p50": 1816,
+    "p90": 1816,
+    "max": 1816
   },
   {
     "service": "SecretsManager",
@@ -2675,9 +2675,9 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Response payload size (bytes)",
-    "p50": 29943,
+    "p50": 29933,
     "p90": 29950,
-    "max": 29951
+    "max": 29950
   },
   {
     "service": "SecretsManager",
@@ -2715,9 +2715,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Response payload size (bytes)",
-    "p50": 52214,
-    "p90": 52214,
-    "max": 52214
+    "p50": 52274,
+    "p90": 52274,
+    "max": 52274
   },
   {
     "service": "Cloudwatch",
@@ -2725,9 +2725,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Response payload size (bytes)",
-    "p50": 52214,
-    "p90": 52214,
-    "max": 52214
+    "p50": 52274,
+    "p90": 52274,
+    "max": 52274
   },
   {
     "service": "Cloudwatch",
@@ -2735,9 +2735,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Response payload size (bytes)",
-    "p50": 52214,
-    "p90": 52214,
-    "max": 52214
+    "p50": 52274,
+    "p90": 52274,
+    "max": 52274
   },
   {
     "service": "Cloudwatch",
@@ -2745,9 +2745,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Response payload size (bytes)",
-    "p50": 52235,
-    "p90": 52235,
-    "max": 52235
+    "p50": 52274,
+    "p90": 52274,
+    "max": 52274
   },
   {
     "service": "SecretsManager",
@@ -2765,9 +2765,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Response payload size (bytes)",
-    "p50": 142372,
-    "p90": 142372,
-    "max": 142372
+    "p50": 142486,
+    "p90": 142486,
+    "max": 142486
   },
   {
     "service": "Cloudwatch",
@@ -2775,9 +2775,9 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Response payload size (bytes)",
-    "p50": 142372,
-    "p90": 142372,
-    "max": 142372
+    "p50": 142486,
+    "p90": 142486,
+    "max": 142486
   },
   {
     "service": "Cloudwatch",
@@ -2785,9 +2785,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Response payload size (bytes)",
-    "p50": 142409,
-    "p90": 142409,
-    "max": 142409
+    "p50": 142543,
+    "p90": 142543,
+    "max": 142543
   },
   {
     "service": "Cloudwatch",
@@ -2795,9 +2795,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Response payload size (bytes)",
-    "p50": 142429,
-    "p90": 142429,
-    "max": 142429
+    "p50": 142543,
+    "p90": 142543,
+    "max": 142543
   },
   {
     "service": "Echo",
@@ -2821,103 +2821,33 @@
   },
   {
     "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Serialization time (ms)",
-    "p50": 0.058,
-    "p90": 0.06,
-    "max": 0.061
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.062,
-    "p90": 0.064,
-    "max": 0.078
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
+    "test_case": "Get binary secret",
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.062,
-    "p90": 0.064,
-    "max": 0.091
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.06,
-    "p90": 0.064,
-    "max": 0.067
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Serialization time (ms)",
-    "p50": 0.06,
-    "p90": 0.066,
-    "max": 0.12
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.062,
-    "p90": 0.067,
-    "max": 0.09
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.066,
-    "p90": 0.068,
+    "p50": 0.068,
+    "p90": 0.071,
     "max": 0.071
   },
   {
     "service": "SecretsManager",
     "test_case": "Get string secret",
     "protocol": "JSON",
-    "dimension_value": 45056,
+    "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.066,
-    "p90": 0.068,
-    "max": 0.068
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.066,
-    "p90": 0.069,
-    "max": 0.07
+    "p50": 0.07,
+    "p90": 0.071,
+    "max": 0.071
   },
   {
     "service": "SecretsManager",
     "test_case": "Describe secret",
     "protocol": "JSON",
-    "dimension_value": 8192,
+    "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.059,
-    "p90": 0.075,
-    "max": 0.096
+    "p50": 0.071,
+    "p90": 0.071,
+    "max": 0.071
   },
   {
     "service": "SecretsManager",
@@ -2925,549 +2855,449 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.061,
-    "p90": 0.077,
-    "max": 0.083
+    "p50": 0.071,
+    "p90": 0.072,
+    "max": 0.072
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.075,
-    "p90": 0.078,
-    "max": 0.081
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.074,
-    "p90": 0.078,
-    "max": 0.099
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
+    "test_case": "List secrets",
+    "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.071,
+    "p50": 0.073,
+    "p90": 0.075,
+    "max": 0.075
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.07,
     "p90": 0.078,
     "max": 0.078
   },
   {
-    "service": "Echo",
-    "test_case": "Complex object",
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
     "protocol": "JSON",
-    "dimension_value": 0,
+    "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.072,
-    "p90": 0.079,
-    "max": 0.095
+    "p50": 0.071,
+    "p90": 0.08,
+    "max": 0.08
   },
   {
     "service": "SecretsManager",
     "test_case": "Get string secret",
-    "protocol": "CBOR",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.077,
+    "p90": 0.08,
+    "max": 0.08
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.076,
-    "p90": 0.079,
+    "p50": 0.069,
+    "p90": 0.08,
     "max": 0.08
   },
   {
     "service": "SecretsManager",
     "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.075,
-    "p90": 0.081,
-    "max": 0.099
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.063,
-    "p90": 0.083,
-    "max": 0.087
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.063,
-    "p90": 0.083,
-    "max": 0.086
+    "p50": 0.069,
+    "p90": 0.081,
+    "max": 0.081
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get string secret",
+    "test_case": "Get binary secret",
     "protocol": "JSON",
-    "dimension_value": 4096,
+    "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.063,
-    "p90": 0.084,
-    "max": 0.099
+    "p50": 0.079,
+    "p90": 0.082,
+    "max": 0.082
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.075,
-    "p90": 0.085,
-    "max": 0.098
+    "p50": 0.073,
+    "p90": 0.088,
+    "max": 0.088
   },
   {
     "service": "SecretsManager",
     "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.078,
+    "p90": 0.089,
+    "max": 0.089
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.082,
-    "p90": 0.085,
-    "max": 0.086
+    "p50": 0.088,
+    "p90": 0.09,
+    "max": 0.09
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.086,
+    "p90": 0.09,
+    "max": 0.09
   },
   {
     "service": "SecretsManager",
     "test_case": "Put string secret",
     "protocol": "JSON",
-    "dimension_value": 512,
+    "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.077,
-    "p90": 0.086,
-    "max": 0.118
+    "p50": 0.089,
+    "p90": 0.09,
+    "max": 0.09
   },
   {
     "service": "SecretsManager",
-    "test_case": "Get binary secret",
+    "test_case": "Describe secret",
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.064,
-    "p90": 0.086,
-    "max": 0.09
+    "p50": 0.073,
+    "p90": 0.091,
+    "max": 0.091
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.079,
+    "p90": 0.092,
+    "max": 0.092
   },
   {
     "service": "SecretsManager",
     "test_case": "Get string secret",
     "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.092,
+    "p90": 0.094,
+    "max": 0.094
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Serialization time (ms)",
+    "p50": 0.092,
+    "p90": 0.095,
+    "max": 0.095
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.095,
+    "p90": 0.098,
+    "max": 0.098
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Serialization time (ms)",
+    "p50": 0.093,
+    "p90": 0.099,
+    "max": 0.099
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Serialization time (ms)",
+    "p50": 0.093,
+    "p90": 0.099,
+    "max": 0.099
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.078,
-    "p90": 0.087,
+    "p50": 0.089,
+    "p90": 0.1,
+    "max": 0.1
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.099,
+    "p90": 0.101,
+    "max": 0.101
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Serialization time (ms)",
+    "p50": 0.083,
+    "p90": 0.102,
+    "max": 0.102
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.096,
+    "p90": 0.105,
+    "max": 0.105
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.102,
+    "p90": 0.107,
+    "max": 0.107
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Serialization time (ms)",
+    "p50": 0.093,
+    "p90": 0.108,
+    "max": 0.108
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.102,
+    "p90": 0.112,
+    "max": 0.112
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.101,
+    "p90": 0.112,
+    "max": 0.112
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 256,
+    "metric": "Serialization time (ms)",
+    "p50": 0.106,
+    "p90": 0.113,
+    "max": 0.113
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.109,
+    "p90": 0.115,
+    "max": 0.115
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.097,
+    "p90": 0.115,
+    "max": 0.115
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.103,
+    "p90": 0.118,
+    "max": 0.118
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Serialization time (ms)",
+    "p50": 0.115,
+    "p90": 0.118,
+    "max": 0.118
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Serialization time (ms)",
+    "p50": 0.103,
+    "p90": 0.121,
+    "max": 0.121
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Serialization time (ms)",
+    "p50": 0.106,
+    "p90": 0.121,
+    "max": 0.121
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.115,
+    "p90": 0.124,
+    "max": 0.124
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.116,
+    "p90": 0.124,
+    "max": 0.124
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.113,
+    "p90": 0.126,
+    "max": 0.126
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.117,
+    "p90": 0.126,
+    "max": 0.126
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.118,
+    "p90": 0.128,
+    "max": 0.128
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.123,
+    "p90": 0.129,
+    "max": 0.129
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.119,
+    "p90": 0.13,
+    "max": 0.13
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.082,
+    "p90": 0.131,
+    "max": 0.131
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.1,
+    "p90": 0.134,
     "max": 0.134
   },
   {
     "service": "SecretsManager",
     "test_case": "Describe secret",
     "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.074,
-    "p90": 0.088,
-    "max": 0.089
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.085,
-    "p90": 0.088,
-    "max": 0.09
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
     "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.076,
-    "p90": 0.088,
-    "max": 0.151
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.075,
-    "p90": 0.089,
-    "max": 0.101
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.087,
-    "p90": 0.091,
-    "max": 0.221
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.083,
-    "p90": 0.091,
-    "max": 0.095
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.089,
-    "p90": 0.092,
-    "max": 0.097
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.088,
-    "p90": 0.094,
-    "max": 0.106
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.082,
-    "p90": 0.094,
-    "max": 0.095
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.084,
-    "p90": 0.094,
-    "max": 0.129
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.089,
-    "p90": 0.095,
-    "max": 0.098
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.075,
-    "p90": 0.095,
-    "max": 0.096
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Serialization time (ms)",
-    "p50": 0.079,
-    "p90": 0.098,
-    "max": 0.106
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Serialization time (ms)",
-    "p50": 0.077,
-    "p90": 0.098,
-    "max": 0.104
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Serialization time (ms)",
-    "p50": 0.089,
-    "p90": 0.098,
-    "max": 0.158
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.084,
-    "p90": 0.099,
-    "max": 0.1
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.084,
-    "p90": 0.1,
-    "max": 0.103
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.086,
-    "p90": 0.102,
-    "max": 0.23
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.077,
-    "p90": 0.103,
-    "max": 0.107
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.097,
-    "p90": 0.103,
-    "max": 0.113
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.092,
-    "p90": 0.104,
-    "max": 0.116
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.094,
-    "p90": 0.105,
-    "max": 0.215
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.063,
-    "p90": 0.106,
-    "max": 0.657
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.101,
-    "p90": 0.107,
-    "max": 0.108
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.093,
-    "p90": 0.109,
-    "max": 0.12
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.099,
-    "p90": 0.11,
-    "max": 0.117
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Serialization time (ms)",
-    "p50": 0.079,
-    "p90": 0.117,
-    "max": 0.12
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
     "metric": "Serialization time (ms)",
     "p50": 0.091,
-    "p90": 0.123,
-    "max": 0.158
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Serialization time (ms)",
-    "p50": 0.096,
-    "p90": 0.124,
-    "max": 0.16
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 256,
-    "metric": "Serialization time (ms)",
-    "p50": 0.091,
-    "p90": 0.124,
-    "max": 0.13
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Serialization time (ms)",
-    "p50": 0.094,
-    "p90": 0.125,
-    "max": 0.131
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.09,
-    "p90": 0.127,
-    "max": 0.176
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.087,
-    "p90": 0.127,
-    "max": 0.187
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Serialization time (ms)",
-    "p50": 0.092,
-    "p90": 0.13,
-    "max": 0.145
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.069,
-    "p90": 0.133,
-    "max": 0.162
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 16,
-    "metric": "Serialization time (ms)",
-    "p50": 0.096,
     "p90": 0.135,
-    "max": 0.234
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 1000,
-    "metric": "Serialization time (ms)",
-    "p50": 0.116,
-    "p90": 0.136,
-    "max": 0.14
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.102,
-    "p90": 0.137,
-    "max": 0.26
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 16,
-    "metric": "Serialization time (ms)",
-    "p50": 0.084,
-    "p90": 0.141,
-    "max": 0.178
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Serialization time (ms)",
-    "p50": 0.084,
-    "p90": 0.141,
-    "max": 0.147
+    "max": 0.135
   },
   {
     "service": "SecretsManager",
@@ -3475,199 +3305,339 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.108,
-    "p90": 0.142,
+    "p50": 0.126,
+    "p90": 0.137,
+    "max": 0.137
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.114,
+    "p90": 0.141,
+    "max": 0.141
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.081,
+    "p90": 0.141,
+    "max": 0.141
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 1000,
+    "metric": "Serialization time (ms)",
+    "p50": 0.132,
+    "p90": 0.141,
+    "max": 0.141
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.121,
+    "p90": 0.147,
     "max": 0.147
   },
   {
     "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.112,
+    "p90": 0.15,
+    "max": 0.15
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.125,
+    "p90": 0.15,
+    "max": 0.15
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 16,
+    "metric": "Serialization time (ms)",
+    "p50": 0.106,
+    "p90": 0.159,
+    "max": 0.159
+  },
+  {
+    "service": "SecretsManager",
     "test_case": "List secrets",
-    "protocol": "JSON",
+    "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.072,
-    "p90": 0.148,
-    "max": 0.167
+    "p50": 0.103,
+    "p90": 0.165,
+    "max": 0.165
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.118,
+    "p90": 0.165,
+    "max": 0.165
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Serialization time (ms)",
+    "p50": 0.128,
+    "p90": 0.169,
+    "max": 0.169
   },
   {
     "service": "Echo",
     "test_case": "Complex object",
-    "protocol": "CBOR",
+    "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Serialization time (ms)",
-    "p50": 0.105,
-    "p90": 0.155,
-    "max": 0.158
+    "p50": 0.112,
+    "p90": 0.17,
+    "max": 0.17
   },
   {
     "service": "Cloudwatch",
     "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 1000,
+    "metric": "Serialization time (ms)",
+    "p50": 0.152,
+    "p90": 0.175,
+    "max": 0.175
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Serialization time (ms)",
+    "p50": 0.104,
+    "p90": 0.179,
+    "max": 0.179
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.101,
-    "p90": 0.158,
-    "max": 0.18
+    "p50": 0.095,
+    "p90": 0.181,
+    "max": 0.181
   },
   {
     "service": "SecretsManager",
     "test_case": "Put string secret",
-    "protocol": "CBOR",
+    "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.108,
-    "p90": 0.164,
-    "max": 0.271
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Serialization time (ms)",
-    "p50": 0.111,
-    "p90": 0.164,
+    "p50": 0.18,
+    "p90": 0.185,
     "max": 0.185
   },
   {
     "service": "SecretsManager",
     "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Serialization time (ms)",
-    "p50": 0.17,
-    "p90": 0.19,
-    "max": 0.194
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
     "protocol": "CBOR",
-    "dimension_value": 16,
-    "metric": "Serialization time (ms)",
-    "p50": 0.106,
-    "p90": 0.192,
-    "max": 0.283
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.119,
-    "p90": 0.2,
-    "max": 1.819
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 1000,
-    "metric": "Serialization time (ms)",
-    "p50": 0.145,
-    "p90": 0.203,
-    "max": 0.225
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 256,
-    "metric": "Serialization time (ms)",
-    "p50": 0.143,
-    "p90": 0.204,
-    "max": 0.238
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.146,
-    "p90": 0.211,
-    "max": 0.252
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.227,
-    "p90": 0.253,
-    "max": 0.263
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 16,
-    "metric": "Serialization time (ms)",
-    "p50": 0.182,
-    "p90": 0.271,
-    "max": 0.582
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Serialization time (ms)",
-    "p50": 0.232,
-    "p90": 0.314,
-    "max": 0.338
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.244,
-    "p90": 0.34,
-    "max": 0.495
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 16,
-    "metric": "Serialization time (ms)",
-    "p50": 0.268,
-    "p90": 0.351,
-    "max": 2.309
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.346,
-    "p90": 0.369,
-    "max": 0.386
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.178,
-    "p90": 0.396,
-    "max": 2.9
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.101,
-    "p90": 0.425,
-    "max": 0.471
+    "p50": 0.127,
+    "p90": 0.189,
+    "max": 0.189
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.135,
+    "p90": 0.193,
+    "max": 0.193
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.129,
+    "p90": 0.198,
+    "max": 0.198
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.152,
+    "p90": 0.214,
+    "max": 0.214
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.168,
+    "p90": 0.216,
+    "max": 0.216
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 256,
+    "metric": "Serialization time (ms)",
+    "p50": 0.202,
+    "p90": 0.222,
+    "max": 0.222
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.126,
+    "p90": 0.224,
+    "max": 0.224
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 16,
+    "metric": "Serialization time (ms)",
+    "p50": 0.139,
+    "p90": 0.236,
+    "max": 0.236
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Serialization time (ms)",
+    "p50": 0.143,
+    "p90": 0.244,
+    "max": 0.244
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Serialization time (ms)",
+    "p50": 0.245,
+    "p90": 0.254,
+    "max": 0.254
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 16,
+    "metric": "Serialization time (ms)",
+    "p50": 0.149,
+    "p90": 0.26,
+    "max": 0.26
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.098,
+    "p90": 0.287,
+    "max": 0.287
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.127,
+    "p90": 0.292,
+    "max": 0.292
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.202,
+    "p90": 0.302,
+    "max": 0.302
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Serialization time (ms)",
+    "p50": 0.142,
+    "p90": 0.31,
+    "max": 0.31
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.311,
+    "p90": 0.533,
+    "max": 0.533
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 16,
+    "metric": "Serialization time (ms)",
+    "p50": 0.262,
+    "p90": 0.609,
+    "max": 0.609
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.388,
+    "p90": 0.699,
+    "max": 0.699
   },
   {
     "service": "Cloudwatch",
@@ -3675,9 +3645,69 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.373,
-    "p90": 0.435,
-    "max": 0.519
+    "p50": 0.711,
+    "p90": 0.736,
+    "max": 0.736
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 1.13,
+    "p90": 1.152,
+    "max": 1.152
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.908,
+    "p90": 1.226,
+    "max": 1.226
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Serialization time (ms)",
+    "p50": 1.162,
+    "p90": 1.275,
+    "max": 1.275
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "CBOR",
+    "dimension_value": 16,
+    "metric": "Serialization time (ms)",
+    "p50": 0.281,
+    "p90": 2.438,
+    "max": 2.438
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 1.67,
+    "p90": 2.806,
+    "max": 2.806
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.14,
+    "p90": 2.891,
+    "max": 2.891
   },
   {
     "service": "Cloudwatch",
@@ -3685,59 +3715,19 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.557,
-    "p90": 0.666,
-    "max": 3.507
+    "p50": 0.509,
+    "p90": 3.489,
+    "max": 3.489
   },
   {
     "service": "Echo",
-    "test_case": "List of complex objects",
+    "test_case": "All types",
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Serialization time (ms)",
-    "p50": 0.451,
-    "p90": 0.755,
-    "max": 0.767
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 1.013,
-    "p90": 1.128,
-    "max": 1.138
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Serialization time (ms)",
-    "p50": 1.125,
-    "p90": 1.209,
-    "max": 1.263
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 1.374,
-    "p90": 1.6,
-    "max": 2.948
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Serialization time (ms)",
-    "p50": 4.048,
-    "p90": 4.217,
-    "max": 4.285
+    "p50": 0.184,
+    "p90": 5.327,
+    "max": 5.327
   },
   {
     "service": "Cloudwatch",
@@ -3745,9 +3735,19 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 4.957,
-    "p90": 6.114,
-    "max": 7.545
+    "p50": 5.352,
+    "p90": 7.667,
+    "max": 7.667
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Serialization time (ms)",
+    "p50": 5.04,
+    "p90": 8.041,
+    "max": 8.041
   },
   {
     "service": "Cloudwatch",
@@ -3755,9 +3755,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 21.411,
-    "p90": 25.68,
-    "max": 28.322
+    "p50": 21.969,
+    "p90": 27.055,
+    "max": 27.055
   },
   {
     "service": "Echo",
@@ -3765,9 +3765,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 0.331,
-    "p90": 0.366,
-    "max": 0.438
+    "p50": 0.508,
+    "p90": 0.599,
+    "max": 0.599
   },
   {
     "service": "Echo",
@@ -3775,69 +3775,49 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 0.352,
-    "p90": 0.496,
-    "max": 4.24
+    "p50": 0.495,
+    "p90": 0.664,
+    "max": 0.664
   },
   {
     "service": "Echo",
     "test_case": "Long list of strings",
     "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.435,
-    "p90": 0.509,
-    "max": 2.109
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.519,
-    "p90": 0.735,
-    "max": 4.832
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.537,
-    "p90": 0.784,
-    "max": 0.856
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.837,
-    "p90": 0.881,
-    "max": 7.621
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.891,
-    "p90": 0.912,
-    "max": 0.934
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
     "p50": 0.653,
-    "p90": 0.913,
-    "max": 7.285
+    "p90": 0.816,
+    "max": 0.816
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.702,
+    "p90": 0.924,
+    "max": 0.924
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.937,
+    "p90": 0.99,
+    "max": 0.99
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.929,
+    "p90": 3.606,
+    "max": 3.606
   },
   {
     "service": "Echo",
@@ -3845,9 +3825,19 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 0.942,
-    "p90": 4.181,
-    "max": 4.732
+    "p50": 1.485,
+    "p90": 4.267,
+    "max": 4.267
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.547,
+    "p90": 4.703,
+    "max": 4.703
   },
   {
     "service": "Echo",
@@ -3855,39 +3845,29 @@
     "protocol": "JSON",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 5.651,
-    "p90": 6.428,
-    "max": 8.379
+    "p50": 6.282,
+    "p90": 6.489,
+    "max": 6.489
   },
   {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
+    "service": "Echo",
+    "test_case": "All types",
     "protocol": "CBOR",
-    "dimension_value": 45056,
+    "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 63.07,
-    "p90": 63.662,
-    "max": 65.276
+    "p50": 0.656,
+    "p90": 6.674,
+    "max": 6.674
   },
   {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 67.013,
-    "p90": 67.4,
-    "max": 67.844
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 67.469,
-    "p90": 67.992,
-    "max": 69.45
+    "p50": 68.543,
+    "p90": 69.821,
+    "max": 69.821
   },
   {
     "service": "Cloudwatch",
@@ -3895,19 +3875,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 66.808,
-    "p90": 68.001,
-    "max": 68.317
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 65.959,
-    "p90": 68.05,
-    "max": 76.009
+    "p50": 69.52,
+    "p90": 70.017,
+    "max": 70.017
   },
   {
     "service": "SecretsManager",
@@ -3915,59 +3885,19 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 69.968,
-    "p90": 70.252,
-    "max": 70.972
+    "p50": 70.676,
+    "p90": 70.915,
+    "max": 70.915
   },
   {
     "service": "SecretsManager",
     "test_case": "Describe secret",
     "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 69.058,
-    "p90": 70.782,
-    "max": 71.747
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 70.098,
-    "p90": 70.985,
-    "max": 71.064
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 68.265,
-    "p90": 71.017,
-    "max": 81.74
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 70.241,
-    "p90": 71.021,
-    "max": 71.333
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Describe secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 69.811,
-    "p90": 71.329,
-    "max": 72.037
+    "p50": 70.303,
+    "p90": 70.992,
+    "max": 70.992
   },
   {
     "service": "Cloudwatch",
@@ -3975,9 +3905,79 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 67.704,
-    "p90": 71.352,
-    "max": 71.629
+    "p50": 69.952,
+    "p90": 71.01,
+    "max": 71.01
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 70.253,
+    "p90": 71.224,
+    "max": 71.224
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 69.492,
+    "p90": 71.254,
+    "max": 71.254
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 70.113,
+    "p90": 71.636,
+    "max": 71.636
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 70.013,
+    "p90": 71.815,
+    "max": 71.815
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 70.76,
+    "p90": 71.882,
+    "max": 71.882
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 71.13,
+    "p90": 72.643,
+    "max": 72.643
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 70.174,
+    "p90": 73.022,
+    "max": 73.022
   },
   {
     "service": "SecretsManager",
@@ -3985,59 +3985,29 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 71.486,
-    "p90": 73.426,
-    "max": 77.256
+    "p50": 70.407,
+    "p90": 73.119,
+    "max": 73.119
   },
   {
     "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 137.583,
-    "p90": 73.435,
-    "max": 74.605
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 72.318,
-    "p90": 73.631,
-    "max": 74.521
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 72.997,
-    "p90": 73.844,
-    "max": 74.355
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 73.352,
-    "p90": 74.108,
-    "max": 74.266
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
+    "test_case": "Put metric data",
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 141.015,
-    "p90": 74.547,
-    "max": 75.844
+    "p50": 73.22,
+    "p90": 75.231,
+    "max": 75.231
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Total request time (ms)",
+    "p50": 74.895,
+    "p90": 75.283,
+    "max": 75.283
   },
   {
     "service": "Cloudwatch",
@@ -4045,19 +4015,19 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 140.091,
-    "p90": 74.908,
-    "max": 75.36
+    "p50": 73.538,
+    "p90": 75.33,
+    "max": 75.33
   },
   {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 142.632,
-    "p90": 75.803,
-    "max": 77.419
+    "p50": 75.849,
+    "p90": 76.145,
+    "max": 76.145
   },
   {
     "service": "SecretsManager",
@@ -4065,9 +4035,99 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 73.724,
-    "p90": 75.84,
-    "max": 77.788
+    "p50": 75.538,
+    "p90": 76.34,
+    "max": 76.34
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Describe secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 70.047,
+    "p90": 76.462,
+    "max": 76.462
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 75.08,
+    "p90": 76.725,
+    "max": 76.725
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 75.832,
+    "p90": 77.103,
+    "max": 77.103
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 76.018,
+    "p90": 77.514,
+    "max": 77.514
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 1000,
+    "metric": "Total request time (ms)",
+    "p50": 73.284,
+    "p90": 77.522,
+    "max": 77.522
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 77.019,
+    "p90": 77.611,
+    "max": 77.611
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 120.511,
+    "p90": 77.941,
+    "max": 77.941
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 77.386,
+    "p90": 77.99,
+    "max": 77.99
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 77.512,
+    "p90": 78.097,
+    "max": 78.097
   },
   {
     "service": "Cloudwatch",
@@ -4075,9 +4135,59 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 71.732,
-    "p90": 76.766,
-    "max": 77.007
+    "p50": 76.697,
+    "p90": 78.425,
+    "max": 78.425
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 1000,
+    "metric": "Total request time (ms)",
+    "p50": 76.548,
+    "p90": 78.45,
+    "max": 78.45
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 77.807,
+    "p90": 78.504,
+    "max": 78.504
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Total request time (ms)",
+    "p50": 77.402,
+    "p90": 79.411,
+    "max": 79.411
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 256,
+    "metric": "Total request time (ms)",
+    "p50": 76.549,
+    "p90": 79.635,
+    "max": 79.635
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "CBOR",
+    "dimension_value": 256,
+    "metric": "Total request time (ms)",
+    "p50": 76.139,
+    "p90": 79.719,
+    "max": 79.719
   },
   {
     "service": "Cloudwatch",
@@ -4085,79 +4195,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 74.667,
-    "p90": 77.342,
-    "max": 77.989
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 76.511,
-    "p90": 77.623,
-    "max": 85.331
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 76.533,
-    "p90": 77.633,
-    "max": 80.495
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 77.347,
-    "p90": 79.153,
-    "max": 92.712
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 77.599,
-    "p90": 79.188,
-    "max": 87.883
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Total request time (ms)",
-    "p50": 75.56,
-    "p90": 79.359,
-    "max": 79.894
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 1000,
-    "metric": "Total request time (ms)",
-    "p50": 74.39,
-    "p90": 79.485,
-    "max": 79.648
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "CBOR",
-    "dimension_value": 1000,
-    "metric": "Total request time (ms)",
-    "p50": 73.888,
-    "p90": 79.6,
-    "max": 79.736
+    "p50": 78.106,
+    "p90": 80.426,
+    "max": 80.426
   },
   {
     "service": "SecretsManager",
@@ -4165,9 +4205,29 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 76.607,
-    "p90": 79.881,
-    "max": 86.663
+    "p50": 77.596,
+    "p90": 80.876,
+    "max": 80.876
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "List secrets",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 78.366,
+    "p90": 81.049,
+    "max": 81.049
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 156.304,
+    "p90": 81.967,
+    "max": 81.967
   },
   {
     "service": "Cloudwatch",
@@ -4175,469 +4235,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 77.912,
-    "p90": 80.286,
-    "max": 80.843
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "List secrets",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 70.54,
-    "p90": 80.486,
-    "max": 98.579
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 74.533,
-    "p90": 80.716,
-    "max": 82.577
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 256,
-    "metric": "Total request time (ms)",
-    "p50": 77.981,
-    "p90": 81.862,
-    "max": 82.168
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 75.802,
-    "p90": 86.589,
-    "max": 86.752
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 77.736,
-    "p90": 86.673,
-    "max": 87.906
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 75.996,
-    "p90": 87.4,
-    "max": 87.582
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 81.216,
-    "p90": 87.612,
-    "max": 87.832
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 83.755,
-    "p90": 87.672,
-    "max": 92.069
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 81.914,
-    "p90": 89.174,
-    "max": 90.019
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 85.17,
-    "p90": 89.174,
-    "max": 89.564
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 86.627,
-    "p90": 89.196,
-    "max": 89.445
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 78.71,
-    "p90": 89.203,
-    "max": 89.27
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 78.863,
-    "p90": 89.717,
-    "max": 94.461
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 83.526,
-    "p90": 90.593,
-    "max": 93.727
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 79.994,
-    "p90": 90.663,
-    "max": 90.905
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 80.811,
-    "p90": 91.89,
-    "max": 93.462
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 81.856,
-    "p90": 92.216,
-    "max": 92.5
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 87.568,
-    "p90": 92.475,
-    "max": 93.369
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 79.105,
-    "p90": 92.758,
-    "max": 95.002
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 80.293,
-    "p90": 93.103,
-    "max": 95.637
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 271.358,
-    "p90": 93.561,
-    "max": 94.993
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 105.79,
-    "p90": 93.719,
-    "max": 99.85
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 83.916,
-    "p90": 93.768,
-    "max": 95.994
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 105.904,
-    "p90": 93.786,
-    "max": 94.902
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 105.038,
-    "p90": 94.316,
-    "max": 95.927
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get string secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 88.625,
-    "p90": 94.323,
-    "max": 94.998
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Get binary secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 90.557,
-    "p90": 95.413,
-    "max": 97.59
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 107.535,
-    "p90": 96.344,
-    "max": 97.192
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 87.901,
-    "p90": 96.675,
-    "max": 98.056
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 109.948,
-    "p90": 97.243,
-    "max": 97.739
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 94.295,
-    "p90": 97.786,
-    "max": 98.727
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "JSON",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 90.02,
-    "p90": 97.863,
-    "max": 99.062
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 91.903,
-    "p90": 98.062,
-    "max": 98.817
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 109.636,
-    "p90": 98.17,
-    "max": 98.822
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 8192,
-    "metric": "Total request time (ms)",
-    "p50": 108.739,
-    "p90": 98.315,
-    "max": 99.337
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 92.046,
-    "p90": 99.104,
-    "max": 99.92
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 90.812,
-    "p90": 99.182,
-    "max": 99.359
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 93.721,
-    "p90": 99.235,
-    "max": 99.414
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 4096,
-    "metric": "Total request time (ms)",
-    "p50": 89.449,
-    "p90": 99.499,
-    "max": 99.987
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 90.872,
-    "p90": 99.585,
-    "max": 99.978
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 512,
-    "metric": "Total request time (ms)",
-    "p50": 96.601,
-    "p90": 99.715,
-    "max": 99.781
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "JSON",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 112.956,
-    "p90": 127.839,
-    "max": 149.694
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put binary secret",
-    "protocol": "CBOR",
-    "dimension_value": 45056,
-    "metric": "Total request time (ms)",
-    "p50": 119.927,
-    "p90": 134.641,
-    "max": 147.521
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 137.508,
-    "p90": 338.338,
-    "max": 345.137
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "CBOR",
-    "dimension_value": 256,
-    "metric": "Total request time (ms)",
-    "p50": 137.228,
-    "p90": 342.317,
-    "max": 345.323
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 256,
-    "metric": "Total request time (ms)",
-    "p50": 148.334,
-    "p90": 416.846,
-    "max": 422.183
+    "p50": 76.173,
+    "p90": 83.966,
+    "max": 83.966
   },
   {
     "service": "Cloudwatch",
@@ -4645,9 +4245,409 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 147.79,
-    "p90": 475.207,
-    "max": 478.377
+    "p50": 222.209,
+    "p90": 85.977,
+    "max": 85.977
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 256,
+    "metric": "Total request time (ms)",
+    "p50": 82.593,
+    "p90": 87.575,
+    "max": 87.575
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 87.968,
+    "p90": 88.155,
+    "max": 88.155
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 87.543,
+    "p90": 89.121,
+    "max": 89.121
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 81.366,
+    "p90": 89.363,
+    "max": 89.363
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 87.92,
+    "p90": 89.73,
+    "max": 89.73
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 79.529,
+    "p90": 89.94,
+    "max": 89.94
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 79.512,
+    "p90": 89.973,
+    "max": 89.973
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 87.641,
+    "p90": 90.013,
+    "max": 90.013
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 81.379,
+    "p90": 90.048,
+    "max": 90.048
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 85.089,
+    "p90": 90.129,
+    "max": 90.129
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 87.586,
+    "p90": 90.522,
+    "max": 90.522
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 89.063,
+    "p90": 90.696,
+    "max": 90.696
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 87.893,
+    "p90": 91.795,
+    "max": 91.795
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 91.606,
+    "p90": 92.289,
+    "max": 92.289
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 103.361,
+    "p90": 92.399,
+    "max": 92.399
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 90.279,
+    "p90": 92.449,
+    "max": 92.449
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 82.125,
+    "p90": 92.885,
+    "max": 92.885
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 91.187,
+    "p90": 92.992,
+    "max": 92.992
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 92.591,
+    "p90": 93.451,
+    "max": 93.451
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 88.737,
+    "p90": 94.304,
+    "max": 94.304
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 92.908,
+    "p90": 94.519,
+    "max": 94.519
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 106.793,
+    "p90": 94.572,
+    "max": 94.572
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get string secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 88.406,
+    "p90": 94.676,
+    "max": 94.676
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Get binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 91.262,
+    "p90": 94.909,
+    "max": 94.909
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 91.735,
+    "p90": 95.404,
+    "max": 95.404
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 146.597,
+    "p90": 95.441,
+    "max": 95.441
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 108.527,
+    "p90": 96.404,
+    "max": 96.404
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 93.263,
+    "p90": 96.872,
+    "max": 96.872
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 108.751,
+    "p90": 96.952,
+    "max": 96.952
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 94.576,
+    "p90": 97.499,
+    "max": 97.499
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 108.193,
+    "p90": 98.194,
+    "max": 98.194
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 109.487,
+    "p90": 98.762,
+    "max": 98.762
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 96.678,
+    "p90": 98.854,
+    "max": 98.854
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 96.404,
+    "p90": 99.194,
+    "max": 99.194
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 512,
+    "metric": "Total request time (ms)",
+    "p50": 101.94,
+    "p90": 106.178,
+    "max": 106.178
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 4096,
+    "metric": "Total request time (ms)",
+    "p50": 103.724,
+    "p90": 106.285,
+    "max": 106.285
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "CBOR",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 114.15,
+    "p90": 116.919,
+    "max": 116.919
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put binary secret",
+    "protocol": "JSON",
+    "dimension_value": 45056,
+    "metric": "Total request time (ms)",
+    "p50": 117.561,
+    "p90": 125.668,
+    "max": 125.668
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "JSON",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 108.812,
+    "p90": 247.537,
+    "max": 247.537
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 8192,
+    "metric": "Total request time (ms)",
+    "p50": 103.983,
+    "p90": 276.196,
+    "max": 276.196
   },
   {
     "service": "Cloudwatch",
@@ -4655,9 +4655,29 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 171.352,
-    "p90": 485.146,
-    "max": 505.376
+    "p50": 124.614,
+    "p90": 305.466,
+    "max": 305.466
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 1000,
+    "metric": "Total request time (ms)",
+    "p50": 180.323,
+    "p90": 305.537,
+    "max": 305.537
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 1000,
+    "metric": "Total request time (ms)",
+    "p50": 124.936,
+    "p90": 388.241,
+    "max": 388.241
   },
   {
     "service": "Cloudwatch",
@@ -4665,9 +4685,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 173.319,
-    "p90": 491.549,
-    "max": 568.067
+    "p50": 118.677,
+    "p90": 534.495,
+    "max": 534.495
   },
   {
     "service": "Cloudwatch",
@@ -4675,28 +4695,8 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 174.276,
-    "p90": 508.087,
-    "max": 545.564
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 1000,
-    "metric": "Total request time (ms)",
-    "p50": 379.914,
-    "p90": 561.315,
-    "max": 584.989
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 1000,
-    "metric": "Total request time (ms)",
-    "p50": 179.583,
-    "p90": 610.944,
-    "max": 617.663
+    "p50": 114.62,
+    "p90": 571.056,
+    "max": 571.056
   }
 ]

@@ -9,6 +9,7 @@ const { Readable } = require("node:stream");
 const osu = require("node-os-utils");
 const fs = require("node:fs");
 const path = require("node:path");
+const { fromIni } = require("@aws-sdk/credential-providers");
 
 const {
   Echo,
@@ -27,6 +28,18 @@ const iterations = 500;
 const reportingData = [];
 const sizes = [64, 512, 4096, 8192, 45056];
 const metricCounts = [16, 64, 256, 1000];
+
+const credentials = async () => {
+  const provider = fromIni({
+    ignoreCache: true,
+    profile: "cbor",
+  });
+  const cred = await provider();
+  return {
+    ...cred,
+    expiration: new Date(Date.now() + 15 * 60 * 1000),
+  };
+};
 
 const region = "us-west-2";
 const echoCborHandler = {
@@ -60,32 +73,42 @@ const echoJsonHandler = {
 
 const echoCbor = new Echo({
   region,
+  credentials,
   requestHandler: echoCborHandler,
   maxAttempts: 1,
 });
 const echoJson = new EchoJson({
   region,
+  credentials,
   requestHandler: echoJsonHandler,
   maxAttempts: 1,
 });
 const cwQuery = new CloudWatch({
   region,
+  credentials,
   disableRequestCompression: true,
   maxAttempts: 1,
 });
 const cwCbor = new CloudWatchCbor({
   region,
+  credentials,
   disableRequestCompression: true,
   maxAttempts: 1,
 });
 const smJson = new SecretsManager({
   region,
+  credentials,
   maxAttempts: 1,
 });
 const smCbor = new SecretsManagerCbor({
   region,
+  credentials,
   maxAttempts: 1,
 });
+
+async function sleep(ms = 100) {
+  await new Promise((r) => setTimeout(r, ms));
+}
 
 function p50(values) {
   return values[(values.length * 0.5) | 0];
@@ -298,6 +321,7 @@ async function runIterations(
       name: "statsMiddleware",
     }
   );
+  console.log("\n", "Scenario:", scenario, protocol, dimensionValue);
   for (let iteration = 0; iteration < _iterations; ++iteration) {
     await setup();
     await fn(client);
@@ -492,8 +516,8 @@ async function runIterations(
   }
 
   for (const { client, protocol } of [
-    { client: smJson, protocol: "JSON" },
     { client: smCbor, protocol: "CBOR" },
+    { client: smJson, protocol: "JSON" },
   ]) {
     let secretName = `TestSecret_0_000`;
     let binarySecretName = `TestBinarySecret_0_000`;
@@ -510,24 +534,39 @@ async function runIterations(
       binarySecretName = `TestBinarySecret_${timestamp}_${iterationString}`;
     }
 
+    await require("./clean-secrets");
+
+    console.log("\n", "creating secrets", protocol);
     for (let i = 0; i < iterations; ++i) {
+      await sleep(25);
       setup();
-      await client.createSecret({
-        Name: secretName,
-        SecretString: "0",
-        Tags: [
-          { Key: "Stage", Value: "Production" },
-          { Key: "Iteration", Value: iterationString },
-        ],
-      });
-      await client.createSecret({
-        Name: binarySecretName,
-        SecretBinary: new Uint8Array([0]),
-        Tags: [
-          { Key: "Stage", Value: "Production" },
-          { Key: "Iteration", Value: iterationString },
-        ],
-      });
+      await client
+        .createSecret({
+          Name: secretName,
+          SecretString: "0",
+          Tags: [
+            { Key: "Stage", Value: "Production" },
+            { Key: "Iteration", Value: iterationString },
+          ],
+        })
+        .catch((e) => {
+          console.log(e.$response);
+          throw e;
+        });
+      await client
+        .createSecret({
+          Name: binarySecretName,
+          SecretBinary: new Uint8Array([0]),
+          Tags: [
+            { Key: "Stage", Value: "Production" },
+            { Key: "Iteration", Value: iterationString },
+          ],
+        })
+        .catch((e) => {
+          console.log(e.$response);
+          throw e;
+        });
+      process.stdout.write(".");
     }
 
     for (const size of sizes) {
@@ -539,6 +578,7 @@ async function runIterations(
           "Put string secret",
           protocol,
           async () => {
+            await sleep(25);
             setup();
             stringValue = crypto.randomBytes(size / 2).toString("hex");
           },
@@ -557,6 +597,7 @@ async function runIterations(
           "Get string secret",
           protocol,
           async () => {
+            await sleep(25);
             setup();
           },
           async (sm) => {
@@ -576,6 +617,7 @@ async function runIterations(
           "Put binary secret",
           protocol,
           async () => {
+            await sleep(25);
             setup();
             binaryValue = crypto.randomBytes(size);
           },
@@ -594,6 +636,7 @@ async function runIterations(
           "Get binary secret",
           protocol,
           async () => {
+            await sleep(25);
             setup();
           },
           async (sm) => {
@@ -612,7 +655,8 @@ async function runIterations(
           client,
           "Describe secret",
           protocol,
-          () => {
+          async () => {
+            await sleep(50);
             setup();
           },
           async (sm) => {
@@ -630,7 +674,8 @@ async function runIterations(
           client,
           "List secrets",
           protocol,
-          () => {
+          async () => {
+            await sleep(50);
             setup();
           },
           async (sm) => {
@@ -652,23 +697,11 @@ async function runIterations(
         );
       }
     }
-
-    for (let i = 0; i < iterations; ++i) {
-      setup();
-      await client.deleteSecret({
-        SecretId: secretName,
-        ForceDeleteWithoutRecovery: true,
-      });
-      await client.deleteSecret({
-        SecretId: binarySecretName,
-        ForceDeleteWithoutRecovery: true,
-      });
-    }
   }
 
   for (const { client, protocol } of [
-    { client: cwQuery, protocol: "Query" },
     { client: cwCbor, protocol: "CBOR" },
+    { client: cwQuery, protocol: "Query" },
   ]) {
     for (const metricCount of metricCounts) {
       let Namespace;
@@ -681,7 +714,7 @@ async function runIterations(
           "Put metric data",
           protocol,
           async () => {
-            await new Promise((r) => setTimeout(r, 250));
+            await sleep();
             Namespace = "TestNamespace";
             MetricData = Array.from({ length: metricCount }).map((el, i) => {
               return {
@@ -717,7 +750,7 @@ async function runIterations(
           "Get metric data",
           protocol,
           async () => {
-            await new Promise((r) => setTimeout(r, 250));
+            await sleep();
             MetricDataQueries = [
               {
                 Id: "m0",
@@ -759,7 +792,7 @@ async function runIterations(
           "List metrics",
           protocol,
           async () => {
-            await new Promise((r) => setTimeout(r, 250));
+            await sleep();
           },
           async (cw) => {
             await cw
