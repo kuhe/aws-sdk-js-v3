@@ -5,9 +5,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 0.656,
-    "p90": 6.674,
-    "max": 6.674
+    "p50": 0.266,
+    "p90": 0.344,
+    "max": 6.066
   },
   {
     "service": "Echo",
@@ -15,9 +15,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Serialization time (ms)",
-    "p50": 0.184,
-    "p90": 5.327,
-    "max": 5.327
+    "p50": 0.074,
+    "p90": 0.103,
+    "max": 4.217
   },
   {
     "service": "Echo",
@@ -25,9 +25,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
-    "p50": 0.133,
-    "p90": 1.323,
-    "max": 1.323
+    "p50": 0.046,
+    "p90": 0.076,
+    "max": 1.148
   },
   {
     "service": "Echo",
@@ -55,9 +55,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Total request time (ms)",
-    "p50": 0.702,
-    "p90": 0.924,
-    "max": 0.924
+    "p50": 0.273,
+    "p90": 0.313,
+    "max": 4.258
   },
   {
     "service": "Echo",
@@ -65,9 +65,9 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Serialization time (ms)",
-    "p50": 0.311,
-    "p90": 0.533,
-    "max": 0.533
+    "p50": 0.08,
+    "p90": 0.122,
+    "max": 0.67
   },
   {
     "service": "Echo",
@@ -75,449 +75,449 @@
     "protocol": "CBOR",
     "dimension_value": 0,
     "metric": "Deserialization time (ms)",
+    "p50": 0.079,
+    "p90": 0.097,
+    "max": 4.013
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 16920,
+    "p90": 16920,
+    "max": 16920
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 16920,
+    "p90": 16920,
+    "max": 16920
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.206,
+    "p90": 0.23,
+    "max": 3.698
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.054,
+    "p90": 0.07,
+    "max": 0.213
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.041,
+    "p90": 0.054,
+    "max": 0.078
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 1560,
+    "p90": 1560,
+    "max": 1560
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 1560,
+    "p90": 1560,
+    "max": 1560
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.546,
+    "p90": 0.592,
+    "max": 4.033
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
     "p50": 0.258,
-    "p90": 0.321,
-    "max": 0.321
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 16920,
-    "p90": 16920,
-    "max": 16920
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 16920,
-    "p90": 16920,
-    "max": 16920
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.508,
-    "p90": 0.599,
-    "max": 0.599
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.135,
-    "p90": 0.193,
-    "max": 0.193
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.114,
-    "p90": 0.161,
-    "max": 0.161
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 1560,
-    "p90": 1560,
-    "max": 1560
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 1560,
-    "p90": 1560,
-    "max": 1560
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 1.485,
-    "p90": 4.267,
-    "max": 4.267
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.908,
-    "p90": 1.226,
-    "max": 1.226
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.986,
-    "p90": 3.802,
-    "max": 3.802
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 26910,
-    "p90": 26910,
-    "max": 26910
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 26910,
-    "p90": 26910,
-    "max": 26910
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.937,
-    "p90": 0.99,
-    "max": 0.99
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.202,
-    "p90": 0.302,
-    "max": 0.302
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.028,
-    "p90": 0.059,
-    "max": 0.059
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 262161,
-    "p90": 262161,
-    "max": 262161
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "CBOR",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 262161,
-    "p90": 262161,
-    "max": 262161
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.547,
-    "p90": 4.703,
-    "max": 4.703
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.14,
-    "p90": 2.891,
-    "max": 2.891
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.146,
-    "p90": 0.8,
-    "max": 0.8
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 1706,
-    "p90": 1708,
-    "max": 1708
-  },
-  {
-    "service": "Echo",
-    "test_case": "All types",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 1706,
-    "p90": 1708,
-    "max": 1708
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.653,
-    "p90": 0.816,
-    "max": 0.816
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.152,
-    "p90": 0.214,
-    "max": 0.214
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.102,
-    "p90": 0.13,
-    "max": 0.13
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 17177,
-    "p90": 17177,
-    "max": 17177
-  },
-  {
-    "service": "Echo",
-    "test_case": "Long list of strings",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 17177,
-    "p90": 17177,
-    "max": 17177
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.495,
-    "p90": 0.664,
-    "max": 0.664
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.112,
-    "p90": 0.17,
-    "max": 0.17
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.1,
-    "p90": 0.125,
-    "max": 0.125
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 1699,
-    "p90": 1700,
-    "max": 1700
-  },
-  {
-    "service": "Echo",
-    "test_case": "Complex object",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 1699,
-    "p90": 1700,
-    "max": 1700
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 0.929,
-    "p90": 3.606,
-    "max": 3.606
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 0.388,
-    "p90": 0.699,
-    "max": 0.699
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.383,
-    "p90": 0.877,
-    "max": 0.877
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 29933,
-    "p90": 29950,
-    "max": 29950
-  },
-  {
-    "service": "Echo",
-    "test_case": "List of complex objects",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 29933,
-    "p90": 29950,
-    "max": 29950
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Total request time (ms)",
-    "p50": 6.282,
-    "p90": 6.489,
-    "max": 6.489
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Serialization time (ms)",
-    "p50": 1.13,
-    "p90": 1.152,
-    "max": 1.152
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Deserialization time (ms)",
-    "p50": 3.862,
-    "p90": 4.103,
-    "max": 4.103
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Request payload size (bytes)",
-    "p50": 349545,
-    "p90": 349545,
-    "max": 349545
-  },
-  {
-    "service": "Echo",
-    "test_case": "Very large blob",
-    "protocol": "JSON",
-    "dimension_value": 0,
-    "metric": "Response payload size (bytes)",
-    "p50": 349545,
-    "p90": 349545,
-    "max": 349545
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 91.187,
-    "p90": 92.992,
-    "max": 92.992
-  },
-  {
-    "service": "SecretsManager",
-    "test_case": "Put string secret",
-    "protocol": "CBOR",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.127,
     "p90": 0.292,
-    "max": 0.292
+    "max": 0.544
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.37,
+    "p90": 0.401,
+    "max": 3.855
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 26910,
+    "p90": 26910,
+    "max": 26910
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 26910,
+    "p90": 26910,
+    "max": 26910
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.328,
+    "p90": 0.372,
+    "max": 3.914
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.065,
+    "p90": 0.138,
+    "max": 1.145
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.013,
+    "p90": 0.016,
+    "max": 1.386
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 262161,
+    "p90": 262161,
+    "max": 262161
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "CBOR",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 262161,
+    "p90": 262161,
+    "max": 262161
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.273,
+    "p90": 0.311,
+    "max": 4.362
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.055,
+    "p90": 0.071,
+    "max": 2.347
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.049,
+    "p90": 0.069,
+    "max": 0.77
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 1707,
+    "p90": 1709,
+    "max": 1710
+  },
+  {
+    "service": "Echo",
+    "test_case": "All types",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 1707,
+    "p90": 1709,
+    "max": 1710
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.248,
+    "p90": 0.286,
+    "max": 3.795
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.062,
+    "p90": 0.067,
+    "max": 3.438
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.035,
+    "p90": 0.037,
+    "max": 3.568
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 17177,
+    "p90": 17177,
+    "max": 17177
+  },
+  {
+    "service": "Echo",
+    "test_case": "Long list of strings",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 17177,
+    "p90": 17177,
+    "max": 17177
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.219,
+    "p90": 0.241,
+    "max": 2.065
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.047,
+    "p90": 0.063,
+    "max": 1.825
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.047,
+    "p90": 0.053,
+    "max": 0.213
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 1698,
+    "p90": 1700,
+    "max": 1701
+  },
+  {
+    "service": "Echo",
+    "test_case": "Complex object",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 1698,
+    "p90": 1700,
+    "max": 1701
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 0.379,
+    "p90": 0.414,
+    "max": 4.359
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.164,
+    "p90": 0.179,
+    "max": 3.53
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.17,
+    "p90": 0.19,
+    "max": 4.152
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 29940,
+    "p90": 29951,
+    "max": 29966
+  },
+  {
+    "service": "Echo",
+    "test_case": "List of complex objects",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 29940,
+    "p90": 29951,
+    "max": 29966
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Total request time (ms)",
+    "p50": 2.794,
+    "p90": 2.924,
+    "max": 5.818
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Serialization time (ms)",
+    "p50": 0.957,
+    "p90": 1.009,
+    "max": 4.025
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Deserialization time (ms)",
+    "p50": 2.01,
+    "p90": 2.041,
+    "max": 4.834
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Request payload size (bytes)",
+    "p50": 349545,
+    "p90": 349545,
+    "max": 349545
+  },
+  {
+    "service": "Echo",
+    "test_case": "Very large blob",
+    "protocol": "JSON",
+    "dimension_value": 0,
+    "metric": "Response payload size (bytes)",
+    "p50": 349545,
+    "p90": 349545,
+    "max": 349545
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 33.173,
+    "p90": 43.917,
+    "max": 86.747
+  },
+  {
+    "service": "SecretsManager",
+    "test_case": "Put string secret",
+    "protocol": "CBOR",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.1,
+    "p90": 0.122,
+    "max": 0.395
   },
   {
     "service": "SecretsManager",
@@ -525,9 +525,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.244,
-    "p90": 0.378,
-    "max": 0.378
+    "p50": 0.189,
+    "p90": 0.222,
+    "max": 0.494
   },
   {
     "service": "SecretsManager",
@@ -555,9 +555,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 96.678,
-    "p90": 98.854,
-    "max": 98.854
+    "p50": 31.634,
+    "p90": 41.871,
+    "max": 84.967
   },
   {
     "service": "SecretsManager",
@@ -565,9 +565,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.115,
-    "p90": 0.124,
-    "max": 0.124
+    "p50": 0.098,
+    "p90": 0.106,
+    "max": 0.182
   },
   {
     "service": "SecretsManager",
@@ -575,9 +575,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.202,
-    "p90": 0.243,
-    "max": 0.243
+    "p50": 0.154,
+    "p90": 0.197,
+    "max": 2.281
   },
   {
     "service": "SecretsManager",
@@ -605,9 +605,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 88.406,
-    "p90": 94.676,
-    "max": 94.676
+    "p50": 15.768,
+    "p90": 25.115,
+    "max": 71.435
   },
   {
     "service": "SecretsManager",
@@ -615,9 +615,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.095,
-    "p90": 0.181,
-    "max": 0.181
+    "p50": 0.074,
+    "p90": 0.088,
+    "max": 0.19
   },
   {
     "service": "SecretsManager",
@@ -625,9 +625,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.264,
-    "p90": 0.49,
-    "max": 0.49
+    "p50": 0.182,
+    "p90": 0.227,
+    "max": 3.732
   },
   {
     "service": "SecretsManager",
@@ -655,9 +655,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 91.262,
-    "p90": 94.909,
-    "max": 94.909
+    "p50": 16.946,
+    "p90": 26.649,
+    "max": 68.571
   },
   {
     "service": "SecretsManager",
@@ -665,9 +665,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.089,
-    "p90": 0.1,
-    "max": 0.1
+    "p50": 0.072,
+    "p90": 0.078,
+    "max": 0.134
   },
   {
     "service": "SecretsManager",
@@ -675,9 +675,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.249,
-    "p90": 0.389,
-    "max": 0.389
+    "p50": 0.166,
+    "p90": 0.214,
+    "max": 0.348
   },
   {
     "service": "SecretsManager",
@@ -705,9 +705,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 70.113,
-    "p90": 71.636,
-    "max": 71.636
+    "p50": 6.389,
+    "p90": 7.179,
+    "max": 9.817
   },
   {
     "service": "SecretsManager",
@@ -715,9 +715,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.091,
-    "p90": 0.135,
-    "max": 0.135
+    "p50": 0.072,
+    "p90": 0.078,
+    "max": 0.199
   },
   {
     "service": "SecretsManager",
@@ -725,9 +725,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.295,
-    "p90": 0.53,
-    "max": 0.53
+    "p50": 0.197,
+    "p90": 0.25,
+    "max": 0.387
   },
   {
     "service": "SecretsManager",
@@ -755,9 +755,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 75.538,
-    "p90": 76.34,
-    "max": 76.34
+    "p50": 13.102,
+    "p90": 27.894,
+    "max": 97.156
   },
   {
     "service": "SecretsManager",
@@ -765,9 +765,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.103,
-    "p90": 0.165,
-    "max": 0.165
+    "p50": 0.08,
+    "p90": 0.088,
+    "max": 0.187
   },
   {
     "service": "SecretsManager",
@@ -775,9 +775,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.345,
-    "p90": 0.555,
-    "max": 0.555
+    "p50": 0.226,
+    "p90": 0.265,
+    "max": 0.596
   },
   {
     "service": "SecretsManager",
@@ -805,9 +805,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 101.94,
-    "p90": 106.178,
-    "max": 106.178
+    "p50": 31.03,
+    "p90": 41.175,
+    "max": 97.605
   },
   {
     "service": "SecretsManager",
@@ -815,9 +815,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.143,
-    "p90": 0.244,
-    "max": 0.244
+    "p50": 0.089,
+    "p90": 0.096,
+    "max": 0.276
   },
   {
     "service": "SecretsManager",
@@ -825,9 +825,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.257,
-    "p90": 0.297,
-    "max": 0.297
+    "p50": 0.133,
+    "p90": 0.173,
+    "max": 0.276
   },
   {
     "service": "SecretsManager",
@@ -855,9 +855,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 108.751,
-    "p90": 96.952,
-    "max": 96.952
+    "p50": 31.069,
+    "p90": 40.338,
+    "max": 76.613
   },
   {
     "service": "SecretsManager",
@@ -865,9 +865,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.113,
-    "p90": 0.126,
-    "max": 0.126
+    "p50": 0.09,
+    "p90": 0.098,
+    "max": 0.154
   },
   {
     "service": "SecretsManager",
@@ -875,9 +875,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.191,
-    "p90": 0.199,
-    "max": 0.199
+    "p50": 0.134,
+    "p90": 0.169,
+    "max": 0.305
   },
   {
     "service": "SecretsManager",
@@ -905,9 +905,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 87.586,
-    "p90": 90.522,
-    "max": 90.522
+    "p50": 16.487,
+    "p90": 26.183,
+    "max": 66.566
   },
   {
     "service": "SecretsManager",
@@ -915,9 +915,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.102,
-    "p90": 0.107,
-    "max": 0.107
+    "p50": 0.072,
+    "p90": 0.081,
+    "max": 0.137
   },
   {
     "service": "SecretsManager",
@@ -925,9 +925,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.275,
-    "p90": 0.322,
-    "max": 0.322
+    "p50": 0.148,
+    "p90": 0.191,
+    "max": 0.328
   },
   {
     "service": "SecretsManager",
@@ -955,9 +955,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 85.089,
-    "p90": 90.129,
-    "max": 90.129
+    "p50": 16.642,
+    "p90": 26.352,
+    "max": 93.181
   },
   {
     "service": "SecretsManager",
@@ -965,9 +965,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.096,
-    "p90": 0.105,
-    "max": 0.105
+    "p50": 0.086,
+    "p90": 0.101,
+    "max": 0.587
   },
   {
     "service": "SecretsManager",
@@ -975,9 +975,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.218,
-    "p90": 0.251,
-    "max": 0.251
+    "p50": 0.243,
+    "p90": 0.294,
+    "max": 0.704
   },
   {
     "service": "SecretsManager",
@@ -1005,9 +1005,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 69.492,
-    "p90": 71.254,
-    "max": 71.254
+    "p50": 6.414,
+    "p90": 7.516,
+    "max": 9.054
   },
   {
     "service": "SecretsManager",
@@ -1015,9 +1015,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.099,
-    "p90": 0.101,
-    "max": 0.101
+    "p50": 0.073,
+    "p90": 0.089,
+    "max": 0.164
   },
   {
     "service": "SecretsManager",
@@ -1025,9 +1025,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.29,
-    "p90": 0.358,
-    "max": 0.358
+    "p50": 0.22,
+    "p90": 0.266,
+    "max": 0.429
   },
   {
     "service": "SecretsManager",
@@ -1055,9 +1055,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 120.511,
-    "p90": 77.941,
-    "max": 77.941
+    "p50": 12.408,
+    "p90": 19.711,
+    "max": 74.781
   },
   {
     "service": "SecretsManager",
@@ -1065,9 +1065,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.118,
-    "p90": 0.128,
-    "max": 0.128
+    "p50": 0.076,
+    "p90": 0.09,
+    "max": 0.137
   },
   {
     "service": "SecretsManager",
@@ -1075,9 +1075,9 @@
     "protocol": "CBOR",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.335,
-    "p90": 0.415,
-    "max": 0.415
+    "p50": 0.235,
+    "p90": 0.288,
+    "max": 0.475
   },
   {
     "service": "SecretsManager",
@@ -1105,9 +1105,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 103.361,
-    "p90": 92.399,
-    "max": 92.399
+    "p50": 31.202,
+    "p90": 41.295,
+    "max": 67.031
   },
   {
     "service": "SecretsManager",
@@ -1115,9 +1115,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.112,
-    "p90": 0.15,
-    "max": 0.15
+    "p50": 0.078,
+    "p90": 0.084,
+    "max": 0.265
   },
   {
     "service": "SecretsManager",
@@ -1125,9 +1125,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.225,
-    "p90": 0.228,
-    "max": 0.228
+    "p50": 0.16,
+    "p90": 0.204,
+    "max": 0.935
   },
   {
     "service": "SecretsManager",
@@ -1155,9 +1155,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 146.597,
-    "p90": 95.441,
-    "max": 95.441
+    "p50": 31.497,
+    "p90": 40.747,
+    "max": 62.514
   },
   {
     "service": "SecretsManager",
@@ -1165,9 +1165,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.109,
-    "p90": 0.115,
-    "max": 0.115
+    "p50": 0.074,
+    "p90": 0.081,
+    "max": 0.139
   },
   {
     "service": "SecretsManager",
@@ -1175,9 +1175,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.209,
-    "p90": 0.288,
-    "max": 0.288
+    "p50": 0.15,
+    "p90": 0.192,
+    "max": 0.329
   },
   {
     "service": "SecretsManager",
@@ -1205,9 +1205,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 91.606,
-    "p90": 92.289,
-    "max": 92.289
+    "p50": 15.871,
+    "p90": 25.747,
+    "max": 44.881
   },
   {
     "service": "SecretsManager",
@@ -1215,9 +1215,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.092,
-    "p90": 0.094,
-    "max": 0.094
+    "p50": 0.063,
+    "p90": 0.068,
+    "max": 0.116
   },
   {
     "service": "SecretsManager",
@@ -1225,9 +1225,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.249,
-    "p90": 0.259,
-    "max": 0.259
+    "p50": 0.177,
+    "p90": 0.214,
+    "max": 0.339
   },
   {
     "service": "SecretsManager",
@@ -1255,9 +1255,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 79.512,
-    "p90": 89.973,
-    "max": 89.973
+    "p50": 16.511,
+    "p90": 25.712,
+    "max": 60.605
   },
   {
     "service": "SecretsManager",
@@ -1265,9 +1265,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.088,
-    "p90": 0.09,
-    "max": 0.09
+    "p50": 0.062,
+    "p90": 0.066,
+    "max": 0.135
   },
   {
     "service": "SecretsManager",
@@ -1275,9 +1275,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.235,
-    "p90": 0.312,
-    "max": 0.312
+    "p50": 0.165,
+    "p90": 0.208,
+    "max": 0.356
   },
   {
     "service": "SecretsManager",
@@ -1305,9 +1305,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 70.047,
-    "p90": 76.462,
-    "max": 76.462
+    "p50": 6.416,
+    "p90": 7.371,
+    "max": 9.712
   },
   {
     "service": "SecretsManager",
@@ -1315,9 +1315,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.095,
-    "p90": 0.098,
-    "max": 0.098
+    "p50": 0.065,
+    "p90": 0.076,
+    "max": 0.133
   },
   {
     "service": "SecretsManager",
@@ -1325,9 +1325,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.245,
-    "p90": 0.319,
-    "max": 0.319
+    "p50": 0.178,
+    "p90": 0.222,
+    "max": 0.361
   },
   {
     "service": "SecretsManager",
@@ -1355,9 +1355,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 77.019,
-    "p90": 77.611,
-    "max": 77.611
+    "p50": 12.592,
+    "p90": 24.578,
+    "max": 50.038
   },
   {
     "service": "SecretsManager",
@@ -1365,9 +1365,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.104,
-    "p90": 0.179,
-    "max": 0.179
+    "p50": 0.078,
+    "p90": 0.086,
+    "max": 1.151
   },
   {
     "service": "SecretsManager",
@@ -1375,9 +1375,9 @@
     "protocol": "CBOR",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.324,
-    "p90": 0.623,
-    "max": 0.623
+    "p50": 0.215,
+    "p90": 0.257,
+    "max": 0.768
   },
   {
     "service": "SecretsManager",
@@ -1405,9 +1405,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 103.983,
-    "p90": 276.196,
-    "max": 276.196
+    "p50": 30.744,
+    "p90": 40.524,
+    "max": 62.297
   },
   {
     "service": "SecretsManager",
@@ -1415,9 +1415,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.127,
-    "p90": 0.189,
-    "max": 0.189
+    "p50": 0.078,
+    "p90": 0.084,
+    "max": 0.411
   },
   {
     "service": "SecretsManager",
@@ -1425,9 +1425,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.227,
-    "p90": 0.346,
-    "max": 0.346
+    "p50": 0.134,
+    "p90": 0.175,
+    "max": 0.292
   },
   {
     "service": "SecretsManager",
@@ -1455,9 +1455,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 106.793,
-    "p90": 94.572,
-    "max": 94.572
+    "p50": 34.919,
+    "p90": 43.704,
+    "max": 65.764
   },
   {
     "service": "SecretsManager",
@@ -1465,9 +1465,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.125,
-    "p90": 0.15,
-    "max": 0.15
+    "p50": 0.076,
+    "p90": 0.083,
+    "max": 0.148
   },
   {
     "service": "SecretsManager",
@@ -1475,9 +1475,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.313,
-    "p90": 0.379,
-    "max": 0.379
+    "p50": 0.128,
+    "p90": 0.176,
+    "max": 0.311
   },
   {
     "service": "SecretsManager",
@@ -1505,9 +1505,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 87.641,
-    "p90": 90.013,
-    "max": 90.013
+    "p50": 16.194,
+    "p90": 25.547,
+    "max": 77.665
   },
   {
     "service": "SecretsManager",
@@ -1515,9 +1515,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.1,
-    "p90": 0.134,
-    "max": 0.134
+    "p50": 0.063,
+    "p90": 0.068,
+    "max": 0.122
   },
   {
     "service": "SecretsManager",
@@ -1525,9 +1525,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.279,
-    "p90": 0.434,
-    "max": 0.434
+    "p50": 0.159,
+    "p90": 0.204,
+    "max": 0.336
   },
   {
     "service": "SecretsManager",
@@ -1555,9 +1555,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 87.893,
-    "p90": 91.795,
-    "max": 91.795
+    "p50": 16.776,
+    "p90": 25.676,
+    "max": 48.497
   },
   {
     "service": "SecretsManager",
@@ -1565,9 +1565,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.102,
-    "p90": 0.112,
-    "max": 0.112
+    "p50": 0.062,
+    "p90": 0.068,
+    "max": 0.109
   },
   {
     "service": "SecretsManager",
@@ -1575,9 +1575,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.33,
-    "p90": 0.392,
-    "max": 0.392
+    "p50": 0.185,
+    "p90": 0.206,
+    "max": 1.525
   },
   {
     "service": "SecretsManager",
@@ -1605,9 +1605,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 70.253,
-    "p90": 71.224,
-    "max": 71.224
+    "p50": 6.353,
+    "p90": 7.444,
+    "max": 9.822
   },
   {
     "service": "SecretsManager",
@@ -1615,9 +1615,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.114,
-    "p90": 0.141,
-    "max": 0.141
+    "p50": 0.064,
+    "p90": 0.068,
+    "max": 0.128
   },
   {
     "service": "SecretsManager",
@@ -1625,9 +1625,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.354,
-    "p90": 0.456,
-    "max": 0.456
+    "p50": 0.172,
+    "p90": 0.213,
+    "max": 0.36
   },
   {
     "service": "SecretsManager",
@@ -1655,9 +1655,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 78.366,
-    "p90": 81.049,
-    "max": 81.049
+    "p50": 12.974,
+    "p90": 28.47,
+    "max": 85.084
   },
   {
     "service": "SecretsManager",
@@ -1665,9 +1665,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.128,
-    "p90": 0.169,
-    "max": 0.169
+    "p50": 0.074,
+    "p90": 0.079,
+    "max": 0.135
   },
   {
     "service": "SecretsManager",
@@ -1675,9 +1675,9 @@
     "protocol": "CBOR",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.348,
-    "p90": 0.438,
-    "max": 0.438
+    "p50": 0.205,
+    "p90": 0.253,
+    "max": 2.903
   },
   {
     "service": "SecretsManager",
@@ -1705,9 +1705,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 108.193,
-    "p90": 98.194,
-    "max": 98.194
+    "p50": 36.343,
+    "p90": 46.248,
+    "max": 89.112
   },
   {
     "service": "SecretsManager",
@@ -1715,9 +1715,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.142,
-    "p90": 0.31,
-    "max": 0.31
+    "p50": 0.086,
+    "p90": 0.091,
+    "max": 0.205
   },
   {
     "service": "SecretsManager",
@@ -1725,9 +1725,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.311,
-    "p90": 0.316,
-    "max": 0.316
+    "p50": 0.139,
+    "p90": 0.177,
+    "max": 0.293
   },
   {
     "service": "SecretsManager",
@@ -1755,9 +1755,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 114.15,
-    "p90": 116.919,
-    "max": 116.919
+    "p50": 50.707,
+    "p90": 61.234,
+    "max": 85.716
   },
   {
     "service": "SecretsManager",
@@ -1765,9 +1765,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.126,
-    "p90": 0.137,
-    "max": 0.137
+    "p50": 0.088,
+    "p90": 0.099,
+    "max": 0.172
   },
   {
     "service": "SecretsManager",
@@ -1775,9 +1775,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.302,
-    "p90": 0.314,
-    "max": 0.314
+    "p50": 0.133,
+    "p90": 0.173,
+    "max": 0.971
   },
   {
     "service": "SecretsManager",
@@ -1805,9 +1805,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 90.279,
-    "p90": 92.449,
-    "max": 92.449
+    "p50": 18.064,
+    "p90": 27.742,
+    "max": 62.769
   },
   {
     "service": "SecretsManager",
@@ -1815,9 +1815,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.092,
-    "p90": 0.095,
-    "max": 0.095
+    "p50": 0.071,
+    "p90": 0.078,
+    "max": 0.23
   },
   {
     "service": "SecretsManager",
@@ -1825,9 +1825,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.872,
-    "p90": 65.408,
-    "max": 65.408
+    "p50": 0.327,
+    "p90": 0.391,
+    "max": 3.666
   },
   {
     "service": "SecretsManager",
@@ -1855,9 +1855,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 92.908,
-    "p90": 94.519,
-    "max": 94.519
+    "p50": 18.254,
+    "p90": 27.659,
+    "max": 52.719
   },
   {
     "service": "SecretsManager",
@@ -1865,9 +1865,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.093,
-    "p90": 0.099,
-    "max": 0.099
+    "p50": 0.064,
+    "p90": 0.07,
+    "max": 0.136
   },
   {
     "service": "SecretsManager",
@@ -1875,9 +1875,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.658,
-    "p90": 0.857,
-    "max": 0.857
+    "p50": 0.299,
+    "p90": 0.397,
+    "max": 2.823
   },
   {
     "service": "SecretsManager",
@@ -1905,9 +1905,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 70.013,
-    "p90": 71.815,
-    "max": 71.815
+    "p50": 5.59,
+    "p90": 6.737,
+    "max": 9.636
   },
   {
     "service": "SecretsManager",
@@ -1915,9 +1915,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.093,
-    "p90": 0.099,
-    "max": 0.099
+    "p50": 0.064,
+    "p90": 0.07,
+    "max": 0.175
   },
   {
     "service": "SecretsManager",
@@ -1925,9 +1925,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.297,
-    "p90": 0.405,
-    "max": 0.405
+    "p50": 0.168,
+    "p90": 0.205,
+    "max": 0.335
   },
   {
     "service": "SecretsManager",
@@ -1955,9 +1955,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 77.512,
-    "p90": 78.097,
-    "max": 78.097
+    "p50": 13.201,
+    "p90": 22.608,
+    "max": 72.368
   },
   {
     "service": "SecretsManager",
@@ -1965,9 +1965,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.103,
-    "p90": 0.121,
-    "max": 0.121
+    "p50": 0.072,
+    "p90": 0.078,
+    "max": 0.131
   },
   {
     "service": "SecretsManager",
@@ -1975,9 +1975,9 @@
     "protocol": "CBOR",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.391,
-    "p90": 0.4,
-    "max": 0.4
+    "p50": 0.202,
+    "p90": 0.226,
+    "max": 0.404
   },
   {
     "service": "SecretsManager",
@@ -2005,9 +2005,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 92.591,
-    "p90": 93.451,
-    "max": 93.451
+    "p50": 30.738,
+    "p90": 40.183,
+    "max": 59.684
   },
   {
     "service": "SecretsManager",
@@ -2015,9 +2015,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.098,
-    "p90": 0.287,
-    "max": 0.287
+    "p50": 0.074,
+    "p90": 0.088,
+    "max": 0.161
   },
   {
     "service": "SecretsManager",
@@ -2025,9 +2025,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.236,
-    "p90": 0.321,
-    "max": 0.321
+    "p50": 0.141,
+    "p90": 0.177,
+    "max": 0.293
   },
   {
     "service": "SecretsManager",
@@ -2055,9 +2055,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 93.263,
-    "p90": 96.872,
-    "max": 96.872
+    "p50": 29.603,
+    "p90": 38.537,
+    "max": 81.641
   },
   {
     "service": "SecretsManager",
@@ -2065,9 +2065,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.117,
-    "p90": 0.126,
-    "max": 0.126
+    "p50": 0.077,
+    "p90": 0.084,
+    "max": 0.135
   },
   {
     "service": "SecretsManager",
@@ -2075,9 +2075,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.185,
-    "p90": 0.222,
-    "max": 0.222
+    "p50": 0.136,
+    "p90": 0.173,
+    "max": 5.368
   },
   {
     "service": "SecretsManager",
@@ -2105,9 +2105,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 87.968,
-    "p90": 88.155,
-    "max": 88.155
+    "p50": 16.071,
+    "p90": 25.367,
+    "max": 51.017
   },
   {
     "service": "SecretsManager",
@@ -2115,9 +2115,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.081,
-    "p90": 0.141,
-    "max": 0.141
+    "p50": 0.064,
+    "p90": 0.069,
+    "max": 0.154
   },
   {
     "service": "SecretsManager",
@@ -2125,9 +2125,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.254,
-    "p90": 0.421,
-    "max": 0.421
+    "p50": 0.151,
+    "p90": 0.191,
+    "max": 0.867
   },
   {
     "service": "SecretsManager",
@@ -2155,9 +2155,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 88.737,
-    "p90": 94.304,
-    "max": 94.304
+    "p50": 16.64,
+    "p90": 25.996,
+    "max": 901.202
   },
   {
     "service": "SecretsManager",
@@ -2165,9 +2165,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.079,
-    "p90": 0.082,
-    "max": 0.082
+    "p50": 0.069,
+    "p90": 0.089,
+    "max": 0.484
   },
   {
     "service": "SecretsManager",
@@ -2175,9 +2175,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.248,
-    "p90": 0.342,
-    "max": 0.342
+    "p50": 0.211,
+    "p90": 0.277,
+    "max": 0.437
   },
   {
     "service": "SecretsManager",
@@ -2205,9 +2205,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 70.407,
-    "p90": 73.119,
-    "max": 73.119
+    "p50": 6.333,
+    "p90": 7.116,
+    "max": 9.733
   },
   {
     "service": "SecretsManager",
@@ -2215,9 +2215,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.082,
-    "p90": 0.131,
-    "max": 0.131
+    "p50": 0.067,
+    "p90": 0.085,
+    "max": 0.147
   },
   {
     "service": "SecretsManager",
@@ -2225,9 +2225,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.276,
-    "p90": 0.459,
-    "max": 0.459
+    "p50": 0.215,
+    "p90": 0.271,
+    "max": 0.692
   },
   {
     "service": "SecretsManager",
@@ -2255,9 +2255,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 75.849,
-    "p90": 76.145,
-    "max": 76.145
+    "p50": 13.015,
+    "p90": 23.416,
+    "max": 67.401
   },
   {
     "service": "SecretsManager",
@@ -2265,9 +2265,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.086,
-    "p90": 0.09,
-    "max": 0.09
+    "p50": 0.074,
+    "p90": 0.091,
+    "max": 0.141
   },
   {
     "service": "SecretsManager",
@@ -2275,9 +2275,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.301,
-    "p90": 0.337,
-    "max": 0.337
+    "p50": 0.279,
+    "p90": 0.341,
+    "max": 0.555
   },
   {
     "service": "SecretsManager",
@@ -2295,9 +2295,9 @@
     "protocol": "JSON",
     "dimension_value": 64,
     "metric": "Response payload size (bytes)",
-    "p50": 1814,
-    "p90": 1815,
-    "max": 1815
+    "p50": 1815,
+    "p90": 1816,
+    "max": 1816
   },
   {
     "service": "SecretsManager",
@@ -2305,9 +2305,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 108.527,
-    "p90": 96.404,
-    "max": 96.404
+    "p50": 31.008,
+    "p90": 40.442,
+    "max": 72.545
   },
   {
     "service": "SecretsManager",
@@ -2315,9 +2315,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.118,
-    "p90": 0.165,
-    "max": 0.165
+    "p50": 0.069,
+    "p90": 0.075,
+    "max": 0.147
   },
   {
     "service": "SecretsManager",
@@ -2325,9 +2325,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.24,
-    "p90": 0.305,
-    "max": 0.305
+    "p50": 0.152,
+    "p90": 0.191,
+    "max": 0.792
   },
   {
     "service": "SecretsManager",
@@ -2355,9 +2355,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 91.735,
-    "p90": 95.404,
-    "max": 95.404
+    "p50": 32.128,
+    "p90": 42.161,
+    "max": 90.896
   },
   {
     "service": "SecretsManager",
@@ -2365,9 +2365,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.103,
-    "p90": 0.118,
-    "max": 0.118
+    "p50": 0.076,
+    "p90": 0.082,
+    "max": 0.192
   },
   {
     "service": "SecretsManager",
@@ -2375,9 +2375,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.205,
-    "p90": 0.262,
-    "max": 0.262
+    "p50": 0.138,
+    "p90": 0.185,
+    "max": 3.153
   },
   {
     "service": "SecretsManager",
@@ -2405,9 +2405,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 81.379,
-    "p90": 90.048,
-    "max": 90.048
+    "p50": 16.038,
+    "p90": 25.595,
+    "max": 50.315
   },
   {
     "service": "SecretsManager",
@@ -2415,9 +2415,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.071,
-    "p90": 0.08,
-    "max": 0.08
+    "p50": 0.058,
+    "p90": 0.064,
+    "max": 0.124
   },
   {
     "service": "SecretsManager",
@@ -2425,9 +2425,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.23,
-    "p90": 0.279,
-    "max": 0.279
+    "p50": 0.155,
+    "p90": 0.193,
+    "max": 1.151
   },
   {
     "service": "SecretsManager",
@@ -2455,9 +2455,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 89.063,
-    "p90": 90.696,
-    "max": 90.696
+    "p50": 15.542,
+    "p90": 25.14,
+    "max": 49.88
   },
   {
     "service": "SecretsManager",
@@ -2465,9 +2465,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.073,
-    "p90": 0.088,
-    "max": 0.088
+    "p50": 0.056,
+    "p90": 0.061,
+    "max": 0.14
   },
   {
     "service": "SecretsManager",
@@ -2475,9 +2475,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.241,
-    "p90": 0.284,
-    "max": 0.284
+    "p50": 0.155,
+    "p90": 0.201,
+    "max": 0.375
   },
   {
     "service": "SecretsManager",
@@ -2505,9 +2505,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 70.174,
-    "p90": 73.022,
-    "max": 73.022
+    "p50": 6.214,
+    "p90": 7.099,
+    "max": 9.808
   },
   {
     "service": "SecretsManager",
@@ -2515,9 +2515,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.079,
-    "p90": 0.092,
-    "max": 0.092
+    "p50": 0.056,
+    "p90": 0.062,
+    "max": 0.123
   },
   {
     "service": "SecretsManager",
@@ -2525,9 +2525,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.276,
-    "p90": 0.318,
-    "max": 0.318
+    "p50": 0.177,
+    "p90": 0.217,
+    "max": 0.36
   },
   {
     "service": "SecretsManager",
@@ -2555,9 +2555,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Total request time (ms)",
-    "p50": 75.832,
-    "p90": 77.103,
-    "max": 77.103
+    "p50": 13.239,
+    "p90": 31.293,
+    "max": 72.259
   },
   {
     "service": "SecretsManager",
@@ -2565,9 +2565,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Serialization time (ms)",
-    "p50": 0.078,
-    "p90": 0.089,
-    "max": 0.089
+    "p50": 0.064,
+    "p90": 0.07,
+    "max": 0.12
   },
   {
     "service": "SecretsManager",
@@ -2575,9 +2575,9 @@
     "protocol": "JSON",
     "dimension_value": 512,
     "metric": "Deserialization time (ms)",
-    "p50": 0.267,
-    "p90": 0.301,
-    "max": 0.301
+    "p50": 0.247,
+    "p90": 0.293,
+    "max": 0.491
   },
   {
     "service": "SecretsManager",
@@ -2605,9 +2605,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 103.724,
-    "p90": 106.285,
-    "max": 106.285
+    "p50": 33.483,
+    "p90": 42.44,
+    "max": 74.538
   },
   {
     "service": "SecretsManager",
@@ -2615,9 +2615,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.089,
-    "p90": 0.09,
-    "max": 0.09
+    "p50": 0.081,
+    "p90": 0.088,
+    "max": 0.159
   },
   {
     "service": "SecretsManager",
@@ -2625,9 +2625,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.166,
-    "p90": 0.251,
-    "max": 0.251
+    "p50": 0.128,
+    "p90": 0.165,
+    "max": 0.342
   },
   {
     "service": "SecretsManager",
@@ -2655,9 +2655,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 96.404,
-    "p90": 99.194,
-    "max": 99.194
+    "p50": 34.068,
+    "p90": 43.708,
+    "max": 75.046
   },
   {
     "service": "SecretsManager",
@@ -2665,9 +2665,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.119,
-    "p90": 0.13,
-    "max": 0.13
+    "p50": 0.098,
+    "p90": 0.104,
+    "max": 0.168
   },
   {
     "service": "SecretsManager",
@@ -2675,9 +2675,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.188,
-    "p90": 0.217,
-    "max": 0.217
+    "p50": 0.127,
+    "p90": 0.163,
+    "max": 0.334
   },
   {
     "service": "SecretsManager",
@@ -2705,9 +2705,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 87.92,
-    "p90": 89.73,
-    "max": 89.73
+    "p50": 15.392,
+    "p90": 24.816,
+    "max": 60.687
   },
   {
     "service": "SecretsManager",
@@ -2715,9 +2715,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.077,
-    "p90": 0.08,
-    "max": 0.08
+    "p50": 0.055,
+    "p90": 0.062,
+    "max": 0.143
   },
   {
     "service": "SecretsManager",
@@ -2725,9 +2725,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.213,
-    "p90": 0.232,
-    "max": 0.232
+    "p50": 0.143,
+    "p90": 0.189,
+    "max": 0.473
   },
   {
     "service": "SecretsManager",
@@ -2755,9 +2755,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 79.529,
-    "p90": 89.94,
-    "max": 89.94
+    "p50": 15.943,
+    "p90": 25.394,
+    "max": 53.169
   },
   {
     "service": "SecretsManager",
@@ -2765,9 +2765,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.068,
-    "p90": 0.071,
-    "max": 0.071
+    "p50": 0.056,
+    "p90": 0.068,
+    "max": 0.105
   },
   {
     "service": "SecretsManager",
@@ -2775,9 +2775,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.277,
-    "p90": 0.282,
-    "max": 0.282
+    "p50": 0.209,
+    "p90": 0.245,
+    "max": 1.056
   },
   {
     "service": "SecretsManager",
@@ -2805,9 +2805,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 70.303,
-    "p90": 70.992,
-    "max": 70.992
+    "p50": 6.244,
+    "p90": 7.146,
+    "max": 9.889
   },
   {
     "service": "SecretsManager",
@@ -2815,9 +2815,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.073,
-    "p90": 0.091,
-    "max": 0.091
+    "p50": 0.06,
+    "p90": 0.069,
+    "max": 0.178
   },
   {
     "service": "SecretsManager",
@@ -2825,9 +2825,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.205,
-    "p90": 0.252,
-    "max": 0.252
+    "p50": 0.166,
+    "p90": 0.198,
+    "max": 0.371
   },
   {
     "service": "SecretsManager",
@@ -2855,9 +2855,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Total request time (ms)",
-    "p50": 76.018,
-    "p90": 77.514,
-    "max": 77.514
+    "p50": 13.294,
+    "p90": 22.685,
+    "max": 72.221
   },
   {
     "service": "SecretsManager",
@@ -2865,9 +2865,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Serialization time (ms)",
-    "p50": 0.101,
-    "p90": 0.112,
-    "max": 0.112
+    "p50": 0.064,
+    "p90": 0.069,
+    "max": 1.319
   },
   {
     "service": "SecretsManager",
@@ -2875,9 +2875,9 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Deserialization time (ms)",
-    "p50": 0.32,
-    "p90": 0.344,
-    "max": 0.344
+    "p50": 0.226,
+    "p90": 0.28,
+    "max": 0.392
   },
   {
     "service": "SecretsManager",
@@ -2895,7 +2895,7 @@
     "protocol": "JSON",
     "dimension_value": 4096,
     "metric": "Response payload size (bytes)",
-    "p50": 1816,
+    "p50": 1815,
     "p90": 1816,
     "max": 1816
   },
@@ -2905,9 +2905,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 108.812,
-    "p90": 247.537,
-    "max": 247.537
+    "p50": 31.686,
+    "p90": 40.686,
+    "max": 71.058
   },
   {
     "service": "SecretsManager",
@@ -2915,9 +2915,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.123,
-    "p90": 0.129,
-    "max": 0.129
+    "p50": 0.101,
+    "p90": 0.108,
+    "max": 0.191
   },
   {
     "service": "SecretsManager",
@@ -2925,9 +2925,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.194,
-    "p90": 0.221,
-    "max": 0.221
+    "p50": 0.125,
+    "p90": 0.163,
+    "max": 0.309
   },
   {
     "service": "SecretsManager",
@@ -2955,9 +2955,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 94.576,
-    "p90": 97.499,
-    "max": 97.499
+    "p50": 35.012,
+    "p90": 44.401,
+    "max": 77.004
   },
   {
     "service": "SecretsManager",
@@ -2965,9 +2965,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.116,
-    "p90": 0.124,
-    "max": 0.124
+    "p50": 0.124,
+    "p90": 0.132,
+    "max": 0.258
   },
   {
     "service": "SecretsManager",
@@ -2975,9 +2975,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.177,
-    "p90": 0.183,
-    "max": 0.183
+    "p50": 0.122,
+    "p90": 0.157,
+    "max": 2.5
   },
   {
     "service": "SecretsManager",
@@ -3005,9 +3005,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 87.543,
-    "p90": 89.121,
-    "max": 89.121
+    "p50": 16.757,
+    "p90": 25.768,
+    "max": 49.675
   },
   {
     "service": "SecretsManager",
@@ -3015,9 +3015,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.07,
-    "p90": 0.071,
-    "max": 0.071
+    "p50": 0.059,
+    "p90": 0.063,
+    "max": 0.12
   },
   {
     "service": "SecretsManager",
@@ -3025,9 +3025,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.233,
-    "p90": 0.281,
-    "max": 0.281
+    "p50": 0.155,
+    "p90": 0.209,
+    "max": 0.3
   },
   {
     "service": "SecretsManager",
@@ -3055,9 +3055,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 81.366,
-    "p90": 89.363,
-    "max": 89.363
+    "p50": 16.888,
+    "p90": 26.168,
+    "max": 45.578
   },
   {
     "service": "SecretsManager",
@@ -3065,9 +3065,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.07,
-    "p90": 0.078,
-    "max": 0.078
+    "p50": 0.06,
+    "p90": 0.064,
+    "max": 0.124
   },
   {
     "service": "SecretsManager",
@@ -3075,9 +3075,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.333,
-    "p90": 0.388,
-    "max": 0.388
+    "p50": 0.3,
+    "p90": 0.325,
+    "max": 0.913
   },
   {
     "service": "SecretsManager",
@@ -3105,9 +3105,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 70.76,
-    "p90": 71.882,
-    "max": 71.882
+    "p50": 6.136,
+    "p90": 7.058,
+    "max": 9.826
   },
   {
     "service": "SecretsManager",
@@ -3115,9 +3115,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.069,
-    "p90": 0.081,
-    "max": 0.081
+    "p50": 0.058,
+    "p90": 0.064,
+    "max": 0.175
   },
   {
     "service": "SecretsManager",
@@ -3125,9 +3125,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.201,
-    "p90": 0.219,
-    "max": 0.219
+    "p50": 0.165,
+    "p90": 0.193,
+    "max": 0.383
   },
   {
     "service": "SecretsManager",
@@ -3155,9 +3155,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Total request time (ms)",
-    "p50": 77.386,
-    "p90": 77.99,
-    "max": 77.99
+    "p50": 13.464,
+    "p90": 23.588,
+    "max": 95.202
   },
   {
     "service": "SecretsManager",
@@ -3165,9 +3165,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Serialization time (ms)",
-    "p50": 0.097,
-    "p90": 0.115,
-    "max": 0.115
+    "p50": 0.065,
+    "p90": 0.071,
+    "max": 0.118
   },
   {
     "service": "SecretsManager",
@@ -3175,9 +3175,9 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Deserialization time (ms)",
-    "p50": 0.305,
-    "p90": 0.349,
-    "max": 0.349
+    "p50": 0.231,
+    "p90": 0.288,
+    "max": 0.459
   },
   {
     "service": "SecretsManager",
@@ -3195,7 +3195,7 @@
     "protocol": "JSON",
     "dimension_value": 8192,
     "metric": "Response payload size (bytes)",
-    "p50": 1816,
+    "p50": 1815,
     "p90": 1816,
     "max": 1816
   },
@@ -3205,9 +3205,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 109.487,
-    "p90": 98.762,
-    "max": 98.762
+    "p50": 38.072,
+    "p90": 47.784,
+    "max": 71.692
   },
   {
     "service": "SecretsManager",
@@ -3215,9 +3215,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.18,
-    "p90": 0.185,
-    "max": 0.185
+    "p50": 0.258,
+    "p90": 0.277,
+    "max": 0.356
   },
   {
     "service": "SecretsManager",
@@ -3225,9 +3225,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.164,
-    "p90": 0.198,
-    "max": 0.198
+    "p50": 0.129,
+    "p90": 0.166,
+    "max": 0.237
   },
   {
     "service": "SecretsManager",
@@ -3255,9 +3255,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 117.561,
-    "p90": 125.668,
-    "max": 125.668
+    "p50": 51.121,
+    "p90": 60.916,
+    "max": 97.831
   },
   {
     "service": "SecretsManager",
@@ -3265,9 +3265,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.245,
-    "p90": 0.254,
-    "max": 0.254
+    "p50": 0.343,
+    "p90": 0.36,
+    "max": 0.424
   },
   {
     "service": "SecretsManager",
@@ -3275,9 +3275,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.186,
-    "p90": 0.193,
-    "max": 0.193
+    "p50": 0.129,
+    "p90": 0.171,
+    "max": 0.456
   },
   {
     "service": "SecretsManager",
@@ -3305,9 +3305,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 82.125,
-    "p90": 92.885,
-    "max": 92.885
+    "p50": 17.899,
+    "p90": 27.403,
+    "max": 49.116
   },
   {
     "service": "SecretsManager",
@@ -3315,9 +3315,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.069,
-    "p90": 0.08,
-    "max": 0.08
+    "p50": 0.057,
+    "p90": 0.062,
+    "max": 0.132
   },
   {
     "service": "SecretsManager",
@@ -3325,9 +3325,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.62,
-    "p90": 66.105,
-    "max": 66.105
+    "p50": 0.36,
+    "p90": 0.437,
+    "max": 1.778
   },
   {
     "service": "SecretsManager",
@@ -3355,9 +3355,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 156.304,
-    "p90": 81.967,
-    "max": 81.967
+    "p50": 18.852,
+    "p90": 27.871,
+    "max": 83.16
   },
   {
     "service": "SecretsManager",
@@ -3365,9 +3365,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.071,
-    "p90": 0.072,
-    "max": 0.072
+    "p50": 0.059,
+    "p90": 0.064,
+    "max": 0.132
   },
   {
     "service": "SecretsManager",
@@ -3375,9 +3375,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 66.309,
-    "p90": 66.391,
-    "max": 66.391
+    "p50": 0.782,
+    "p90": 1.182,
+    "max": 3.236
   },
   {
     "service": "SecretsManager",
@@ -3405,9 +3405,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 70.676,
-    "p90": 70.915,
-    "max": 70.915
+    "p50": 6.372,
+    "p90": 7.37,
+    "max": 9.863
   },
   {
     "service": "SecretsManager",
@@ -3415,9 +3415,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.071,
-    "p90": 0.071,
-    "max": 0.071
+    "p50": 0.058,
+    "p90": 0.063,
+    "max": 0.117
   },
   {
     "service": "SecretsManager",
@@ -3425,9 +3425,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.209,
-    "p90": 0.222,
-    "max": 0.222
+    "p50": 0.164,
+    "p90": 0.2,
+    "max": 0.343
   },
   {
     "service": "SecretsManager",
@@ -3455,9 +3455,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Total request time (ms)",
-    "p50": 77.596,
-    "p90": 80.876,
-    "max": 80.876
+    "p50": 13.597,
+    "p90": 33.783,
+    "max": 73.6
   },
   {
     "service": "SecretsManager",
@@ -3465,9 +3465,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Serialization time (ms)",
-    "p50": 0.073,
-    "p90": 0.075,
-    "max": 0.075
+    "p50": 0.065,
+    "p90": 0.071,
+    "max": 0.126
   },
   {
     "service": "SecretsManager",
@@ -3475,9 +3475,9 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Deserialization time (ms)",
-    "p50": 0.254,
-    "p90": 0.262,
-    "max": 0.262
+    "p50": 0.234,
+    "p90": 0.285,
+    "max": 0.422
   },
   {
     "service": "SecretsManager",
@@ -3495,7 +3495,7 @@
     "protocol": "JSON",
     "dimension_value": 45056,
     "metric": "Response payload size (bytes)",
-    "p50": 1816,
+    "p50": 1815,
     "p90": 1816,
     "max": 1816
   },
@@ -3505,9 +3505,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 69.952,
-    "p90": 71.01,
-    "max": 71.01
+    "p50": 5.433,
+    "p90": 6.599,
+    "max": 82.679
   },
   {
     "service": "Cloudwatch",
@@ -3515,9 +3515,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.281,
-    "p90": 2.438,
-    "max": 2.438
+    "p50": 0.199,
+    "p90": 0.269,
+    "max": 3.083
   },
   {
     "service": "Cloudwatch",
@@ -3525,9 +3525,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 0.098,
-    "p90": 0.368,
-    "max": 0.368
+    "p50": 0.102,
+    "p90": 0.139,
+    "max": 0.552
   },
   {
     "service": "Cloudwatch",
@@ -3555,9 +3555,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 78.106,
-    "p90": 80.426,
-    "max": 80.426
+    "p50": 13.709,
+    "p90": 9.186,
+    "max": 10
   },
   {
     "service": "Cloudwatch",
@@ -3565,9 +3565,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.139,
-    "p90": 0.236,
-    "max": 0.236
+    "p50": 0.118,
+    "p90": 0.142,
+    "max": 0.231
   },
   {
     "service": "Cloudwatch",
@@ -3575,9 +3575,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 0.207,
-    "p90": 0.476,
-    "max": 0.476
+    "p50": 0.198,
+    "p90": 0.245,
+    "max": 0.682
   },
   {
     "service": "Cloudwatch",
@@ -3605,9 +3605,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 73.538,
-    "p90": 75.33,
-    "max": 75.33
+    "p50": 4.317,
+    "p90": 5.099,
+    "max": 8.201
   },
   {
     "service": "Cloudwatch",
@@ -3615,9 +3615,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.106,
-    "p90": 0.159,
-    "max": 0.159
+    "p50": 0.078,
+    "p90": 0.088,
+    "max": 0.179
   },
   {
     "service": "Cloudwatch",
@@ -3625,9 +3625,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 2.34,
-    "p90": 66.772,
-    "max": 66.772
+    "p50": 0.52,
+    "p90": 0.625,
+    "max": 0.811
   },
   {
     "service": "Cloudwatch",
@@ -3645,9 +3645,9 @@
     "protocol": "CBOR",
     "dimension_value": 16,
     "metric": "Response payload size (bytes)",
-    "p50": 52274,
-    "p90": 52274,
-    "max": 52274
+    "p50": 9065,
+    "p90": 9065,
+    "max": 9065
   },
   {
     "service": "Cloudwatch",
@@ -3655,9 +3655,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 68.543,
-    "p90": 69.821,
-    "max": 69.821
+    "p50": 5.976,
+    "p90": 7.165,
+    "max": 9.505
   },
   {
     "service": "Cloudwatch",
@@ -3665,9 +3665,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.711,
-    "p90": 0.736,
-    "max": 0.736
+    "p50": 0.405,
+    "p90": 0.461,
+    "max": 0.71
   },
   {
     "service": "Cloudwatch",
@@ -3675,9 +3675,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.107,
-    "p90": 0.15,
-    "max": 0.15
+    "p50": 0.091,
+    "p90": 0.123,
+    "max": 0.197
   },
   {
     "service": "Cloudwatch",
@@ -3705,9 +3705,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 76.697,
-    "p90": 78.425,
-    "max": 78.425
+    "p50": 13.454,
+    "p90": 8.673,
+    "max": 9.963
   },
   {
     "service": "Cloudwatch",
@@ -3715,9 +3715,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.129,
-    "p90": 0.198,
-    "max": 0.198
+    "p50": 0.101,
+    "p90": 0.114,
+    "max": 0.187
   },
   {
     "service": "Cloudwatch",
@@ -3725,9 +3725,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.215,
-    "p90": 0.294,
-    "max": 0.294
+    "p50": 0.165,
+    "p90": 0.223,
+    "max": 0.391
   },
   {
     "service": "Cloudwatch",
@@ -3755,9 +3755,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 75.08,
-    "p90": 76.725,
-    "max": 76.725
+    "p50": 4.394,
+    "p90": 5.321,
+    "max": 88.551
   },
   {
     "service": "Cloudwatch",
@@ -3765,9 +3765,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 0.126,
-    "p90": 0.224,
-    "max": 0.224
+    "p50": 0.075,
+    "p90": 0.086,
+    "max": 0.169
   },
   {
     "service": "Cloudwatch",
@@ -3775,9 +3775,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 2.98,
-    "p90": 65.877,
-    "max": 65.877
+    "p50": 0.546,
+    "p90": 0.622,
+    "max": 1.278
   },
   {
     "service": "Cloudwatch",
@@ -3795,9 +3795,9 @@
     "protocol": "CBOR",
     "dimension_value": 64,
     "metric": "Response payload size (bytes)",
-    "p50": 52274,
-    "p90": 52274,
-    "max": 52274
+    "p50": 9185,
+    "p90": 9185,
+    "max": 9185
   },
   {
     "service": "Cloudwatch",
@@ -3805,9 +3805,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 73.22,
-    "p90": 75.231,
-    "max": 75.231
+    "p50": 8.126,
+    "p90": 9.371,
+    "max": 9.954
   },
   {
     "service": "Cloudwatch",
@@ -3815,9 +3815,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 1.162,
-    "p90": 1.275,
-    "max": 1.275
+    "p50": 1.028,
+    "p90": 1.239,
+    "max": 1.477
   },
   {
     "service": "Cloudwatch",
@@ -3825,9 +3825,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 0.121,
-    "p90": 0.203,
-    "max": 0.203
+    "p50": 0.082,
+    "p90": 0.116,
+    "max": 0.173
   },
   {
     "service": "Cloudwatch",
@@ -3855,9 +3855,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 76.139,
-    "p90": 79.719,
-    "max": 79.719
+    "p50": 13.909,
+    "p90": 9.442,
+    "max": 9.997
   },
   {
     "service": "Cloudwatch",
@@ -3865,9 +3865,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 0.115,
-    "p90": 0.118,
-    "max": 0.118
+    "p50": 0.093,
+    "p90": 0.106,
+    "max": 0.162
   },
   {
     "service": "Cloudwatch",
@@ -3875,9 +3875,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 0.193,
-    "p90": 0.196,
-    "max": 0.196
+    "p50": 0.151,
+    "p90": 0.211,
+    "max": 0.321
   },
   {
     "service": "Cloudwatch",
@@ -3905,9 +3905,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 77.402,
-    "p90": 79.411,
-    "max": 79.411
+    "p50": 4.358,
+    "p90": 5.205,
+    "max": 79.899
   },
   {
     "service": "Cloudwatch",
@@ -3915,9 +3915,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 0.093,
-    "p90": 0.108,
-    "max": 0.108
+    "p50": 0.073,
+    "p90": 0.085,
+    "max": 0.149
   },
   {
     "service": "Cloudwatch",
@@ -3925,9 +3925,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 2.678,
-    "p90": 68.602,
-    "max": 68.602
+    "p50": 0.549,
+    "p90": 0.614,
+    "max": 0.745
   },
   {
     "service": "Cloudwatch",
@@ -3945,9 +3945,9 @@
     "protocol": "CBOR",
     "dimension_value": 256,
     "metric": "Response payload size (bytes)",
-    "p50": 52274,
-    "p90": 52274,
-    "max": 52274
+    "p50": 9306,
+    "p90": 9306,
+    "max": 9306
   },
   {
     "service": "Cloudwatch",
@@ -3955,9 +3955,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 222.209,
-    "p90": 85.977,
-    "max": 85.977
+    "p50": 20.581,
+    "p90": 29.675,
+    "max": 51.087
   },
   {
     "service": "Cloudwatch",
@@ -3965,9 +3965,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 5.04,
-    "p90": 8.041,
-    "max": 8.041
+    "p50": 2.828,
+    "p90": 3.064,
+    "max": 3.9
   },
   {
     "service": "Cloudwatch",
@@ -3975,9 +3975,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.122,
-    "p90": 0.128,
-    "max": 0.128
+    "p50": 0.075,
+    "p90": 0.106,
+    "max": 0.148
   },
   {
     "service": "Cloudwatch",
@@ -4005,9 +4005,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 73.284,
-    "p90": 77.522,
-    "max": 77.522
+    "p50": 13.568,
+    "p90": 31.14,
+    "max": 9.986
   },
   {
     "service": "Cloudwatch",
@@ -4015,9 +4015,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 0.106,
-    "p90": 0.121,
-    "max": 0.121
+    "p50": 0.094,
+    "p90": 0.104,
+    "max": 1.15
   },
   {
     "service": "Cloudwatch",
@@ -4025,9 +4025,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.31,
-    "p90": 0.363,
-    "max": 0.363
+    "p50": 0.138,
+    "p90": 0.196,
+    "max": 0.319
   },
   {
     "service": "Cloudwatch",
@@ -4055,9 +4055,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 74.895,
-    "p90": 75.283,
-    "max": 75.283
+    "p50": 4.541,
+    "p90": 5.327,
+    "max": 8.045
   },
   {
     "service": "Cloudwatch",
@@ -4065,9 +4065,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 0.083,
-    "p90": 0.102,
-    "max": 0.102
+    "p50": 0.07,
+    "p90": 0.078,
+    "max": 0.155
   },
   {
     "service": "Cloudwatch",
@@ -4075,9 +4075,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 3.127,
-    "p90": 65.868,
-    "max": 65.868
+    "p50": 0.554,
+    "p90": 0.617,
+    "max": 0.706
   },
   {
     "service": "Cloudwatch",
@@ -4095,9 +4095,9 @@
     "protocol": "CBOR",
     "dimension_value": 1000,
     "metric": "Response payload size (bytes)",
-    "p50": 52274,
-    "p90": 52274,
-    "max": 52274
+    "p50": 9428,
+    "p90": 9428,
+    "max": 9428
   },
   {
     "service": "Cloudwatch",
@@ -4105,9 +4105,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 69.52,
-    "p90": 70.017,
-    "max": 70.017
+    "p50": 5.498,
+    "p90": 6.666,
+    "max": 9.677
   },
   {
     "service": "Cloudwatch",
@@ -4115,9 +4115,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.509,
-    "p90": 3.489,
-    "max": 3.489
+    "p50": 0.45,
+    "p90": 0.509,
+    "max": 3.403
   },
   {
     "service": "Cloudwatch",
@@ -4125,9 +4125,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 0.142,
-    "p90": 0.318,
-    "max": 0.318
+    "p50": 0.105,
+    "p90": 0.147,
+    "max": 0.235
   },
   {
     "service": "Cloudwatch",
@@ -4136,8 +4136,8 @@
     "dimension_value": 16,
     "metric": "Request payload size (bytes)",
     "p50": 5102,
-    "p90": 5106,
-    "max": 5106
+    "p90": 5105,
+    "max": 5112
   },
   {
     "service": "Cloudwatch",
@@ -4155,9 +4155,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 76.173,
-    "p90": 83.966,
-    "max": 83.966
+    "p50": 13.51,
+    "p90": 8.748,
+    "max": 9.988
   },
   {
     "service": "Cloudwatch",
@@ -4165,9 +4165,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.262,
-    "p90": 0.609,
-    "max": 0.609
+    "p50": 0.159,
+    "p90": 0.177,
+    "max": 0.812
   },
   {
     "service": "Cloudwatch",
@@ -4175,9 +4175,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 0.555,
-    "p90": 4.051,
-    "max": 4.051
+    "p50": 0.363,
+    "p90": 0.458,
+    "max": 3.606
   },
   {
     "service": "Cloudwatch",
@@ -4205,9 +4205,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Total request time (ms)",
-    "p50": 118.677,
-    "p90": 534.495,
-    "max": 534.495
+    "p50": 9.096,
+    "p90": 9.714,
+    "max": 9.98
   },
   {
     "service": "Cloudwatch",
@@ -4215,9 +4215,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Serialization time (ms)",
-    "p50": 0.149,
-    "p90": 0.26,
-    "max": 0.26
+    "p50": 0.091,
+    "p90": 0.102,
+    "max": 0.288
   },
   {
     "service": "Cloudwatch",
@@ -4225,9 +4225,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Deserialization time (ms)",
-    "p50": 30.893,
-    "p90": 94.197,
-    "max": 94.197
+    "p50": 3.814,
+    "p90": 4.161,
+    "max": 5.231
   },
   {
     "service": "Cloudwatch",
@@ -4245,9 +4245,9 @@
     "protocol": "Query",
     "dimension_value": 16,
     "metric": "Response payload size (bytes)",
-    "p50": 142486,
-    "p90": 142486,
-    "max": 142486
+    "p50": 23959,
+    "p90": 23959,
+    "max": 23959
   },
   {
     "service": "Cloudwatch",
@@ -4255,9 +4255,9 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Total request time (ms)",
-    "p50": 71.13,
-    "p90": 72.643,
-    "max": 72.643
+    "p50": 7.963,
+    "p90": 9.217,
+    "max": 9.984
   },
   {
     "service": "Cloudwatch",
@@ -4265,9 +4265,9 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Serialization time (ms)",
-    "p50": 1.67,
-    "p90": 2.806,
-    "max": 2.806
+    "p50": 1.137,
+    "p90": 1.376,
+    "max": 2.239
   },
   {
     "service": "Cloudwatch",
@@ -4275,109 +4275,109 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 0.171,
-    "p90": 0.203,
+    "p50": 0.11,
+    "p90": 0.153,
+    "max": 1.108
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Request payload size (bytes)",
+    "p50": 20378,
+    "p90": 20385,
+    "max": 20394
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Put metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Response payload size (bytes)",
+    "p50": 212,
+    "p90": 212,
+    "max": 212
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 13.687,
+    "p90": 8.939,
+    "max": 9.99
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.142,
+    "p90": 0.161,
+    "max": 0.266
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Deserialization time (ms)",
+    "p50": 0.345,
+    "p90": 0.401,
+    "max": 0.692
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Request payload size (bytes)",
+    "p50": 656,
+    "p90": 656,
+    "max": 656
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "Get metric data",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Response payload size (bytes)",
+    "p50": 493,
+    "p90": 493,
+    "max": 493
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Total request time (ms)",
+    "p50": 8.511,
+    "p90": 9.79,
+    "max": 9.999
+  },
+  {
+    "service": "Cloudwatch",
+    "test_case": "List metrics",
+    "protocol": "Query",
+    "dimension_value": 64,
+    "metric": "Serialization time (ms)",
+    "p50": 0.095,
+    "p90": 0.105,
     "max": 0.203
   },
   {
     "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Request payload size (bytes)",
-    "p50": 20375,
-    "p90": 20378,
-    "max": 20378
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Put metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Response payload size (bytes)",
-    "p50": 212,
-    "p90": 212,
-    "max": 212
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 77.807,
-    "p90": 78.504,
-    "max": 78.504
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.168,
-    "p90": 0.216,
-    "max": 0.216
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Deserialization time (ms)",
-    "p50": 0.386,
-    "p90": 0.55,
-    "max": 0.55
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Request payload size (bytes)",
-    "p50": 656,
-    "p90": 656,
-    "max": 656
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "Get metric data",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Response payload size (bytes)",
-    "p50": 493,
-    "p90": 493,
-    "max": 493
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Total request time (ms)",
-    "p50": 124.614,
-    "p90": 305.466,
-    "max": 305.466
-  },
-  {
-    "service": "Cloudwatch",
-    "test_case": "List metrics",
-    "protocol": "Query",
-    "dimension_value": 64,
-    "metric": "Serialization time (ms)",
-    "p50": 0.121,
-    "p90": 0.147,
-    "max": 0.147
-  },
-  {
-    "service": "Cloudwatch",
     "test_case": "List metrics",
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Deserialization time (ms)",
-    "p50": 32.067,
-    "p90": 94.629,
-    "max": 94.629
+    "p50": 3.917,
+    "p90": 4.352,
+    "max": 9.721
   },
   {
     "service": "Cloudwatch",
@@ -4395,9 +4395,9 @@
     "protocol": "Query",
     "dimension_value": 64,
     "metric": "Response payload size (bytes)",
-    "p50": 142486,
-    "p90": 142486,
-    "max": 142486
+    "p50": 24258,
+    "p90": 24258,
+    "max": 24258
   },
   {
     "service": "Cloudwatch",
@@ -4405,9 +4405,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 82.593,
-    "p90": 87.575,
-    "max": 87.575
+    "p50": 18.914,
+    "p90": 26.895,
+    "max": 41.241
   },
   {
     "service": "Cloudwatch",
@@ -4415,9 +4415,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 5.352,
-    "p90": 7.667,
-    "max": 7.667
+    "p50": 3.614,
+    "p90": 3.902,
+    "max": 5.603
   },
   {
     "service": "Cloudwatch",
@@ -4425,9 +4425,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 0.176,
-    "p90": 0.213,
-    "max": 0.213
+    "p50": 0.152,
+    "p90": 0.196,
+    "max": 0.274
   },
   {
     "service": "Cloudwatch",
@@ -4435,9 +4435,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Request payload size (bytes)",
-    "p50": 82685,
-    "p90": 82697,
-    "max": 82697
+    "p50": 82684,
+    "p90": 82699,
+    "max": 82715
   },
   {
     "service": "Cloudwatch",
@@ -4455,9 +4455,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 76.549,
-    "p90": 79.635,
-    "max": 79.635
+    "p50": 13.792,
+    "p90": 26.646,
+    "max": 9.956
   },
   {
     "service": "Cloudwatch",
@@ -4465,9 +4465,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 0.202,
-    "p90": 0.222,
-    "max": 0.222
+    "p50": 0.156,
+    "p90": 0.187,
+    "max": 0.293
   },
   {
     "service": "Cloudwatch",
@@ -4475,9 +4475,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 0.374,
-    "p90": 0.541,
-    "max": 0.541
+    "p50": 0.42,
+    "p90": 0.55,
+    "max": 0.807
   },
   {
     "service": "Cloudwatch",
@@ -4505,9 +4505,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Total request time (ms)",
-    "p50": 114.62,
-    "p90": 571.056,
-    "max": 571.056
+    "p50": 8.934,
+    "p90": 9.784,
+    "max": 9.978
   },
   {
     "service": "Cloudwatch",
@@ -4515,9 +4515,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Serialization time (ms)",
-    "p50": 0.106,
-    "p90": 0.113,
-    "max": 0.113
+    "p50": 0.09,
+    "p90": 0.108,
+    "max": 0.18
   },
   {
     "service": "Cloudwatch",
@@ -4525,9 +4525,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Deserialization time (ms)",
-    "p50": 28.846,
-    "p90": 95.483,
-    "max": 95.483
+    "p50": 3.942,
+    "p90": 4.33,
+    "max": 5.165
   },
   {
     "service": "Cloudwatch",
@@ -4545,9 +4545,9 @@
     "protocol": "Query",
     "dimension_value": 256,
     "metric": "Response payload size (bytes)",
-    "p50": 142543,
-    "p90": 142543,
-    "max": 142543
+    "p50": 24558,
+    "p90": 24558,
+    "max": 24558
   },
   {
     "service": "Cloudwatch",
@@ -4555,9 +4555,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 124.936,
-    "p90": 388.241,
-    "max": 388.241
+    "p50": 62.133,
+    "p90": 76.006,
+    "max": 95.264
   },
   {
     "service": "Cloudwatch",
@@ -4565,9 +4565,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 21.969,
-    "p90": 27.055,
-    "max": 27.055
+    "p50": 14.356,
+    "p90": 15.078,
+    "max": 24.653
   },
   {
     "service": "Cloudwatch",
@@ -4575,9 +4575,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.198,
-    "p90": 0.218,
-    "max": 0.218
+    "p50": 0.161,
+    "p90": 0.214,
+    "max": 0.297
   },
   {
     "service": "Cloudwatch",
@@ -4585,9 +4585,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Request payload size (bytes)",
-    "p50": 325670,
-    "p90": 325710,
-    "max": 325710
+    "p50": 325692,
+    "p90": 325723,
+    "max": 325766
   },
   {
     "service": "Cloudwatch",
@@ -4605,9 +4605,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 76.548,
-    "p90": 78.45,
-    "max": 78.45
+    "p50": 13.487,
+    "p90": 27.168,
+    "max": 9.986
   },
   {
     "service": "Cloudwatch",
@@ -4615,9 +4615,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 0.152,
-    "p90": 0.175,
-    "max": 0.175
+    "p50": 0.142,
+    "p90": 0.159,
+    "max": 0.741
   },
   {
     "service": "Cloudwatch",
@@ -4625,9 +4625,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 0.377,
-    "p90": 0.434,
-    "max": 0.434
+    "p50": 0.353,
+    "p90": 0.408,
+    "max": 0.569
   },
   {
     "service": "Cloudwatch",
@@ -4655,9 +4655,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Total request time (ms)",
-    "p50": 180.323,
-    "p90": 305.537,
-    "max": 305.537
+    "p50": 9.1,
+    "p90": 9.805,
+    "max": 9.996
   },
   {
     "service": "Cloudwatch",
@@ -4665,9 +4665,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Serialization time (ms)",
-    "p50": 0.132,
-    "p90": 0.141,
-    "max": 0.141
+    "p50": 0.079,
+    "p90": 0.092,
+    "max": 0.265
   },
   {
     "service": "Cloudwatch",
@@ -4675,9 +4675,9 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Deserialization time (ms)",
-    "p50": 29.118,
-    "p90": 92.271,
-    "max": 92.271
+    "p50": 3.882,
+    "p90": 4.303,
+    "max": 4.989
   },
   {
     "service": "Cloudwatch",
@@ -4695,8 +4695,8 @@
     "protocol": "Query",
     "dimension_value": 1000,
     "metric": "Response payload size (bytes)",
-    "p50": 142543,
-    "p90": 142543,
-    "max": 142543
+    "p50": 24859,
+    "p90": 24859,
+    "max": 24859
   }
 ]
