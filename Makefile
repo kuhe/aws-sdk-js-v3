@@ -39,6 +39,13 @@ test-e2e: build-s3-browser-bundle
 build-s3-browser-bundle:
 	node ./clients/client-s3/test/browser-build/esbuild
 
+cbor:
+	(cd codegen && ./gradlew :generic-client-test-codegen:build)
+	(cd codegen/generic-client-test-codegen/build/smithyprojections/generic-client-test-codegen/aws-json-echo-service/typescript-codegen \
+		&& touch yarn.lock && yarn && yarn build)
+	(cd codegen/generic-client-test-codegen/build/smithyprojections/generic-client-test-codegen/aws-cbor-echo-service/typescript-codegen \
+		&& touch yarn.lock && yarn && yarn build)
+
 # removes nested node_modules folders
 clean-nested:
 	rm -rf ./lib/*/node_modules
