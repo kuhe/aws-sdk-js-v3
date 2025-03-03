@@ -9,6 +9,12 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
+
+import software.amazon.smithy.aws.traits.protocols.AwsJson1_0Trait;
+import software.amazon.smithy.aws.traits.protocols.AwsJson1_1Trait;
+import software.amazon.smithy.aws.traits.protocols.AwsQueryTrait;
+import software.amazon.smithy.aws.traits.protocols.Ec2QueryTrait;
+import software.amazon.smithy.aws.traits.protocols.RestJson1Trait;
 import software.amazon.smithy.aws.traits.protocols.RestXmlTrait;
 import software.amazon.smithy.codegen.core.SymbolProvider;
 import software.amazon.smithy.model.Model;
@@ -29,10 +35,15 @@ import software.amazon.smithy.utils.SmithyInternalApi;
 public final class AddProtocolConfig implements TypeScriptIntegration {
 
     public AddProtocolConfig() {
-        SchemaGenerationAllowlist.allow("aws.protocoltests.restxml#RestXml");
         SchemaGenerationAllowlist.allow("com.amazonaws.s3#AmazonS3");
-        // SchemaGenerationAllowlist.allow("aws.protocoltests.restjson#RestJson");
-        // SchemaGenerationAllowlist.allow("aws.protocoltests.json#JsonProtocol");
+        SchemaGenerationAllowlist.allow("com.amazonaws.dynamodb#DynamoDB_20120810");
+        SchemaGenerationAllowlist.allow("com.amazonaws.lambda#AWSGirApiService");
+
+        // protocol tests
+        SchemaGenerationAllowlist.allow("aws.protocoltests.json#JsonProtocol");
+        SchemaGenerationAllowlist.allow("aws.protocoltests.restjson#RestJson");
+        SchemaGenerationAllowlist.allow("aws.protocoltests.restxml#RestXml");
+        SchemaGenerationAllowlist.allow("aws.protocoltests.json10#JsonRpc10");
     }
 
     @Override
@@ -72,6 +83,51 @@ public final class AddProtocolConfig implements TypeScriptIntegration {
                                 settings.getService(model)
                                     .getId().getNamespace()
                             );
+                        }
+                    );
+                } else if (Objects.equals(settings.getProtocol(), AwsQueryTrait.ID)) {
+                    return MapUtils.of(
+                        "protocol", writer -> {
+                            writer.addImportSubmodule(
+                                "AwsQueryProtocol", null,
+                                AwsDependency.AWS_SDK_CORE, "/protocols");
+                            writer.write("new AwsQueryProtocol()");
+                        }
+                    );
+                } else if (Objects.equals(settings.getProtocol(), Ec2QueryTrait.ID)) {
+                    return MapUtils.of(
+                        "protocol", writer -> {
+                            writer.addImportSubmodule(
+                                "AwsEc2QueryProtocol", null,
+                                AwsDependency.AWS_SDK_CORE, "/protocols");
+                            writer.write("new AwsEc2QueryProtocol()");
+                        }
+                    );
+                } else if (Objects.equals(settings.getProtocol(), RestJson1Trait.ID)) {
+                    return MapUtils.of(
+                        "protocol", writer -> {
+                            writer.addImportSubmodule(
+                                "AwsRestJsonProtocol", null,
+                                AwsDependency.AWS_SDK_CORE, "/protocols");
+                            writer.write("new AwsRestJsonProtocol()");
+                        }
+                    );
+                } else if (Objects.equals(settings.getProtocol(), AwsJson1_0Trait.ID)) {
+                    return MapUtils.of(
+                        "protocol", writer -> {
+                            writer.addImportSubmodule(
+                                "AwsJson1_0Protocol", null,
+                                AwsDependency.AWS_SDK_CORE, "/protocols");
+                            writer.write("new AwsJson1_0Protocol()");
+                        }
+                    );
+                } else if (Objects.equals(settings.getProtocol(), AwsJson1_1Trait.ID)) {
+                    return MapUtils.of(
+                        "protocol", writer -> {
+                            writer.addImportSubmodule(
+                                "AwsJson1_1Protocol", null,
+                                AwsDependency.AWS_SDK_CORE, "/protocols");
+                            writer.write("new AwsJson1_1Protocol()");
                         }
                     );
                 }

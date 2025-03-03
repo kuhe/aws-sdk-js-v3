@@ -3,14 +3,16 @@ import { NormalizedSchema } from "@smithy/core/schema";
 import { dateToUtcString } from "@smithy/smithy-client";
 import type { Schema as ISchema, SerdeContext, ShapeSerializer } from "@smithy/types";
 
-export class XmlShapeSerializer implements ShapeSerializer<string> {
+import { SerdeContextConfig } from "../ConfigurableSerdeContext";
+
+export class XmlShapeSerializer extends SerdeContextConfig implements ShapeSerializer<string> {
   private buffer?: XmlNode;
-  private serdeContext?: SerdeContext;
 
-  public constructor(public readonly xmlNamespace: string, public readonly timestampFormat: string = "time") {}
-
-  public setSerdeContext(serdeContext: SerdeContext) {
-    this.serdeContext = serdeContext;
+  public constructor(
+    public readonly xmlNamespace: string,
+    public readonly timestampFormat: string = "time",
+  ) {
+    super();
   }
 
   public write(schema: ISchema, value: unknown): void {
@@ -58,6 +60,9 @@ export class XmlShapeSerializer implements ShapeSerializer<string> {
     } else {
       for (const [key, val] of Object.entries(value as object)) {
         const memberSchema = ns.getMemberSchema(key);
+        if (memberSchema === undefined) {
+          continue;
+        }
         const memberSchemaTraits = memberSchema.getMergedTraits();
         const itemName = memberSchemaTraits.xmlName ?? memberSchema.getName() ?? key ?? "UnknownItem";
 
@@ -77,7 +82,7 @@ export class XmlShapeSerializer implements ShapeSerializer<string> {
 
   private writeMap(ns: NormalizedSchema, map: Record<string, any>, container: XmlNode): void {
     const mapTraits = ns.getMergedTraits();
-    const memberSchema = ns.getMemberSchema();
+    const memberSchema = ns.getValueSchema();
     const memberSchemaTraits = memberSchema.getMergedTraits();
     const itemName = mapTraits.xmlName ?? memberSchemaTraits.xmlName ?? memberSchema.getName() ?? "UnknownMapItem";
     const sparse = !!memberSchemaTraits.sparse;
@@ -105,7 +110,7 @@ export class XmlShapeSerializer implements ShapeSerializer<string> {
 
   private writeList(ns: NormalizedSchema, array: unknown[], container: XmlNode): void {
     const listTraits = ns.getMergedTraits();
-    const memberSchema = ns.getMemberSchema();
+    const memberSchema = ns.getValueSchema();
     const memberSchemaTraits = memberSchema.getMergedTraits();
     const itemName = listTraits.xmlName ?? memberSchemaTraits.xmlName ?? memberSchema.getName() ?? "UnknownListItem";
     const sparse = !!memberSchemaTraits.sparse;

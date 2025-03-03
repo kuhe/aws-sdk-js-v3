@@ -6,12 +6,14 @@ import type { Schema, SerdeContext, ShapeDeserializer } from "@smithy/types";
 import { toUtf8 } from "@smithy/util-utf8";
 import { XMLParser } from "fast-xml-parser";
 
-export class XmlShapeDeserializer implements ShapeDeserializer<Uint8Array | string> {
-  private registry: TypeRegistry;
-  private stringDeserializer: FromStringShapeDeserializer;
-  private serdeContext?: SerdeContext;
+import { SerdeContextConfig } from "../ConfigurableSerdeContext";
 
-  public constructor(private serviceNamespace: string) {
+export class XmlShapeDeserializer extends SerdeContextConfig implements ShapeDeserializer<Uint8Array | string> {
+  private readonly registry: TypeRegistry;
+  private stringDeserializer: FromStringShapeDeserializer;
+
+  public constructor(serviceNamespace: string) {
+    super();
     this.registry = TypeRegistry.for(serviceNamespace);
     this.stringDeserializer = new FromStringShapeDeserializer(this.registry, (value) => parseRfc3339DateTime(value)!);
   }
@@ -65,7 +67,7 @@ export class XmlShapeDeserializer implements ShapeDeserializer<Uint8Array | stri
       const sparse = !!traits.sparse;
       if (Array.isArray(value)) {
         // list
-        const memberNs = ns.getMemberSchema();
+        const memberNs = ns.getValueSchema();
         const buffer = [] as any[];
         for (const v of value) {
           if (v != null || sparse) {
@@ -77,7 +79,7 @@ export class XmlShapeDeserializer implements ShapeDeserializer<Uint8Array | stri
       const buffer = {} as any;
       if (ns.isMapSchema()) {
         // map
-        const memberNs = ns.getMemberSchema();
+        const memberNs = ns.getValueSchema();
         for (const key of Object.keys(value)) {
           if (value[key] != null || sparse) {
             buffer[key] = this.readSchema(memberNs.getSchema(), value[key]);
@@ -98,6 +100,9 @@ export class XmlShapeDeserializer implements ShapeDeserializer<Uint8Array | stri
         for (const key of Object.keys(value)) {
           const assignToKey = xmlNameToMemberName[key] ?? key;
           const memberNs = ns.getMemberSchema(assignToKey);
+          if (memberNs === undefined) {
+            continue;
+          }
 
           if (value[key] != null) {
             buffer[assignToKey] = this.readSchema(memberNs, value[key]);
