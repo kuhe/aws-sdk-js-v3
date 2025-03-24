@@ -827,6 +827,10 @@ export class S3Client extends __Client<
 
   constructor(...[configuration]: __CheckOptionalClientConfig<S3ClientConfig>) {
     const _config_0 = __getRuntimeConfig(configuration || {});
+    (_config_0 as any)[Symbol.iterator] = function () {
+      const stack = new Error().stack;
+      console.log(`oh no I'm being iterated by ${stack}`);
+    };
     const _config_1 = resolveClientEndpointParameters(_config_0);
     const _config_2 = resolveUserAgentConfig(_config_1);
     const _config_3 = resolveFlexibleChecksumsConfig(_config_2);

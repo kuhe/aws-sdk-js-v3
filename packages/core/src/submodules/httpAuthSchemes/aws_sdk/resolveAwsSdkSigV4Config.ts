@@ -209,7 +209,7 @@ export const resolveAwsSdkSigV4Config = <T>(
 
       const params: SignatureV4Init & SignatureV4CryptoInit = {
         ...config,
-        credentials: boundCredentialsProvider,
+        credentials: config.credentials as typeof boundCredentialsProvider,
         region: config.signingRegion,
         service: config.signingName,
         sha256,
