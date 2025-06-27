@@ -57,19 +57,15 @@ export class AwsRestXmlProtocol extends HttpBindingProtocol {
     input: Input,
     context: HandlerExecutionContext & SerdeFunctions & EndpointBearer
   ): Promise<IHttpRequest> {
+    const opTraits = NormalizedSchema.translateTraits(operationSchema.traits);
+    if (opTraits.http !== undefined) {
+      // todo(schemas) preprocess model?
+      // for legacy reasons, Bucket is in the http trait but is handled by endpoints ruleset instead.
+      opTraits.http[1] = opTraits.http[1].replace(/\/\{Bucket}\/?/, "/");
+    }
     const request = await super.serializeRequest(operationSchema, input, context);
     const ns = NormalizedSchema.of(operationSchema.input);
     const members = ns.getMemberSchemas();
-
-    request.path =
-      String(request.path)
-        .split("/")
-        .filter((segment) => {
-          // for legacy reasons,
-          // Bucket is in the http trait but is handled by endpoints ruleset.
-          return segment !== "{Bucket}";
-        })
-        .join("/") || "/";
 
     if (!request.headers["content-type"]) {
       const httpPayloadMember = Object.values(members).find((m) => {
